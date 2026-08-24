@@ -1,3 +1,7 @@
+.app {
+    max-width: 402;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
