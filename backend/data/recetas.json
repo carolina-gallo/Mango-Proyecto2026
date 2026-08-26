@@ -1,0 +1,18 @@
+{
+    "receta":[
+        {
+            "id": "r278",
+            "id_usuario": 1,
+            "imagen_receta": "panquequespros.jpg",
+            "descripcion": "Receta de Panqueques Pros",
+            "fecha_receta": "2026-11-09", 
+            "likes_receta": 143,
+            "comentarios_receta": 14,
+            "comentarios": [
+                {
+                    "texto": ["te salió re bien!"],
+                    "fecha": "30-4-2026"
+                }
+            ]        } 
+    ]
+}

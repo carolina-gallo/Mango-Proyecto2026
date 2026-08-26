@@ -36,10 +36,15 @@
             "fecha_post": "2026-08-12", 
             "likes_post": 67,
             "comentarios_post": 14,
-            "comentarios"
+            "comentarios": [
+                {
+                    "texto": ["te salió re bien!"],
+                    "fecha": "30-4-2026"
+                }
+            ]
         }
     ],
-    "receta": [
+    "receta":[
         {
             "id": "r278",
             "id_usuario": 1,
@@ -48,8 +53,12 @@
             "fecha_receta": "2026-11-09", 
             "likes_receta": 143,
             "comentarios_receta": 14,
-            "comenterios"
-        } 
+            "comentarios": [
+                {
+                    "texto": ["te salió re bien!"],
+                    "fecha": "30-4-2026"
+                }
+            ]        } 
     ],
     "bandejas": [
         {
@@ -61,12 +70,6 @@
             "recetas_bandeja": ["Receta de licuado proteico" , "Receta de Muffins proteicos"]
 
         
-        }
-    ],
-    "comentarios": [
-        {
-            "texto": ["te salió re bien!"],
-            "fecha": "30-4-2026"
         }
     ],
     "metas":[

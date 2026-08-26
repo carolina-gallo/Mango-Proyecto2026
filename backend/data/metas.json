@@ -1,0 +1,12 @@
+{
+    "metas":[
+        {
+          "id": "met67",
+          "nombre_meta": "Comidas proteicas",
+          "filtro_id": "proteicas",
+          "cantidad necesaria": 10,
+          "recompensa": 10, 
+          "cuenta": 8  
+        }
+    ]
+}
