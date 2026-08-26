@@ -10,19 +10,19 @@
 
 .post,
 .post2 {
-    width: 334px;
-    height: 322px;
+    width: 83.08vw;
+    height: 36.84vh;
     background-color: lightblue;
-    border: 2px solid black;
+    border: 0.125rem solid black;
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    padding: 10px;
-    gap: 8px;
+    padding: 0.625rem;
+    gap: 0.5rem;
 }
 
 .post2 {
-    margin-top: 30px;
+    margin-top: 3.43vh;
 }
 
 .post h2,
@@ -37,8 +37,8 @@
 
 img.foto {
     width: 100%;
-    flex: 1 1 auto;   /* la imagen crece y ocupa todo el espacio sobrante */
-    min-height: 0;    /* evita que el flex la desborde */
+    flex: 1 1 auto;  
+    min-height: 0;   
     object-fit: cover;
     border: 1px solid black;
 }
@@ -47,9 +47,7 @@ img.foto {
     background-color: rgba(128, 128, 128, 0.37);
     width: calc(100% + 20px); 
     aspect-ratio: 7/1; 
-    margin-left: -10px;
-    margin-right: -10px;
-    margin-bottom: -10px;
+    margin-bottom: -0.625rem;
 }
 
 main {
@@ -57,5 +55,5 @@ main {
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    margin-top: 40px;
+    margin-top: 4.58vh;
 }
