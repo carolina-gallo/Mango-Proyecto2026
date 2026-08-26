@@ -1,0 +1,20 @@
+{
+    "post":[
+        {
+            "id": "p123",
+            "id_usuario": 1,
+            "imagen_post": "pancakes.jpg",
+            "link_receta": "recetadepancakes.receta.com",
+            "descripcion": "ricos pancakes de avena",
+            "fecha_post": "2026-08-12", 
+            "likes_post": 67,
+            "comentarios_post": 14,
+            "comentarios": [
+                {
+                    "texto": ["te salió re bien!"],
+                    "fecha": "30-4-2026"
+                }
+            ]
+        }
+    ]
+}

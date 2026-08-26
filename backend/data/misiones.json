@@ -1,0 +1,11 @@
+{
+    "misiones": [
+        {
+          "id": "met67",
+          "nombre_mision": "Post compartidos",
+          "cantidad necesaria": 10,
+          "recompensa": 10, 
+          "cuenta": 8   
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+{
+    "maestrias": [
+        {
+          "id": "mae34",
+          "nombre_meta": "Recetas sin TACC",
+          "filtro_id": "sin tacc",
+          "cantidad necesaria": 10,
+          "nivel": "Master",
+          "cuenta": 8   
+        }
+    ]
+}

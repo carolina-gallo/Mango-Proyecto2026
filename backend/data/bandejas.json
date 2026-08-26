@@ -1,0 +1,14 @@
+{
+    "bandejas": [
+        {
+            "id": "b234",
+            "id_usuario": 6,
+            "imagen_bandeja": "fotoaestetic.jpg",
+            "nombre_bandeja": "Recetas Dulzonas uwu",
+            "filtros": ["veganx", "diabeticx", "hipertensx"], 
+            "recetas_bandeja": ["Receta de licuado proteico" , "Receta de Muffins proteicos"]
+
+        
+        }
+    ]
+}
