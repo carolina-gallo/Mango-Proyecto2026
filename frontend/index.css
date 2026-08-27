@@ -43,3 +43,10 @@
     height: 43px;
     border-radius: 0.5rem;
 }
+
+.logo {
+    width: 51px;
+    height: 43px;
+    background-color: #F3A73C;
+    border-radius: 20px;
+}
