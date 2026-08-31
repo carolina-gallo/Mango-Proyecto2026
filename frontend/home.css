@@ -10,7 +10,7 @@ alto: (alto del objeto/ alto base (874) * 100 = vh */
 }
 .contenedor{
     display:flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     width: 100%;
 }
 header {
@@ -27,10 +27,11 @@ header {
 .buscador {
     background-color: rgb(80, 76, 76);
     font-size: 2rem;
-    width: 7.46vw;   /* 30px */
-    height: 3.43vh;  /* 30px */
+    width: 12.686vw;   /* 30px */
+    height: 4.805vh;  /* 30px */
     padding: 0.1875rem; /* 3px */
     margin-left: 0.50vw; /* 2px */
+    border-radius: 1.5rem;
 
     display: flex;
     justify-content: flex-start;
