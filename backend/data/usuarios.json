@@ -1,4 +1,4 @@
-{
+{   "type": "module",
     "usuarios": [
         {
             "id": 1,
@@ -11,18 +11,6 @@
             "fecha_registro_usuario": "2026-08-12", 
             "restricciones": ["veganx", "diabeticx", "hipertensx"] 
 
-        },
-        {
-            "id": 2,
-            "nombre": "Juana",
-            "apellido": "Fernandez",
-            "username": "junitalacrack",
-            "email": "juasjuas@gmail.com",
-            "foto_perfil": "perfil2.jpg",
-            "descripcion": "RECETAS ALTAS EN PROTE ACÁ",
-            "fecha_registro_usuario": "2026-09-23", 
-            "restricciones": ["intolerante a la lactosa", "hipertensx"] 
-  
         }
     ]
 }
