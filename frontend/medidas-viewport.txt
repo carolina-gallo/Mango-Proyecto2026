@@ -1,0 +1,4 @@
+/* Base: viewport 402px x 874px | 1vw = 4.02px | 1vh = 8.74px | 1rem = 16px
+FORMULA PX A VIEWPORT:
+ancho: ancho del obj puede ser margin, padding, etc / ancho base (402) * 100 = vw
+alto: alto del objeto/ alto base (874) * 100 = vh */
