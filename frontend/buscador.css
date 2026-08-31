@@ -1,17 +1,17 @@
 .main {
-    margin-top: 12px;
-    margin-left: 12px;
-    margin-right: 12px;
+    margin-top: 1.373vh;
+    margin-left: 2.986vw;
+    margin-right: 2.986vw;
 }
 .buscar {
-    width: 310px;
-    height: 42px;
+    width: 77.115vw;
+    height: 4.805vh;
     background-color: #d9d9d9;
-    border-radius: 11px;
+    border-radius: 0.6875rem;
 }
 
 .barra-superior {
-    display:flex;
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items:center;
