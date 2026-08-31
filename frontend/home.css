@@ -3,24 +3,23 @@ FORMULA PX A VIEWPORT:
 ancho: (ancho del obj puede ser margin, padding, etc / ancho base (402) * 100 = vw
 alto: (alto del objeto/ alto base (874) * 100 = vh */
 
-.app {
-    width: 100%;
-    max-width: 402px; /* antes: max-width: 402px; */
-    padding-bottom: 2rem;
-}
-
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-
+.contenedor{
+    display:flex;
+    justify-content: flex-end;
+    width: 100%;
+}
 header {
     width: 100%;
     min-height: 4.58vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     padding: 1rem; /* 10px */
     gap: 1rem;
 }
@@ -41,6 +40,8 @@ header {
 .movercosas {
     width: 49.75vw;
     height: 2.29vh;
+    position: sticky;
+    top: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -129,4 +130,11 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.logo {
+    width: 12.686vw;
+    height: 4.919vh;
+    background-color: #F3A73C;
+    border-radius: 0.6875rem;
 }
