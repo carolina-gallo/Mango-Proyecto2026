@@ -83,8 +83,6 @@ header {
 .post,
 .post2 {
     width: 83.08vw;   /* 334px */
-    margin-left: 8.15vw;  /* ~33px — ajustado para dejar el respiro lateral de la referencia */
-    margin-right: 8.15vw; /* ~33px */
     height: 36.84vh;  /* 322px */
     background-color: lightblue;
     border: 0.125rem solid black; /* 2px */
@@ -93,6 +91,7 @@ header {
     align-items: stretch;
     padding: 0.625rem; /* 10px */
     gap: 0.5rem;       /* 8px */
+    margin-bottom: 3rem;
 }
 
 .post2 {
@@ -122,6 +121,7 @@ img.foto {
 .bottom {
     background-color: rgba(128, 128, 128, 0.37);
     width: 100%; /* 20px */
+    margin: 0%;
     height: 5.26vh; /* 46px */;
 }
 
