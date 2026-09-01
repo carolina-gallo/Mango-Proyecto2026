@@ -12,3 +12,18 @@ left: 6.467vw;
 top: 69.565ch;
 background-color: #AFACAC;
 }
+
+.subir-imagen {
+box-sizing: border-box;
+
+position: absolute;
+width: 84.825vw;
+height: 32.2654vh;
+left: 6.467vw;
+top: 21.624vh;
+
+background-color: #FFFFFF;
+border: 0.5rem solid #FFFFFF;
+border-radius: 1.4375 rem;
+border-color: black;
+}
