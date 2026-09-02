@@ -41,7 +41,7 @@ header {
 
 .cajita {
     /*background-color: #585757; */
-    width: 1rem;  /* 200px */
+    width: 60vw;  /* 200px */
     height: 4vh; /* antes 2.29vh (20px): los botones .opciones con su padding
                      y margin de 10px por lado necesitan bastante más alto */
     min-height: 2.29vh;
