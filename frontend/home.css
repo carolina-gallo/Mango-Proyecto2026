@@ -10,7 +10,7 @@ alto: (alto del objeto/ alto base (874) * 100 = vh */
 }
 .contenedor{
     display:flex;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 100%;
 }
 header {
@@ -38,15 +38,6 @@ header {
   align-self: self-start;
 }
 
-.movercosas {
-    width: 49.75vw;
-    height: 2.29vh;
-    position: sticky;
-    top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .cajita {
     /*background-color: #585757; */
@@ -58,6 +49,7 @@ header {
     justify-content: center;
     align-items: center;
     gap: 1.5rem;
+    position: fixed;
 }
 
 .opciones {
