@@ -1,0 +1,135 @@
+/* Base: viewport 402px x 874px | 1vw = 4.02px | 1vh = 8.74px | 1rem = 16px
+FORMULA PX A VIEWPORT:
+ancho: (ancho del obj puede ser margin, padding, etc / ancho base (402) * 100 = vw
+alto: (alto del objeto/ alto base (874) * 100 = vh */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.contenedor{
+    width: 100%;
+    display:flex;
+    justify-content: space-between;
+}
+header {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem; /* 10px */
+    gap: 1rem;
+}
+
+.buscador {
+    background-color: rgb(80, 76, 76);
+    font-size: 2rem;
+    width: 12.686vw;   /* 30px */
+    height: 4.805vh;  /* 30px */
+    padding: 0.1875rem; /* 3px */
+    margin-left: 0.50vw; /* 2px */
+    border-radius: 1.5rem;
+
+    display: flex;
+    justify-content: flex-start;
+  align-self: flex-start    ;
+}
+
+
+.cajita {
+    /*background-color: #585757; */
+    width: 60vw;  /* 200px */
+    height: 4vh; /* antes 2.29vh (20px): los botones .opciones con su padding
+                     y margin de 10px por lado necesitan bastante más alto */
+    min-height: 2.29vh;
+    margin-top: 5rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
+   position: fixed; 
+   left: 20%;
+}
+
+.opciones {
+    background-color: darkgrey;
+    width: 100%;
+    height: 100%;
+    font-size: 2rem;
+    padding: 0.625rem; /* 10px */
+    margin: 0.625rem;  /* 10px */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem; /* 10px */
+    transition: 0.3s;
+}
+
+.seleccion {
+    background-color: rgb(102, 100, 100);
+}
+.toco:hover {
+    background-color: lightblue;
+    color: blue;
+}
+.avatar {
+    width: 9.95vw;  /* 40px */
+    height: 4.58vh; /* 40px */
+    border-radius: 0;
+    background-color: #cccccc;
+}
+
+.post,
+.post2 {
+    width: 90.08vw;   /* 334px */
+    height: 36.84vh;  /* 322px */
+    background-color: lightblue;
+    border: 0.125rem solid black; /* 2px */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.625rem; /* 10px */
+    gap: 0.5rem;       /* 8px */
+    margin-bottom: 3rem;
+}
+
+.post2 {
+    margin-top: 3.43vh; /* 30px */
+}
+
+.post h2,
+.post2 h2 {
+    font-size: 3em;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.post p,
+.post2 p {
+    font-size: 2em;
+}
+
+img.foto {
+    width: 100%;
+    flex: 1 1 auto;   /* la imagen crece y ocupa todo el espacio sobrante */
+    min-height: 0;    /* evita que el flex la desborde */
+    object-fit: cover;
+    border: 0.0625rem solid black; /* 1px */
+}
+
+.bottom {
+    background-color: rgba(128, 128, 128, 0.37);
+    width: 100%; /* 20px */
+    margin: 0%;
+    height: 5.26vh; /* 46px */;
+}
+
+main {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
