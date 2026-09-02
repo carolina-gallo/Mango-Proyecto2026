@@ -9,18 +9,18 @@ alto: (alto del objeto/ alto base (874) * 100 = vh */
     padding: 0;
 }
 .contenedor{
-    display:flex;
-    justify-content: space-around;
     width: 100%;
+    display:flex;
+    justify-content: space-between;
 }
 header {
     width: 100%;
-    min-height: 4.58vh;
+    height: 10vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem; /* 10px */
+    padding: 2rem; /* 10px */
     gap: 1rem;
 }
 
@@ -35,21 +35,22 @@ header {
 
     display: flex;
     justify-content: flex-start;
-  align-self: self-start;
+  align-self: flex-start    ;
 }
 
 
 .cajita {
     /*background-color: #585757; */
-    width: 60vw;  /* 200px */
+    width: 1rem;  /* 200px */
     height: 4vh; /* antes 2.29vh (20px): los botones .opciones con su padding
                      y margin de 10px por lado necesitan bastante más alto */
     min-height: 2.29vh;
+    margin-top: 5rem;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5rem;
-    position: fixed;
+    justify-content: flex-end;
+    gap: 2rem;
+   position: fixed; 
+   left: 20%;
 }
 
 .opciones {
@@ -74,7 +75,7 @@ header {
 
 .post,
 .post2 {
-    width: 83.08vw;   /* 334px */
+    width: 90.08vw;   /* 334px */
     height: 36.84vh;  /* 322px */
     background-color: lightblue;
     border: 0.125rem solid black; /* 2px */
@@ -123,11 +124,4 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.logo {
-    width: 12.686vw;
-    height: 4.919vh;
-    background-color: #F3A73C;
-    border-radius: 0.6875rem;
 }
