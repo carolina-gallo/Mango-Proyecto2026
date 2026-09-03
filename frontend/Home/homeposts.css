@@ -8,6 +8,13 @@ alto: (alto del objeto/ alto base (874) * 100 = vh */
     margin: 0;
     padding: 0;
 }
+.app {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 .contenedor{
     width: 100%;
     display:flex;
@@ -22,6 +29,8 @@ header {
     align-items: center;
     padding: 2rem; /* 10px */
     gap: 1rem;
+    position: fixed;
+    background-color: white;
 }
 
 .buscador {
@@ -48,9 +57,7 @@ header {
     margin-top: 5rem;
     display: flex;
     justify-content: flex-end;
-    gap: 2rem;
-   position: fixed; 
-   left: 20%;
+    gap: 2rem; 
 }
 
 .opciones {
@@ -135,22 +142,62 @@ header {
     justify-content: flex-end;
 }
 
+.interacciones {
+    width: 42,2885;
+    height: 4.920;
+    display: flex;
+    justify-content: space-evenly;
+}
 
 .icono {
 width: 8.21vw;
 height: 3.7757vh;
 font-size: 3rem;
 padding: 2rem;
-background-color: #f6b14d
+background-color: #f6b14d;
 display: flex;
 justify-content: center;
 align-items: center;
 }
 
-main {
+.scrolleo {
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow-y: auto;
 }
+    .footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 6.8649vh;
+        background-color: #bdbdbd;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 0;
+    }
+    
+    .fcolorcitos {
+        width: 9.4527vw;
+        height: 4.3478vh;
+        background-color: #000000;
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+        font-size: 20px;
+    
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    
+    .fcuadraditos {
+        background-color: #f5a623;
+        font-size: 25px;
+        width: 24.1292vw;
+        height: 4.920vh;
+        border-radius: 0.5rem;
+    }
