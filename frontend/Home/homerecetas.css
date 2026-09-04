@@ -8,6 +8,13 @@ alto: (alto del objeto/ alto base (874) * 100 = vh */
     margin: 0;
     padding: 0;
 }
+.app {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 .contenedor{
     width: 100%;
     display:flex;
@@ -22,6 +29,8 @@ header {
     align-items: center;
     padding: 2rem; /* 10px */
     gap: 1rem;
+    position: fixed;
+    background-color: white;
 }
 
 .buscador {
@@ -48,9 +57,7 @@ header {
     margin-top: 5rem;
     display: flex;
     justify-content: flex-end;
-    gap: 2rem;
-   position: fixed; 
-   left: 20%;
+    gap: 2rem; 
 }
 
 .opciones {
@@ -64,15 +71,22 @@ header {
     justify-content: center;
     align-items: center;
     gap: 0.625rem; /* 10px */
-    transition: 0.3s;
+    color: black;
+    text-decoration: none;
 }
+
 
 .seleccion {
     background-color: rgb(102, 100, 100);
 }
+
 .toco:hover {
     background-color: lightblue;
     color: blue;
+}
+.a {
+    text-decoration: none;
+    color: black;
 }
 .avatar {
     width: 9.95vw;  /* 40px */
@@ -84,24 +98,23 @@ header {
 .post,
 .post2 {
     width: 90.08vw;   /* 334px */
-    height: 36.84vh;  /* 322px */
-    background-color: lightblue;
+    min-height: 36.84vh;  /* 322px */
+    background-color: #f6b14d;
     border: 0.125rem solid black; /* 2px */
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: stretch;
-    padding: 0.625rem; /* 10px */
+    /* padding: 0.625rem; */
     gap: 0.5rem;       /* 8px */
     margin-bottom: 3rem;
-}
-
-.post2 {
-    margin-top: 3.43vh; /* 30px */
 }
 
 .post h2,
 .post2 h2 {
     font-size: 3em;
+    margin-left: 1rem;
+    margin-top: 1rem;
     display: flex;
     justify-content: flex-start;
 }
@@ -109,27 +122,103 @@ header {
 .post p,
 .post2 p {
     font-size: 2em;
+    margin-left: 1rem;
+    overflow-wrap: anywhere;
 }
 
-img.foto {
-    width: 100%;
+.foto {
+    width: 80.6218vw;
+    height: 21vh;
     flex: 1 1 auto;   /* la imagen crece y ocupa todo el espacio sobrante */
     min-height: 0;    /* evita que el flex la desborde */
     object-fit: cover;
     border: 0.0625rem solid black; /* 1px */
+    background-color: white;
+    margin:auto;
+    margin-top: 4.6910vh;
+    margin-bottom: 2.5171vh;
 }
 
 .bottom {
-    background-color: rgba(128, 128, 128, 0.37);
+    background-color: #d9d9d9;
     width: 100%; /* 20px */
-    margin: 0%;
+    margin: 0;
     height: 5.26vh; /* 46px */;
+    display: flex;
+    justify-content: flex-end;
 }
 
-main {
-    margin-top: 2rem;
+.interacciones {
+    width: 42,2885;
+    height: 4.920;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.icono {
+width: 8.21vw;
+height: 3.7757vh;
+font-size: 3rem;
+padding: 2rem;
+background-color: #f6b14d;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.scrolleo {
+    margin-top: 11vh;
     display: flex;
     flex-direction: column;
+    justify-content: stretch;
+    align-items: center;
+    overflow-y: auto;
+    padding-bottom: 6.8649vh;
+}
+    .footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 6.8649vh;
+        background-color: #bdbdbd;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 0;
+    }
+    
+   .fcolorcitos {
+    width: 9.4527vw;
+    height: 4.3478vh;
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 20px;
+    border-radius: 0.75rem;
+
+    display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.fcuadraditos {
+    background-color: #f5a623;
+    font-size: 25px;
+    width: 24.1292vw;
+    height: 4.920vh;
+    border-radius: 0.75rem;
+    color: white;
+    text-decoration: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .logo {
+    width: 12.686vw;
+    height: 4.805vh;
+    background-color: #F3A73C;
+    border-radius: 0.6875rem;
 }
