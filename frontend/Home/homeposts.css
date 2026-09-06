@@ -27,11 +27,15 @@ header {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+     margin: 2rem solid white;
     padding: 2rem; /* 10px */
     gap: 1rem;
     background-color: white;
-    /* margin-bottom: 3vh solid white; */
      position: fixed;
+}
+
+header.oculto {
+    background-color: transparent;
 }
 
 .buscador {
