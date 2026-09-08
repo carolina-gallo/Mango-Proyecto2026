@@ -1,7 +1,39 @@
+.fondo {
+background-color: #FFC96C;
+width: 100%;
+min-height: 100vh;
+}
 .main {
-margin-top: 1.373vh;
-    margin-left: 2.986vw;
-    margin-right: 2.986vw; 
+padding-top: 2.986vh;
+padding-left: 2.986vw;
+padding-right: 2.986vw; 
+}
+
+.volver-atras {
+
+}
+
+.texto-superior {
+
+}
+
+.subir-imagen {
+    box-sizing: border-box;
+    
+    position: absolute;
+    width: 84.825vw;
+    height: 32.2654vh;
+    left: 6.467vw;
+    top: 21.624vh;
+    
+    background-color: #FFFFFF;
+    border: 0.5rem solid #FFFFFF;
+    border-radius: 1.4375 rem;
+    border-color: black;
+    }
+
+.descripcion {
+
 }
 
 .vinculo {
@@ -13,61 +45,6 @@ top: 69.565ch;
 background-color: #AFACAC;
 }
 
-.subir-imagen {
-box-sizing: border-box;
-
-position: absolute;
-width: 84.825vw;
-height: 32.2654vh;
-left: 6.467vw;
-top: 21.624vh;
-
-background-color: #FFFFFF;
-border: 0.5rem solid #FFFFFF;
-border-radius: 1.4375 rem;
-border-color: black;
-}
-
-    .footer {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 6.8649vh;
-        background-color: #AFACAC;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        padding: 0;
-    }
+.publicar {
     
-   .fcolorcitos {
-    width: 9.4527vw;
-    height: 4.3478vh;
-    background-color: #D9D9D9;
-    color: rgb(0, 0, 0);
-    text-decoration: none;
-    font-size: 2rem;
-    border-radius: 0.75rem;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
-
-.fcuadraditote {
-    background-color: #F3A73C;
-    font-size: 2rem;
-    width: 24.1292vw;
-    height: 4.920vh;
-    border-radius: 0.75rem;
-    color: rgb(0, 0, 0);
-    text-decoration: none;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.naranjita {
-    color:#F3A73C ;
-    }
