@@ -154,8 +154,8 @@ header.oculto {
 }
 
 .interacciones {
-    width: 42,2885vw;
-    height: 4.920vh;
+    width: 70%;
+    height: 100%;
     display: flex;
     justify-content: space-evenly;
 }
@@ -164,7 +164,7 @@ header.oculto {
 width: 8.21vw;
 height: 5.26vh;
 font-size: 3rem;
-padding: 2rem;
+padding: 3rem;
 background-color: #f6b14d;
 display: flex;
 justify-content: center;
