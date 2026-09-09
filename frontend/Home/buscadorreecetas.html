@@ -3,52 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="buscador.css">
+    <link rel="stylesheet" href="buscadorrecetas.css">
     <link rel="stylesheet" href="../General/general.css">
-
+    <link rel="stylesheet" href="buscadorgeneral.css">
 </head>
 
 <body>
+    <script src="buscador.js"></script>
     <main class="main">
         <article class="barra-superior">
             <div class="buscar">
                 <input type="text" class="buscar" placeholder="Buscar">
             </div>
             <div class="logo"></div>
-        </div>
         </article>
-    <div class="filtros">
-        <button class="botoncito seleccionado">Posts</button>
-        <button class="botoncito">Recetas</button>
-        <button class="botoncito">Perfil</button>
-    </div>
-    <main class="scrolleo">
-
-        <div class="post">
-            <h2>Mi publicación</h2>
-            <p>Este es el texto de mi publicación.</p>
-            <img class="foto" src="foto.jpg" alt="">
-            <div class="bottom">
-                <section class="interacciones">
-                <span class="icono">🖤</span>
-                <span class="icono">💬</span>
-                <span class="icono">🟧</span>
-                </section>
-            </div>
+        <div class="filtros">
+            <button id="btn-posts" class="botoncito"><a href="../Home/buscadorposts.html">Posts</a></button>
+            <button id="btn-recetas" class="botoncito seleccionado">Recetas</button>
+            <button id="btn-perfil" class="botoncito"><a href="../Home/buscadorperfiles.html">Perfil</a></button>
         </div>
-
-        <div class="post">
-            <h2>Mi publicación</h2>
-            <p>Este es el texto de mi publicación.</p>
-            <img class="foto" src="foto.jpg" alt="">
-            <div class="bottom">
-                <section class="interacciones">
-                <span class="icono">🖤</span>
-                <span class="icono">💬</span>
-                <span class="icono">🟧</span>
-                </section>
-            </div>
-        </div>
+    </main>
+    <main class="scrolleo" id="contenido-dinamico">
         <div class="post">
             <h2>Mi publicación</h2>
             <p>Este es el texto de mi publicación.</p>
@@ -75,6 +50,31 @@
             </div>
         </div>
 
+        <div class="post">
+            <h2>Mi publicación</h2>
+            <p>Este es el texto de mi publicación.</p>
+            <img class="foto" src="foto.jpg" alt="">
+            <div class="bottom">
+                <section class="interacciones">
+                    <span class="icono">🖤</span>
+                    <span class="icono">💬</span>
+                    <span class="icono">🟧</span>
+                </section>
+            </div>
+        </div>
+
+        <div class="post">
+            <h2>Mi publicación</h2>
+            <p>Este es el texto de mi publicación.</p>
+            <img class="foto" src="foto.jpg" alt="">
+            <div class="bottom">
+                <section class="interacciones">
+                    <span class="icono">🖤</span>
+                    <span class="icono">💬</span>
+                    <span class="icono">🟧</span>
+                </section>
+            </div>
+        </div>
     </main>
 
     <footer class="footer">
@@ -84,7 +84,5 @@
         <a href="../Rachas/rachas.html" class="fcolorcitos">R</a>
         <a href="../Perfil/perfil.html" class="fcolorcitos">P</a>
     </footer>
-</div> 
-
 </body>
 </html>

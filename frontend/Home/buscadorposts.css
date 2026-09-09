@@ -1,55 +1,8 @@
-.main {
-    margin-top: 1.373vh;
-    margin-left: 2.986vw;
-    margin-right: 2.986vw;
-}
-.buscar {
-    width: 77.115vw;
-    height: 4.805vh;
-    font-size: 3rem;
-    background-color: #d9d9d9;
-    border-radius: 0.6875rem;
-}
-
-.barra-superior {
-    width: 77.1144vw;
-    height: 4.80549vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items:center;
-}
-
-.filtros {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 0.625rem;
-    margin-top: 2vh;
-    padding: 0;
-    overflow-x: auto;
-}
-
-.botoncito {
-    background-color: #d9d9d9;
-    width: 19.403vw;
-    height: 1.83066vh;
-    color: black;
-    border: none;
-    font-size: 2em;
-    text-align: center;
-    cursor: pointer; 
-    transition: background-color 0.3s ease;
-}
-
-.seleccionado {
-    background-color: #f6b14d;
-}
 
 .post,
 .post2 {
-    width: 90.08vw;   /* 334px */
-    min-height: 36.84vh;  /* 322px */
+    width: 83.0845vw;   /* 334px */
+    min-height: 36.8421vh;  /* 322px */
     background-color: #FFC96C;
     border: 0.125rem solid black; /* 2px */
     display: flex;
@@ -58,7 +11,7 @@
     align-items: stretch;
     /* padding: 0.625rem; */
     gap: 0.5rem;       /* 8px */
-    margin-bottom: 3rem;
+    margin-bottom: 1.37299vh;
 }
 
 .post h2,
@@ -78,8 +31,8 @@
 }
 
 .foto {
-    width: 80.6218vw;
-    height: 21vh;
+    width: 75.62189vw;
+    height: 17.96338vh;
     flex: 1 1 auto;   /* la imagen crece y ocupa todo el espacio sobrante */
     min-height: 0;    /* evita que el flex la desborde */
     object-fit: cover;
@@ -110,7 +63,8 @@
 width: 8.21vw;
 height: 100%;
 font-size: 3rem;
-padding: 1rem;
+padding-left: 1rem;
+padding-right: 1rem;
 background-color: #f6b14d;
 display: flex;
 justify-content: center;
@@ -118,7 +72,7 @@ align-items: center;
 }
 
 .scrolleo {
-    margin-top: 2vh;
+    margin-top: 4.11899vh;
     display: flex;
     flex-direction: column;
     justify-content: stretch;
