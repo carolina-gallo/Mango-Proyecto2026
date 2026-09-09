@@ -6,15 +6,44 @@
 .buscar {
     width: 77.115vw;
     height: 4.805vh;
+    font-size: 3rem;
     background-color: #d9d9d9;
     border-radius: 0.6875rem;
 }
 
 .barra-superior {
+    width: 77.1144vw;
+    height: 4.80549vh;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items:center;
+}
+
+.filtros {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 0.625rem;
+    margin-top: 2vh;
+    padding: 0;
+    overflow-x: auto;
+}
+
+.botoncito {
+    background-color: #d9d9d9;
+    width: 19.403vw;
+    height: 1.83066vh;
+    color: black;
+    border: none;
+    font-size: 2em;
+    text-align: center;
+    cursor: pointer; 
+    transition: background-color 0.3s ease;
+}
+
+.seleccionado {
+    background-color: #f6b14d;
 }
 
 .post,
@@ -89,7 +118,7 @@ align-items: center;
 }
 
 .scrolleo {
-    margin-top: 4.805vh;
+    margin-top: 2vh;
     display: flex;
     flex-direction: column;
     justify-content: stretch;
