@@ -4,29 +4,33 @@
     <meta charset="UTF-8">
     <title>Iniciar sesión</title>
 
-    <link rel="stylesheet" href="genral.css">
+    <link rel="stylesheet" href="../General/general.css">
     <link rel="stylesheet" href="inicio-sesion.css">
 
 </head>
 
 <body>
- <div class="index">
+    <header>
+        <div class="logo esquina"></div>
+    </header>
+ 
+    <main class="inicio">
+    <article class="bienvenida">
+    <figure class="usuario"></figure>
+    <h1 class="login"></h1>
+</article>
 
-    <h1>Iniciar sesión</h1>
-    <input type="text" placeholder="Usuario">
+    <input type="text" placeholder="Mail">
     <input type="password" placeholder="Contraseña">
 
+   
+        <a href="crear-cuenta.html">
+           <button class="registrarse">Registrate</button>
+        </a>
+
     <a href="home.html">
-        <button>Iniciar sesión</button>
+        <button class="iniciarsesion">Iniciar sesión</button>
     </a>
-
-    <p>¿No tenés una cuenta?</p>
-
-    <a href="crear-cuenta.html">
-        Crear cuenta
-    </a>
-
- </div>
- 
+</main>
 </body>
 </html>

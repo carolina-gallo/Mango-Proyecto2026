@@ -3,12 +3,43 @@
     margin: 0;
     padding: 0;
 }
+.header {
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    justify-content: flex-end;
+align-items: flex-start;
+}
 
+.esquina {
+    margin-left:auto;
+    margin-right: 2rem;
+    margin-top: 2rem;
+}
 
+.inicio {
+    width: 100vw;
+    height: 59.610983vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-.logo {
-    width: 12.686vw;
-    height: 4.805vh;
+.bienvenida {
+width: 47.5124vw;
+height: 21.9679vh;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.usuario {
+    width: 27.61194vw;
+    height: 12.70022vh;
     background-color: #F3A73C;
-    border-radius: 0.6875rem;
+}
+
+.input {
+    
 }
