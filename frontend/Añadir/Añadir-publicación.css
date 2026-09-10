@@ -1,12 +1,19 @@
-.fondo {
+body {
 background-color: #FFC96C;
 width: 100%;
 min-height: 100vh;
 }
+
 .main {
-padding-top: 2.986vh;
-padding-left: 2.986vw;
-padding-right: 2.986vw; 
+    height: 93.1351vh;
+
+    padding-top: 2.986vh;
+    padding-left: 2.986vw;
+    padding-right: 2.986vw; 
+
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
 }
 
 .volver-atras {
@@ -20,7 +27,6 @@ padding-right: 2.986vw;
 .subir-imagen {
     box-sizing: border-box;
     
-    position: absolute;
     width: 84.825vw;
     height: 32.2654vh;
     left: 6.467vw;
@@ -33,15 +39,20 @@ padding-right: 2.986vw;
     }
 
 .descripcion {
-
+    width: 84.825vw;
+    height: 3.318vh;
+  
+    font-size: 2.5rem;
+    font-weight: bold;
+    overflow-wrap: break-word;
+    word-wrap: wrap;
 }
 
 .vinculo {
-position: absolute;
 width: 84.825vw;
 height: 3.318vh;
 left: 6.467vw;
-top: 69.565ch;
+top: 69.565vh;
 background-color: #AFACAC;
 }
 
