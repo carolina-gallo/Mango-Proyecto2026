@@ -6,28 +6,40 @@
 
     <link rel="stylesheet" href="../General/general.css">
     <link rel="stylesheet" href="crear-cuenta.css">
-
 </head>
 
 <body>
- <div class="app">
-    <h1>Crear cuenta</h1>
+<header class="header">
+    <a href="inicio-sesion.html" class="volver">←</a>
+    <figure class="logo esquina"></figure>
+</header>
 
-    <input type="text" placeholder="Nombre de usuario">
-    <input type="email" placeholder="Correo electrónico">
-    <input type="password" placeholder="Contraseña">
+<main class="app">
+    <section class="bienvenida-cc">Bienvenido a Mango</section>
+    <section class="barra-secundaria"></section>
 
-    <a href="../Home/homeposts.html">
-        <button>Crear cuenta</button>
+    <input class="campo-bot label-bot" type="text" placeholder="Mail">
+    </input>
+    <input class="campo-bot label-bot" type="text" placeholder="Número">
+    </input>
+
+    <p class="ingresar-datos">Ingresar datos</p>
+    <section class="form-datos">
+        <input type="text" class="campo-datos">
+        <input type="password" class="campo-datos">
+        <select class="campo-select">
+            <option value="">Seleccioná una opción</option>
+        </select>
+    </section>
+
+<footer class="ubicar-siguiente">
+    <a href="form-restricciones.html">
+        <button class="siguiente">Siguiente</button>
     </a>
+</footer>
 
-    <p>¿Ya tenés una cuenta?</p>
+</main>
 
-    <a href="../Login/inicio-sesion.html">
-        Iniciar sesión
-    </a>
-    
- </div>
-
+</footer>
 </body>
 </html>

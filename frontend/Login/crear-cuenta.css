@@ -1,0 +1,124 @@
+/* Base: viewport 402px x 874px | 1vw = 4.02px | 1vh = 8.74px | 1rem = 16px */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.app {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 3vh 7vw;
+    gap: 2vh;
+}
+
+.header {
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+align-items: flex-start;
+}
+.esquina {
+    margin-left:auto;
+    margin-right: 2rem;
+    margin-top: 2rem;
+}
+
+.volver {
+    width: 12.686vw;
+    height: 4.805vh;;
+    /*background-color: #AFACAC;*/
+    border-radius: 0.6875rem;
+    font-size: 7rem;;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    margin-left: 2rem;
+    margin-top: 2rem;
+}
+
+.bienvenida-cc {
+    width: 100%;
+    height: 6vh;
+    background-color: #F3A73C;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.barra-secundaria {
+    width: 69vw;
+    height: 5.2vh;
+    background-color: #F3A73C;
+    align-self: flex-end;
+}
+
+
+.campo-bot {
+    width: 100%;
+    height: 6.9vh;
+    background-color: #d9d9d9;
+    border: 0.125rem solid #F3A73C;
+    display: flex;
+    align-items: flex-start;
+    padding: 0.5rem;
+    font-size: 3rem;
+    color: black;
+}
+
+.form-datos {
+    width: 75.37313vw;
+    height: 24.02745vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.ingresar-datos {
+    font-size: 3rem;
+    margin-top: 1vh;
+}
+
+.campo-datos {
+    width: 100%;
+    height: 6vh;
+    background-color: #d9d9d9;
+    border: none;
+    font-size: 3rem;
+    padding: 1rem;
+}
+
+.campo-select {
+    width: 100%;
+    height: 6.9vh;
+    background-color: #d9d9d9;
+    border: none;
+    font-size: 3rem;
+    padding: 0 1rem;
+}
+
+.ubicar-siguiente {
+    width: 90.5472vw;
+    height: 17.734553vh;
+    display: flex;
+    justify-content: flex-end;
+    align-self: flex-end;
+}
+
+.siguiente {
+    margin-top: 12.5858vh;
+    background-color: #AFACAC;
+    width: 37.9vw;
+    height: 6.9vh;
+    border: none;
+    font-size: 3rem;
+    cursor: pointer;
+}
