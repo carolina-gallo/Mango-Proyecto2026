@@ -19,7 +19,7 @@ align-items: flex-start;
 
 .inicio {
     width: 100vw;
-    height: 59.610983vh;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -30,16 +30,75 @@ align-items: flex-start;
 width: 47.5124vw;
 height: 21.9679vh;
 display: flex;
+flex-direction: column;
 justify-content: center;
 align-items: center;
+gap: 2rem;
 }
 
 .usuario {
     width: 27.61194vw;
     height: 12.70022vh;
     background-color: #F3A73C;
+    border-radius: 10rem;
 }
 
-.input {
-    
+.login {
+    background-color: #d9d9d9;
+width: 38.0597vw;
+height: 5.7208vh;
+font-size: 3rem;
+font-family: Arial, Helvetica, sans-serif;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+}
+
+.datos {
+margin-top: 7.0938vh;
+width: 66.16915vw;
+height: 15.90389vh;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+
+.typea {
+    width: 100%;
+    height: 5.7208vh;
+    background-color: #d9d9d9;
+    font-size: 3rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.ubicarboton {
+    width: 83.83084vw;
+    height: 8.00915vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.registrarse {
+background-color: #F3A73C;
+width: 38.55721vw;
+height: 1.71624vh;
+font-size: 2.5rem;
+font-family: Arial, Helvetica, sans-serif;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.a {
+  text-decoration: none;
+  color: black;
+}
+
+.iniciarsesion {
+    width: 66.16915vw;
+    height: 5.7208vh;
+    background-color: #a9a9a9;
+    font-size: 3rem;
+    font-family: Arial, Helvetica, sans-serif;
 }
