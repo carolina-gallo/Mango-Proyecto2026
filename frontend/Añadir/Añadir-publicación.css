@@ -14,14 +14,30 @@ min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content:space-between;
+    align-items: center;
 }
 
-.volver-atras {
+.Volver-atras {
+    width: 9.7014vw;
+    height: 3.547vh;
+    border-radius: 3rem;
+    background-color: bisque;
+    display: flex;
+    justify-content:center;
+    align-items: center;
 
+    color: black;
+    font-size: 9.7014vw;
+    text-decoration: none;
 }
 
 .texto-superior {
+    width: 84.825vw;
+    height: 9rem;
+}
 
+.htexto {
+    font-size: 8rem;
 }
 
 .subir-imagen {
@@ -31,12 +47,29 @@ min-height: 100vh;
     height: 32.2654vh;
     left: 6.467vw;
     top: 21.624vh;
-    
+    border-radius: 5rem;
     background-color: #FFFFFF;
-    border: 0.5rem solid #FFFFFF;
-    border-radius: 1.4375 rem;
-    border-color: black;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
     }
+
+.h1 {
+    font-size: 20rem;
+    color: #fcae27;
+    display: flex;
+    justify-content: center;
+}
+
+.h2 {
+    font-size: 6rem;
+    color: #fcae27;
+    display: flex;
+    justify-content: center;
+
+    padding: 1rem;
+}
 
 .descripcion {
     width: 84.825vw;
@@ -51,8 +84,6 @@ min-height: 100vh;
 .vinculo {
 width: 84.825vw;
 height: 3.318vh;
-left: 6.467vw;
-top: 69.565vh;
 background-color: #AFACAC;
 }
 
