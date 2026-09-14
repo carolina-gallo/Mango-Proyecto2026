@@ -1,0 +1,104 @@
+.app {
+    max-width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 3vh 7vw;
+    gap: 2vh;
+}
+
+.header {
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+align-items: flex-start;
+}
+.esquina {
+    margin-left:auto;
+    margin-right: 2rem;
+    margin-top: 2rem;
+}
+
+.bienvenida-cc {
+    width: 75.3721vw;
+    height: 6vh;
+    background-color: #F3A73C;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.barra-secundaria {
+    width: 71.14427vw;
+    height: 6vh;
+    background-color: #F3A73C;
+    align-self: flex-end;
+}
+
+.restricciones {
+    width: 75.3721vw;
+    height: 6vh;
+    background-color: #d9d9d9;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+ 
+  .opciones {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap; 
+    gap: 3.06064vh;
+    margin-top: 5.0343vh;
+  }
+  
+  .caja-input {
+    display: none;
+  }
+  
+  .cuadrado {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 14.0099vw;
+    height: 6.4439vh;
+    background-color: #d9d9d9;
+    border: 0.2rem solid #dcdcdc;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  /* Efecto al pasar el mouse por encima */
+  .cuadrado:hover {
+    background-color: #d9d9d9;
+    transform: translateY(-2px);
+  }
+    .caja-input:checked + .cuadrado {
+        background-color: #F3A73C;
+        border-color: #F3A73C;
+      }
+
+
+.cositos {
+width: 100%;
+display: flex;
+align-items: center;
+gap: 3vw;
+}
+
+.texto {
+    font-size: 1.5rem;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    font-weight: bold;
+}
+  
+
+  

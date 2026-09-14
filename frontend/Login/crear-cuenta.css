@@ -45,7 +45,7 @@ align-items: flex-start;
 }
 
 .bienvenida-cc {
-    width: 100%;
+    width: 75.3721vw;
     height: 6vh;
     background-color: #F3A73C;
     display: flex;
@@ -56,8 +56,8 @@ align-items: flex-start;
 }
 
 .barra-secundaria {
-    width: 69vw;
-    height: 5.2vh;
+    width: 71.14427vw;
+    height: 6vh;
     background-color: #F3A73C;
     align-self: flex-end;
 }
