@@ -3,8 +3,8 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 3vh 7vw;
-    gap: 2vh;
+    padding: 3vh 5vw;
+    gap: 1vh;
 }
 
 .header {
@@ -16,8 +16,8 @@ align-items: flex-start;
 }
 .esquina {
     margin-left:auto;
-    margin-right: 2rem;
-    margin-top: 2rem;
+    margin-right: 1rem;
+    margin-top: 1rem;
 }
 
 .bienvenida-cc {
@@ -39,6 +39,7 @@ align-items: flex-start;
 }
 
 .restricciones {
+  margin-top: 1vh;
     width: 75.3721vw;
     height: 6vh;
     background-color: #d9d9d9;
@@ -48,14 +49,13 @@ align-items: flex-start;
     font-size: 1.2rem;
     font-weight: bold;
 }
-
  
   .opciones {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap; 
     gap: 3.06064vh;
-    margin-top: 5.0343vh;
+    margin-top: 4.0343vh;
   }
   
   .caja-input {
@@ -98,6 +98,25 @@ gap: 3vw;
     font-size: 1.5rem;
     font-family: 'Arial Narrow Bold', sans-serif;
     font-weight: bold;
+}
+
+.ubicar-omitir {
+  width: 90.5472vw;
+  height: 17.734553vh;
+  display: flex;
+  justify-content: flex-end;
+  align-self: flex-end;
+}
+
+.omitir {
+  margin-top: 9.8798vh;
+  margin-right: 8.9552vw;
+  background-color: #AFACAC;
+  width: 37.8109vw;
+  height: 6.9vh;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
   
 
