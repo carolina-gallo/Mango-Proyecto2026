@@ -3,7 +3,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 3vh;
+    padding: 1vh;
     padding-left: 5vw;
     padding-right: 11vw;
     gap: 1vh;
@@ -22,7 +22,7 @@ align-items: flex-start;
     margin-top: 1rem;
 }
 
-.restricciones {
+.alergias {
       width: 73.0845vw;
       height: 6vh;
       background-color: #d9d9d9;
@@ -38,7 +38,7 @@ align-items: flex-start;
       flex-direction: column;
       flex-wrap: wrap; 
       gap: 3.06064vh;
-      margin-top: 4.0343vh;
+      margin-top: 0.3rem;
     }
     
     .caja-input {
@@ -74,7 +74,7 @@ align-items: flex-start;
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 3vw;
+  gap: 5vw;
   }
   
   .texto {
@@ -82,7 +82,24 @@ align-items: flex-start;
       font-family: 'Arial Narrow Bold', sans-serif;
       font-weight: bold;
   }
-  
+  .separador{
+    width: 100%;
+    height: 0.2vh;
+    background-color: #070000;
+    margin-top: 1rem;
+  }
+
+  .dietas {
+    width: 73.0845vw;
+    height: 6vh;
+    background-color: #d9d9d9;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
   .ubicar-omitir {
     width: 90.5472vw;
     height: 17.734553vh;
@@ -92,8 +109,6 @@ align-items: flex-start;
   }
   
   .omitir {
-    margin-top: 9.8798vh;
-    margin-right: 8.9552vw;
     background-color: #AFACAC;
     width: 37.8109vw;
     height: 6.9vh;
