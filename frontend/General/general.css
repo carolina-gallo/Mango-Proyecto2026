@@ -54,3 +54,11 @@ height: 4.805vh;
 background-color: #F3A73C;
 border-radius: 2rem;
 }
+.button{
+    border: none;
+    outline: none;
+}
+.a {
+    text-decoration: none;
+    color: black;
+}
