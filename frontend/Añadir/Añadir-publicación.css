@@ -1,3 +1,9 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
 background-color: #FFC96C;
 width: 100%;
@@ -6,10 +12,6 @@ min-height: 100vh;
 
 .main {
     height: 93.1351vh;
-
-    padding-top: 2.986vh;
-    padding-left: 2.986vw;
-    padding-right: 2.986vw; 
 
     display: flex;
     flex-direction: column;
@@ -56,7 +58,7 @@ min-height: 100vh;
     }
 
 .h1 {
-    font-size: 20rem;
+    font-size: 3.546vh;
     color: #fcae27;
     display: flex;
     justify-content: center;
@@ -88,5 +90,46 @@ background-color: #AFACAC;
 }
 
 .publicar {
-    
+    height: 6.636vh;
+    width: 39.8vw;
+    background-color: #AFACAC;
+}
+
+.header {
+    width: 100vw;
+    height: 12.242vh;
+
+    padding-right: 2.986vw; 
+    padding-top: 2.986vh;
+    padding-left: 2.986vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+}
+
+.textoeimagen {
+    width: 100vw;
+    height: 41.647vh;
+
+    padding-right: 2.986vw; 
+    padding-left: 2.986vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:flex-start;
+}
+
+.descyvinculoypublicar {
+    width: 100vw;
+    height: 46.109vh;
+
+    padding-right: 2.986vw; 
+    padding-top: 2.986vh;
+    padding-left: 2.986vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
 }
