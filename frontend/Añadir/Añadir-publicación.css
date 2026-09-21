@@ -2,16 +2,25 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+
 }
 
 body {
 background-color: #FFC96C;
 width: 100%;
 min-height: 100vh;
+
+display: flex;
+flex-direction: column;
+flex-direction: space-between;
+align-items: center;
 }
 
 .main {
-    height: 93.1351vh;
+    height: 100vh;
+
+    padding-bottom: 2.974vh;
+    padding-top: 2.974vh;    
 
     display: flex;
     flex-direction: column;
@@ -19,18 +28,34 @@ min-height: 100vh;
     align-items: center;
 }
 
-.Volver-atras {
+.header {
+    width: 84.825vw;
+    height: 8.6956vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content:left;
+    align-items: top;
+}
+
+.atras {
     width: 9.7014vw;
     height: 3.547vh;
     border-radius: 3rem;
-    background-color: bisque;
-    display: flex;
-    justify-content:center;
-    align-items: center;
 
     color: black;
-    font-size: 9.7014vw;
+    font-size: 10vw;
     text-decoration: none;
+}
+
+.textoeimagen {
+    width: 84.825vw;
+    height: 41.647vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items:flex-start;
 }
 
 .texto-superior {
@@ -39,7 +64,7 @@ min-height: 100vh;
 }
 
 .htexto {
-    font-size: 8rem;
+    font-size: 6rem;
 }
 
 .subir-imagen {
@@ -47,8 +72,7 @@ min-height: 100vh;
     
     width: 84.825vw;
     height: 32.2654vh;
-    left: 6.467vw;
-    top: 21.624vh;
+    
     border-radius: 5rem;
     background-color: #FFFFFF;
     
@@ -58,7 +82,7 @@ min-height: 100vh;
     }
 
 .h1 {
-    font-size: 3.546vh;
+    font-size: 16rem;
     color: #fcae27;
     display: flex;
     justify-content: center;
@@ -73,63 +97,64 @@ min-height: 100vh;
     padding: 1rem;
 }
 
+.descyvinculoypublicar {
+    width: 84.825vw;
+    height: 41.99vh;
+    padding-top: 1.716vh;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4.5vh;
+}
+
 .descripcion {
     width: 84.825vw;
-    height: 3.318vh;
-  
-    font-size: 2.5rem;
-    font-weight: bold;
-    overflow-wrap: break-word;
-    word-wrap: wrap;
+    height: 12vh;
+    
+    font-size: 3.2rem;
+    font-weight:lighter;
+    border-radius: 2rem;
+    padding: 1rem;
+    background-color: #FFC96C;
+
+    field-sizing: content; 
+    resize: none;          
+    overflow: hidden;      
+    border: none;          
+    outline: none;  
 }
 
 .vinculo {
-width: 84.825vw;
-height: 3.318vh;
-background-color: #AFACAC;
+    width: 84.825vw;
+    height: 3.318vh;
+    background-color: #AFACAC;
+
+    font-size: 3.5rem;
+    font-weight:lighter;
+    padding: 1rem;
+    color: #FFFFFF;
+
+    field-sizing: content; 
+    resize: none;          
+    overflow: hidden;      
+    border: none;          
+    outline: none; 
 }
 
 .publicar {
+    margin-top: auto;
+    align-self: end;
+
+    padding: 0.5rem;
+    border-radius: 2rem;
     height: 6.636vh;
     width: 39.8vw;
     background-color: #AFACAC;
+
+    color: black;
+    font-size: 10vw;
+    text-decoration: none;
+    text-align: center;
 }
 
-.header {
-    width: 100vw;
-    height: 12.242vh;
-
-    padding-right: 2.986vw; 
-    padding-top: 2.986vh;
-    padding-left: 2.986vw;
-
-    display: flex;
-    flex-direction: column;
-    justify-content:center;
-}
-
-.textoeimagen {
-    width: 100vw;
-    height: 41.647vh;
-
-    padding-right: 2.986vw; 
-    padding-left: 2.986vw;
-
-    display: flex;
-    flex-direction: column;
-    justify-content:center;
-    align-items:flex-start;
-}
-
-.descyvinculoypublicar {
-    width: 100vw;
-    height: 46.109vh;
-
-    padding-right: 2.986vw; 
-    padding-top: 2.986vh;
-    padding-left: 2.986vw;
-
-    display: flex;
-    flex-direction: column;
-    justify-content:space-around;
-}
