@@ -3,9 +3,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 1vh;
-    padding-left: 5vw;
-    padding-right: 11vw;
+    padding: 3vh 5vw;
     gap: 1vh;
 }
 
@@ -100,19 +98,19 @@ align-items: flex-start;
     font-weight: bold;
 }
 
-  .ubicar-omitir {
-    width: 90.5472vw;
-    height: 17.734553vh;
-    display: flex;
-    justify-content: flex-end;
-    align-self: flex-end;
-  }
-  
-  .omitir {
-    background-color: #AFACAC;
-    width: 37.8109vw;
-    height: 6.9vh;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
+.ubicar-omitir {
+  width: 90.5472vw;
+  height: 17.734553vh;
+  display: flex;
+  justify-content: flex-end;
+  align-self: flex-end;
+}
+
+.omitir {
+  background-color: #AFACAC;
+  width: 37.8109vw;
+  height: 6.9vh;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
