@@ -1,0 +1,144 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+
+body {
+background-color: #FFC96C;
+width: 100%;
+min-height: 100vh;
+
+display: flex;
+flex-direction: column;
+flex-direction: space-between;
+align-items: center;
+}
+
+.main {
+    height: 100vh;
+
+    padding-bottom: 2.974vh;
+    padding-top: 2.974vh;    
+
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: center;
+}
+
+.header {
+    width: 84.825vw;
+    height: 8.6956vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content:left;
+    align-items: top;
+}
+
+.atras {
+    width: 9.7014vw;
+    height: 3.547vh;
+    border-radius: 3rem;
+
+    color: black;
+    font-size: 10vw;
+    text-decoration: none;
+}
+
+.textoeimagenytitulo {
+    width: 84.825vw;
+    height: 51.716vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items:flex-start;
+}
+
+.texto-superior {
+    width: 84.825vw;
+    height: 6rem;
+}
+
+.titulo {
+    width: 84.825vw;
+    height: 4.118vh;
+    
+    font-size: 3.5rem;
+    font-weight:lighter;
+    border-radius: 2rem;
+    padding: 1rem;
+    background-color: #FFC96C;
+
+    field-sizing: content; 
+    resize: none;          
+    overflow: hidden;      
+    border: none;          
+    outline: none;  
+}
+
+.htexto {
+    font-size: 6rem;
+}
+
+.subir-imagen {
+    box-sizing: border-box;
+    
+    width: 84.825vw;
+    height: 32.2654vh;
+    
+    border-radius: 5rem;
+    background-color: #FFFFFF;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    }
+
+.h1 {
+    font-size: 16rem;
+    color: #fcae27;
+    display: flex;
+    justify-content: center;
+}
+
+.h2 {
+    font-size: 6rem;
+    color: #fcae27;
+    display: flex;
+    justify-content: center;
+
+    padding: 1rem;
+}
+
+.descyvinculoypublicar {
+    width: 84.825vw;
+    height: 41.99vh;
+    padding-top: 1.716vh;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4.5vh;
+}
+
+.descripcion {
+    width: 84.825vw;
+    height: 12vh;
+    
+    font-size: 3.2rem;
+    font-weight:lighter;
+    border-radius: 2rem;
+    padding: 1rem;
+    background-color: #FFC96C;
+
+    field-sizing: content; 
+    resize: none;          
+    overflow: hidden;      
+    border: none;          
+    outline: none;  
+}
+
