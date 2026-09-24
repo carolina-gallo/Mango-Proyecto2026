@@ -2,10 +2,16 @@
     text-decoration: none;
     color: black;
 }
-.main {
+
+.header {
+    position: fixed;
     margin-top: 1.373vh;
     margin-left: 2.986vw;
     margin-right: 2.986vw;
+    background-color: white;
+    top:0;
+    padding-bottom: 2rem;
+    padding-top: 1rem;
 }
 
 .barra-superior {
@@ -23,6 +29,7 @@
     font-size: 3rem;
     background-color: #d9d9d9;
     border-radius: 0.6875rem;
+    margin-right: 2rem;
 }
 
 .elegi {

@@ -3,93 +3,7 @@
     margin: 0;
     padding: 0;
 }
-.app {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.contenedor{
-    width: 100%;
-    display:flex;
-    justify-content: space-between;
-}
-header {
-    width: 100%;
-    height: 13vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-     margin: 2rem solid white;
-    padding: 2rem; /* 10px */
-    gap: 1rem;
-    background-color: white;
-     position: fixed;
-}
 
-.buscador {
-    background-color: rgb(80, 76, 76);
-    font-size: 2rem;
-    width: 12.686vw;   /* 30px */
-    height: 4.805vh;  /* 30px */
-    padding: 0.1875rem; /* 3px */
-    margin-left: 0.50vw; /* 2px */
-    border-radius: 1.5rem;
-
-    display: flex;
-    justify-content: flex-start;
-  align-self: flex-start    ;
-}
-
-
-.cajita {
-    /*background-color: #585757; */
-    width: 60vw;  /* 200px */
-    height: 4vh; /* antes 2.29vh (20px): los botones .opciones con su padding
-                     y margin de 10px por lado necesitan bastante más alto */
-    min-height: 2.29vh;
-    margin-top: 5rem;
-    display: flex;
-    justify-content: flex-end;
-    gap: 2rem; 
-}
-
-.opciones {
-    background-color: darkgrey;
-    width: 100%;
-    height: 100%;
-    font-size: 2rem;
-    padding: 0.625rem; /* 10px */
-    margin: 0.625rem;  /* 10px */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.625rem; /* 10px */
-    color: black;
-    text-decoration: none;
-}
-
-
-.seleccion {
-    background-color: rgb(102, 100, 100);
-}
-
-.toco:hover {
-    background-color: lightblue;
-    color: blue;
-}
-.a {
-    text-decoration: none;
-    color: black;
-}
-.avatar {
-    width: 9.95vw;  /* 40px */
-    height: 4.58vh; /* 40px */
-    border-radius: 0;
-    background-color: #cccccc;
-}
 .publicacion {
     width: 89.0547vw;
     height: 16.47597vh;
@@ -130,7 +44,7 @@ header {
     flex-wrap: wrap;
 }
 .scrolleo {
-    margin-top: 3vh;
+    margin-top: 14vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

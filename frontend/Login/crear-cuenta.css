@@ -6,13 +6,22 @@
     padding: 0;
 }
 
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
 .app {
-    width: 100%;
-    height: 100vh;
+  width: 100%;
+    flex: 1;           /* ocupa exactamente lo que sobra debajo del header */
+    min-height: 0;      /* clave: sin esto un hijo flex no deja scrollear */
     display: flex;
     flex-direction: column;
     padding: 3vh 7vw;
+    padding-bottom: 1rem;
     gap: 2vh;
+    overflow-y: auto;
+    box-sizing: border-box;
 }
 
 .header {
@@ -108,13 +117,13 @@ align-items: flex-start;
 .ubicar-siguiente {
     width: 90.5472vw;
     height: 17.734553vh;
+    margin-top: auto;
     display: flex;
     justify-content: flex-end;
     align-self: flex-end;
 }
 
 .siguiente {
-    margin-top: 12.5858vh;
     background-color: #AFACAC;
     width: 37.8109vw;
     height: 6.9vh;
