@@ -22,7 +22,7 @@ alto: (alto del objeto/ alto base (874) * 100 = vh */
 }
 header {
     width: 100%;
-    height: 10vh;
+    height: 13vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -95,15 +95,6 @@ header {
     border-radius: 0;
     background-color: #cccccc;
 }
-.scrolleo {
-    margin-top: 11vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    overflow-y: auto;
-    padding-bottom: 6.8649vh;
-}
 
 .publicacion {
     width: 89.0547vw;
@@ -129,11 +120,32 @@ header {
 .titulo {
     width: 43.28855vw;
     height: 2.0594vh;
+    font-size: 2.5rem;
+    color: black;
     background-color: #616060;
 }
 
 .descripcion{
     width: 47.76119vw;
     height: 4.3478vh;
+    font-size: 2rem;
     background-color: #d9d9d9;
+    padding: 0.7rem;
+    overflow-wrap: anywhere;
+    overflow: hidden;    
+    flex-wrap: wrap;
+}
+.scrolleo {
+    margin-top: 13vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    overflow-y: auto;
+    padding-bottom: 6.8649vh;
+    gap: 4.2334vh;
+}
+.derecha {
+    margin-left: 2.9850vw;
+    margin-bottom: 2.8604vh;
 }

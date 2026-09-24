@@ -22,7 +22,7 @@ alto: (alto del objeto/ alto base (874) * 100 = vh */
 }
 header {
     width: 100%;
-    height: 10vh;
+    height: 13vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -32,10 +32,6 @@ header {
     gap: 1rem;
     background-color: white;
      position: fixed;
-}
-
-header.oculto {
-    background-color: transparent;
 }
 
 .buscador {
@@ -102,8 +98,8 @@ header.oculto {
 
 .post,
 .post2 {
-    width: 90.08vw;   /* 334px */
-    min-height: 36.84vh;  /* 322px */
+    width: 83.0845vw;   /* 334px */
+    min-height: 36.8421vh;  /* 322px */
     background-color: #FFC96C;
     border: 0.125rem solid black; /* 2px */
     display: flex;
@@ -111,8 +107,7 @@ header.oculto {
     justify-content: center;
     align-items: stretch;
     /* padding: 0.625rem; */
-    gap: 0.5rem;       /* 8px */
-    margin-bottom: 3rem;
+    gap: 0.5rem;       /* 8px */;
 }
 
 .post h2,
@@ -132,8 +127,8 @@ header.oculto {
 }
 
 .foto {
-    width: 80.6218vw;
-    height: 21vh;
+    width: 75.62189vw;
+    height: 17.96338vh;
     flex: 1 1 auto;   /* la imagen crece y ocupa todo el espacio sobrante */
     min-height: 0;    /* evita que el flex la desborde */
     object-fit: cover;
@@ -161,10 +156,11 @@ header.oculto {
 }
 
 .icono {
-width: 8.21vw;
-height: 5.26vh;
+width: 12.68656vw;
+height: 100%;
 font-size: 3rem;
-padding: 3rem;
+padding-left: 1rem;
+padding-right: 1rem;
 background-color: #f6b14d;
 display: flex;
 justify-content: center;
@@ -172,12 +168,13 @@ align-items: center;
 }
 
 .scrolleo {
-    margin-top: 11vh;
+    margin-top: 13vh;
     display: flex;
     flex-direction: column;
     justify-content: stretch;
     align-items: center;
     overflow-y: auto;
     padding-bottom: 6.8649vh;
+    gap: 2.97482vh;
 }
 
