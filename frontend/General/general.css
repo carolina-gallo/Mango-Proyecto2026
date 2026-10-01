@@ -62,3 +62,16 @@ border-radius: 2rem;
     text-decoration: none;
     color: black;
 }
+.buscador {
+    background-color: rgb(80, 76, 76);
+    font-size: 2rem;
+    width: 12.686vw;   /* 30px */
+    height: 4.805vh;  /* 30px */
+    padding: 0.1875rem; /* 3px */
+    margin-left: 0.50vw; /* 2px */
+    border-radius: 1.5rem;
+
+    display: flex;
+    justify-content: flex-start;
+  align-self: flex-start;
+}

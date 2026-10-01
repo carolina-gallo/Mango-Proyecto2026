@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.app{
+    padding: 2rem;
+}
+.header{ 
+    width: 100%;
+    position: fixed;
+    background-color: white;
+    top:0;
+    right: 0;
+    left: 0;
+    padding: 2rem;
+}
+.partearriba {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 2.3rem;
+}
+.mensajeria {
+    width: 43.53233vw;
+    height: 3.54691vh;
+    background-color: #F3A73C;
+    margin-left:1rem ;
+    font-size: 3rem;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+}
+.mensajes {
+    width: 100%;
+}
