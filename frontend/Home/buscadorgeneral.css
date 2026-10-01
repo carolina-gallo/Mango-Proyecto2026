@@ -3,16 +3,19 @@
     color: black;
 }
 
+body {
+  background-color: white;
+  margin: 0;
+}
 .header {
     position: fixed;
-    margin-top: 1.373vh;
     margin-left: 2.986vw;
     margin-right: 2.986vw;
     background-color: white;
     top:0;
     padding-bottom: 2rem;
     padding-top: 1rem;
-}
+    }
 
 .barra-superior {
     width: 100%;
