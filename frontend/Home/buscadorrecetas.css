@@ -28,7 +28,7 @@
 .titulo {
     width: 43.28855vw;
     height: 2.0594vh;
-    font-size: 2.5rem;
+    font-size: 1rem;
     color: black;
     background-color: #616060;
 }
@@ -36,9 +36,9 @@
 .descripcion{
     width: 47.76119vw;
     height: 4.3478vh;
-    font-size: 2rem;
+    font-size: 0.8rem;
     background-color: #d9d9d9;
-    padding: 0.7rem;
+    padding: 0.3rem;
     overflow-wrap: anywhere;
     overflow: hidden;    
     flex-wrap: wrap;

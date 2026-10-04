@@ -1,38 +1,98 @@
+/* Base: viewport 402px x 874px | 1vw = 4.02px | 1vh = 8.74px | 1rem = 16px */
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-.app{
-    padding: 2rem;
-}
-.header{ 
-    width: 100%;
+
+.header {
     position: fixed;
-    background-color: white;
-    top:0;
-    right: 0;
+    top: 0;
     left: 0;
-    padding: 2rem;
-}
-.partearriba {
-    background-color: white;
+    width: 100%;
+    height: 14vh;
+    z-index: 10;                 /* queda por encima de los chats al scrollear */
+    background-color: white;     /* tapa lo que pasa por detrás */
+    padding: 1.5vh 3.5vw 0;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 1rem;
-    padding-bottom: 2.3rem;
+    flex-direction: column;
+    gap: 2.5vh;
 }
+
+.partearriba {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .mensajeria {
     width: 43.53233vw;
     height: 3.54691vh;
+    margin-left: 2.5vw;
     background-color: #F3A73C;
-    margin-left:1rem ;
-    font-size: 3rem;
+    font-size: 1rem;
+    display: flex;
     align-items: center;
-    justify-items: center;
-    text-align: center;
+    justify-content: center;
 }
+
+/* ---------- LISTA DE CHATS (scrollea) ---------- */
 .mensajes {
-    width: 100%;
+    padding-top: 16vh;           /* alto del header + aire */
+    padding-bottom: 9vh;         /* alto del footer (6.8649vh) + aire */
+    display: flex;
+    flex-direction: column;
+    gap: 2.5vh;
+}
+
+.chats {
+    display: grid;
+    grid-template-columns: 19.9vw 1fr auto;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+        "foto nombre punto"
+        "foto mensaje punto";
+    column-gap: 4.5vw;
+    row-gap: 1.4vh;
+    align-items: center;
+    padding: 0 5vw 0 3.5vw;
+}
+
+.persona {
+    grid-area: foto;
+    width: 19.9vw;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background-color: #d9d9d9;
+}
+
+.nombre {
+    grid-area: nombre;
+    align-self: end;
+    width: 30.8vw;
+    height: 2.1vh;
+    font-size: 0.8rem;
+    background-color: #d9d9d9;
+}
+
+.mensajito {
+    grid-area: mensaje;
+    align-self: start;
+    width: 43vw;
+    height: 2.1vh;
+    font-size: 0.8rem;
+    color: white;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background-color: #616060;
+}
+
+.punto {
+    grid-area: punto;
+    width: 4.2vw;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background-color: #E0A94F;
 }

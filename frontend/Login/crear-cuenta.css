@@ -18,7 +18,7 @@ body {
     display: flex;
     flex-direction: column;
     padding: 3vh 7vw;
-    padding-bottom: 1rem;
+    padding-bottom: 0.4rem;
     gap: 2vh;
     overflow-y: auto;
     box-sizing: border-box;
@@ -33,8 +33,8 @@ align-items: flex-start;
 }
 .esquina {
     margin-left:auto;
-    margin-right: 2rem;
-    margin-top: 2rem;
+    margin-right: 0.8rem;
+    margin-top: 0.8rem;
 }
 
 .volver {
@@ -42,15 +42,15 @@ align-items: flex-start;
     height: 4.805vh;;
     /*background-color: #AFACAC;*/
     border-radius: 0.6875rem;
-    font-size: 7rem;;
+    font-size: 2.9rem;;
     display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
     color: black;
     font-weight: bold;
-    margin-left: 2rem;
-    margin-top: 2rem;
+    margin-left: 0.8rem;
+    margin-top: 0.8rem;
 }
 
 .bienvenida-cc {
@@ -59,8 +59,8 @@ align-items: flex-start;
     background-color: #F3A73C;
     display: flex;
     align-items: center;
-    padding: 0 1rem;
-    font-size: 3rem;
+    padding: 0 0.4rem;
+    font-size: 1.2rem;
     font-weight: bold;
 }
 
@@ -76,11 +76,11 @@ align-items: flex-start;
     width: 100%;
     height: 6.9vh;
     background-color: #d9d9d9;
-    border: 0.125rem solid #F3A73C;
+    border: 0.05rem solid #F3A73C;
     display: flex;
     align-items: flex-start;
-    padding: 0.5rem;
-    font-size: 3rem;
+    padding: 0.2rem;
+    font-size: 1.2rem;
     color: black;
 }
 
@@ -92,7 +92,7 @@ align-items: flex-start;
     justify-content: space-between;
 }
 .ingresar-datos {
-    font-size: 3rem;
+    font-size: 1.2rem;
     margin-top: 1vh;
 }
 
@@ -101,8 +101,8 @@ align-items: flex-start;
     height: 6vh;
     background-color: #d9d9d9;
     border: none;
-    font-size: 3rem;
-    padding: 1rem;
+    font-size: 1.2rem;
+    padding: 0.4rem;
 }
 
 .campo-select {
@@ -110,8 +110,8 @@ align-items: flex-start;
     height: 6.9vh;
     background-color: #d9d9d9;
     border: none;
-    font-size: 3rem;
-    padding: 0 1rem;
+    font-size: 1.2rem;
+    padding: 0 0.4rem;
 }
 
 .ubicar-siguiente {
@@ -128,6 +128,6 @@ align-items: flex-start;
     width: 37.8109vw;
     height: 6.9vh;
     border: none;
-    font-size: 4rem;
+    font-size: 1.6rem;
     cursor: pointer;
 }

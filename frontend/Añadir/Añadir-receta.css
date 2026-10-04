@@ -41,7 +41,7 @@ align-items: center;
 .atras {
     width: 9.7014vw;
     height: 3.547vh;
-    border-radius: 3rem;
+    border-radius: 1.2rem;
 
     color: black;
     font-size: 10vw;
@@ -60,11 +60,11 @@ align-items: center;
 
 .texto-superior {
     width: 84.825vw;
-    height: 8rem;
+    height: 3.3rem;
 }
 
 .htexto {
-    font-size: 8rem;
+    font-size: 3.3rem;
     font-weight: bold;
 }
 
@@ -77,10 +77,10 @@ align-items: center;
     width: 84.825vw;
     height: 8vh;
     
-    font-size: 5rem;
+    font-size: 2rem;
     font-weight: bold;
-    border-radius: 2rem;
-    padding: 1rem;
+    border-radius: 0.8rem;
+    padding: 0.4rem;
     background-color: #FFC96C;
 
     field-sizing: content; 
@@ -96,7 +96,7 @@ align-items: center;
     width: 84.825vw;
     height: 32.2654vh;
     
-    border-radius: 5rem;
+    border-radius: 2rem;
     background-color: #FFFFFF;
     
     display: flex;
@@ -105,19 +105,19 @@ align-items: center;
     }
 
 .h1 {
-    font-size: 16rem;
+    font-size: 6.5rem;
     color: #fcae27;
     display: flex;
     justify-content: center;
 }
 
 .h2 {
-    font-size: 6rem;
+    font-size: 2.5rem;
     color: #fcae27;
     display: flex;
     justify-content: center;
 
-    padding: 1rem;
+    padding: 0.4rem;
 }
 
 .descymargen {
@@ -135,10 +135,10 @@ align-items: center;
     width: 84.825vw;
     height: 12vh;
     
-    font-size: 3.2rem;
+    font-size: 1.3rem;
     font-weight:lighter;
-    border-radius: 2rem;
-    padding: 1rem;
+    border-radius: 0.8rem;
+    padding: 0.4rem;
     background-color: #FFC96C;
 
     field-sizing: content; 
@@ -151,6 +151,6 @@ align-items: center;
 .filtrosgeneral {
     width: 84.825vw;
     height: 96.910vh;
-    border-radius: 3.5rem;
+    border-radius: 1.4rem;
     background-color: white;
 }

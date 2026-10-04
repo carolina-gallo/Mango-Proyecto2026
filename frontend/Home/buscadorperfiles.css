@@ -1,4 +1,5 @@
 
+
 .scrolleo {
     margin-top: 13vh;
     display: flex;
@@ -22,7 +23,7 @@
     width: 23.5845vw;
     height: 11.44164vh;
     background-color: white;
-    border-radius: 10rem;
+    border-radius: 4rem;
     margin-left: 2.1218vw;
 }
 .columna{
@@ -42,6 +43,6 @@ background-color: #616060;
     width: 36.8159vw;
     height: 4.3478vh;
     background-color: #d9d9d9;
-    border-radius: 2rem;
+    border-radius: 0.8rem;
     margin-left: 3.06467vw;
 }

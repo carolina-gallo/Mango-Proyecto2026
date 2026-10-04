@@ -27,21 +27,21 @@ header {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-     margin: 2rem solid white;
-    padding: 2rem; /* 10px */
-    gap: 1rem;
+     margin: 0.8rem solid white;
+    padding: 0.8rem; /* 10px */
+    gap: 0.4rem;
     background-color: white;
      position: fixed;
 }
 
 .buscador {
     background-color: rgb(80, 76, 76);
-    font-size: 2rem;
+    font-size: 0.8rem;
     width: 12.686vw;   /* 30px */
     height: 4.805vh;  /* 30px */
-    padding: 0.1875rem; /* 3px */
+    padding: 0.08rem; /* 3px */
     margin-left: 0.50vw; /* 2px */
-    border-radius: 1.5rem;
+    border-radius: 0.6rem;
 
     display: flex;
     justify-content: flex-start;
@@ -55,23 +55,23 @@ header {
     height: 4vh; /* antes 2.29vh (20px): los botones .opciones con su padding
                      y margin de 10px por lado necesitan bastante más alto */
     min-height: 2.29vh;
-    margin-top: 5rem;
+    margin-top: 2rem;
     display: flex;
     justify-content: flex-end;
-    gap: 2rem; 
+    gap: 0.8rem; 
 }
 
 .opciones {
     background-color: darkgrey;
     width: 100%;
     height: 100%;
-    font-size: 2rem;
-    padding: 0.625rem; /* 10px */
-    margin: 0.625rem;  /* 10px */
+    font-size: 0.8rem;
+    padding: 0.25rem; /* 10px */
+    margin: 0.25rem;  /* 10px */
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.625rem; /* 10px */
+    gap: 0.25rem; /* 10px */
     color: black;
     text-decoration: none;
 }
@@ -101,28 +101,28 @@ header {
     width: 83.0845vw;   /* 334px */
     min-height: 36.8421vh;  /* 322px */
     background-color: #FFC96C;
-    border: 0.125rem solid black; /* 2px */
+    border: 0.05rem solid black; /* 2px */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
     /* padding: 0.625rem; */
-    gap: 0.5rem;       /* 8px */;
+    gap: 0.2rem;       /* 8px */;
 }
 
 .post h2,
 .post2 h2 {
-    font-size: 3em;
-    margin-left: 1rem;
-    margin-top: 1rem;
+    font-size: 1.2em;
+    margin-left: 0.4rem;
+    margin-top: 0.4rem;
     display: flex;
     justify-content: flex-start;
 }
 
 .post p,
 .post2 p {
-    font-size: 2em;
-    margin-left: 1rem;
+    font-size: 0.8em;
+    margin-left: 0.4rem;
     overflow-wrap: anywhere;
 }
 
@@ -132,7 +132,7 @@ header {
     flex: 1 1 auto;   /* la imagen crece y ocupa todo el espacio sobrante */
     min-height: 0;    /* evita que el flex la desborde */
     object-fit: cover;
-    border: 0.0625rem solid black; /* 1px */
+    border: 0.03rem solid black; /* 1px */
     background-color: white;
     margin:auto;
     margin-top: 4.6910vh;
@@ -158,9 +158,9 @@ header {
 .icono {
 width: 12.68656vw;
 height: 100%;
-font-size: 3rem;
-padding-left: 1rem;
-padding-right: 1rem;
+font-size: 1.2rem;
+padding-left: 0.4rem;
+padding-right: 0.4rem;
 background-color: #f6b14d;
 display: flex;
 justify-content: center;
@@ -177,4 +177,3 @@ align-items: center;
     padding-bottom: 6.8649vh;
     gap: 2.97482vh;
 }
-

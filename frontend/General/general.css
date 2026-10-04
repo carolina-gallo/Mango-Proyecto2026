@@ -23,8 +23,8 @@ height: 4.3478vh;
 background-color: #D9D9D9;
 color: rgb(0, 0, 0);
 text-decoration: none;
-font-size: 2rem;
-border-radius: 0.75rem;
+font-size: 0.8rem;
+border-radius: 0.3rem;
 
 display: flex;
 justify-content: center;
@@ -33,10 +33,10 @@ align-items: center;
 
 .fcuadraditote {
 background-color: #F3A73C;
-font-size: 2rem;
+font-size: 0.8rem;
 width: 24.1292vw;
 height: 4.920vh;
-border-radius: 0.75rem;
+border-radius: 0.3rem;
 color: rgb(0, 0, 0);
 text-decoration: none;
 
@@ -52,7 +52,7 @@ color:#F3A73C ;
 width: 12.686vw;
 height: 4.805vh;
 background-color: #F3A73C;
-border-radius: 2rem;
+border-radius: 0.8rem;
 }
 .button{
     border: none;
@@ -64,12 +64,12 @@ border-radius: 2rem;
 }
 .buscador {
     background-color: rgb(80, 76, 76);
-    font-size: 2rem;
+    font-size: 0.8rem;
     width: 12.686vw;   /* 30px */
     height: 4.805vh;  /* 30px */
-    padding: 0.1875rem; /* 3px */
+    padding: 0.08rem; /* 3px */
     margin-left: 0.50vw; /* 2px */
-    border-radius: 1.5rem;
+    border-radius: 0.6rem;
 
     display: flex;
     justify-content: flex-start;
