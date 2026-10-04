@@ -93,5 +93,5 @@ body {
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     background-color: #E0A94F;
-    margin-left: auto;           /* lo empuja al borde derecho */
+    margin-left: auto;           /* lo empuja al borde segun el chat*/
 }
