@@ -15,38 +15,6 @@ alto: (alto del objeto/ alto base (874) * 100 = vh */
     flex-direction: column;
     justify-content: space-between;
 }
-.contenedor{
-    width: 100%;
-    display:flex;
-    justify-content: space-between;
-}
-header {
-    width: 100%;
-    height: 13vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-     margin: 0.8rem solid white;
-    padding: 0.8rem; /* 10px */
-    gap: 0.4rem;
-    background-color: white;
-     position: fixed;
-}
-
-.buscador {
-    background-color: rgb(80, 76, 76);
-    font-size: 0.8rem;
-    width: 12.686vw;   /* 30px */
-    height: 4.805vh;  /* 30px */
-    padding: 0.08rem; /* 3px */
-    margin-left: 0.50vw; /* 2px */
-    border-radius: 0.6rem;
-
-    display: flex;
-    justify-content: flex-start;
-  align-self: flex-start    ;
-}
 
 
 .cajita {
@@ -62,7 +30,6 @@ header {
 }
 
 .opciones {
-    background-color: darkgrey;
     width: 100%;
     height: 100%;
     font-size: 0.8rem;
@@ -76,19 +43,11 @@ header {
     text-decoration: none;
 }
 
-
-.seleccion {
-    background-color: rgb(102, 100, 100);
-}
-
 .toco:hover {
     background-color: lightblue;
     color: blue;
 }
-.a {
-    text-decoration: none;
-    color: black;
-}
+
 .avatar {
     width: 9.95vw;  /* 40px */
     height: 4.58vh; /* 40px */
