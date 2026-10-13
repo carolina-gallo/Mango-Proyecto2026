@@ -2,8 +2,6 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-
-
 }
 
 
@@ -11,7 +9,6 @@ body {
 background-color: #FFC96C;
 width: 100%;
 min-height: 173.718vh;
-
 
 display: flex;
 flex-direction: column;
@@ -22,11 +19,8 @@ align-items: center;
 
 .main {
     height: 173.85vh;
-
-
     padding-bottom: 2.974vh;
     padding-top: 2.974vh;    
-
 
     display: flex;
     flex-direction: column;
@@ -38,7 +32,6 @@ align-items: center;
 .header {
     width: 84.825vw;
     height: 8.6956vh;
-
 
     display: flex;
     flex-direction: column;
@@ -52,17 +45,16 @@ align-items: center;
     height: 3.547vh;
     border-radius: 1.2rem;
 
-
     color: black;
     font-size: 10vw;
     text-decoration: none;
 }
 
 
+
 .textoeimagenytitulo {
     width: 84.825vw;
     height: 51.716vh;
-
 
     display: flex;
     flex-direction: column;
@@ -99,7 +91,6 @@ align-items: center;
     padding: 0.4rem;
     background-color: #FFC96C;
 
-
     field-sizing: content;
     resize: none;          
     overflow: hidden;      
@@ -110,10 +101,8 @@ align-items: center;
 
 .subir-imagen {
     box-sizing: border-box;
-   
     width: 84.825vw;
     height: 32.2654vh;
-   
     border-radius: 2rem;
     background-color: #FFFFFF;
    
@@ -136,8 +125,6 @@ align-items: center;
     color: #fcae27;
     display: flex;
     justify-content: center;
-
-
     padding: 0.4rem;
 }
 
@@ -147,7 +134,6 @@ align-items: center;
     height: 17.034vh;
     padding-top: 2.517vh;
     padding-bottom: 2.517vh;
-
 
     display: flex;
     flex-direction: center;
@@ -165,7 +151,6 @@ align-items: center;
     padding: 0.4rem;
     background-color: #FFC96C;
 
-
     field-sizing: content;
     resize: none;          
     overflow: hidden;      
@@ -180,10 +165,8 @@ align-items: center;
     width: 89.89vw;
     height: 97.139vh;
 
-
     border-radius: 1.4rem;
     background-color: white;
-   
 }
 
 
@@ -192,7 +175,6 @@ h4 {
     margin-left: 3.98vw;
     font-size: 5.723vh;
     color: #F3A73C;
-   
 }
 
 
@@ -203,7 +185,6 @@ h4 {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-
 
     overflow-x: auto;
     overflow-y: hidden;
@@ -217,19 +198,14 @@ h4 {
     width: 18.905vw;
     height: 100%;
     gap: 0.686vh;
-
-
     border: none;
     background: none;
     flex-shrink: 0;
-
 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-
-
     cursor: pointer;
 }
 
@@ -244,18 +220,14 @@ h4 {
     height: 100%;
     padding-left: 3.98vw;
     gap: 0.686vh;
-
-
     border: none;
     background: none;
     flex-shrink: 0;
-
 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-
 
     cursor: pointer;
 }
@@ -271,7 +243,6 @@ h4 {
     height: 100%;
     padding-right: 3.98vw;
     gap: 0.686vh;
-
     border: none;
     background: none;
     flex-shrink: 0;
@@ -287,7 +258,6 @@ h4 {
     border: 0.5vh solid #F3A73C;
 }
 
-
 .circulo {
     width: 18.905vw;
     height: 8.695vh;
@@ -295,8 +265,6 @@ h4 {
     background-color: #D9D9D9;
     transition: 0.2s;
 }
-
-
 
 
 .nombre-filtro {
@@ -307,7 +275,6 @@ h4 {
     max-width: 18.905vw;
     min-height: 5.263vh;
 }
-
 
 .saboresytiempos {
     width: 100%;
@@ -344,11 +311,9 @@ h4 {
     border: 0.5vh solid #F3A73C;
 }
 
-
-
 .tiposdecomidas {
-    width: ;
-    height: ;
+    height: 24.828vh;
+    width: 33.333vw;
     margin-left: 3.98vw;
 
     display: flex;

@@ -3,18 +3,6 @@
     padding: 0;
 }
 
-body {
-padding-top: 6vh;
-}
-.header {
-    width: 100vw;
-    height: 13.61556vw;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    padding-bottom:2vh;
-    position: fixed;
-}
 .contenedor{
     width: 100%;
     padding: 0 1rem 0 1rem;
