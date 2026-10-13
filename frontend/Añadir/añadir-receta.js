@@ -8,10 +8,10 @@ filtrosCirculares.forEach(filtro => {
 });
 
 
-const sabores = document.querySelectorAll(".saborytiempo");
-sabores.forEach(saborytiempo => {
-    saborytiempo.addEventListener("click", () => {
-        saborytiempo.classList.toggle("seleccionado");
+const sabores = document.querySelectorAll(".saborytiempoydifymetodo");
+sabores.forEach(saborytiempoydifymetodo => {
+    saborytiempoydifymetodo.addEventListener("click", () => {
+        saborytiempoydifymetodo.classList.toggle("seleccionado");
     });
 });
 
