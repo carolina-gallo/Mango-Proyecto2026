@@ -9,11 +9,11 @@ alto: (alto del objeto/ alto base (874) * 100 = vh */
     padding: 0;
 }
 .app {
+    padding-top: 12vh;
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
 .cajita {
@@ -48,12 +48,21 @@ alto: (alto del objeto/ alto base (874) * 100 = vh */
     background-color: #cccccc;
 }
 
+.scrolleo {
+    padding-top: 3vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: center;
+    overflow-y: auto;
+    padding-bottom: 6.8649vh;
+    gap: 2.4027vh;
+}
 .post,
 .post2 {
     width: 100%;
-    min-height: 36.8421vh;  /* 322px */
-    background-color: #FFC96C;
-    border: 0.05rem solid black; /* 2px */
+    height: 43.70709vh;  /* 322px */
+    background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -62,11 +71,15 @@ alto: (alto del objeto/ alto base (874) * 100 = vh */
     gap: 0.2rem;       /* 8px */;
 }
 
+.fotodeperfil {
+    width: 10vw;
+    aspect-ratio: 1/1;
+    background-color: grey;
+    border-radius: 10rem;
+}
 .post h2,
 .post2 h2 {
     font-size: 1.2em;
-    margin-left: 0.4rem;
-    margin-top: 0.4rem;
     display: flex;
     justify-content: flex-start;
 }
@@ -79,8 +92,8 @@ alto: (alto del objeto/ alto base (874) * 100 = vh */
 }
 
 .foto {
-    width: 75.62189vw;
-    height: 17.96338vh;
+    width: 100vw;
+    height: 30.549199vh;
     flex: 1 1 auto;   /* la imagen crece y ocupa todo el espacio sobrante */
     min-height: 0;    /* evita que el flex la desborde */
     object-fit: cover;
@@ -117,15 +130,4 @@ background-color: #f6b14d;
 display: flex;
 justify-content: center;
 align-items: center;
-}
-
-.scrolleo {
-    padding-top: 3vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: stretch;
-    align-items: center;
-    overflow-y: auto;
-    padding-bottom: 6.8649vh;
-    gap: 2.97482vh;
 }
