@@ -9,6 +9,7 @@ alto: (alto del objeto/ alto base (874) * 100 = vh */
     padding: 0;
 }
 .app {
+    padding-top: 6vh;
     width: 100%;
     height: 100%;
     display: flex;
