@@ -33,10 +33,12 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+    gap: 1rem;
 }
 
 .volver {
+    align-self: flex-start;
     width: 12.686vw;
     height: 4.805vh;;
     /*background-color: #AFACAC;*/
@@ -46,28 +48,37 @@ body{
     width: 74.6268vw;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;;
+    justify-content: center;
+    align-items: stretch;
 }
 .bienvenido {
-    width: 74.6268vw;
+    align-self: center;
+    width: auto;
     color: #F4882E;
-    display: flex;
-    align-items: center;
     font-size: 2.3125rem;
     font-family: 'Nunito', sans-serif;
     font-weight: 900;
 }
 
 .barra-secundaria {
+    align-self: flex-end;
     width: 41.54422vw;
     height: 6.7505vh;
     object-fit: cover
 }
 
+.datoscuenta {
+    width: 74.6268vw;
+    height: 60.411899vh;
+    padding-top: 6.9794vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
 
 .campo-bot {
-    width: 100%;
+    width: 74.6268vw;
     height: 6.9vh;
     background-color: #d9d9d9;
     border: 0.05rem solid #F3A73C;
