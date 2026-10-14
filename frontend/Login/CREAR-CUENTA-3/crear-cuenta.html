@@ -7,18 +7,23 @@
 
     <link rel="stylesheet" href="../General/general.css">
     <link rel="stylesheet" href="crear-cuenta.css">
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+    </style>
 </head>
 
 <body>
+    <main class="app">
 <header class="header">
-    <a href="inicio-sesion.html" class="volver">←</a>
-    <figure class="logo esquina"></figure>
+    <a href="../INICIAR-SESION-2/inicio-sesion.html" class="volver"><img src="Flecha-atras.png" alt="Flecha"></a>
+    <section class="principio">
+        <h1 class="bienvenido">BIENVENIDO A</h1>
+        <article class="barra-secundaria"><img class="barra-secundaria" src="Mango.png" alt="Mango"></article>
+    </section>
+    
 </header>
-
-<main class="app">
-    <section class="bienvenida-cc">Bienvenido a Mango</section>
-    <section class="barra-secundaria"></section>
-
+<form action="" class="datoscuenta">
     <input class="campo-bot label-bot" type="text" placeholder="Mail">
     </input>
     <input class="campo-bot label-bot" type="text" placeholder="Número">
@@ -33,12 +38,12 @@
             <option value="1">Opción 1</option>
         </select>
     </section>
-
-<footer class="ubicar-siguiente">
-    <a href="form-restricciones.html">
-        <button class="siguiente">Siguiente</button>
+    <a class="a" href="form-restricciones.html">
+        <button class="continuar" id="botonlogin">Continuar</button>
     </a>
-</footer>
+    <p class="textofinal">Tu próxima receta favorita empieza acá.</p>
+    </footer>
+</form>
 
 </main>
 
