@@ -7,32 +7,30 @@
 
     <link rel="stylesheet" href="../General/general.css">
     <link rel="stylesheet" href="inicio-sesion.css">
-
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+    </style>
 </head>
 
 <body>
-    <header>
-        <div class="logo esquina"></div>
-    </header>
- 
     <main class="inicio">
+    <figure class="usuario"><img src="icon.png" alt="Usuario"></figure>
     <article class="bienvenida">
-    <figure class="usuario"></figure>
-    <h1 class="login">Log in</h1>
+    <h1 class="login">INICIAR SESIÓN</h1>
+    <img src="../../Logo.png" alt="Logo Mangô" class="logomango">
 </article>
 
 <article class="datos">
-    <input class="typea" type="text" placeholder="Mail">
-    <input class="typea" type="password" placeholder="Contraseña">
+    <input class="typea" type="text" id="mail" placeholder="Mail">
+    <input class="typea" type="password" id="password" placeholder="Contraseña">
+    <a class="a registrarse-link" href="crear-cuenta.html">
+           <button class="registrarse">registrarte</button>
+        </a>
 </article>
    
-<section class="ubicarboton">
-        <a class="a" href="crear-cuenta.html">
-           <button class="registrarse">Registrate</button>
-        </a>
-</section>
-    <a class="a" href="../Home/homeposts.html">
-        <button class="iniciarsesion">Iniciar sesión</button>
+
+    <a class="a" href="../../Home/homeposts.html">
+        <button class="iniciarsesion" id="botonlogin">Continuar</button>
     </a>
 </main>
 </body>

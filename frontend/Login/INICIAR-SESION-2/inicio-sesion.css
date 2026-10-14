@@ -3,27 +3,31 @@
     margin: 0;
     padding: 0;
 }
-.header {
+body{
     width: 100vw;
-    height: 10vh;
+    height: 100vh;
+    background-color: #FFC96C;
+    font-family: 'Nunito';
     display: flex;
-    justify-content: flex-end;
-align-items: flex-start;
-}
-
-.esquina {
-    margin-left:auto;
-    margin-right: 0.8rem;
-    margin-top: 0.8rem;
+    justify-content: center;
+    align-items: center;
 }
 
 .inicio {
-    width: 100vw;
-    height: 80vh;
+    width: 83.0845vw;
+    height: 92.1052vh;
+    padding: 5vh;
+    background-color: rgb(255 255 255 / 0.27);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+}
+
+.usuario {
+    width: 27.61194vw;
+    aspect-ratio: 1/1;
+    border-radius: 10rem;
 }
 
 .bienvenida {
@@ -31,24 +35,14 @@ width: 47.5124vw;
 height: 21.9679vh;
 display: flex;
 flex-direction: column;
-justify-content: center;
+justify-content: space-around;
 align-items: center;
-gap: 0.8rem;
-}
-
-.usuario {
-    width: 27.61194vw;
-    height: 12.70022vh;
-    background-color: #F3A73C;
-    border-radius: 10rem;
 }
 
 .login {
-    background-color: #d9d9d9;
-width: 38.0597vw;
-height: 5.7208vh;
-font-size: 1.2rem;
-font-family: Arial, Helvetica, sans-serif;
+   /* background-color: #d9d9d9;*/
+font-size: 1.5rem;
+color: #FFFFFF;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -56,38 +50,41 @@ text-align: center;
 }
 
 .datos {
-margin-top: 7.0938vh;
 width: 66.16915vw;
-height: 15.90389vh;
+height: auto;
 display: flex;
 flex-direction: column;
-justify-content: space-between;
+gap: 2.8604vh;
 }
 
 .typea {
-    width: 100%;
-    height: 5.7208vh;
-    background-color: #d9d9d9;
-    font-size: 1.2rem;
-    font-family: Arial, Helvetica, sans-serif;
+width: 100%;
+height: 5.7208vh;
+background-color: #FFFFFF;
+font-size: 1.2rem;
+border: none;       
+outline: none;      
+box-shadow: none;
+border-radius: 0.7rem;
+padding-left:.4rem;
+}
+.registrarse-link {
+    align-self: center;
+    margin-top: -0.9154vh;   /* 1.5vh (gap) + 0.445vh = 1.945vh = 17px */
 }
 
-.ubicarboton {
-    width: 83.83084vw;
-    height: 8.00915vh;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
 .registrarse {
-background-color: #F3A73C;
+color: #F3A73C;
 width: 38.55721vw;
 height: 1.71624vh;
-font-size: 1rem;
-font-family: Arial, Helvetica, sans-serif;
+font-size: 1.2rem;
 display: flex;
 justify-content: center;
 align-items: center;
+border: none;       
+outline: none;      
+box-shadow: none;
+background: none;
 }
 
 .a {
@@ -96,9 +93,12 @@ align-items: center;
 }
 
 .iniciarsesion {
-    width: 66.16915vw;
-    height: 5.7208vh;
-    background-color: #a9a9a9;
-    font-size: 1.2rem;
-    font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
+    color: #F3A73C;
+    border: none;
+    border-radius: 0.95rem;
+    padding: 1rem 3rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    cursor: pointer;
 }
