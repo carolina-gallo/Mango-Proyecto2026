@@ -76,7 +76,7 @@ align-items: center;
 
 
 .textarea-negro::placeholder {
-    color: black;
+    color: rgb(128, 128, 128);
     opacity: 3;
 }
 
@@ -276,7 +276,7 @@ h4 {
     min-height: 5.263vh;
 }
 
-.saboresytiemposydifymetodo {
+.saboresytiempos {
     width: 100%;
     height: 7.208vh;
     box-sizing: border-box;
@@ -353,4 +353,11 @@ h4 {
 
 .tipodecomida.seleccionado .cuadradito {
     background-color: #F3A73C;
+}
+
+h3 {
+    gap: 3.775vh;
+    margin-left: 3.98vw;
+    font-size: 2.5vh;
+    color: #F3A73C;
 }

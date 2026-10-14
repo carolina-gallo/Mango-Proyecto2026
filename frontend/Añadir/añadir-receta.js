@@ -15,7 +15,6 @@ sabores.forEach(saborytiempoydifymetodo => {
     });
 });
 
-
 const tiposDeComida = document.querySelectorAll(".tipodecomida");
 tiposDeComida.forEach(tipo => {
     tipo.addEventListener("click", () => {
