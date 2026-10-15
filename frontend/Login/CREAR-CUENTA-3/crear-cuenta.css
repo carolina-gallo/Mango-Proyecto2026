@@ -22,7 +22,7 @@ body{
     background-color: rgb(255 255 255 / 0.27);
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -70,7 +70,6 @@ body{
 .datoscuenta {
     width: 74.6268vw;
     height: 60.411899vh;
-    padding-top: 6.9794vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -96,11 +95,14 @@ body{
 
 .form-datos {
     width: 75.37313vw;
-    height: 24.02745vh;
+    height: 40.16018vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    gap: 2.63157vh;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
 }
 .ingresar-datos {
     font-size: 1.2rem;
