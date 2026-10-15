@@ -7,7 +7,6 @@ filtrosCirculares.forEach(filtro => {
     });
 });
 
-
 const sabores = document.querySelectorAll(".saborytiempoydifymetodo");
 sabores.forEach(saborytiempoydifymetodo => {
     saborytiempoydifymetodo.addEventListener("click", () => {
