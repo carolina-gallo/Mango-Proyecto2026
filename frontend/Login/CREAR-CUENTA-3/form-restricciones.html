@@ -6,26 +6,23 @@
     <title>Tus gustos y restricciones</title>
     <link rel="stylesheet" href="../../General/general.css">
     <link rel="stylesheet" href="form-restricciones.css">
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+    </style>
 </head>
 <body>
-    <header><figure class="logo esquina"></figure></header>
     <main class="app">
-        <section class="bienvenida-cc">Formulario de restricciones y preferencias</section>
-        <section class="barra-secundaria"></section>
+        <header class="header">
+            <a href="../INICIAR-SESION-2/inicio-sesion.html" class="volver"><img src="Flecha-atras.png" alt="Flecha"></a>
+            <h1 class="titulo">FORMULARIO DE DIETAS Y RESTRICCIONES</h1>
+        </header>
 
-        <section class="restricciones">Restricciones alimenticias</section>
-
-        <section class="opciones">
-                <article class="cositos">
+        <form class="opciones" id="formRestricciones">
+            <article class="cositos">
                 <input type="checkbox" id="Sin TACC" class="caja-input">
                 <label for="Sin TACC" class="cuadrado"></label>
                 <p class="texto">Sin TACC</p>
-            </article>
-
-            <article class="cositos">
-                <input type="checkbox" id="Intolerante a la lactosa" class="caja-input">
-                <label for="Intolerante a la lactosa" class="cuadrado"></label>
-                <p class="texto">Intolerante a la lactosa</p>
             </article>
 
             <article class="cositos">
@@ -35,52 +32,58 @@
             </article>
 
             <article class="cositos">
+                <input type="checkbox" id="Intolerantealalactosa" class="caja-input">
+                <label for="Intolerantealalactosa" class="cuadrado"></label>
+                <p class="texto">Intolerante a la lactosa</p>
+            </article>
+
+            <article class="cositos">
                 <input type="checkbox" id="Hipertenso" class="caja-input">
                 <label for="Hipertenso" class="cuadrado"></label>
                 <p class="texto">Hipertenso</p>
             </article>
+
+            <article class="cositos">
+                <input type="checkbox" id="Bajoencolesterol" class="caja-input">
+                <label for="Bajoencolesterol" class="cuadrado"></label>
+                <p class="texto">Bajo en colesterol</p>
+            </article>
+
             <article class="cositos">
                 <input type="checkbox" id="alergiafrutossecos" class="caja-input">
                 <label for="alergiafrutossecos" class="cuadrado"></label>
                 <p class="texto">Alergia a frutos secos</p>
             </article>
- 
-    <div class="separador"></div>
 
-    <section class="restricciones">Dietas específicas</section>
+            <article class="cositos">
+                <input type="checkbox" id="dieta1" class="caja-input">
+                <label for="dieta1" class="cuadrado"></label>
+                <p class="texto">Vegano</p>
+            </article>
 
-    <section class="opciones">
-        <article class="cositos">
-        <input type="checkbox" id="dieta1" class="caja-input">
-        <label for="dieta1" class="cuadrado"></label>
-        <p class="texto">Vegano</p>
-    </article>
+            <article class="cositos">
+                <input type="checkbox" id="dieta2" class="caja-input">
+                <label for="dieta2" class="cuadrado"></label>
+                <p class="texto">Vegetariano</p>
+            </article>
 
-    <article class="cositos">
-        <input type="checkbox" id="dieta2" class="caja-input">
-        <label for="dieta2" class="cuadrado"></label>
-        <p class="texto">Vegetariano</p>
-    </article>
+            <article class="cositos">
+                <input type="checkbox" id="dieta3" class="caja-input">
+                <label for="dieta3" class="cuadrado"></label>
+                <p class="texto">Keto</p>
+            </article>
 
-    <article class="cositos">
-        <input type="checkbox" id="dieta3" class="caja-input">
-        <label for="dieta3" class="cuadrado"></label>
-        <p class="texto">Keto</p>
-    </article>
+            <article class="cositos">
+                <input type="checkbox" id="dieta4" class="caja-input">
+                <label for="dieta4" class="cuadrado"></label>
+                <p class="texto">Kosher</p>
+            </article>
 
-        <article class="cositos">
-        <input type="checkbox" id="dieta4" class="caja-input">
-        <label for="dieta4" class="cuadrado"></label>
-        <p class="texto">Kosher</p>
-    </article>
-</section>
-
-    </article>
-        <footer class="ubicar-omitir">
-            <a href="../../Home/homeposts.html">
-                <button class="omitir">Siguiente</button>
+            <a class="a" href="../../Home/homeposts.html">
+                <button type="button" class="continuar" id="botonlogin">Continuar</button>
             </a>
-        </footer>
+        </form>
+
     </main>
 </body>
 </html>

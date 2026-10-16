@@ -6,11 +6,11 @@
     padding: 0;
 }
 
-body{
+body {
     width: 100vw;
     height: 100vh;
     background-color: #FFC96C;
-    font-family: 'Nunito';
+    font-family: 'Nunito', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,101 +20,95 @@ body{
     width: 83.0845vw;
     height: 92.1052vh;
     background-color: rgb(255 255 255 / 0.27);
+    border-radius: 0.6875rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
-    gap: 3vh;
+    padding: 2vh 0 6vh;
+    gap: 2vh;
 }
 
 .header {
     width: 100%;
-    height: 17.27688vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    padding-top: 1rem;
-    gap: 1rem;
+    gap: 1vh;
 }
 
 .volver {
     align-self: flex-start;
     width: 12.686vw;
-    height: 4.805vh;;
-    /*background-color: #AFACAC;*/
     padding: 1rem;
 }
+
 .principio {
-    width: 74.6268vw;
+    width: 66.16915vw;              /* mismo ancho que los inputs */
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
+    align-items: flex-start;
 }
+
 .bienvenido {
-    align-self: center;
-    width: auto;
     color: #F4882E;
     font-size: 2.3125rem;
-    font-family: 'Nunito', sans-serif;
     font-weight: 900;
+    white-space: nowrap;
 }
 
 .barra-secundaria {
-    align-self: flex-end;
+    align-self: flex-end;           /* "MANGO" a la derecha */
     width: 41.54422vw;
     height: 6.7505vh;
-    object-fit: cover
+    object-fit: contain;
 }
 
 .datoscuenta {
-    width: 74.6268vw;
-    height: 60.411899vh;
+    width: 66.16915vw;
+    flex: 1;                        /* ocupa lo que sobra */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
+    gap: 3vh;
+    padding-top: 2vh;
+}
+
+.form-datos {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4vh;
 }
 
 .campo-bot {
-    width: 60.41189vw;
-    height: 5.37757vh;
+    width: 100%;
+    height: 5.5vh;
     background-color: #FFFFFF;
     border: none;
+    outline: none;
     border-radius: 0.625rem;
-    display: flex;
-    align-items: flex-start;
-    padding: 1rem;
+    padding: 0 1rem;
+    font-family: inherit;
     font-size: 1.1rem;
     color: black;
 }
+
 .campo-bot::placeholder {
     color: #d9d9d9;
     opacity: 1;
 }
 
-.form-datos {
-    width: 75.37313vw;
-    height: 40.16018vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2.63157vh;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-}
-.ingresar-datos {
-    font-size: 1.2rem;
-    margin-top: 1vh;
-}
 .textofinal {
-    width: 60.41189vw;
-    font-family: 'Nunito', sans-serif;
-    font-size: 1.5625rem;
+    font-size: 1.25rem;
+    font-weight: 500;
     color: #FFFFFF;
-    font-weight: medium;
+    padding-left: 0.75rem;
+}
+
+/* El <a> que envuelve el botón: lo baja al fondo y lo centra */
+.a {
+    margin-top: auto;
+    align-self: center;
+    text-decoration: none;
 }
 
 .continuar {
@@ -123,6 +117,7 @@ body{
     border: none;
     border-radius: 0.95rem;
     padding: 1rem 3rem;
+    font-family: inherit;           /* para que el <button> use Nunito */
     font-size: 2.5rem;
     font-weight: 700;
     cursor: pointer;
