@@ -24,6 +24,7 @@ body{
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    gap: 3vh;
 }
 
 .header {
@@ -117,7 +118,6 @@ body{
 }
 
 .continuar {
-    width: 62.9353vw;
     background-color: white;
     color: #F3A73C;
     border: none;
@@ -126,6 +126,4 @@ body{
     font-size: 2.5rem;
     font-weight: 700;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
 }
