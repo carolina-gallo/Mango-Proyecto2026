@@ -5,6 +5,7 @@
 }
 
 body {
+font-family: 'Nunito';
 background-color: #FFC96C;
 width: 100%;
 min-height: 173.718vh;
@@ -26,17 +27,15 @@ align-items: center;
     align-items: center;
 }
 
-
 .header {
     width: 84.825vw;
-    height: 8.6956vh;
+    height: 7.6956vh;
 
     display: flex;
     flex-direction: column;
     justify-content:left;
     align-items: top;
 }
-
 
 .atras {
     width: 9.7014vw;
@@ -48,11 +47,9 @@ align-items: center;
     text-decoration: none;
 }
 
-
-
 .textoeimagenytitulo {
     width: 84.825vw;
-    height: 51.716vh;
+    height: 50.716vh;
 
     display: flex;
     flex-direction: column;
@@ -60,24 +57,15 @@ align-items: center;
     align-items:flex-start;
 }
 
-
-.texto-superior {
-    width: 84.825vw;
-    height: 3.3rem;
-}
-
-
 .htexto {
-    font-size: 3.3rem;
+    font-size: 2.8rem;
     font-weight: bold;
 }
-
 
 .textarea-negro::placeholder {
     color: rgb(128, 128, 128);
     opacity: 3;
 }
-
 
 .titulo {
     width: 84.825vw;
@@ -96,7 +84,6 @@ align-items: center;
     outline: none;  
 }
 
-
 .subir-imagen {
     box-sizing: border-box;
     width: 84.825vw;
@@ -107,25 +94,22 @@ align-items: center;
     display: flex;
     flex-direction: column;
     justify-content:center;
-    }
-
+}
 
 .h1 {
-    font-size: 6.5rem;
+    font-size: 9rem;
     color: #fcae27;
     display: flex;
     justify-content: center;
 }
 
-
 .h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: #fcae27;
     display: flex;
     justify-content: center;
     padding: 0.4rem;
 }
-
 
 .descymargen {
     width: 84.825vw;
@@ -138,13 +122,13 @@ align-items: center;
     align-items: center;
 }
 
-
 .descripcion {
     width: 84.825vw;
     height: 12vh;
    
     font-size: 1.3rem;
     font-weight:lighter;
+    font-family: 'Nunito';
     border-radius: 0.8rem;
     padding: 0.4rem;
     background-color: #FFC96C;
@@ -156,9 +140,6 @@ align-items: center;
     outline: none;  
 }
 
-
-
-
 .filtrosgeneral {
     width: 89.89vw;
     height: 97.139vh;
@@ -167,19 +148,17 @@ align-items: center;
     background-color: white;
 }
 
-
 h4 {
     margin-top: 1.83vh;
     margin-left: 3.98vw;
-    font-size: 5.723vh;
+    font-size: 2.25rem;
     color: #F3A73C;
 }
-
 
 .opcionesrestricciones {
     width: 100%;
     gap: 5.722vw;
-    padding-top: 2.631vh;
+    padding-top: 2.3vh;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -188,9 +167,6 @@ h4 {
     overflow-y: hidden;
     scrollbar-width: none;
 }
-
-
-
 
 .filtro-circular {
     width: 18.905vw;
@@ -207,11 +183,9 @@ h4 {
     cursor: pointer;
 }
 
-
 .filtro-circular.seleccionado .circulo{
     border: 0.5vh solid #F3A73C;
 }
-
 
 .filtro-circular1 {
     width: 22.885vw;
@@ -230,11 +204,9 @@ h4 {
     cursor: pointer;
 }
 
-
 .filtro-circular1.seleccionado .circulo{
     border: 0.5vh solid #F3A73C;
 }
-
 
 .filtro-circular2 {
     width: 22.885vw;
@@ -251,7 +223,6 @@ h4 {
     align-items: center;
 }
 
-
 .filtro-circular2.seleccionado .circulo{
     border: 0.5vh solid #F3A73C;
 }
@@ -264,8 +235,8 @@ h4 {
     transition: 0.2s;
 }
 
-
 .nombre-filtro {
+    font-family: 'Nunito';
     font-size: auto;
     font-weight: bolder;
     color: #000000;
@@ -291,18 +262,20 @@ h4 {
     scrollbar-width: none;
 }
 
-
 .saborytiempoydifymetodo {
     width: auto;
     height: 3.432vh;
     flex-shrink: 0;
     padding-left: 2.233vw;
     padding-right: 2.233vw;
+    padding-bottom: 1.8rem;
     border: solid transparent;
     border-radius: 0.5rem;
     background-color: #D9D9D9;
-    font-weight: bolder;
+    font-weight: bold;
     font-size: 1.3rem;
+    font-family: 'Nunito';
+    align-items: center;
 }
 
 .saborytiempoydifymetodo.seleccionado {
@@ -345,17 +318,44 @@ h4 {
 
 .nombre-comida {
     color: black;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     font-weight: bolder;
+    font-family: 'Nunito';
 }
 
 .tipodecomida.seleccionado .cuadradito {
     background-color: #F3A73C;
 }
 
-h3 {
-    gap: 3.775vh;
+.metodousado {
     margin-left: 3.98vw;
     font-size: 2.5vh;
     color: #F3A73C;
+    font-family: 'Nunito';
+}
+
+.dificultad {
+    margin-left: 3.98vw;
+    height: 2.937rem;
+    font-size: 1.3125rem;
+    color: #F3A73C;
+    font-family: 'Nunito';
+    padding-top: 1.3rem;
+}
+
+.difsymetodo {
+    width: 100%;
+    height: 7.666vh;
+    box-sizing: border-box;
+    padding-left: 3.98vw;
+    padding-right: 3.98vw;
+    padding-top: 1.945vh;
+    gap: 3.98vw;
+
+    display: flex;
+    flex-direction: row;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
 }

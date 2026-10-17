@@ -7,16 +7,47 @@ filtrosCirculares.forEach(filtro => {
     });
 });
 
-const sabores = document.querySelectorAll(".saborytiempoydifymetodo");
+const sabores = document.querySelectorAll(".saboresytiempos .saborytiempoydifymetodo");
 sabores.forEach(saborytiempoydifymetodo => {
     saborytiempoydifymetodo.addEventListener("click", () => {
-        saborytiempoydifymetodo.classList.toggle("seleccionado");
+        const grupo = saborytiempoydifymetodo.parentElement;
+        grupo.querySelectorAll(".saborytiempoydifymetodo").forEach(opcion => {
+            opcion.classList.remove("seleccionado");
+        });
+        saborytiempoydifymetodo.classList.add("seleccionado");
+    });
+});
+
+const dificultad = document.querySelectorAll(".difsymetodo .saborytiempoydifymetodo");
+dificultad.forEach(saborytiempoydifymetodo => {
+    saborytiempoydifymetodo.addEventListener("click", () => {
+        const grupo = saborytiempoydifymetodo.parentElement;
+        grupo.querySelectorAll(".saborytiempoydifymetodo").forEach(opcion => {
+            opcion.classList.remove("seleccionado");
+        });
+        saborytiempoydifymetodo.classList.add("seleccionado");
+    });
+});
+
+
+const metodo = document.querySelectorAll(".difsymetodo .saborytiempoydifymetodo");
+metodo.forEach(saborytiempoydifymetodo => {
+    saborytiempoydifymetodo.addEventListener("click", () => {
+        const grupo = saborytiempoydifymetodo.parentElement;
+        grupo.querySelectorAll(".saborytiempoydifymetodo").forEach(opcion => {
+            opcion.classList.remove("seleccionado");
+        });
+        saborytiempoydifymetodo.classList.add("seleccionado");
     });
 });
 
 const tiposDeComida = document.querySelectorAll(".tipodecomida");
 tiposDeComida.forEach(tipo => {
     tipo.addEventListener("click", () => {
-        tipo.classList.toggle("seleccionado");
+        tiposDeComida.forEach(opcion => {
+            opcion.classList.remove("seleccionado");
+        });
+
+        tipo.classList.add("seleccionado");
     });
 });
