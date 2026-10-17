@@ -10,7 +10,7 @@ alto: (alto del objeto/ alto base (874) * 100 = vh */
 }
 body {font-family: 'Nunito'}
 .app {
-    padding-top: 12vh;
+    padding-top: 11.61556vh;
     width: 100%;
     height: 100%;
     display: flex;
@@ -48,7 +48,6 @@ body {font-family: 'Nunito'}
 
 
 .scrolleo {
-    padding-top: 2vh;
     display: flex;
     flex-direction: column;
     justify-content: stretch;
@@ -99,12 +98,12 @@ body {font-family: 'Nunito'}
 }
 
 .foto {
-    width: 100vw;
+    width: 100%;
     height: 100%;
     flex: 1 1 auto;   /* la imagen crece y ocupa todo el espacio sobrante */
     min-height: 0;    /* evita que el flex la desborde */
     object-fit: cover;
-    border: 0.03rem solid black; /* 1px */
+    /*border: 0.03rem solid black; */
     background-color: white;
 }
 
@@ -128,12 +127,13 @@ body {font-family: 'Nunito'}
 }
 
 .icono {
-width: 9.20398vw;
+width: 7.66915vw;
 aspect-ratio: 1/1;
 /*background-color: #f6b14d;*/
 display: flex;
 justify-content: center;
 align-items: center;
+object-fit: contain;
 }
 
 .descripcion {
