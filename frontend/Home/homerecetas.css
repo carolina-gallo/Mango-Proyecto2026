@@ -44,6 +44,7 @@ body {font-family: 'Nunito'}
 .toco:hover {
     background-color: #f6b14d;
     color: #FFFFFF;
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 .avatar {

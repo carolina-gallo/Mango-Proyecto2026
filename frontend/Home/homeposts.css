@@ -48,7 +48,7 @@ body {font-family: 'Nunito'}
 
 
 .scrolleo {
-    padding-top: 3vh;
+    padding-top: 2vh;
     display: flex;
     flex-direction: column;
     justify-content: stretch;
@@ -57,10 +57,10 @@ body {font-family: 'Nunito'}
     padding-bottom: 6.8649vh;
     gap: 2.4027vh;
 }
-.post,
-.post2 {
+
+.post {
     width: 100%;
-    height: 43.70709vh;  /* 322px */
+    height: 43.70709vh;  /* 382px */
     background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
@@ -70,21 +70,29 @@ body {font-family: 'Nunito'}
     gap: 0.2rem;       /* 8px */;
 }
 
+.usuario {
+    width: 100%;
+    height: 6.75057vh;
+    background-color: #FFFFFF;
+    padding: 0.375rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
 .fotodeperfil {
-    width: 10vw;
+    width: 11.69154vw;
     aspect-ratio: 1/1;
     background-color: grey;
     border-radius: 10rem;
 }
-.post h2,
-.post2 h2 {
-    font-size: 1.2em;
+.post h2 {
+    font-size: 1.2rem;
     display: flex;
     justify-content: flex-start;
 }
 
-.post p,
-.post2 p {
+.post p {
     font-size: 0.8em;
     margin-left: 0.4rem;
     overflow-wrap: anywhere;
@@ -92,41 +100,48 @@ body {font-family: 'Nunito'}
 
 .foto {
     width: 100vw;
-    height: 30.549199vh;
+    height: 100%;
     flex: 1 1 auto;   /* la imagen crece y ocupa todo el espacio sobrante */
     min-height: 0;    /* evita que el flex la desborde */
     object-fit: cover;
     border: 0.03rem solid black; /* 1px */
     background-color: white;
-    margin:auto;
-    margin-top: 4.6910vh;
-    margin-bottom: 2.5171vh;
 }
 
 .bottom {
-    background-color: #d9d9d9;
-    width: 100%; /* 20px */
+    background-color: #FFECCC;
+    width: 100%;
     margin: 0;
-    height: 5.26vh; /* 46px */;
+    padding: 1.0869vh 5.3482vw 1.0869vh 5.3482vw;
+    height: 6.6407322vh; /*56px */;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 3.98vw;
 }
 
 .interacciones {
-    width: 70%;
+    width: 32.08955vw;
     height: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .icono {
-width: 12.68656vw;
-height: 100%;
-font-size: 1.2rem;
-padding-left: 0.4rem;
-padding-right: 0.4rem;
-background-color: #f6b14d;
+width: 9.20398vw;
+aspect-ratio: 1/1;
+/*background-color: #f6b14d;*/
 display: flex;
 justify-content: center;
 align-items: center;
+}
+
+.descripcion {
+    width: 52.7363vw;
+    height: 4.11899vh;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+    align-self: center;
 }
