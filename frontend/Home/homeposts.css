@@ -59,7 +59,7 @@ body {font-family: 'Nunito'}
 
 .post {
     width: 100%;
-    height: 43.70709vh;  /* 382px */
+    min-height: 43.70709vh;  /* 382px */
     background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
@@ -99,11 +99,9 @@ body {font-family: 'Nunito'}
 
 .foto {
     width: 100%;
-    height: 100%;
-    flex: 1 1 auto;   /* la imagen crece y ocupa todo el espacio sobrante */
-    min-height: 0;    /* evita que el flex la desborde */
+    height: 29.5vh;           
+    flex: none;               
     object-fit: cover;
-    /*border: 0.03rem solid black; */
     background-color: white;
 }
 
@@ -112,10 +110,9 @@ body {font-family: 'Nunito'}
     width: 100%;
     margin: 0;
     padding: 1.0869vh 5.3482vw 1.0869vh 5.3482vw;
-    height: 6.6407322vh; /*56px */;
+    min-height: 6.6407322vh; /*56px */;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
     gap: 3.98vw;
 }
 
@@ -124,9 +121,11 @@ body {font-family: 'Nunito'}
     height: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .icono {
+align-self: center;
 width: 7.66915vw;
 aspect-ratio: 1/1;
 /*background-color: #f6b14d;*/
@@ -138,10 +137,34 @@ object-fit: contain;
 
 .descripcion {
     width: 52.7363vw;
-    height: 4.11899vh;
+    min-height: 4.11899vh;
     font-size: 0.8125rem;
     font-weight: 500;
     padding-top: 0.1rem;
     padding-bottom: 0.1rem;
     align-self: center;
+}
+.mas {
+    color: grey;
+    cursor: pointer;
+}
+
+.comentarios-fondo {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+}
+
+.comentarios-fondo[open] {
+    display: flex;
+    align-items: flex-end;
+}
+
+.comentarios-fondo::backdrop {
+    background-color: rgb(0 0 0 / 0.4);
 }
