@@ -8,13 +8,14 @@ alto: (alto del objeto/ alto base (874) * 100 = vh */
     margin: 0;
     padding: 0;
 }
+body {font-family: 'Nunito'}
 .app {
     padding-top: 12vh;
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-}
+    }
 
 .cajita {
     /*background-color: #585757; */
@@ -28,25 +29,23 @@ alto: (alto del objeto/ alto base (874) * 100 = vh */
 }
 
 .opciones {
-    font-size: 10.4477vw 3.0892vh ;
+    font-size: 1.25rem ;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.15rem; /* 10px */
     color: black;
     text-decoration: none;
+    border: none;
+    font-weight: 500;
+    background: none;
 }
 
 .toco:hover {
-    background-color: lightblue;
-    color: blue;
+    background-color: #f6b14d;
+    color: #FFFFFF;
 }
-.avatar {
-    width: 9.95vw;  /* 40px */
-    height: 4.58vh; /* 40px */
-    border-radius: 0;
-    background-color: #cccccc;
-}
+
 
 .scrolleo {
     padding-top: 3vh;
