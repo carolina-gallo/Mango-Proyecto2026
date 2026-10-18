@@ -160,6 +160,24 @@ object-fit: contain;
     border-radius: 2rem 2rem 0 0;
     background: none;
 }
+.comentarios-fondo[open] {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    height: 60.41189vh;
+    background-color: #FFFFFF;
+    padding-top: 0;            /* el espacio de arriba lo maneja .comentarios-arriba */
+}
+
+.comentarios-popup {
+    width: 100%;
+    height: 100%;              /* antes 60.41189vh */
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
 
 .comentarios-fondo[open] {
     display: flex;
@@ -168,6 +186,7 @@ object-fit: contain;
     height: 60.41189vh;
     background-color: #FFFFFF;
     padding-top: 3vh;
+    overflow: hidden; 
 }
 
 .comentarios-fondo::backdrop {
@@ -186,33 +205,38 @@ object-fit: contain;
 width: 19.9vw;
 height: 0.1vh;
 background-color: #616060;
-align-self: flex-start;
-position: fixed;
 }
-.comentarios-arriba{
-display: flex;
-justify-content: center;
-align-self: center;
-gap: 1.6018vh;
-}
-.comentarios-titulo{
-    padding-top: 1.2766vh;
-    font-size: 1.4375rem;
-    font-weight: 500;
-}
-.comentarios-lista{
+.comentarios-arriba {
+    position: fixed;
+    top: 39.58811vh;           /* 100vh - 60.41189vh: borde de arriba del dialog */
     width: 100%;
-    height: 44.6224vh;
-    background-color: #FFECCC;
+    padding-top: 3vh;          /* el que antes tenía el dialog */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    border-radius: 2rem 2rem 0 0;
+    z-index: 2;
 }
 
-.comentarios-avatar{
-width: 9.9502vw;
-aspect-ratio: 1/1;
-background-color: #E99848;
-border-radius: 10rem;
+.comentarios-lista {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;          /* acá scrollea */
+    padding-top: 4.3vh;         /* alto del título + la línea, así el 1er comentario no queda tapado */
+    padding-bottom: 9.43707vh; 
 }
-.comentarios-escribir{
+.sin-comentarios{
+    width: 100%;
+    height: 100%;                
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+.comentarios-escribir {
+    position: fixed;
+    bottom: 0;
     width: 100%;
     height: 7.43707vh;
     padding: 0 3vw;
@@ -220,6 +244,20 @@ border-radius: 10rem;
     justify-content: flex-start;
     align-items: center;
     gap: 3vw;
+    background-color: #FFFFFF;
+    z-index: 2;
+}
+.comentarios-titulo{
+    padding-top: 1.2766vh;
+    font-size: 1.4375rem;
+    font-weight: 500;
+}
+
+.comentarios-avatar{
+width: 9.9502vw;
+aspect-ratio: 1/1;
+background-color: #E99848;
+border-radius: 10rem;
 }
 
 .enviar-comentario{
@@ -244,4 +282,38 @@ border-radius: 10rem;
     top: 50%;
     transform: translateY(-50%);   /* lo centra vertical */
     width: 6vw;
+}
+
+.comentario{
+height: 8.5812vh;
+width: 100%;
+display: flex;
+justify-content: flex-start;
+align-items: center;
+padding: 0 3vw;
+gap: 2.487vw;
+}
+.comentario-nombre{
+font-size: 1rem;
+}
+.comentario-texto{
+font-size: 1rem;
+}
+
+.comentarios-vacio{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.2883vh;
+}
+.vacio-titulo{
+    color: #6D813A;
+    font-size: 1.5625rem;
+    font-weight: 700;
+}
+.segundo-texto{
+    font-size: 1.125rem;
+    color: black;
+    font-weight: 600;
 }

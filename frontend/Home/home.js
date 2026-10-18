@@ -1,3 +1,33 @@
+/*fetch('./data/comidas-extended.json')          // Ruta al archivo JSON
+  .then(response => response.json())  // Convertir la respuesta en JSON
+  .then(data => { 
+                        // Aquí tienes acceso al JSON en formato de objeto JS  
+    comidas = data;  
+    mostrarComidas(comidas)                 // Asignar el JSON a la variable comidas
+  })
+  .catch(error => {                   // Manejo de errores al leer el archivo JSON
+    console.error('Error al leer el archivo JSON:', error);
+  });
+
+let comidas = [];
+
+const container = document.getElementById('comidaContainer');
+
+function mostrarComidas(lista){
+  container.innerHTML=""
+  lista.forEach(comida =>{
+    container.innerHTML += `
+        <article class="card">
+          <h2>${comida.nombre}</h2>
+          <p class="provincia">${comida.provincia}</p>
+          <ul class="ingredientes">
+          ${comida.ingredientes.map(ingrediente => `<li>${ingrediente}</li>`).join('')}
+          </ul>
+          <span class="categoria">${comida.categoria}</span>
+        </article> `
+  })
+} */
+
 const scrolleo = document.querySelector(".scrolleo");
 
 scrolleo.addEventListener("click", (icon) => {
@@ -41,10 +71,12 @@ function mostrarComentarios() {
 
     if (comentarios.length === 0) {
         lista.innerHTML = 
-        `<article class="comentarios-vacio">
+        `<section class= "sin-comentarios">
+        <article class="comentarios-vacio">
         <p class="vacio-titulo">Todavía no hay comentarios</p>
-        <p>Deja tu huella</p>
-        </article>`;
+        <p class= "segundo-texto">Deja tu huella</p>
+        </article>
+        </section>`;
         input.placeholder = "Empieza la conversación...";
         return;
     }
@@ -70,12 +102,12 @@ function enviarComentario() {
     if (texto === "") return;
     comentarios.push({ nombre: "Tu usuario", texto: texto });
     input.value = "";
+    mostrarComentarios();
      enviar.src = "enviar3.png";        
-
     setTimeout(() => {
         enviar.src = "enviar2.png";    
-    }, 1000); 
-    mostrarComentarios();
+    }, 100); 
+
 }
 
 scrolleo.addEventListener("click", (e) => {
