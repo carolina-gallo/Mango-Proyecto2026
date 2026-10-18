@@ -1,5 +1,5 @@
 const botonMas = document.querySelector("#botonMas");
-const menuCrear = document.querySelector("#menuCrear");
+const menuCrear = document.querySelector("#menuCrearpopup");
 
 botonMas.addEventListener("click", (evento) => {
     evento.preventDefault();
@@ -11,3 +11,4 @@ menuCrear.addEventListener("click", (evento) => {
         menuCrear.close();
     }
 });
+
