@@ -40,19 +40,28 @@ function mostrarComentarios() {
     lista.innerHTML = "";
 
     if (comentarios.length === 0) {
-        lista.innerHTML = '<div class="comentarios-vacio"><p class="vacio-titulo">Todavía no hay comentarios</p><p>Deja tu huella</p></div>';
+        lista.innerHTML = 
+        `<article class="comentarios-vacio">
+        <p class="vacio-titulo">Todavía no hay comentarios</p>
+        <p>Deja tu huella</p>
+        </article>`;
         input.placeholder = "Empieza la conversación...";
         return;
     }
 
     input.placeholder = "Únete a la conversación...";
     comentarios.forEach((c) => {
-        const div = document.createElement("div");
-        div.className = "comentario";
-        div.innerHTML = '<span class="comentarios-avatar"></span><div><p class="comentario-nombre"></p><p class="comentario-texto"></p></div>';
-        div.querySelector(".comentario-nombre").textContent = c.nombre;
-        div.querySelector(".comentario-texto").textContent = c.texto;
-        lista.appendChild(div);
+        const section = document.createElement("section");
+        section.className = "comentario";
+        section.innerHTML = 
+        `<figure class="comentarios-avatar"></figure>
+        <article>
+            <p class="comentario-nombre"></p>
+            <p class="comentario-texto"></p>
+            </article>`;
+        section.querySelector(".comentario-nombre").textContent = c.nombre;
+        section.querySelector(".comentario-texto").textContent = c.texto;
+        lista.appendChild(section);
     });
 }
 
@@ -61,6 +70,11 @@ function enviarComentario() {
     if (texto === "") return;
     comentarios.push({ nombre: "Tu usuario", texto: texto });
     input.value = "";
+     enviar.src = "enviar3.png";        
+
+    setTimeout(() => {
+        enviar.src = "enviar2.png";    
+    }, 1000); 
     mostrarComentarios();
 }
 

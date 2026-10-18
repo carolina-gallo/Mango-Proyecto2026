@@ -66,7 +66,6 @@ body {font-family: 'Nunito'}
     justify-content: center;
     align-items: stretch;
     /* padding: 0.625rem; */
-    gap: 0.2rem;       /* 8px */;
 }
 
 .usuario {
@@ -99,9 +98,10 @@ body {font-family: 'Nunito'}
 
 .foto {
     width: 100%;
-    height: 29.5vh;           
+    min-height: 29.5vh;           
+    max-height: 58vh;
     flex: none;               
-    object-fit: cover;
+    object-fit: contain;
     background-color: white;
 }
 
@@ -154,17 +154,94 @@ object-fit: contain;
     max-width: 100%;
     height: 100%;
     max-height: 100%;
-    margin: 0;
+    margin: auto 0 0 0;      /* lo pega abajo */
     padding: 0;
     border: none;
-    background: transparent;
+    border-radius: 2rem 2rem 0 0;
+    background: none;
 }
 
 .comentarios-fondo[open] {
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
+    width: 100%;
+    height: 60.41189vh;
+    background-color: #FFFFFF;
+    padding-top: 3vh;
 }
 
 .comentarios-fondo::backdrop {
     background-color: rgb(0 0 0 / 0.4);
+}
+.comentarios-popup{
+    width: 100%;
+    height: 60.41189vh;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.comentarios-linea{
+width: 19.9vw;
+height: 0.1vh;
+background-color: #616060;
+align-self: flex-start;
+position: fixed;
+}
+.comentarios-arriba{
+display: flex;
+justify-content: center;
+align-self: center;
+gap: 1.6018vh;
+}
+.comentarios-titulo{
+    padding-top: 1.2766vh;
+    font-size: 1.4375rem;
+    font-weight: 500;
+}
+.comentarios-lista{
+    width: 100%;
+    height: 44.6224vh;
+    background-color: #FFECCC;
+}
+
+.comentarios-avatar{
+width: 9.9502vw;
+aspect-ratio: 1/1;
+background-color: #E99848;
+border-radius: 10rem;
+}
+.comentarios-escribir{
+    width: 100%;
+    height: 7.43707vh;
+    padding: 0 3vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 3vw;
+}
+
+.enviar-comentario{
+    position: relative;   /* la referencia para ubicar el ícono */
+    flex: 1;              /* ocupa todo el ancho que sobra al lado del avatar */
+}
+
+.comentarios-input{
+    width: 100%;
+    height: 4.3478vh;
+    background-color: #FFFFFF;
+    border-radius: 3.125rem;
+    border: 0.1rem solid rgb(107 107 107 / 0.69);
+    padding: 0 12vw 0 1rem;   /* espacio a la derecha para que el texto no pise el ícono */
+    outline: none;
+    font-size: 1.125rem;
+}
+
+.comentarios-enviar{
+    position: absolute;
+    right: 3vw;
+    top: 50%;
+    transform: translateY(-50%);   /* lo centra vertical */
+    width: 6vw;
 }
