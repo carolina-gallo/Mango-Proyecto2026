@@ -2,13 +2,16 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+
+
 }
 
+
 body {
-font-family: 'Nunito';
 background-color: #FFC96C;
 width: 100%;
 min-height: 173.718vh;
+
 
 display: flex;
 flex-direction: column;
@@ -16,10 +19,14 @@ flex-direction: start;
 align-items: center;
 }
 
+
 .main {
     height: 173.85vh;
+
+
     padding-bottom: 2.974vh;
     padding-top: 2.974vh;    
+
 
     display: flex;
     flex-direction: column;
@@ -27,9 +34,11 @@ align-items: center;
     align-items: center;
 }
 
+
 .header {
     width: 84.825vw;
-    height: 7.6956vh;
+    height: 8.6956vh;
+
 
     display: flex;
     flex-direction: column;
@@ -37,19 +46,22 @@ align-items: center;
     align-items: top;
 }
 
+
 .atras {
     width: 9.7014vw;
     height: 3.547vh;
     border-radius: 1.2rem;
+
 
     color: black;
     font-size: 10vw;
     text-decoration: none;
 }
 
-.textoeimagenytitulo {
+
+.textoeimagen {
     width: 84.825vw;
-    height: 50.716vh;
+    height: 41.647vh;
 
     display: flex;
     flex-direction: column;
@@ -57,83 +69,67 @@ align-items: center;
     align-items:flex-start;
 }
 
-.htexto {
-    font-size: 2.8rem;
-    font-weight: bold;
-}
-
-.textarea-negro::placeholder {
-    color: rgb(128, 128, 128);
-    opacity: 3;
-}
-
-.titulo {
+.texto-superior {
     width: 84.825vw;
-    height: 8vh;
-   
-    font-size: 2rem;
-    font-weight: bold;
-    border-radius: 0.8rem;
-    padding: 0.4rem;
-    background-color: #FFC96C;
+    height: 3.7rem;
+}
 
-    field-sizing: content;
-    resize: none;          
-    overflow: hidden;      
-    border: none;          
-    outline: none;  
+.htexto {
+    font-size: 2.5rem;
 }
 
 .subir-imagen {
     box-sizing: border-box;
+    
     width: 84.825vw;
     height: 32.2654vh;
+    
     border-radius: 2rem;
     background-color: #FFFFFF;
-   
+    
     display: flex;
     flex-direction: column;
     justify-content:center;
-}
+    }
 
 .h1 {
-    font-size: 9rem;
+    font-size: 6.5rem;
     color: #fcae27;
     display: flex;
     justify-content: center;
 }
 
 .h2 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: #fcae27;
     display: flex;
     justify-content: center;
+
     padding: 0.4rem;
 }
 
-.descymargen {
+.descyvinculoypublicar {
     width: 84.825vw;
-    height: 17.034vh;
-    padding-top: 2.517vh;
-    padding-bottom: 2.517vh;
+    height: 41.99vh;
+    padding-top: 1.716vh;
 
     display: flex;
-    flex-direction: center;
-    align-items: center;
+    flex-direction: column;
+
+    gap: 4.5vh;
 }
 
 .descripcion {
     width: 84.825vw;
     height: 12vh;
-   
+    
     font-size: 1.3rem;
     font-weight:lighter;
-    font-family: 'Nunito';
     border-radius: 0.8rem;
     padding: 0.4rem;
     background-color: #FFC96C;
 
-    field-sizing: content;
+    field-sizing: content; 
     resize: none;          
     overflow: hidden;      
     border: none;          
