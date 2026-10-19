@@ -27,8 +27,15 @@ function mostrarComidas(lista){
         </article> `
   })
 } */
+  const guardado = document.querySelector(".guardado");
 
-// a chequear esto 
+  guardado.addEventListener("click", (ponerAmarillo) => {
+      
+      ponerAmarillo= guardado.src.includes("guardado-amariillo.png");
+  
+    
+  });
+// a chequear esto --> para la homeposts
 const scrolleo = document.querySelector(".scrolleo");
 
 async function cargarPosts() {
