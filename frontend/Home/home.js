@@ -28,9 +28,52 @@ function mostrarComidas(lista){
   })
 } */
 
+// a chequear esto 
 const scrolleo = document.querySelector(".scrolleo");
 
-scrolleo.addEventListener("click", (icon) => {
+async function cargarPosts() {
+    try {
+        const respuesta = await fetch("http://localhost:3000/mango/feedPost");
+        const posts = await respuesta.json();   // si viene { post: [...] } usá data.post
+
+        scrolleo.innerHTML = "";
+        posts.forEach((p) => {
+            const article = document.createElement("article");
+            article.className = "post";
+            article.innerHTML = `
+                <div class="usuario">
+                    <img src="" alt="" class="fotodeperfil">
+                    <h2></h2>
+                </div>
+                <img class="foto" src="" alt="foto">
+                <section class="bottom">
+                    <div class="interacciones">
+                        <span><img class="icono" src="likenegro.png" alt="like"></span>
+                        <span><img class="icono" src="comentarios.png" alt="comentarios"></span>
+                        <span><img class="icono" src="enviar.png" alt="enviar"></span>
+                    </div>
+                    <p class="descripcion"></p>
+                </section>`;
+
+            // textContent (no innerHTML) para los datos: evita que alguien meta HTML en una descripción
+            article.querySelector("h2").textContent = p.username;       // o el campo que mande el back
+            article.querySelector(".descripcion").textContent = p.descripcion;
+            article.querySelector(".foto").src = p.imagen_post;         // ver punto 3
+            scrolleo.appendChild(article);
+        });
+
+    } catch (error) {
+        console.error("No se pudo cargar el feed:", error);
+    }
+}
+
+cargarPosts();
+
+
+
+const pantalla = document.querySelector(".scrolleo");
+
+pantalla.addEventListener("click", (icon) => {
     const icono = icon.target.closest(".icono");
 
     // solo nos interesa el icono del like (alt="like")
