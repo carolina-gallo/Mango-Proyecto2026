@@ -12,7 +12,18 @@ descripciones.forEach((descripcion) => {
     }
 });
 const tituloReceta = document.getElementById("tituloReceta")
+const fotoReceta = document.getElementById("fotoReceta")
+const descripcionReceta = document.getElementById("descripcion")
 
+tituloReceta.addEventListener("click", () => {
+    window.location.href = "recetas-informacion.html"
+});
+fotoReceta.addEventListener("click", () => {
+    window.location.href = "recetas-informacion.html"
+});
+descripcionReceta.addEventListener("click", () => {
+    window.location.href = "recetas-informacion.html"
+});
 
 
 //esto no anda
