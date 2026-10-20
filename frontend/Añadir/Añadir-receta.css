@@ -8,7 +8,7 @@ body {
 font-family: 'Nunito';
 background-color: #FFC96C;
 width: 100%;
-min-height: 173.718vh;
+height: auto;
 
 display: flex;
 flex-direction: column;
@@ -17,7 +17,7 @@ align-items: center;
 }
 
 .main {
-    height: 173.85vh;
+    height: auto;
     padding-bottom: 2.974vh;
     padding-top: 2.974vh;    
 
