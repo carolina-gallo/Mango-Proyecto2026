@@ -11,6 +11,7 @@
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
     </style>
+
 </head>
 
 <body>
@@ -25,17 +26,18 @@
 
         <form class="datoscuenta" id="formulario">
             <section class="form-datos">
-                <input id="nombre" name="nombre" class="campo-bot" type="text" placeholder="Nombre">
-                <input id="apellido" name="apellido" class="campo-bot" type="text" placeholder="Apellido">
-                <input id="username" name="username" class="campo-bot" type="text" placeholder="Nombre de usuario">
-                <input id="mail" name="mail" class="campo-bot" type="text" placeholder="Mail">
-                <input id="contraseña" name="contraseña" type="password" class="campo-bot" placeholder="Contraseña">
+                <input id="nombre" name="nombre" class="campo-bot" type="text" placeholder="Nombre" required>
+                <input id="apellido" name="apellido" class="campo-bot" type="text" placeholder="Apellido" required>
+                <input id="username" name="username" class="campo-bot" type="text" placeholder="Nombre de usuario" required>
+                <input id="mail" name="mail" class="campo-bot" type="text" placeholder="Mail" required>
+                <input id="contraseña" name="contraseña" type="password" class="campo-bot" placeholder="Contraseña" required>
             </section>
             <p class="textofinal">Tu próxima receta favorita empieza acá.</p>
-            <a class="a" href="../CREAR-CUENTA-3/form-restricciones.html">
-                <div type="button" class="continuar" id="botonRegistrar">Continuar</div>
-            </a>
+           <button type="button" class="continuar" id="botonRegistrar">
+             Continuar
+            </button>
         </form>
     </main>
+    <script src="crear-cuenta.js"></script>
 </body>
 </html>
