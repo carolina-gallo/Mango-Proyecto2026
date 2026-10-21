@@ -1,37 +1,48 @@
-const descripciones = document.querySelectorAll(".descripcion");
 
-descripciones.forEach((descripcion) => {
-    const completo = descripcion.textContent;
+let recetas = [];
 
-    if (completo.length > 47) {
-        descripcion.innerHTML = completo.substring(0, 47) + '<span class="mas">... más</span>';
+const scrolleo = document.querySelector(".scrolleo");
 
-        descripcion.querySelector(".mas").addEventListener("click", () => {
-            window.location.href = "recetas-informacion.html"
-        });
-    }
-});
-const tituloReceta = document.getElementById("tituloReceta")
-const fotoReceta = document.getElementById("fotoReceta")
-const descripcionReceta = document.getElementById("descripcion")
+fetch('http://localhost:3000/mango/mostrarRecetas')
+  .then(response => response.json())
+  .then(data => {
+    recetas = data;
+    mostrarRecetas(recetas);
+  })
+  .catch(error => {
+    console.error('Error al leer las recetas:', error);
+    scrolleo.innerHTML = "<p>No se pudieron cargar las recetas</p>";
+  });
 
-tituloReceta.addEventListener("click", () => {
-    window.location.href = "recetas-informacion.html"
-});
-fotoReceta.addEventListener("click", () => {
-    window.location.href = "recetas-informacion.html"
-});
-descripcionReceta.addEventListener("click", () => {
-    window.location.href = "recetas-informacion.html"
-});
+function mostrarRecetas(lista) {
+  scrolleo.innerHTML = "";
 
+  lista.forEach(receta => {
+    const section = document.createElement("section");
+    section.className = "publicacion";
+    section.dataset.id = receta.id;
+    section.innerHTML = `
+        <figure class="imagen">
+            <img class="fotoReceta" src="${receta.imagen_receta}" alt="${receta.imagen_receta}">
+            <p class="nombredeusuario">${receta.id_usuario}</p>
+        </figure>
+        <div class="contenido">
+            <h2 class="titulo">${receta.nombre}</h2>
+            <p class="descripcion">${receta.descripcion}</p>
+        </div>
+        <div class="interacciones">
+            <span><img class="guardado" src="guardado.png" alt="guardar"></span>
+            <span><img class="comentarios" src="comentariosr.png" alt="comentar"></span>
+            <span><img class="hipervinculo" src="link.png" alt="hipervinculo"></span>
+        </div>
+        <div class="filtros">
+            <span class="filtro"></span>
+            <span class="filtro"></span>
+            <span class="filtro"></span>
+        </div>`;
 
-//esto no anda
-const guardado = document.querySelector(".guardado");
+    scrolleo.appendChild(section);
+  });
+}
 
-guardado.addEventListener("click", (ponerAmarillo) => {
-    
-    ponerAmarillo= guardado.src.includes("guardado-amariillo.png");
-
-  
-});
+ 
