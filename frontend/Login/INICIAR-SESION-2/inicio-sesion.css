@@ -50,6 +50,10 @@ align-items: center;
 text-align: center;
 }
 .form-iniciarsesion {
+    width: 66.16915vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 7.437vh;
 }
 .datos {
