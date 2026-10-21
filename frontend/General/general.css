@@ -2,9 +2,6 @@
     margin: 0;
     padding: 0;
 }
-@view-transition {
-    navigation: auto;
-}
 .encabezado {
     width: 100vw;
     height: 11.61556vh;

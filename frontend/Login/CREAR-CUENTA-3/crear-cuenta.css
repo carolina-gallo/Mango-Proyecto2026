@@ -73,7 +73,7 @@ body {
     padding-top: 2vh;
 }
 
-.form-datos {
+.datos {
     display: flex;
     flex-direction: column;
     gap: 2.4vh;
