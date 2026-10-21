@@ -19,18 +19,6 @@ form.addEventListener("submit", async (event) => {
         contraseña: form.contraseña.value
     };
 
-    const respuesta = await fetch("http://localhost:3000/listaUsuarios");
-    const usuarios = await respuesta.json();
-    const seccionDatos = document.getElementById("datos")
-
-    for (let i = 0; i < usuarios.length; i++) {
-        if (usuarios[i].email === datos.email) {
-            seccionDatos.innerHTML +=
-            `<p id="errorMail" style="color: red;">Este mail ya está registrado</p>`
-            return;
-        }
-    }
-
     sessionStorage.setItem("datosRegistro", JSON.stringify(datos));
     window.location.href = "form-restricciones.html";
 });

@@ -27,6 +27,7 @@ function mostrarComidas(lista){
         </article> `
   })
 } */
+ fetch('') /mango/mostrarPost
   const guardado = document.querySelector(".guardado");
 
   guardado.addEventListener("click", (ponerAmarillo) => {
