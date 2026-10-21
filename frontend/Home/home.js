@@ -27,7 +27,46 @@ function mostrarComidas(lista){
         </article> `
   })
 } */
- fetch('') /mango/mostrarPost
+
+
+
+ fetch('http://localhost:3000/mango/mostrarPost') /
+ .then(response => response.json())
+ .then(data => {
+   posts = data;
+   mostrarPosts(posts);
+ })
+ .catch(error => {
+   console.log('Error al cargar los posts:', error);
+   scrolleo.innerHTML = "<p>No se pudieron cargar los posts</p>";
+ });
+
+ const containerPosts = document.getElementById("container-posts")
+
+function mostrarPosts(lista) {
+ containerPosts.innerHTML = "";
+
+ lista.forEach(post => {
+   containerPosts.innerHTML += 
+   `<article class="post">
+            <div class="usuario">
+            <img src="" alt="" class="fotodeperfil"></img>
+            <h2>Melanie</h2>
+            </div>
+            <img class="foto" src="hamburguesa.jpeg" alt="foto">
+            <div class="bottom">
+                <div class="interacciones">
+                <span><img class="icono" src="likenegro.png" alt="like"></span>
+                <span><img class="icono" src="comentarios.png" alt="comentarios"></span>
+                <span><img class="icono" src="enviar.png" alt="enviar"></span>
+                </div>
+                <p class="descripcion" id="descripcion">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+        </article>`
+   )};
+
+
+
   const guardado = document.querySelector(".guardado");
 
   guardado.addEventListener("click", (ponerAmarillo) => {
@@ -36,7 +75,7 @@ function mostrarComidas(lista){
   
     
   });
-// a chequear esto --> para la homeposts
+/*
 const scrolleo = document.querySelector(".scrolleo");
 
 async function cargarPosts() {
@@ -78,7 +117,7 @@ async function cargarPosts() {
 cargarPosts();
 
 
-
+*/
 const pantalla = document.querySelector(".scrolleo");
 
 pantalla.addEventListener("click", (icon) => {

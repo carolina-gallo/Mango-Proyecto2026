@@ -45,4 +45,56 @@ function mostrarRecetas(lista) {
   });
 }
 
- 
+const descripciones = document.querySelectorAll(".descripcion");
+
+descripciones.forEach((descripcion) => {
+    const completo = descripcion.textContent;
+
+    if (completo.length > 47) {
+        descripcion.innerHTML = completo.substring(0, 47) + '<span class="mas">... más</span>';
+
+        descripcion.querySelector(".mas").addEventListener("click", (e) => {
+            e.preventDefault()
+            window.location.href = "recetas-informacion.html"
+        });
+    }
+});
+
+const tituloReceta = document.getElementById("tituloReeceta");
+const fotoReceta = document.getElementById("fotoReceta");
+const descripcionReceta = document.getElementById("descripcion");
+
+// Función para abrir la información de la receta
+function abrirReceta() {
+    const receta = {
+        titulo: tituloReceta.textContent,
+        foto: fotoReceta.src,
+        descripcion: descripcionReceta.textContent,
+        username: document.getElementById("username").textContent
+    };
+
+    localStorage.setItem("recetaSeleccionada", JSON.stringify(receta));
+
+    window.location.href = "recetas-informacion.html";
+}
+
+// Al tocar el título
+tituloReceta.addEventListener("click", abrirReceta);
+
+// Al tocar la foto
+fotoReceta.addEventListener("click", abrirReceta);
+
+// Al tocar la descripción
+descripcionReceta.addEventListener("click", abrirReceta);
+
+
+
+//esto no anda
+const guardado = document.querySelector(".guardado");
+
+guardado.addEventListener("click", (ponerAmarillo) => {
+    
+    ponerAmarillo= guardado.src.includes("guardado-amariillo.png");
+
+  
+});
