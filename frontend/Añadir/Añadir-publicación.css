@@ -108,7 +108,7 @@ align-items: center;
 
 .descripcion {
     width: 84.825vw;
-    height: 12vh;
+    height: 10vh;
     
     font-size: 1.25rem;
     font-weight:lighter;
@@ -129,25 +129,49 @@ align-items: center;
     background-color: white;
 
     resize: none;              
-    border: 0.2rem solid #AFACAC;
+    border: 0.15rem solid #AFACAC;
     border-radius: 0.8rem;
+    padding-left: 2.985vw;
+    padding-right: 2.985vw;
 
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.simboloenlace {
+    width: 7.218vw;
+    aspect-ratio: 1/1;
+}
+
+.vinculartexto {
+    font-family: 'nunito';
+    color: #616060;
+    font-size: 1.25rem;
+    margin-left: 2vw;.
+}
+
+.masdevinculo {
+    width: 7.716vw;
+    aspect-ratio: 1/1;
+    margin-left: 22vw;
 }
 
 .publicar {
+    width: 62.19vw;
+    height: 8.009vh;
     margin-top: auto;
-    align-self: end;
+    align-self: center;
+    border: solid transparent;
 
     padding: 0.2rem;
     border-radius: 0.8rem;
-    height: 6.636vh;
-    width: 39.8vw;
-    background-color: #AFACAC;
+    background-color: white;
 
-    color: black;
-    font-size: 10vw;
-    text-decoration: none;
+    color: #6E8039;
+    font-weight: bold;
+    font-family: 'nunito';
+    font-size: 1.875rem;
     text-align: center;
 }

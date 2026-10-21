@@ -6,7 +6,7 @@
 
 body {
 font-family: 'Nunito';
-background-color: #FFC96C;
+background-color: #F3A73C;
 width: 100%;
 height: auto;
 
@@ -40,9 +40,8 @@ align-items: center;
 .atras {
     width: 9.7014vw;
     height: 3.547vh;
-    border-radius: 1.2rem;
 
-    color: black;
+    color: white;
     font-size: 10vw;
     text-decoration: none;
 }
@@ -58,80 +57,92 @@ align-items: center;
 }
 
 .htexto {
-    font-size: 2.8rem;
-    font-weight: bold;
-}
-
-.textarea-negro::placeholder {
-    color: rgb(128, 128, 128);
-    opacity: 3;
+    font-size: 2.1875rem;
+    color: white;
+    font-family: 'nunito';
 }
 
 .titulo {
     width: 84.825vw;
-    height: 8vh;
+    height: 6vh;
    
-    font-size: 2rem;
-    font-weight: bold;
+    font-size: 1.875rem;
+    font-weight: 500;
+    font-family: 'nunito';
     border-radius: 0.8rem;
     padding: 0.4rem;
-    background-color: #FFC96C;
-
-    field-sizing: content;
+    background-color: #F3A73C;
+    
     resize: none;          
     overflow: hidden;      
     border: none;          
     outline: none;  
 }
 
-.subir-imagen {
-    box-sizing: border-box;
-    width: 84.825vw;
-    height: 32.2654vh;
-    border-radius: 2rem;
-    background-color: #FFFFFF;
-   
+.titulo::placeholder {
+    color: #616060;
+  }
+
+.imagenytituloo {
+    height: 41.647vh;
     display: flex;
     flex-direction: column;
-    justify-content:center;
+    justify-content: space-between;
 }
 
-.h1 {
-    font-size: 9rem;
-    color: #fcae27;
+.subir-imagen {
+    box-sizing: border-box;
+    border: solid transparent;
+    width: 84.825vw;
+    height: 32.2654vh;
+    padding-top: 8.352vh;
+    padding-bottom: 4.119vh;
+    border-radius: 2rem;
+    background-color: #FFFFFF;
+    
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: center;
+    }
+
+.camaritauwu {
+    height: 11.556vh;
+    width: 33.5vw;
+
 }
 
 .h2 {
-    font-size: 2rem;
-    color: #fcae27;
+    font-size: 1.875rem;
+    color: #F3A73C;
     display: flex;
     justify-content: center;
-    padding: 0.4rem;
+    font-weight: bolder;
+    font-family: 'nunito';
 }
 
 .descymargen {
     width: 84.825vw;
-    height: 17.034vh;
+    height: 14.034vh;
     padding-top: 2.517vh;
     padding-bottom: 2.517vh;
 
     display: flex;
     flex-direction: center;
-    align-items: center;
+    align-items:flex-start;
 }
 
 .descripcion {
     width: 84.825vw;
     height: 12vh;
    
-    font-size: 1.3rem;
-    font-weight:lighter;
+    font-size: 1.35rem;
+    font-weight:light;
     font-family: 'Nunito';
     border-radius: 0.8rem;
-    padding: 0.4rem;
-    background-color: #FFC96C;
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+    background-color: #F3A73C;
 
     field-sizing: content;
     resize: none;          
@@ -139,6 +150,10 @@ align-items: center;
     border: none;          
     outline: none;  
 }
+
+.descripcion::placeholder {
+    color: #616060;
+  }
 
 .filtrosgeneral {
     width: 89.89vw;
