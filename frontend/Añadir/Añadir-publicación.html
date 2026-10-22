@@ -19,24 +19,29 @@
         <header class="header">
             <a href="Añadir.html" class="atras"> ← </a>
         </header>   
-        <article class="textoeimagen">
             <div class="texto-superior"> 
                 <h1 class="htexto">CREAR POST</h1>
             </div>
+        <form class="" id="formPost">
             <button class="subir-imagen">
                 <img class="camaritauwu" src="camara.png" alt="camarita">
                 <h2 class="h2">Agregar foto</h2>
             </button>
-        </article>
-        <article class="descyvinculoypublicar">
-            <textarea class="descripcion" placeholder="Añade una descripción..."></textarea>
-            <button class="vinculo">
+            <textarea class="descripcion" id="descripcion" name="descripcion" placeholder="Añade una descripción..."></textarea>
+            <button class="vinculo" id="botonVinculo">
                 <img class="simboloenlace" src="simboloenlace.png" alt="enlace">
                 <span class="vinculartexto">Vincula la receta</span>
                 <img class="masdevinculo" src="simbolomas.png" alt="más">
             </button>
-            <button class="publicar"> Publicar </button>
-        </article>
+
+            <input type="hidden" name="idDeReceta" id="idReceta">
+
+            <button type="submit" class="publicar">Publicar</button>
+        </form>
+
+        <dialog class="buscadorDeRecetas" id="buscadorRecetas">
+            
+        </dialog>
     </main>
 </div>
 </body>
