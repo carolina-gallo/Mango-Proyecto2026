@@ -4,7 +4,7 @@ let recetas = [];
 
 const scrolleo = document.querySelector(".scrolleo");
 
-fetch('http://localhost:3000/mango/mostrarRecetas')
+fetch('http://localhost:3000/mango/feedRecetas')
   .then(response => response.json())
   .then(data => {
     recetas = data;
