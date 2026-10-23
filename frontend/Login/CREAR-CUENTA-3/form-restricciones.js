@@ -34,7 +34,6 @@ async function guardarRestricciones(event) {
         })
     });
 
-    // 4. Si salió bien, guardamos el id y vamos al home
     if (respuesta.status === 200) {
         localStorage.setItem("id", user.id);
         window.location.href = "../../Home/homeposts.html";
