@@ -22,19 +22,16 @@ align-items: center;
 
     display: flex;
     flex-direction: column;
-    justify-content:start;
-    align-items: center;
 }
 
 
 .header {
     width: 84.825vw;
-    height: 8.6956vh;
+    height: 7.6956vh;
 
     display: flex;
     flex-direction: column;
     justify-content:left;
-    align-items: top;
 }
 
 
@@ -47,21 +44,20 @@ align-items: center;
     text-decoration: none;
 }
 
-
-.textoeimagen {
-    width: 84.825vw;
-    height: 41.647vh;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items:flex-start;
-}
-
 .htexto {
     font-size: 2.1875rem;
     color: white;
     font-family: 'nunito';
+    align-self: flex-start;
+}
+
+
+.form {
+    margin-top: 5.643vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .subir-imagen {
@@ -93,17 +89,6 @@ align-items: center;
     justify-content: center;
     font-weight: bolder;
     font-family: 'nunito';
-}
-
-.descyvinculoypublicar {
-    width: 84.825vw;
-    height: 41.99vh;
-    padding-top: 1.716vh;
-
-    display: flex;
-    flex-direction: column;
-
-    gap: 4.5vh;
 }
 
 .descripcion {
@@ -161,10 +146,7 @@ align-items: center;
 .publicar {
     width: 62.19vw;
     height: 8.009vh;
-    margin-top: auto;
-    align-self: center;
     border: solid transparent;
-
     padding: 0.2rem;
     border-radius: 0.8rem;
     background-color: white;
@@ -173,5 +155,4 @@ align-items: center;
     font-weight: bold;
     font-family: 'nunito';
     font-size: 1.875rem;
-    text-align: center;
 }
