@@ -27,10 +27,33 @@ function mostrarComidas(lista){
         </article> `
   })
 } */
+ const containerPosts = document.getElementById("container-posts");
 
 
+(async () => {
+    let response;
+    let usuarios;
+    let posts;
+    try{
+        response = await fetch('http://localhost:3000/mango/mostrarPost');
+        posts = await response.json();
+        // response = await fetch('http://localhost:3000/mango/listaUsuarios');
+        // usuarios = response.json();
+        mostrarPosts(posts, []);
+        activarVerMas()
+        mostrarComentarios()
 
- fetch('http://localhost:3000/mango/mostrarPost') /
+    }
+    catch (error) {
+    console.log("Error al cargar datos:", error);
+  }
+
+
+})();
+
+/*
+
+ fetch('http://localhost:3000/mango/mostrarPost')
  .then(response => response.json())
  .then(data => {
    posts = data;
@@ -41,102 +64,49 @@ function mostrarComidas(lista){
    scrolleo.innerHTML = "<p>No se pudieron cargar los posts</p>";
  });
 
- const containerPosts = document.getElementById("container-posts")
 
-function mostrarPosts(lista) {
+ fetch('http://localhost:3000/mango/listaUsuarios')
+ .then(response => response.json())
+ .then(data => {
+   posts = data;
+   mostrarPosts(posts);
+ })
+ .catch(error => {
+   console.log('Error al cargar los posts:', error);
+   scrolleo.innerHTML = "<p>No se pudieron cargar los posts</p>";
+ });
+*/
+
+
+
+function mostrarPosts(posts, usuarios) {
  containerPosts.innerHTML = "";
+ 
 
- lista.forEach(post => {
+ posts.forEach(post => {
+   
+
    containerPosts.innerHTML += 
    `<article class="post">
             <div class="usuario">
             <img src="" alt="" class="fotodeperfil"></img>
-            <h2>Melanie</h2>
+            <h2>${post.id_usuario}</h2>
             </div>
-            <img class="foto" src="hamburguesa.jpeg" alt="foto">
+            <img class="foto" src="${post.imagen_post}" alt="foto">
             <div class="bottom">
                 <div class="interacciones">
                 <span><img class="icono" src="likenegro.png" alt="like"></span>
                 <span><img class="icono" src="comentarios.png" alt="comentarios"></span>
                 <span><img class="icono" src="enviar.png" alt="enviar"></span>
                 </div>
-                <p class="descripcion" id="descripcion">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p class="descripcion" id="descripcion">${post.descripcion}</p>
             </div>
         </article>`
-   )};
-
-
-
-  const guardado = document.querySelector(".guardado");
-
-  guardado.addEventListener("click", (ponerAmarillo) => {
-      
-      ponerAmarillo= guardado.src.includes("guardado-amariillo.png");
-  
-    
-  });
-/*
-const scrolleo = document.querySelector(".scrolleo");
-
-async function cargarPosts() {
-    try {
-        const respuesta = await fetch("http://localhost:3000/mango/feedPost");
-        const posts = await respuesta.json();   // si viene { post: [...] } usá data.post
-
-        scrolleo.innerHTML = "";
-        posts.forEach((p) => {
-            const article = document.createElement("article");
-            article.className = "post";
-            article.innerHTML = `
-                <div class="usuario">
-                    <img src="" alt="" class="fotodeperfil">
-                    <h2></h2>
-                </div>
-                <img class="foto" src="" alt="foto">
-                <section class="bottom">
-                    <div class="interacciones">
-                        <span><img class="icono" src="likenegro.png" alt="like"></span>
-                        <span><img class="icono" src="comentarios.png" alt="comentarios"></span>
-                        <span><img class="icono" src="enviar.png" alt="enviar"></span>
-                    </div>
-                    <p class="descripcion"></p>
-                </section>`;
-
-            // textContent (no innerHTML) para los datos: evita que alguien meta HTML en una descripción
-            article.querySelector("h2").textContent = p.username;       // o el campo que mande el back
-            article.querySelector(".descripcion").textContent = p.descripcion;
-            article.querySelector(".foto").src = p.imagen_post;         // ver punto 3
-            scrolleo.appendChild(article);
-        });
-
-    } catch (error) {
-        console.error("No se pudo cargar el feed:", error);
-    }
+   });
 }
 
-cargarPosts();
-
-
-*/
-const pantalla = document.querySelector(".scrolleo");
-
-pantalla.addEventListener("click", (icon) => {
-    const icono = icon.target.closest(".icono");
-
-    // solo nos interesa el icono del like (alt="like")
-    if (!icono || icono.alt !== "like") return;
-
-    const tieneLike = icono.src.includes("likenaranja.png");
-
-    if (tieneLike) {
-    icono.src = "likenegro.png";
-    } else {
-    icono.src = "likenaranja.png";
-    }
-});
-
+function activarVerMas() {
 const descripciones = document.querySelectorAll(".descripcion");
-
 descripciones.forEach((descripcion) => {
     const completo = descripcion.textContent;
 
@@ -148,11 +118,30 @@ descripciones.forEach((descripcion) => {
         });
     }
 });
-
+}
 const popup = document.getElementById("comentarios");
 const lista = document.getElementById("lista-comentarios");
 const input = document.getElementById("input-comentario");
 const enviar = document.querySelector(".comentarios-enviar");
+
+containerPosts.addEventListener("click", (icon) => {
+    const icono = icon.target.closest(".icono");
+    if (!icono) return;
+
+  if (icono.alt === "like") {
+    const tieneLike = icono.src.includes("likenaranja.png");
+    if (tieneLike) {
+    icono.src = "likenegro.png";
+    } else {
+    icono.src = "likenaranja.png";
+    }
+  }
+
+  if (icono.alt === "comentarios") {
+    mostrarComentarios();
+    popup.showModal();
+  }
+});
 
 let comentarios = [];
 
@@ -200,21 +189,13 @@ function enviarComentario() {
 
 }
 
-scrolleo.addEventListener("click", (e) => {
-    const icono = e.target.closest(".icono");
-    if (!icono || icono.alt !== "comentarios") return;
-
-    mostrarComentarios();
-    popup.showModal();
-});
-
 popup.addEventListener("click", (e) => {
-    if (e.target === popup || e.target.closest(".comentarios-linea")) {
-        popup.close();
-    }
+  if (e.target === popup || e.target.closest(".comentarios-linea")) {
+    popup.close();
+  }
 });
 
 enviar.addEventListener("click", enviarComentario);
 input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") enviarComentario();
+  if (e.key === "Enter") enviarComentario();
 });

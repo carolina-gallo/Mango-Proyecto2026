@@ -47,11 +47,28 @@
                 <span class="filtro"></span>
             </div>
         </section>
-       
-        
     </main>
 
-   
+   <dialog class="bandeja-fondo" id="bandejaPopup">
+    <section class="bandeja-popup">
+        <span class="bandeja-linea"></span>
+
+        <article class="bandeja-vista" id="vista-opciones">
+            <button class="bandeja-opcion" id="opcion-crear">
+                <span>Crear bandeja</span>
+                <span class="bandeja-opcion-icono">+</span>
+            </button>
+            <button class="bandeja-opcion" id="opcion-existente">
+                <span>Agregar a bandeja ya existente</span>
+                <span class="bandeja-opcion-icono">→</span>
+            </button>
+        </article>
+
+    <article class="bandeja-vista" id="vista-lista" hidden>
+    <section class="bandeja-grilla" id="grilla-bandejas"></section>
+    <button class="bandeja-boton" id="boton-guardar-bandeja">Guardar</button>
+</article>
+</dialog>
 
     <footer class="footer">
     <a href="../Home/homeposts.html" class="fcolorcitos">H</a>

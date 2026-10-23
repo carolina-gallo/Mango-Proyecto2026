@@ -177,6 +177,136 @@ body {font-family: 'Nunito'}
     font-size: 0.8rem;
     line-height: 1.2;
 }
+/* ===== POPUP DE BANDEJAS ===== */
+.bandeja-fondo {
+    width: 100%;
+    max-width: 100%;
+    margin: auto 0 0 0;
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.bandeja-fondo[open] {
+    display: flex;
+    flex-direction: column;
+}
+
+.bandeja-fondo::backdrop {
+    background-color: rgb(0 0 0 / 0.4);
+}
+
+.bandeja-popup {
+    width: 100%;
+    background-color: #F6F7DC;
+    border-radius: 2rem 2rem 0 0;
+    padding-top: 1.5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bandeja-linea {
+    width: 19.9vw;
+    height: 0.4vh;
+    background-color: #616060;
+    border-radius: 1rem;
+    margin-bottom: 1.5vh;
+}
+
+.bandeja-vista {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.bandeja-vista[hidden] {
+    display: none;
+}
+
+.bandeja-opcion {
+    width: 100%;
+    height: 7vh;
+    padding: 0 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    border: none;
+    border-top: 0.1vh solid #C9CDB0;
+    font-family: 'Nunito';
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: black;
+    cursor: pointer;
+}
+
+.bandeja-opcion-icono {
+    font-size: 1.8rem;
+    color: #6D813A;
+}
+
+.bandeja-input {
+    width: 90vw;
+    height: 5.5vh;
+    margin: 1vh auto 2vh;
+    padding: 0 1rem;
+    border: 0.1rem solid rgb(107 107 107 / 0.69);
+    border-radius: 3.125rem;
+    background-color: #FFFFFF;
+    font-family: 'Nunito';
+    font-size: 1.125rem;
+    outline: none;
+}
+
+.bandeja-guardar {
+    justify-content: center;
+    color: #6D813A;
+    font-weight: 700;
+}
+/* vista de bandejas existentes: fondo blanco */
+.bandeja-popup.con-bandejas {
+    background-color: #FFFFFF;
+}
+
+.bandeja-grilla {
+    width: 100%;
+    max-height: 40vh;
+    overflow-y: auto;
+    padding: 0 4vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4vw;
+}
+
+.bandeja-tarjeta {
+    width: 100%;
+    aspect-ratio: 1 / 1.2;
+    object-fit: cover;
+    border-radius: 1rem;
+    border: 0.5vh solid transparent;
+    background-color: #d9d9d9;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.bandeja-tarjeta.seleccionado {
+    border-color: #F3A73C;
+}
+
+.bandeja-boton {
+    width: 90vw;
+    height: 6vh;
+    margin: 4vh auto 5vh;
+    background-color: #6E8039;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 0.8rem;
+    font-family: 'Nunito';
+    font-size: 1.25rem;
+    font-weight: 700;
+    cursor: pointer;
+}
 /*.publicacion {
     width: 89.0547vw;
     height: 16.47597vh;
