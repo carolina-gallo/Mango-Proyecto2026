@@ -52,19 +52,14 @@ function activarRecorteDescripciones() {
 
   descripciones.forEach((descripcion) => {
     const completo = descripcion.textContent;
-
     if (completo.length > 47) {
       descripcion.innerHTML = completo.substring(0, 47) + '<span class="mas" style="cursor: pointer; font-weight: bold;">... más</span>';
-
-      descripcion.querySelector(".mas").addEventListener("click", (e) => {
-        e.preventDefault();
-        window.location.href = "recetas-informacion.html";
-      });
     }
-  });
-}
+    });
+    };
 
-// Delegación de clic: detecta clics en cualquier receta generada
+
+
 scrolleo.addEventListener("click", (e) => {
   const objetivo = e.target;
   const esClickeable = objetivo.classList.contains("titulo") || 
@@ -83,7 +78,7 @@ scrolleo.addEventListener("click", (e) => {
     username: publicacion.querySelector(".nombredeusuario").textContent
   };
 
-  localStorage.setItem("recetaSeleccionada", JSON.stringify(receta));
+  localStorage.setItem("idReceta", publicacion.dataset.id);
   window.location.href = "recetas-informacion.html";
 });
 
