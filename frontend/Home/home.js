@@ -35,7 +35,7 @@ function mostrarComidas(lista){
     let usuarios;
     let posts;
     try{
-        response = await fetch('http://localhost:3000/mango/mostrarPost');
+        response = await fetch('http://localhost:3000/mango/feedPost');
         posts = await response.json();
         // response = await fetch('http://localhost:3000/mango/listaUsuarios');
         // usuarios = response.json();

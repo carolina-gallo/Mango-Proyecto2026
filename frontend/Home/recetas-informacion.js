@@ -21,7 +21,7 @@ fetch("http://localhost:3000/mango/feedRecetas")
 function mostrarReceta(receta) {
     receta.innerHTML = 
     `<img src="${receta.imagen}" alt="${receta.imagen}" class="fotoreceta">
-    <span class="flechaatras"></span>
+    <span class="flechaatras"><img src="flechaatras.png" alt="volver"></span>
     <span class="guardado"><img src="guardado.png" alt="guardar"></span>
 </img>
     <h1>${receta.nombre}</h1>
