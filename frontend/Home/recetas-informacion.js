@@ -16,14 +16,20 @@ fetch("http://localhost:3000/mango/feedRecetas")
   })
   .catch(error => console.error("Error al cargar la receta:", error));
 
-  const receta = document.getElementById(contenedorReceta)
+  const contenedor = document.getElementById("contenedorReceta")
 
 function mostrarReceta(receta) {
-    receta.innerHTML = 
-    `<img src="${receta.imagen}" alt="${receta.imagen}" class="fotoreceta">
-    <span class="flechaatras"><img src="flechaatras.png" alt="volver"></span>
-    <span class="guardado"><img src="guardado.png" alt="guardar"></span>
+  const ingredientes = receta.ingredientes || [];
+  const pasos = receta.pasos_receta || [];
+
+    contenedor.innerHTML = 
+    `<img src="${receta.imagen_receta}" alt="${receta.imagen_receta}" class="fotoreceta">
+    <span><a href="homerecetas.html">
+    <img class="flechaatras" src="flechaatras.png" alt="volver">
+    </a></span>
+    <span><img class="guardado" src="guardado.png" alt="guardar"></span>
 </img>
+  <article class = contenedorInfo>
     <h1>${receta.nombre}</h1>
     <p class="descripcion">${receta.descripcion}</p>
     <section class="filtros">
@@ -34,22 +40,23 @@ function mostrarReceta(receta) {
     </section>
     <section class="ingredientes" id="ingredientesReceta">
          <ul>
-    ${receta.ingredientes.map(ingrediente => `<li>${ingrediente}</li>`).join('')}
+    ${receta.ingredientes.map(ingredientes => `<li>${ingredientes}</li>`).join('')}
           </ul>
     </section>
         <section id="pasosReceta">
         <h2>Pasos a seguir</h2>
         <ol>
-    ${receta.pasos_receta.map(paso_receta => `<li>${paso_receta}</li>`).join('')}
+    ${receta.pasos_receta.map(pasos => `<li>${pasos}</li>`).join('')}
           </ol>
     </section>
     
     <section class="trucos">
         <h2>Trucos</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dolores, necessitatibus nobis harum voluptate doloremque, voluptas, inventore assumenda expedita illum mollitia perferendis sequi dignissimos quae? Voluptatum maiores fuga dolores tempore.</p>
-    </section>`
+    </section>
+    </article>`
   };
-/*
+
   const circulos = document.querySelectorAll(".filtros .filtro");
   circulos.forEach((circulo, i) => {
     if (circulo.classList.contains("grande")) {
@@ -60,8 +67,8 @@ function mostrarReceta(receta) {
     }
   });
 
-  const contenedor = document.querySelector("#comentariosReceta");
-  contenedor.innerHTML = "";
+  const contenedorComentarios = document.getElementById("#comentariosReceta");
+  contenedorComentarios.innerHTML = "";
   receta.comentarios.forEach(c => {
     const div = document.createElement("div");
     div.className = "comentario";
@@ -75,5 +82,3 @@ function mostrarReceta(receta) {
     div.querySelector(".comentario-texto").textContent = c.texto;
     contenedor.appendChild(div);
   });
-}
-  */
