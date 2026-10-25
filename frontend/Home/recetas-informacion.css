@@ -1,0 +1,102 @@
+/*<img src="${receta.imagen_receta}" alt="${receta.imagen_receta}" class="fotoreceta">
+    <span class="flechaatras"><img src="flechaatras.png" alt="volver"></span>
+    <span class="guardado"><img src="guardado.png" alt="guardar"></span>
+</img>
+    <h1>${receta.nombre}</h1>
+    <p class="descripcion">${receta.descripcion}</p>
+    <section class="filtros">
+        <span class="filtro">img</span>
+        <span class="filtro">img</span>
+        <span class="filtro">img</span>
+        <span class="filtro grande">img</span>
+    </section>
+    <section class="ingredientes" id="ingredientesReceta">
+         <ul>
+    ${receta.ingredientes.map(ingredientes => `<li>${ingredientes}</li>`).join('')}
+          </ul>
+    </section>
+        <section id="pasosReceta">
+        <h2>Pasos a seguir</h2>
+        <ol>
+    ${receta.pasos_receta.map(pasos => `<li>${pasos}</li>`).join('')}
+          </ol>
+    </section>
+    
+    <section class="trucos">
+        <h2>Trucos</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dolores, necessitatibus nobis harum voluptate doloremque, voluptas, inventore assumenda expedita illum mollitia perferendis sequi dignissimos quae? Voluptatum maiores fuga dolores tempore.</p>
+    </section>`*/
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing:border-box
+    }
+    body{
+        width: 100vw;
+        height: 100%;
+        font-family: 'Nunito' ;
+    }
+    .contenedorRecetas{
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: flex-start;
+    }
+    .fotoreceta {
+        position: relative;
+        width: 100vw;
+        min-height: 32.8375vh;
+        max-height: 58vh;              
+        object-fit: cover;
+    }
+    .flechaatras{
+        width: 7.726vw;
+        aspect-ratio: 1/1;
+        position: absolute;
+        left: 1.2rem;
+        top:1.5rem
+    }
+    .guardado{
+        width: 7.726vw;
+        aspect-ratio: 1/1;
+        position: absolute;
+        right: 1.2rem;
+        top:1.5rem
+    }
+    .contenedorInfo{
+        margin-left:5vw;
+        margin-top: 2.144vh;
+        margin-right: 2.4875vw;
+        display: flex;
+        flex-direction: column;
+        gap: 1.716vh;
+    }
+    .h1{
+        font-size: 1.6875rem;
+        color: black;
+    }
+    .descripcion{
+        font-size: 1.25rem;
+    }
+    .filtros{
+        width: 94.776vw;
+        height: 8.5812vh;
+        margin-right: 0;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .filtro{
+        width: 13.6815vw;
+        aspect-ratio: 1/1;
+        border-radius: 10rem;
+        background-color: #616060;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .grande {
+        width: 21.8905vw;
+        aspect-ratio: 2.3/1;
+    }
