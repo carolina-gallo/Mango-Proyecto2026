@@ -84,3 +84,44 @@ agregarPasoBtn.addEventListener("click", () => {
   contenedor.appendChild(textarea)
   pasosContainer.appendChild(contenedor)
 })
+
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+const form = document.getElementById("formReceta")
+const botonPublicar = document.getElementById("publicar")
+
+async function subirReceta() {
+    let receta = {
+        imagen: JBVFHDBKJSDKSDKJN,
+        titulo: form.titulo.value,
+        descripcion: form.descripcion.value,
+        ingredientes: Array.from(document.querySelectorAll(".ingredientes")).map(i => i.value),
+        pasos: Array.from(document.querySelectorAll(".pasos")).map(p => p.value),
+        trucos: form.trucos.value,
+        filtros: Array.from(document.querySelectorAll(".opcionesrestricciones .seleccionado")).map(f => f.querySelector(".nombre-filtro").textContent),
+        sabor: document.querySelector("#sabor .seleccionado")?.dataset.saborytiempoydifymetodo,
+        tiempo: document.querySelector("#tiempo .seleccionado")?.dataset.saborytiempoydifymetodo,
+        tipo: document.querySelector("#tipo .seleccionado")?.dataset.tipo,
+        dificultad: document.querySelector("#dificultad .seleccionado")?.dataset.saborytiempoydifymetodo,
+        metodo: document.querySelector("#metodo .seleccionado")?.dataset.saborytiempoydifymetodo,
+        idUs: localStorage.getItem("id")
+    }
+console.log(receta)
+const resultado = await fetch("http://localhost:3000/mango/subirreceta", {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(receta)
+})
+if (resultado.status === 200){
+ window.location.href = "../Home/homerecetas.html"
+}
+else {
+    alert("Error al subir. Por favor, intente de nuevo.")
+}
+}
+botonPublicar.addEventListener("click", (event)=>{
+    event.preventDefault();
+    subirReceta()
+})

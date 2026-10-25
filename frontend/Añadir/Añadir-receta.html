@@ -21,16 +21,16 @@
                 <a href="Añadir.html" class="atras"> ← </a>
             </header>  
             <h1 class="htexto">CREAR RECETA<h1>
-            <form class=form>
+            <form class=form id="formReceta">
                 <section class="imagenytituloo">
-                    <button class="subir-imagen">
+                    <button type="button" class="subir-imagen">
                         <img class="camaritauwu" src="camara.png" alt="camarita">
                         <h2 class="h2">Añade una imagen</h2>
                     </button>
-                    <input class="titulo" placeholder="Agregar titulo"></input>
+                    <input class="titulo" name="titulo" placeholder="Agregar titulo"></input>
                 </section>
             
-                <textarea class="descripcion" placeholder="Añade una descripción..."></textarea>
+                <textarea class="descripcion" name="descripcion" placeholder="Añade una descripción..."></textarea>
 
                 <div class = "ingrparaqueyatengaelmargen">
                 <h1 class="htexto">Ingredientes</h1>
@@ -73,49 +73,49 @@
                 <article class="filtrosgeneral">
                     <h4>Filtros</h4>
                     <section class="opcionesrestricciones">
-                        <button type="button" class="filtro-circular1" data-filtro="vegano">
+                        <button type="button" class="filtro-circular1" data-filtro="sin-tacc">
                             <span class="circulo"></span>
                             <span class="nombre-filtro">Sin TACC</span>
                         </button>
-                        <button type="button" class="filtro-circular" data-filtro="sin_tacc">
+                        <button type="button" class="filtro-circular" data-filtro="vegano">
                             <span class="circulo"></span>
                             <span class="nombre-filtro">Vegano</span>
                         </button>
-                        <button type="button" class="filtro-circular" data-filtro="sin_lactosa">
+                        <button type="button" class="filtro-circular" data-filtro="vegetariano">
                             <span class="circulo"></span>
                             <span class="nombre-filtro">Vegetariano</span>
                         </button>
-                        <button type="button" class="filtro-circular" data-filtro="sin_azucar">
+                        <button type="button" class="filtro-circular" data-filtro="kosher">
                             <span class="circulo"></span>
                             <span class="nombre-filtro">Kosher</span>
                         </button>
-                        <button type="button" class="filtro-circular" data-filtro="vegano">
+                        <button type="button" class="filtro-circular" data-filtro="hipertenso">
                             <span class="circulo"></span>
                             <span class="nombre-filtro">Hipertenso</span>
                         </button>
-                        <button type="button" class="filtro-circular" data-filtro="sin_tacc">
+                        <button type="button" class="filtro-circular" data-filtro="sin-azucar">
                             <span class="circulo"></span>
                             <span class="nombre-filtro">Sin azucar</span>
                         </button>
-                        <button type="button" class="filtro-circular" data-filtro="sin_lactosa">
+                        <button type="button" class="filtro-circular" data-filtro="bajo_colesterol">
                             <span class="circulo"></span>
                             <span class="nombre-filtro">Bajo colesterol</span>
                         </button>
-                        <button type="button" class="filtro-circular" data-filtro="sin_azucar">
+                        <button type="button" class="filtro-circular" data-filtro="keto">
                             <span class="circulo"></span>
                             <span class="nombre-filtro">Keto</span>
                         </button>
-                        <button type="button" class="filtro-circular" data-filtro="vegano">
+                        <button type="button" class="filtro-circular" data-filtro="sin_frutos_secos">
                             <span class="circulo"></span>
                             <span class="nombre-filtro">Sin frutos secos</span>
                         </button>
-                        <button type="button" class="filtro-circular2" data-filtro="sin_tacc">
+                        <button type="button" class="filtro-circular2" data-filtro="sin_lactosa">
                             <span class="circulo"></span>
                             <span class="nombre-filtro">Sin lactosa</span>
                         </button>
                     </section>
 
-                    <section class="saboresytiempos">
+                    <section class="saboresytiempos" id="sabor">
                         <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="dulce">
                             <span>Dulce</span>
                         </button>
@@ -136,7 +136,7 @@
                         </button>
                     </section>
 
-                    <section class="saboresytiempos">
+                    <section class="saboresytiempos" id="tiempo">
                         <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="1-15m">
                             <span>1-15m</span>
                         </button>
@@ -151,7 +151,7 @@
                         </button>
                     </section>
 
-                    <section class="tiposdecomidas">
+                    <section class="tiposdecomidas" id="tipo">
                         <button type="button" class="tipodecomida" data-tipo="bebida">
                             <span class="cuadradito"></span>
                             <span class="nombre-comida">Bebida</span>
@@ -171,7 +171,7 @@
                     </section>
 
                     <h3 class="dificultad">Dificultad</h3>
-                    <section class="difsymetodo">
+                    <section class="difsymetodo" id="dificultad"> 
                         <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="alta">
                             <span>Alta</span>
                         </button>
@@ -184,8 +184,8 @@
                     </section>
 
                     <h3 class="metodousado">¿Que metodo de cocción usaste?</h3>
-                    <section class="difsymetodo">
-                        <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="horo">
+                    <section class="difsymetodo" id="metodo">  
+                        <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="horno">
                             <span>Horno</span>
                         </button>
                         <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="airfryer">
@@ -211,7 +211,7 @@
                 </article>
 
                 <button type="submit" class="publicar" id="publicar">Publicar</button>
-                
+
             </form>
         <script src="añadir-receta.js"></script>
     </div>
