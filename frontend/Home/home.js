@@ -1,32 +1,4 @@
-/*fetch('./data/comidas-extended.json')          // Ruta al archivo JSON
-  .then(response => response.json())  // Convertir la respuesta en JSON
-  .then(data => { 
-                        // Aquí tienes acceso al JSON en formato de objeto JS  
-    comidas = data;  
-    mostrarComidas(comidas)                 // Asignar el JSON a la variable comidas
-  })
-  .catch(error => {                   // Manejo de errores al leer el archivo JSON
-    console.error('Error al leer el archivo JSON:', error);
-  });
 
-let comidas = [];
-
-const container = document.getElementById('comidaContainer');
-
-function mostrarComidas(lista){
-  container.innerHTML=""
-  lista.forEach(comida =>{
-    container.innerHTML += `
-        <article class="card">
-          <h2>${comida.nombre}</h2>
-          <p class="provincia">${comida.provincia}</p>
-          <ul class="ingredientes">
-          ${comida.ingredientes.map(ingrediente => `<li>${ingrediente}</li>`).join('')}
-          </ul>
-          <span class="categoria">${comida.categoria}</span>
-        </article> `
-  })
-} */
 let posts = [];
 let postActual;
  const containerPosts = document.getElementById("container-posts");
@@ -50,32 +22,6 @@ let postActual;
 
 
 })();
-
-/*
-
- fetch('http://localhost:3000/mango/mostrarPost')
- .then(response => response.json())
- .then(data => {
-   posts = data;
-   mostrarPosts(posts);
- })
- .catch(error => {
-   console.log('Error al cargar los posts:', error);
-   scrolleo.innerHTML = "<p>No se pudieron cargar los posts</p>";
- });
-
-
- fetch('http://localhost:3000/mango/listaUsuarios')
- .then(response => response.json())
- .then(data => {
-   posts = data;
-   mostrarPosts(posts);
- })
- .catch(error => {
-   console.log('Error al cargar los posts:', error);
-   scrolleo.innerHTML = "<p>No se pudieron cargar los posts</p>";
- });
-*/
 
 
 

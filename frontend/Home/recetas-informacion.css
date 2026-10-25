@@ -75,6 +75,7 @@
     .h1{
         font-size: 1.6875rem;
         color: black;
+        font-weight: 700;
     }
     .descripcion{
         font-size: 1.25rem;
@@ -84,7 +85,7 @@
         height: 8.5812vh;
         margin-right: 0;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
     }
     .filtro{
@@ -95,8 +96,81 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        object-fit: contain;
     }
     .grande {
         width: 21.8905vw;
         aspect-ratio: 2.3/1;
     }
+    .ingredientes{
+        display: flex;
+        flex-direction: column;
+        gap: 1.716vh;
+    }
+    .h2{
+        font-size: 1.6875rem;
+        color: black;
+        font-weight: 700;
+    }
+    ul {
+    font-size: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style-type: none;
+    }
+    .pasos{
+        display: flex;
+        flex-direction: column;
+        gap: 1.716vh;
+    }
+    ol{
+    font-size: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    counter-reset: mi-lista;
+    padding-left: 0;
+    }
+
+    ol li {
+    width: 86.31vw;
+    min-height: 7.78vh;
+    counter-increment: mi-lista;
+    display: flex;
+    justify-content: flex-start;
+    gap: 2.48vw;
+
+    }
+
+    ol li::before {
+    content: counter(mi-lista);
+    width: 7.462vw;
+    height: 3.432vh;
+    flex-shrink: 0;
+    background-color: #6E8039;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-start;
+    color: black;
+    font-weight: bold;
+    font-size: 1.25rem;
+    }
+
+    .trucos {
+      display: flex;
+      flex-direction: column;
+      gap: 1.716vh;  
+    }
+
+    .lista-trucos {
+      display: flex;
+      flex-direction: column;
+      gap: 1.716vh;  
+    }
+    
+
+
