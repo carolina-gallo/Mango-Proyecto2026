@@ -37,13 +37,15 @@ function mostrarReceta(receta) {
         <span class="filtro">img</span>
         <span class="filtro">img</span>
         <span class="filtro grande">img</span>
+        <span class="filtro grande">img</span>
     </section>
     <section class="ingredientes" id="ingredientesReceta">
+    <h2>Ingredientes</h2>
          <ul>
     ${receta.ingredientes.map(ingredientes => `<li>${ingredientes}</li>`).join('')}
           </ul>
     </section>
-        <section id="pasosReceta">
+        <section id="pasosReceta" class="pasos">
         <h2>Pasos a seguir</h2>
         <ol>
     ${receta.pasos_receta.map(pasos => `<li>${pasos}</li>`).join('')}
@@ -52,8 +54,9 @@ function mostrarReceta(receta) {
     
     <section class="trucos">
         <h2>Trucos</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dolores, necessitatibus nobis harum voluptate doloremque, voluptas, inventore assumenda expedita illum mollitia perferendis sequi dignissimos quae? Voluptatum maiores fuga dolores tempore.</p>
-    </section>
+        <ul class="lista-trucos">
+    ${receta.trucos.map(truco => `<li>${truco}</li>`).join('')}
+          </ul>
     </article>`
   };
 
