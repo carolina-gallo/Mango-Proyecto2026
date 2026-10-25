@@ -7,16 +7,13 @@
 body {
 background-color: #F3A73C;
 width: 100%;
-min-height: 173.718vh;
 
 display: flex;
 flex-direction: column;
-flex-direction: start;
 align-items: center;
 }
 
 .main {
-    height: 173.85vh;
     padding-bottom: 2.974vh;
     padding-top: 2.974vh;    
 
@@ -27,7 +24,7 @@ align-items: center;
 
 .header {
     width: 84.825vw;
-    height: 7.6956vh;
+    height: 5.6956vh;
 
     display: flex;
     flex-direction: column;
@@ -53,7 +50,8 @@ align-items: center;
 
 
 .form {
-    margin-top: 5.643vh;
+    height: 72vh;
+    margin-top: 3.643vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -112,12 +110,12 @@ align-items: center;
     width: 84.825vw;
     height: 5.835vh;
     background-color: white;
-
-    resize: none;              
+          
     border: 0.15rem solid #AFACAC;
     border-radius: 0.8rem;
     padding-left: 2.985vw;
     padding-right: 2.985vw;
+    margin-bottom: 10vh;
 
     display: flex;
     flex-direction: row;

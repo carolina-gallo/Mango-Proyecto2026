@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear</title>
@@ -19,8 +20,8 @@
             <header class="header">
                 <a href="Añadir.html" class="atras"> ← </a>
             </header>  
-            <article class="textoeimagenytitulo">
-                <h1 class="htexto">CREAR RECETA<h1>
+            <h1 class="htexto">CREAR RECETA<h1>
+            <form class=form>
                 <section class="imagenytituloo">
                     <button class="subir-imagen">
                         <img class="camaritauwu" src="camara.png" alt="camarita">
@@ -28,150 +29,160 @@
                     </button>
                     <textarea class="titulo" placeholder="Ageragr titulo"></textarea>
                 </section>
-            </article>
-            <article class="descymargen">
-                <textarea class="descripcion" placeholder="Añade una descripción..."></textarea>
-            </article>
+            
+                <article class="descymargen">
+                    <textarea class="descripcion" placeholder="Añade una descripción..."></textarea>
+                </article>
+
+                <h1 class="htexto">Ingredientes</h1>
+                <label for="ingredientes"></label>
+                <div class="contenedor-ingredientes">
+                    <input type="text" name="ingredientes" class="ingredientes" placeholder="200gr de azúcar blanca">
+                </div>
+                <button type="button" id="agregaringrediente" class="ingrediente">
+                    <img class="agregaringredientefoto" src="Vector.png" alt="mas">
+                    <p class="otroingrediente">Ingrediente</p>
+                </button>
            
-            <article class="filtrosgeneral">
-                 <h4>Filtros</h4>
-                <section class="opcionesrestricciones">
-                    <button class="filtro-circular1" data-filtro="vegano">
-                        <span class="circulo"></span>
-                        <span class="nombre-filtro">Sin TACC</span>
-                    </button>
-                    <button class="filtro-circular" data-filtro="sin_tacc">
-                        <span class="circulo"></span>
-                        <span class="nombre-filtro">Vegano</span>
-                    </button>
-                    <button class="filtro-circular" data-filtro="sin_lactosa">
-                        <span class="circulo"></span>
-                        <span class="nombre-filtro">Vegetariano</span>
-                    </button>
-                    <button class="filtro-circular" data-filtro="sin_azucar">
-                        <span class="circulo"></span>
-                        <span class="nombre-filtro">Kosher</span>
-                    </button>
-                    <button class="filtro-circular" data-filtro="vegano">
-                        <span class="circulo"></span>
-                        <span class="nombre-filtro">Hipertenso</span>
-                    </button>
-                    <button class="filtro-circular" data-filtro="sin_tacc">
-                        <span class="circulo"></span>
-                        <span class="nombre-filtro">Sin azucar</span>
-                    </button>
-                    <button class="filtro-circular" data-filtro="sin_lactosa">
-                        <span class="circulo"></span>
-                        <span class="nombre-filtro">Bajo colesterol</span>
-                    </button>
-                    <button class="filtro-circular" data-filtro="sin_azucar">
-                        <span class="circulo"></span>
-                        <span class="nombre-filtro">Keto</span>
-                    </button>
-                    <button class="filtro-circular" data-filtro="vegano">
-                        <span class="circulo"></span>
-                        <span class="nombre-filtro">Sin frutos secos</span>
-                    </button>
-                    <button class="filtro-circular2" data-filtro="sin_tacc">
-                        <span class="circulo"></span>
-                        <span class="nombre-filtro">Sin lactosa</span>
-                    </button>
-                </section>
+                <article class="filtrosgeneral">
+                    <h4>Filtros</h4>
+                    <section class="opcionesrestricciones">
+                        <button class="filtro-circular1" data-filtro="vegano">
+                            <span class="circulo"></span>
+                            <span class="nombre-filtro">Sin TACC</span>
+                        </button>
+                        <button class="filtro-circular" data-filtro="sin_tacc">
+                            <span class="circulo"></span>
+                            <span class="nombre-filtro">Vegano</span>
+                        </button>
+                        <button class="filtro-circular" data-filtro="sin_lactosa">
+                            <span class="circulo"></span>
+                            <span class="nombre-filtro">Vegetariano</span>
+                        </button>
+                        <button class="filtro-circular" data-filtro="sin_azucar">
+                            <span class="circulo"></span>
+                            <span class="nombre-filtro">Kosher</span>
+                        </button>
+                        <button class="filtro-circular" data-filtro="vegano">
+                            <span class="circulo"></span>
+                            <span class="nombre-filtro">Hipertenso</span>
+                        </button>
+                        <button class="filtro-circular" data-filtro="sin_tacc">
+                            <span class="circulo"></span>
+                            <span class="nombre-filtro">Sin azucar</span>
+                        </button>
+                        <button class="filtro-circular" data-filtro="sin_lactosa">
+                            <span class="circulo"></span>
+                            <span class="nombre-filtro">Bajo colesterol</span>
+                        </button>
+                        <button class="filtro-circular" data-filtro="sin_azucar">
+                            <span class="circulo"></span>
+                            <span class="nombre-filtro">Keto</span>
+                        </button>
+                        <button class="filtro-circular" data-filtro="vegano">
+                            <span class="circulo"></span>
+                            <span class="nombre-filtro">Sin frutos secos</span>
+                        </button>
+                        <button class="filtro-circular2" data-filtro="sin_tacc">
+                            <span class="circulo"></span>
+                            <span class="nombre-filtro">Sin lactosa</span>
+                        </button>
+                    </section>
 
-                <section class="saboresytiempos">
-                    <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="dulce">
-                        <span>Dulce</span>
-                    </button>
-                    <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="salado">
-                        <span>Salado</span>
-                    </button>
-                    <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="umami">
-                        <span>Umami</span>
-                    </button>
-                    <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="picante">
-                        <span>Picante</span>
-                    </button>
-                    <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="agridulce">
-                        <span>Agridulce</span>
-                    </button>
-                    <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="acido">
-                        <span>Ácido</span>
-                    </button>
-                </section>
+                    <section class="saboresytiempos">
+                        <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="dulce">
+                            <span>Dulce</span>
+                        </button>
+                        <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="salado">
+                            <span>Salado</span>
+                        </button>
+                        <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="umami">
+                            <span>Umami</span>
+                        </button>
+                        <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="picante">
+                            <span>Picante</span>
+                        </button>
+                        <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="agridulce">
+                            <span>Agridulce</span>
+                        </button>
+                        <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="acido">
+                            <span>Ácido</span>
+                        </button>
+                    </section>
 
-                <section class="saboresytiempos">
-                    <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="1-15m">
-                        <span>1-15m</span>
-                    </button>
-                    <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="15-30m">
-                        <span>15-30m</span>
-                    </button>
-                    <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="30-60m">
-                        <span>30-60m</span>
-                    </button>
-                    <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="+60m">
-                        <span>+60m</span>
-                    </button>
-                </section>
+                    <section class="saboresytiempos">
+                        <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="1-15m">
+                            <span>1-15m</span>
+                        </button>
+                        <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="15-30m">
+                            <span>15-30m</span>
+                        </button>
+                        <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="30-60m">
+                            <span>30-60m</span>
+                        </button>
+                        <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="+60m">
+                            <span>+60m</span>
+                        </button>
+                    </section>
 
-                
-                <section class="tiposdecomidas">
-                    <button type="button" class="tipodecomida" data-tipo="bebida">
-                        <span class="cuadradito"></span>
-                        <span class="nombre-comida">Bebida</span>
-                    </button>
-                    <button type="button" class="tipodecomida" data-tipo="postre">
-                        <span class="cuadradito"></span>
-                        <span class="nombre-comida">Postre</span>
-                    </button>
-                    <button type="button" class="tipodecomida" data-tipo="comida">
-                        <span class="cuadradito"></span>
-                        <span class="nombre-comida">Comida</span>
-                    </button>
-                    <button type="button" class="tipodecomida" data-tipo="snack">
-                        <span class="cuadradito"></span>
-                        <span class="nombre-comida">Snack</span>
-                    </button>
-                </section>
+                    <section class="tiposdecomidas">
+                        <button type="button" class="tipodecomida" data-tipo="bebida">
+                            <span class="cuadradito"></span>
+                            <span class="nombre-comida">Bebida</span>
+                        </button>
+                        <button type="button" class="tipodecomida" data-tipo="postre">
+                            <span class="cuadradito"></span>
+                            <span class="nombre-comida">Postre</span>
+                        </button>
+                        <button type="button" class="tipodecomida" data-tipo="comida">
+                            <span class="cuadradito"></span>
+                            <span class="nombre-comida">Comida</span>
+                        </button>
+                        <button type="button" class="tipodecomida" data-tipo="snack">
+                            <span class="cuadradito"></span>
+                            <span class="nombre-comida">Snack</span>
+                        </button>
+                    </section>
 
-                <h3 class="dificultad">Dificultad</h3>
-                <section class="difsymetodo">
-                    <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="alta">
-                        <span>Alta</span>
-                    </button>
-                    <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="media">
-                        <span>Media</span>
-                    </button>
-                    <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="baja">
-                        <span>Baja</span>
-                    </button>
-                </section>
+                    <h3 class="dificultad">Dificultad</h3>
+                    <section class="difsymetodo">
+                        <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="alta">
+                            <span>Alta</span>
+                        </button>
+                        <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="media">
+                            <span>Media</span>
+                        </button>
+                        <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="baja">
+                            <span>Baja</span>
+                        </button>
+                    </section>
 
-                <h3 class="metodousado">¿Que metodo de cocción usaste?</h3>
-                <section class="difsymetodo">
-                    <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="horo">
-                        <span>Horno</span>
-                    </button>
-                    <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="airfryer">
-                        <span>Airfryer</span>
-                    </button>
-                    <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="sarten">
-                        <span>Sartén</span>
-                    </button>
-                    <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="olla">
-                        <span>Olla</span>
-                    </button>
-                    <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="microondas">
-                        <span>Microondas</span>
-                    </button>
-                    <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="heladera">
-                        <span>Heladera</span>
-                    </button>
-                    <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="nada">
-                        <span>Nada</span>
-                    </button>
-                </section>
-            </article>
+                    <h3 class="metodousado">¿Que metodo de cocción usaste?</h3>
+                    <section class="difsymetodo">
+                        <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="horo">
+                            <span>Horno</span>
+                        </button>
+                        <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="airfryer">
+                            <span>Airfryer</span>
+                        </button>
+                        <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="sarten">
+                            <span>Sartén</span>
+                        </button>
+                        <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="olla">
+                            <span>Olla</span>
+                        </button>
+                        <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="microondas">
+                            <span>Microondas</span>
+                        </button>
+                        <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="heladera">
+                            <span>Heladera</span>
+                        </button>
+                        <button class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="nada">
+                            <span>Nada</span>
+                        </button>
+                    </section>
+                </article>
+            </form>
         <script src="añadir-receta.js"></script>
     </div>
     </body>

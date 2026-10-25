@@ -29,13 +29,13 @@ align-items: center;
 
 .header {
     width: 84.825vw;
-    height: 7.6956vh;
+    height: 5.6956vh;
 
     display: flex;
     flex-direction: column;
     justify-content:left;
-    align-items: top;
 }
+
 
 .atras {
     width: 9.7014vw;
@@ -46,20 +46,23 @@ align-items: center;
     text-decoration: none;
 }
 
-.textoeimagenytitulo {
-    width: 84.825vw;
-    height: 50.716vh;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items:flex-start;
-}
-
 .htexto {
     font-size: 2.1875rem;
     color: white;
     font-family: 'nunito';
+    align-self: flex-start;
+}
+
+.form {
+    margin-top: 3.643vh;
+    height: auto;
+}
+
+.imagenytituloo {
+    height: 41.647vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .titulo {
@@ -83,17 +86,10 @@ align-items: center;
     color: #616060;
   }
 
-.imagenytituloo {
-    height: 41.647vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
 .subir-imagen {
     box-sizing: border-box;
     border: solid transparent;
-    width: 84.825vw;
+    width: 89.89vw;
     height: 32.2654vh;
     padding-top: 8.352vh;
     padding-bottom: 4.119vh;
@@ -133,7 +129,7 @@ align-items: center;
 }
 
 .descripcion {
-    width: 84.825vw;
+    width: 89.89vw;
     height: 12vh;
    
     font-size: 1.35rem;
@@ -155,9 +151,60 @@ align-items: center;
     color: #616060;
   }
 
+.contenedor-ingredientes {
+    width: 89.89vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+}
+
+.ingredientes {
+    height: 4.462vh;
+    width: 89.89vw;
+    background-color: #E9E9E9;
+    border: 0.09rem solid #616060;
+    border-radius: 0.5rem;
+    outline: none;
+    font-family: 'nunito';
+    font-size: 1.25rem;
+    padding-left: 1vw;
+}
+
+.ingredientes::placeholder {
+    color: #616060;
+  }
+
+.ingrediente {
+    height: 7.148vh;
+    width: 89.89vw;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+
+    background-color: #F3A73C;
+    border: solid transparent;
+    outline: none;
+}
+
+.agregaringredientefoto {
+    height: 2.59vh;
+    aspect-ratio: 1/1;
+}
+
+.otroingrediente {
+    font-family: 'nunito';
+    font-weight: bold;
+    color: white;
+    font-size: 1.35rem;
+}
+
 .filtrosgeneral {
     width: 89.89vw;
-    height: 97.139vh;
+    height: auto;
+    padding-bottom: 0.5vh;
 
     border-radius: 1.4rem;
     background-color: white;
@@ -374,3 +421,4 @@ h4 {
     overflow-y: hidden;
     scrollbar-width: none;
 }
+

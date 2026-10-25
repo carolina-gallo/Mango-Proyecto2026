@@ -51,3 +51,15 @@ tiposDeComida.forEach(tipo => {
         tipo.classList.add("seleccionado");
     });
 });
+
+const agregarIngredienteBtn = document.getElementById("agregaringrediente")
+const ingredientesContainer = document.querySelector(".contenedor-ingredientes")
+
+agregarIngredienteBtn.addEventListener("click", () => {
+  const input = document.createElement("input")
+  input.type = "text"
+  input.className = "ingredientes"
+  input.name = "ingredientes"
+  input.placeholder = "Agregar ingrediente"
+  ingredientesContainer.appendChild(input)
+})
