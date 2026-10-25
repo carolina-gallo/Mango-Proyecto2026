@@ -285,7 +285,7 @@ border-radius: 10rem;
 }
 
 .comentario{
-height: 8.5812vh;
+min-height: 8.5812vh;
 width: 100%;
 display: flex;
 justify-content: flex-start;
@@ -298,6 +298,10 @@ font-size: 1rem;
 }
 .comentario-texto{
 font-size: 1rem;
+}
+.comentario-fecha{
+    font-size:0.8rem;
+    color: #666565;
 }
 
 .comentarios-vacio{

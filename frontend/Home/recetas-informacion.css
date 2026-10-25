@@ -67,7 +67,10 @@
     .contenedorInfo{
         margin-left:5vw;
         margin-top: 2.144vh;
-        gap: 1.716vh
+        margin-right: 2.4875vw;
+        display: flex;
+        flex-direction: column;
+        gap: 1.716vh;
     }
     .h1{
         font-size: 1.6875rem;
@@ -75,4 +78,25 @@
     }
     .descripcion{
         font-size: 1.25rem;
+    }
+    .filtros{
+        width: 94.776vw;
+        height: 8.5812vh;
+        margin-right: 0;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .filtro{
+        width: 13.6815vw;
+        aspect-ratio: 1/1;
+        border-radius: 10rem;
+        background-color: #616060;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .grande {
+        width: 21.8905vw;
+        aspect-ratio: 2.3/1;
     }

@@ -27,21 +27,21 @@ function mostrarComidas(lista){
         </article> `
   })
 } */
+let posts = [];
+let postActual;
  const containerPosts = document.getElementById("container-posts");
 
 
 (async () => {
     let response;
     let usuarios;
-    let posts;
     try{
         response = await fetch('http://localhost:3000/mango/feedPost');
         posts = await response.json();
-        // response = await fetch('http://localhost:3000/mango/listaUsuarios');
-        // usuarios = response.json();
-        mostrarPosts(posts, []);
+        response = await fetch('http://localhost:3000/listaUsuarios');
+        usuarios = await response.json();
+        mostrarPosts(posts, usuarios);
         activarVerMas()
-        mostrarComentarios()
 
     }
     catch (error) {
@@ -81,16 +81,24 @@ function mostrarComidas(lista){
 
 function mostrarPosts(posts, usuarios) {
  containerPosts.innerHTML = "";
- 
 
  posts.forEach(post => {
-   
+    let nombreAMostrar;
+    let fotoPerfil;
+   for (let i = 0; i < usuarios.length; i++) {
+      if (usuarios[i].id === post.id_usuario || usuarios[i].id_usuario === post.id_usuario) {
+        nombreAMostrar = usuarios[i].nombre_usuario || usuarios[i].username || usuarios[i].nombre;
+        if (usuarios[i].foto_perfil) {
+          fotoPerfil = usuarios[i].foto_perfil;
+        }
+    break
+      }}
 
    containerPosts.innerHTML += 
-   `<article class="post">
+        `<article class="post" data-id="${post.id}">
             <div class="usuario">
-            <img src="" alt="" class="fotodeperfil"></img>
-            <h2>${post.id_usuario}</h2>
+            <img src="${fotoPerfil}" alt="${fotoPerfil}" class="fotodeperfil"></img>
+            <h2>${nombreAMostrar}</h2>
             </div>
             <img class="foto" src="${post.imagen_post}" alt="foto">
             <div class="bottom">
@@ -138,17 +146,26 @@ containerPosts.addEventListener("click", (icon) => {
   }
 
   if (icono.alt === "comentarios") {
-    mostrarComentarios();
+    const idPost = icono.closest(".post").dataset.id;
+    popup.dataset.id = idPost;
+    console.log("idPost:", idPost, "posts:", posts);
+    mostrarComentarios(idPost);
     popup.showModal();
   }
 });
 
-let comentarios = [];
+function buscarPost(idPost) {
+    for (let i = 0; i < posts.length; i++) {
+        if (posts[i].id === idPost) {
+            return posts[i];
+        }
+    }
+}
 
-function mostrarComentarios() {
+function mostrarComentarios(idPost) {
     lista.innerHTML = "";
-
-    if (comentarios.length === 0) {
+    const comentarioPost = buscarPost(idPost);
+    if (comentarioPost.comentarios.length === 0) {
         lista.innerHTML = 
         `<section class= "sin-comentarios">
         <article class="comentarios-vacio">
@@ -157,36 +174,46 @@ function mostrarComentarios() {
         </article>
         </section>`;
         input.placeholder = "Empieza la conversación...";
-        return;
+    } else {
+        comentarioPost.comentarios.forEach((c) => {
+        lista.innerHTML += 
+        `<section class= "comentarios-sección">
+        <article class="comentario">
+        <figure class="comentarios-avatar"></figure>
+        <div>
+            <p class="comentario-nombre">${c.username}</p>
+            <p class="comentario-texto">${c.texto}</p>
+            <p class="comentario-fecha">${c.fecha}</p>
+        </div>
+        </article>
+        </section>`;
+        input.placeholder = "Únete a la conversación...";
+        })
     }
-
-    input.placeholder = "Únete a la conversación...";
-    comentarios.forEach((c) => {
-        const section = document.createElement("section");
-        section.className = "comentario";
-        section.innerHTML = 
-        `<figure class="comentarios-avatar"></figure>
-        <article>
-            <p class="comentario-nombre"></p>
-            <p class="comentario-texto"></p>
-            </article>`;
-        section.querySelector(".comentario-nombre").textContent = c.nombre;
-        section.querySelector(".comentario-texto").textContent = c.texto;
-        lista.appendChild(section);
-    });
 }
+
 
 function enviarComentario() {
     const texto = input.value;
     if (texto === "") return;
-    comentarios.push({ nombre: "Tu usuario", texto: texto });
+
+    const idPost = popup.dataset.id;
+    const comentarioPost = buscarPost(idPost);
+
+    comentarioPost.comentarios.push({
+        username: "Tu usuario",
+        idPost: idPost,
+        texto: texto,
+        fecha: new Date().toISOString()
+    });
+    comentarioPost.comentarios_post++;
+
     input.value = "";
-    mostrarComentarios();
-     enviar.src = "enviar3.png";        
+    mostrarComentarios(idPost);
+    enviar.src = "enviar3.png";        
     setTimeout(() => {
         enviar.src = "enviar2.png";    
     }, 100); 
-
 }
 
 popup.addEventListener("click", (e) => {
