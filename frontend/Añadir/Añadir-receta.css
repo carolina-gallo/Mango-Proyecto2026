@@ -23,7 +23,7 @@ align-items: center;
 
     display: flex;
     flex-direction: column;
-    justify-content:start;
+    justify-content:center;
     align-items: center;
 }
 
@@ -59,7 +59,7 @@ align-items: center;
 }
 
 .imagenytituloo {
-    height: 41.647vh;
+    height: 39.647vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -117,21 +117,13 @@ align-items: center;
     font-family: 'nunito';
 }
 
-.descymargen {
-    width: 84.825vw;
-    height: 14.034vh;
-    padding-top: 2.517vh;
-    padding-bottom: 2.517vh;
-
-    display: flex;
-    flex-direction: center;
-    align-items:flex-start;
-}
-
 .descripcion {
     width: 89.89vw;
-    height: 12vh;
-   
+    height: auto;
+    min-height: 12.034vh;
+    
+    padding-top: 1.517vh;
+    padding-bottom: 1.517vh;
     font-size: 1.35rem;
     font-weight:light;
     font-family: 'Nunito';
@@ -150,6 +142,10 @@ align-items: center;
 .descripcion::placeholder {
     color: #616060;
   }
+
+.ingrparaqueyatengaelmargen {
+    height: 7vh;
+}
 
 .contenedor-ingredientes {
     width: 89.89vw;
@@ -199,6 +195,70 @@ align-items: center;
     font-weight: bold;
     color: white;
     font-size: 1.35rem;
+}
+
+.contenedor-pasos {
+    width: 89.89vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+}
+
+.numeroypaso {
+    height: 10.64vh;
+    width: 89.89vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.numero {
+    width: 7.462vw;
+    aspect-ratio: 1/1;
+    background-color: #E9E9E9;
+    border-radius: 1rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.pasos {
+    height: 10.64vh;
+    width: 80.885vw;
+    background-color: #E9E9E9;
+    border: 0.09rem solid #616060;
+    border-radius: 0.5rem;
+    outline: none;
+    font-family: 'nunito';
+    font-size: 1.25rem;
+    padding-left: 1vw;
+    resize: none;          
+    overflow: hidden;      
+}
+
+.pasos::placeholder {
+    color: #616060;
+}
+
+.trucos {
+    width: 89.89vw;
+    height: auto;
+    min-height: 7.034vh;
+    background-color: #E9E9E9;
+    border: 0.09rem solid #616060;
+    border-radius: 0.5rem;
+    outline: none;
+    font-family: 'nunito';
+    font-size: 1.25rem;
+    padding-left: 1vw;
+    field-sizing: content;
+    resize: none;          
+    overflow: hidden;      
+}
+
+.trucos::placeholder {
+    color: #616060;
 }
 
 .filtrosgeneral {
@@ -422,3 +482,16 @@ h4 {
     scrollbar-width: none;
 }
 
+.publicar {
+    width: 62.19vw;
+    height: 8.009vh;
+    border: solid transparent;
+    padding: 0.2rem;
+    border-radius: 0.8rem;
+    background-color: white;
+
+    color: #6E8039;
+    font-weight: bold;
+    font-family: 'nunito';
+    font-size: 1.875rem;
+}

@@ -63,3 +63,24 @@ agregarIngredienteBtn.addEventListener("click", () => {
   input.placeholder = "Agregar ingrediente"
   ingredientesContainer.appendChild(input)
 })
+
+
+const agregarPasoBtn = document.getElementById("agregarpaso")
+const pasosContainer = document.querySelector(".contenedor-pasos")
+
+agregarPasoBtn.addEventListener("click", () => {
+  const numeroSiguiente = pasosContainer.querySelectorAll(".numeroypaso").length + 1
+  const contenedor = document.createElement("div")
+  contenedor.className = "numeroypaso"
+  const numero = document.createElement("div")
+  numero.className = "numero"
+  numero.textContent = numeroSiguiente
+  const textarea = document.createElement("textarea")
+  textarea.name = "pasos"
+  textarea.className = "pasos"
+  textarea.placeholder = "Mezcla la manteca con  el azucar hasta que quede una mexcla homogenea."
+
+  contenedor.appendChild(numero)
+  contenedor.appendChild(textarea)
+  pasosContainer.appendChild(contenedor)
+})
