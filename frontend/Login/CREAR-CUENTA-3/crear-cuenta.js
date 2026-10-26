@@ -12,11 +12,11 @@ form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const datos = {
-        nombre: form.nombre.value,
-        apellido: form.apellido.value,
-        username: form.username.value,
-        email: form.mail.value,
-        contraseña: form.contraseña.value
+        nombre: form.nombre.value.trim(),
+        apellido: form.apellido.value.trim(),
+        username: form.username.value.trim(),
+        email: form.mail.value.trim(),
+        contraseña: form.contraseña.value.trim()
     };
 
     sessionStorage.setItem("datosRegistro", JSON.stringify(datos));
