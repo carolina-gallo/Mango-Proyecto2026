@@ -18,16 +18,21 @@ sabores.forEach(saborytiempoydifymetodo => {
     });
 });
 
-const dificultad = document.querySelectorAll(".difsymetodo .saborytiempoydifymetodo");
-dificultad.forEach(saborytiempoydifymetodo => {
-    saborytiempoydifymetodo.addEventListener("click", () => {
-        const grupo = saborytiempoydifymetodo.parentElement;
-        grupo.querySelectorAll(".saborytiempoydifymetodo").forEach(opcion => {
-            opcion.classList.remove("seleccionado");
-        });
-        saborytiempoydifymetodo.classList.add("seleccionado");
+const dificultad = document.querySelectorAll("#dificultad .saborytiempoydifymetodo");
+dificultad.forEach(opcion => {
+    opcion.addEventListener("click", () => {
+        dificultad.forEach(o => o.classList.remove("seleccionado"));
+        opcion.classList.add("seleccionado");
     });
 });
+
+const metodo = document.querySelectorAll("#metodo .saborytiempoydifymetodo");
+metodo.forEach(opcion => {
+    opcion.addEventListener("click", () => {
+        opcion.classList.toggle("seleccionado");
+    });
+});
+
 
 const tiposDeComida = document.querySelectorAll(".tipodecomida");
 tiposDeComida.forEach(tipo => {
@@ -100,7 +105,8 @@ const dato = (selector) =>
     activar(dato("#sabor .seleccionado"));
     activar(dato("#tiempo .seleccionado"));
     activar(dato("#dificultad .seleccionado"));
-    activar(dato("#metodo .seleccionado"));
+    document.querySelectorAll("#metodo .seleccionado")
+    .forEach(m => activar(m.dataset.saborytiempoydifymetodo));
     activar(document.querySelector("#tipo .seleccionado")?.dataset.tipo);
  
     return filtros;
