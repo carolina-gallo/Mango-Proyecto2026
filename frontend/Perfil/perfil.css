@@ -1,0 +1,247 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Nunito';
+    background-color: white;
+}
+
+.app {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 6.8649vh;
+}
+
+.encabezadoperfil {
+    width: 100%;
+    padding: 2.4vh 4vw 1.5vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+}
+
+.datosperfil {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4vw;
+}
+
+.fotoperfil {
+    width: 24.6269vw;
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background-color: #F3A73C;
+    overflow: hidden;
+}
+
+.fotoperfil img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.infoperfil {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2vh;
+}
+
+.nombreyeditar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nombreusuario {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: black;
+}
+
+.editar {
+    width: 6vw;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    display: block;
+}
+
+.estadisticas {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2vw;
+}
+
+.estadistica {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.cantidad {
+    font-size: 1rem;
+    font-weight: 500;
+    color: black;
+}
+
+.etiqueta {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: black;
+}
+
+.descripcionperfil {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: black;
+    overflow-wrap: anywhere;
+}
+
+.insignias {
+    display: flex;
+    flex-direction: row;
+    gap: 3vw;
+}
+
+.insignia {
+    width: 12vw;
+    aspect-ratio: 1 / 1;
+    background-color: #D9D9D9;
+}
+
+/* ===== PESTAÑAS (Recetas | Post | Bandejas) ===== */
+.pestanas {
+    width: 100%;
+    height: 5.5vh;
+    border-top: 0.1vh solid #AFACAC;
+    border-bottom: 0.1vh solid #AFACAC;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.pestana {
+    font-family: 'Nunito';
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: black;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* ===== LISTA DE RECETAS (misma card que homerecetas) ===== */
+.scrolleo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2vh;
+}
+
+.publicacion {
+    position: relative;
+    width: 100%;
+    height: 16.934vh;
+    background-color: #FFFFFF;
+    display: grid;
+    grid-template-columns: 41.79vw 1fr;
+    grid-template-rows: 1fr auto;
+    column-gap: 2vw;
+    padding-right: 2vw;
+}
+
+.imagen {
+    position: relative;
+    grid-row: 1 / 3;
+    background-color: #d9d9d9;
+    overflow: hidden;
+}
+
+.imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nombredeusuario {
+    position: absolute;
+    right: 1.5vw;
+    bottom: 0.8vh;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: black;
+}
+
+.contenido {
+    padding-top: 0.8vh;
+    padding-right: 7vw;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6vh;
+}
+
+.titulo {
+    font-size: 1rem;
+    font-weight: 700;
+    color: black;
+}
+
+.descripcion {
+    font-size: 0.8rem;
+    line-height: 1.2;
+    flex-wrap: wrap;
+}
+
+.mas {
+    color: rgb(0 0 0 / 0.73);
+    cursor: pointer;
+}
+
+.interacciones {
+    position: absolute;
+    top: 0.8vh;
+    right: 2vw;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vh;
+}
+
+.guardado,
+.comentarios,
+.hipervinculo {
+    display: block;
+    width: 4.5vw;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.filtros {
+    align-self: end;
+    padding-bottom: 1vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2vw;
+}
+
+.filtro {
+    width: 6.5vw;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background-color: #FFC96C;
+}
+
+.filtro.grande {
+    width: 15vw;
+    aspect-ratio: 2.3 / 1;
+    border-radius: 10rem;
+}
