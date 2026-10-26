@@ -10,18 +10,18 @@
 </head>
 
 <body>
-    <script src="buscador.js"></script>
-    <header class="header">
+    <header class="header-buscador">
         <article class="barra-superior">
             <div class="buscar">
-                <input type="text" class="buscar" placeholder="Buscar">
+                <img src="icono-buscador.png" alt="icono-buscador" class="vector">
+                <input type="text" class="inputbuscador" placeholder="Qué haces hoy?">
             </div>
-            <div class="logo"></div>
+            <img class ="logo" src="../Logo.png" alt="Logo-Mango">
         </article>
         <div class="elegi">
-            <button id="btn-recetas" class="botoncito"><a class="a" href="../Home/buscadorreecetas.html">Recetas</a></button>
-            <button id="btn-posts" class="botoncito"><a class="a"href="../Home/buscadorposts.html">Posts</a></button>
-            <button id="btn-perfil" class="botoncito seleccionado">Perfil</button>
+            <button id="btn-recetas" class="opciones toco"><a class="a" href="../Home/buscadorrecetas.html">Recetas</a></button>
+            <button id="btn-posts" class="opciones toco"><a class="a" href="../Home/buscadorposts.html">Posts</a></button>
+            <button id="btn-perfil" class="opciones seleccion">Perfil</button>
         </div>
     </header>
     <main class="scrolleo" id="contenido-dinamico">
@@ -94,5 +94,6 @@
     </dialog>
 
     <script src="../General/general.js"></script>
+    <script src="buscador.js"></script>
 </body>
 </html>
