@@ -14,13 +14,56 @@
 </head>
 
 <body>
- <div class="app">
-    <h1>Mi perfil</h1>
+    <header class="encabezadoperfil">
+            <section class="datosperfil">
+                <figure class="fotoperfil">
+                    <img id="fotoPerfil" src="" alt="Foto de perfil">
+                </figure>
 
-    <p>Nombre de usuario</p>
+                <div class="infoperfil">
+                    <div class="nombreyeditar">
+                        <h1 class="nombreusuario" id="nombreUsuario">Martuuu</h1>
+                        <a href="editar-perfil.html" class="a">
+                            <img class="editar" src="../editar.png" alt="editar perfil">
+                        </a>
+                    </div>
 
-    <p>Mis publicaciones</p>
- </div>
+                    <div class="estadisticas">
+                        <article class="estadistica">
+                            <p class="cantidad" id="cantPublicaciones">69</p>
+                            <p class="etiqueta">Publicaciones</p>
+                        </article>
+                        <article class="estadistica">
+                            <p class="cantidad" id="cantSeguidores">67</p>
+                            <p class="etiqueta">Seguidores</p>
+                        </article>
+                        <article class="estadistica">
+                            <p class="cantidad" id="cantSeguidos">47</p>
+                            <p class="etiqueta">Seguidos</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <p class="descripcionperfil" id="descripcionPerfil">Soy supper cool y amo cocinar</p>
+
+            <section class="insignias" id="insignias">
+                <span class="insignia"></span>
+                <span class="insignia"></span>
+                <span class="insignia"></span>
+            </section>
+    </header>
+
+        <nav class="pestanas">
+            <button class="pestana seleccion" id="btn-recetas">Recetas</button>
+            <button class="pestana"><a class="a" href="perfil-posts.html">Post</a></button>
+            <button class="pestana"><a class="a" href="perfil-bandejas.html">Bandejas</a></button>
+        </nav>
+
+        <main class="scrolleo" id="recetas">
+
+        </main>
+    </main>
 
  <footer class="footer">
     <a href="../Home/homeposts.html" class="fcolorcitos">H</a>

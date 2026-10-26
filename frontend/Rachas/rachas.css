@@ -1,0 +1,136 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Nunito';
+    background-color: #FFF3DC;
+}
+
+.app {
+    width: 100%;
+    padding-top: 5.5vh;          /* lugar para las pestañas fijas */
+    padding-bottom: 6.8649vh;    /* lugar para el footer */
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== PESTAÑAS (Metas | Misiones | Maestrías) ===== */
+.pestanas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5.5vh;
+    background-color: #F6B14D;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    z-index: 10;
+}
+
+.pestana {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-style: italic;
+    color: black;
+}
+
+.pestana + .pestana {
+    border-left: 0.1vh solid rgb(0 0 0 / 0.35);
+}
+
+.pestana.seleccionada {
+    background-color: #FFF3DC;
+}
+
+/* ===== TÍTULO ===== */
+.encabezadometas {
+    padding: 3vh 6vw 2vh;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4vh;
+}
+
+.tituloseccion {
+    font-size: 1.9rem;
+    font-weight: 900;
+    font-style: italic;
+    color: #5A3A0A;
+}
+
+.subtituloseccion {
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-style: italic;
+    color: #5A3A0A;
+    line-height: 1.2;
+}
+
+/* ===== LISTA DE METAS ===== */
+.listametas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+}
+
+.meta {
+    width: 89vw;
+    min-height: 15.5vh;
+    background-color: #FFFBF2;
+    border: 0.1vh solid #D9C9A6;
+    padding: 1.6vh 4vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2vw;
+}
+
+.infometa {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6vh;
+}
+
+.nombremeta {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: black;
+    line-height: 1.2;
+}
+
+.textoproceso {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #6D813A;
+}
+
+.progreso {
+    width: 19vw;
+    height: 3.4vh;
+    background-color: #A3AD83;
+    border-radius: 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mascota {
+    width: 27vw;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    flex-shrink: 0;
+}
