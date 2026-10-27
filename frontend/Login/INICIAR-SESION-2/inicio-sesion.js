@@ -9,13 +9,13 @@ async function validarRespuestas(respuestas) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: respuestas.email,
-        contraseña: respuestas.password
+        contraseña: respuestas.contraseña
       })
     });
 
     if (respuesta.status === 200) { 
-      const usuario = await respuesta.json();
-      localStorage.setItem("id", usuario.id);
+      const idUsuario = await respuesta.text();
+      localStorage.setItem("id", idUsuario);
       window.location.href = "../../Home/homeposts.html";
     } else {
       const mensaje = await respuesta.text();

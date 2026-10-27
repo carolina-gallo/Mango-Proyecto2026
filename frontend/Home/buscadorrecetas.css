@@ -3,57 +3,242 @@
     margin: 0;
     padding: 0;
 }
+body {font-family: 'Nunito'}
 
-.publicacion {
-    width: 89.0547vw;
-    height: 16.47597vh;
-    background-color: #FFC96C;
+.filtros{
+    width: 100%;
+    gap: 5.722vw;
+    padding-top: 2.3vh;
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
+    justify-content: space-between;
+    align-items: flex-start;
 
-.imagen{
-    width: 28.10945vw;
-    aspect-ratio: 1/1;
-    background-color: white;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
 }
-.contenido{
-    width: 50.4975vw;
-    height: 12.47597vh;
+.restriccionesydietas{
     display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
-.titulo {
-    width: 43.28855vw;
-    height: 2.0594vh;
-    font-size: 1rem;
-    color: black;
-    background-color: #616060;
-}
-
-.descripcion{
-    width: 47.76119vw;
-    height: 4.3478vh;
-    font-size: 0.8rem;
-    background-color: #d9d9d9;
-    padding: 0.3rem;
-    overflow-wrap: anywhere;
-    overflow: hidden;    
-    flex-wrap: wrap;
 }
 .scrolleo {
-    margin-top: 13vh;
+    padding-bottom: 6.8649vh;    /* lugar para el footer */
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
-    overflow-y: auto;
-    padding-bottom: 6.8649vh;
-    gap: 4.2334vh;
+    gap: 1.37vh;
 }
-.derecha {
-    margin-left: 2.9850vw;
-    margin-bottom: 2.8604vh;
+
+.publicacion {
+    position: relative;          /* para ubicar las interacciones arriba a la derecha */
+    width: 100%;
+    height: 16.934vh;            
+    background-color: #FFFFFF;
+    display: grid;
+    grid-template-columns: 42vw 1fr;   
+    column-gap: 2vw;
+    padding-right: 2vw;
+}
+
+/* foto */
+.imagen {
+    position: relative;
+    grid-row: 1 / 3;             /* ocupa las dos filas */
+    background-color: #d9d9d9;
+    overflow: hidden;
+}
+
+.imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* nombre del usuario sobre la foto (abajo a la derecha) */
+.nombredeusuario {
+    position: absolute;
+    right: 1.5vw;
+    bottom: 0.8vh;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: black;
+}
+
+/* titulo + descripcion */
+.contenido {
+    padding-top: 0.8vh;
+    padding-right: 7vw;          /* lugar para los iconos */
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6vh;
+    overflow-wrap: break-word;
+}
+
+.titulo {
+    font-size: 1rem;
+    font-weight: 700;
+    color: black;
+}
+
+.descripcion {
+    font-size: 0.8rem;
+    line-height: 1.2;
+    flex-wrap: wrap;
+}
+
+/* ===== INTERACCIONES (guardar, comentarios, link) ===== */
+.interacciones {
+    position: absolute;
+    top: 0.8vh;
+    right: 2vw;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vh;
+}
+
+/* si en cambio ponés <img> adentro de los span */
+.guardado,
+.comentarios,
+.hipervinculo{
+    display: block;
+    width: 4.5vw;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+/* ===== FILTROS (3 circulos + pastilla) ===== */
+.filtros {
+    align-self: end;
+    padding-bottom: 1.4vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2vw;
+}
+
+.filtro {
+    width: 8.706vw;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background-color: #FFC96C;
+}
+.grande {
+    width: 17.412vw;
+    aspect-ratio: 2.3/1;
+    border-radius: 0.9rem
+}
+
+.más{
+    color: rgb(0, 0, 0, 73);
+    font-size: 0.8rem;
+    line-height: 1.2;
+}
+/* ===== POPUP DE BANDEJAS ===== */
+.bandejas-fondo {
+    width: 100%;
+    max-width: 100%;
+    margin: auto 0 0 0;
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.bandejas-fondo[open] {
+    display: flex;
+    flex-direction: column;
+}
+
+.bandejas-fondo::backdrop {
+    background-color: rgb(0 0 0 / 0.4);
+}
+
+.bandejas-popup {
+    width: 100%;
+    background-color: #F9F9DF;
+    border-radius: 2rem 2rem 0 0;
+    padding-top: 1.5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.bandejas-vista {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.bandejas-vista[hidden] {
+    display: none;
+}
+
+.bandejas-opcion {
+    width: 100%;
+    height: 7vh;
+    padding: 0 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    border: none;
+    border-top: 0.01vh solid #C9CDB0;
+    font-family: 'Nunito';
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: black;
+    cursor: pointer;
+}
+
+
+.bandejas-nombre {
+    width: 90vw;
+    height: 5.5vh;
+    margin: 1vh auto 2vh;
+    padding: 0 1rem;
+    border: 0.1rem solid rgb(107 107 107 / 0.69);
+    border-radius: 3.125rem;
+    background-color: #FFFFFF;
+    font-family: 'Nunito';
+    font-size: 1.125rem;
+    outline: none;
+}
+
+.bandejas-grilla {
+    width: 100%;
+    max-height: 40vh;
+    overflow-y: auto;
+    padding: 0 4vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4vw;
+}
+
+.bandeja-foto {
+    width: 100%;
+    aspect-ratio: 1 / 1.2;
+    object-fit: cover;
+    border-radius: 1rem;
+    border: 0.5vh solid transparent;
+    background-color: #d9d9d9;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.bandeja-foto.elegida {
+    border-color: #F3A73C;
+}
+
+.bandejas-guardar {
+    width: 90vw;
+    height: 6vh;
+    margin: 4vh auto 5vh;
+    background-color: #6E8039;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 0.8rem;
+    font-family: 'Nunito';
+    font-size: 1.25rem;
+    font-weight: 700;
 }
