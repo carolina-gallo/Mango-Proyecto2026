@@ -136,6 +136,7 @@ body {font-family: 'Nunito'}
     width: 4.5vw;
     aspect-ratio: 1 / 1;
     object-fit: contain;
+    cursor: pointer;
 }
 
 /* ===== FILTROS (3 circulos + pastilla) ===== */

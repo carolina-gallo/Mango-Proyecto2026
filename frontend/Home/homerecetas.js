@@ -100,7 +100,7 @@ containerRecetas.addEventListener("click", (e) => {
                          objetivo.classList.contains("filtros");
 
     if (!esClickeable) return;
-
+    objetivo.style.cursor = "pointer";
     const publicacion = objetivo.closest(".publicacion");
     if (!publicacion) return;
 
