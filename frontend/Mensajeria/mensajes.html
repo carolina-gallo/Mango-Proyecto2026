@@ -18,109 +18,20 @@
         <h1 class="mensajeria">Tus mensajes</h1>
     </header>
 
+    <!-- El contenedor main queda vacío para ser rellenado por JS -->
     <main class="mensajes">
-        <article class="chats">
-            <figure class="persona"></figure>
-            <div class="textos">
-                <h2 class="nombre">fulanito</h2>
-                <p class="mensajito">hola como estas como te va te queria contar que el otro dia fui al mcdonalds y me pedi una grand tasty triple te juro que no soy una gordita jajajaja</p>
-            </div>
-            <span class="punto"></span> <!-- no leído -->
-        </article>
-
-        <article class="chats">
-            <figure class="persona"></figure>
-            <div class="textos">
-                <h2 class="nombre"></h2>
-                <p class="mensajito"></p>
-            </div>
-            <span class="punto"></span>
-        </article>
-
-        <article class="chats">
-            <figure class="persona"></figure>
-            <div class="textos">
-                <h2 class="nombre"></h2>
-                <p class="mensajito"></p>
-            </div>
-        </article>
-
-        <article class="chats">
-            <figure class="persona"></figure>
-            <div class="textos">
-                <h2 class="nombre"></h2>
-                <p class="mensajito"></p>
-            </div>
-            <span class="punto"></span>
-        </article>
-
-        <article class="chats">
-            <figure class="persona"></figure>
-            <div class="textos">
-                <h2 class="nombre"></h2>
-                <p class="mensajito"></p>
-            </div>
-        </article>
-
-        <article class="chats">
-            <figure class="persona"></figure>
-            <div class="textos">
-                <h2 class="nombre"></h2>
-                <p class="mensajito"></p>
-            </div>
-        </article>
-
-        <article class="chats">
-            <figure class="persona"></figure>
-            <div class="textos">
-                <h2 class="nombre"></h2>
-                <p class="mensajito"></p>
-            </div>
-        </article>
-
-        <article class="chats">
-            <figure class="persona"></figure>
-            <div class="textos">
-                <h2 class="nombre"></h2>
-                <p class="mensajito"></p>
-            </div>
-        </article>
-
-        <article class="chats">
-            <figure class="persona"></figure>
-            <div class="textos">
-                <h2 class="nombre"></h2>
-                <p class="mensajito"></p>
-            </div>
-        </article>
-
-        <article class="chats">
-            <figure class="persona"></figure>
-            <div class="textos">
-                <h2 class="nombre"></h2>
-                <p class="mensajito"></p>
-            </div>
-        </article>
-
-        <article class="chats">
-            <figure class="persona"></figure>
-            <div class="textos">
-                <h2 class="nombre"></h2>
-                <p class="mensajito"></p>
-            </div>
-        </article>
-    
+        <!-- JavaScript insertará los <article class="chats"> aquí -->
     </main>
 
     <footer class="footer">
-    <a href="../Home/homeposts.html" class="fcolorcitos">H</a>
-    <a href="../Mensajeria/mensajes.html" class="fcolorcitos">M</a>
-    <div>
-    <a href="#" class="fcuadraditote" id="botonMas">+</a>
-    </div>
-    <a href="../Rachas/rachas.html" class="fcolorcitos">R</a>
-    <a href="../Perfil/perfil.html" class="fcolorcitos naranjita">P</a>
-</footer>
+        <a href="../Home/homeposts.html" class="fcolorcitos">H</a>
+        <a href="../Mensajeria/mensajes.html" class="fcolorcitos">M</a>
+        <div>
+            <a href="#" class="fcuadraditote" id="botonMas">+</a>
+        </div>
+        <a href="../Rachas/rachas.html" class="fcolorcitos">R</a>
+        <a href="../Perfil/perfil.html" class="fcolorcitos naranjita">P</a>
+    </footer>
 
     <dialog class="menuCrearpopup" id="menuCrearpopup">
         <section class="crearpopup" id="crearpopup">
@@ -140,6 +51,8 @@
             </a>
         </section>
     </dialog>
+
     <script src="../General/general.js"></script>
+    <script src="mensajes.js"></script> <!-- Archivo JS que realiza el fetch -->
 </body>
 </html>

@@ -4,64 +4,67 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function cargarConversaciones() {
     const contenedor = document.querySelector(".mensajes");
-    const idUs = parseInt(localStorage.getItem("idUs")); // Ajusta la clave según cómo guardaste el ID
+    
+    // Leemos con la clave "id" que guardaste en el login
+    const idUs = Number(localStorage.getItem("id")); 
 
-    try {
-        const respuesta = await fetch("http://localhost:3000/mango/conversaciones", {
-            method: "POST", 
-            headers: { 
-                "Content-Type": "application/json" 
-            },
-            body: JSON.stringify({ idUs: idUs })
-        });
-
-        if (!respuesta.ok) {
-            throw new Error(`Error en la petición: ${respuesta.status}`);
-        }
-
-        const conversaciones = await respuesta.json();
-        mostrarConversaciones(conversaciones, contenedor);
-
-    } catch (error) {
-        console.error("Error al cargar las conversaciones:", error);
-    }
-}
-
-function mostrarConversaciones(conversaciones, contenedor) {
-    // Vaciar el contenido estático del contenedor
-    contenedor.innerHTML = "";
-
-    if (!conversaciones || conversaciones.length === 0) {
-        contenedor.innerHTML = "<p>No tienes conversaciones activas.</p>";
+    if (!idUs) {
+        contenedor.innerHTML = "<p>No has iniciado sesión correctamente.</p>";
         return;
     }
 
-    conversaciones.forEach(conv => {
-        const article = document.createElement("article");
-        article.classList.add("chats");
-
-        // Ajusta los nombres de las propiedades según la estructura real de tus objetos conversacion
-        const nombreUsuario = conv.nombreContacto || conv.nombre || "Usuario";
-        const ultimoMensaje = conv.ultimoMensaje || conv.mensajito || "";
-        const esNoLeido = conv.noLeido || false; 
-
-        article.innerHTML = `
-            <figure class="persona">
-                ${conv.fotoPerfil ? `<img src="${conv.fotoPerfil}" alt="${nombreUsuario}">` : ''}
-            </figure>
-            <div class="textos">
-                <h2 class="nombre">${nombreUsuario}</h2>
-                <p class="mensajito">${ultimoMensaje}</p>
-            </div>
-            ${esNoLeido ? '<span class="punto"></span>' : ''}
-        `;
-
-        // Evento para abrir el chat al hacer clic
-        article.addEventListener("click", () => {
-            localStorage.setItem("idConversacionActiva", conv.id);
-            // window.location.href = "../Mensajeria/chat.html";
+    try {
+        const res = await fetch("http://localhost:3000/mango/conversaciones", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ idUs: idUs }) // Mantenemos "idUs" porque así lo espera Express en pedido.body.idUs
         });
 
-        contenedor.appendChild(article);
-    });
+        if (!res.ok) {
+            throw new Error(`Error en la petición: ${res.status}`);
+        }
+
+        const conversaciones = await res.json();
+        contenedor.innerHTML = ""; // Limpiar el contenedor
+
+        if (!conversaciones || conversaciones.length === 0) {
+            contenedor.innerHTML = "<p>No tienes conversaciones aún.</p>";
+            return;
+        }
+
+        conversaciones.forEach(conv => {
+            // Buscar la ID del otro participante (que no sea la del usuario logueado)
+            const otroId = conv.participantes.find(id => Number(id) !== idUs);
+            
+            // Obtener el último mensaje enviado en el chat
+            const ultimoMsg = conv.mensajes && conv.mensajes.length > 0 
+                ? conv.mensajes[conv.mensajes.length - 1].texto 
+                : "Sin mensajes";
+
+            // Crear la estructura de la tarjeta del chat
+            const article = document.createElement("article");
+            article.classList.add("chats");
+
+            article.innerHTML = `
+                <figure class="persona"></figure>
+                <div class="textos">
+                    <h2 class="nombre">Usuario ${otroId}</h2>
+                    <p class="mensajito">${ultimoMsg}</p>
+                </div>
+            `;
+
+            // Guardar datos al hacer clic en el chat para navegar a la conversación
+            article.addEventListener("click", () => {
+                localStorage.setItem("idConversacionActiva", conv.id);
+                localStorage.setItem("idChatCon", otroId);
+                // window.location.href = "../Mensajeria/chat.html";
+            });
+
+            contenedor.appendChild(article);
+        });
+
+    } catch (error) {
+        console.error("Error cargando conversaciones:", error);
+        contenedor.innerHTML = "<p>Error al cargar las conversaciones.</p>";
+    }
 }
