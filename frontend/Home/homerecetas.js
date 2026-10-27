@@ -1,53 +1,70 @@
 
-let usuarios = [];
 let recetas = [];
+let postActual;
+ const containerRecetas = document.getElementById("recetas");
 
-const scrolleo = document.querySelector(".scrolleo");
 
-fetch('http://localhost:3000/mango/feedRecetas')
-  .then(response => response.json())
-  .then(data => {
-    recetas = data;
-    mostrarRecetas(recetas);
-    activarRecorteDescripciones();
-  })
-  .catch(error => {
-    console.error("Error al cargar los datos:", error);
-    scrolleo.innerHTML = "<p>No se pudieron cargar las recetas</p>";
-  });
+(async () => {
+    let response;
+    let usuarios;
+    try{
+        response = await fetch('http://localhost:3000/mango/feedRecetas');
+        recetas = await response.json();
+        response = await fetch('http://localhost:3000/listaUsuarios');
+        usuarios = await response.json();
+        mostrarRecetas(recetas, usuarios);
+        activarVerMas()
 
-function mostrarRecetas(recetas) {
-  scrolleo.innerHTML = "";
+    }
+    catch (error) {
+    console.log("Error al cargar datos:", error);
+  }
 
-  recetas.forEach(receta => {
-    const section = document.createElement("section");
+
+})();
+
+
+
+function mostrarRecetas(recetas, usuarios) {
+ containerRecetas.innerHTML = "";
+
+ recetas.forEach(receta => {
+    let nombreAMostrar = "Usuario";
+   for (let i = 0; i < usuarios.length; i++) {
+      if (usuarios[i].id === receta.id_usuario || usuarios[i].id_usuario === receta.id_usuario) {
+        nombreAMostrar = usuarios[i].nombre_usuario || usuarios[i].username || usuarios[i].nombre;
+    break
+      }}
+
+   const section = document.createElement("section");
     section.className = "publicacion";
     section.dataset.id = receta.id;
     section.innerHTML = `
         <figure class="imagen">
             <img class="fotoReceta" src="${receta.imagen_receta}" alt="${receta.nombre}">
-            <p class="nombredeusuario">${receta.id_usuario}</p>
+            <p class="nombredeusuario">${nombreAMostrar}</p>
         </figure>
         <div class="contenido">
             <h2 class="titulo">${receta.nombre}</h2>
             <p class="descripcion">${receta.descripcion}</p>
         </div>
         <div class="interacciones">
-            <span><img class="guardado" src="guardado.png" alt="guardar"></span>
-            <span><img class="comentarios" src="comentariosr.png" alt="comentar"></span>
-            <span><img class="hipervinculo" src="link.png" alt="hipervinculo"></span>
+            <span class="icono"><img class="guardado" src="guardado.png" alt="guardar"></span>
+            <span class="icono"><img class="comentarios" src="comentariosr.png" alt="comentar"></span>
+            <span class="icono"><img class="hipervinculo" src="link.png" alt="hipervinculo"></span>
         </div>
         <div class="filtros">
             <span class="filtro"></span>
             <span class="filtro"></span>
             <span class="filtro"></span>
+            <span class="filtro grande"></span>
         </div>`;
         
-    scrolleo.appendChild(section);
+    containerRecetas.appendChild(section);
   });
 }
 
-function activarRecorteDescripciones() {
+function activarVerMas() {
   const descripciones = document.querySelectorAll(".descripcion");
 
   descripciones.forEach((descripcion) => {
@@ -60,89 +77,84 @@ function activarRecorteDescripciones() {
 
 
 
-scrolleo.addEventListener("click", (e) => {
-  const objetivo = e.target;
-  const esClickeable = objetivo.classList.contains("titulo") || 
-                       objetivo.classList.contains("fotoReceta") || 
-                       objetivo.classList.contains("descripcion");
+containerRecetas.addEventListener("click", (e) => {
+    const icono = e.target.closest(".icono");
+    if (icono) {
+        const img = icono.querySelector("img");
 
-  if (!esClickeable) return;
+        if (img.classList.contains("guardado")) {
+            alternarIcono(img, "guardado.png", "guardado-amarillo.png");
+            mostrarPopupBandeja(img.closest(".publicacion").dataset.id, img);
+        }
+        if (img.classList.contains("hipervinculo")) {
+            alternarIcono(img, "link.png", "link-amarillo.png");
+        }
+        return;
+    }
+    const objetivo = e.target;
+    const esClickeable = objetivo.classList.contains("titulo") ||
+                         objetivo.classList.contains("fotoReceta") ||
+                         objetivo.classList.contains("descripcion") ||
+                         objetivo.classList.contains("mas") ||
+                         objetivo.classList.contains("filtro") ||
+                         objetivo.classList.contains("filtros");
 
-  const publicacion = objetivo.closest(".publicacion");
-  if (!publicacion) return;
+    if (!esClickeable) return;
 
-  const receta = {
-    titulo: publicacion.querySelector(".titulo").textContent,
-    foto: publicacion.querySelector(".fotoReceta").src,
-    descripcion: publicacion.querySelector(".descripcion").textContent,
-    username: publicacion.querySelector(".nombredeusuario").textContent
-  };
+    const publicacion = objetivo.closest(".publicacion");
+    if (!publicacion) return;
 
-  localStorage.setItem("idReceta", publicacion.dataset.id);
-  window.location.href = "recetas-informacion.html";
+    localStorage.setItem("idReceta", publicacion.dataset.id);
+    window.location.href = "recetas-informacion.html";
 });
 
-/* A CHEQUEAR
-// ===== POPUP DE BANDEJAS =====
-const bandejaPopup = document.getElementById("bandejaPopup");
-const vistas = document.querySelectorAll(".bandeja-vista");
-const inputBandeja = document.getElementById("input-bandeja");
-const vistaLista = document.getElementById("vista-lista");
+function alternarIcono(img, normal, activo) {
+    const estaActivo = img.src.includes(activo);
+    img.src = estaActivo ? normal : activo;
+}
+
+const popupBandejas = document.getElementById("popupBandejas");
+const cajaPopupBandejas = document.getElementById("cajaPopupBandejas");
+const vistasPopup = popupBandejas.querySelectorAll(".bandejas-vista");
+const grillaBandejas = document.getElementById("grillaBandejas");
+const inputNombreBandeja = document.getElementById("inputNombreBandeja");
 const idUsuario = Number(localStorage.getItem("id"));
 
-let recetaGuardando = null; // { id, icono } de la receta que se está guardando
+let recetaAGuardar = null;   // { id, img }
+let bandejaElegida = null;   // id de la bandeja que tocó en la grilla
+let seGuardo;
 
-function mostrarVista(id) {
-    vistas.forEach((vista) => {
-        vista.hidden = vista.id !== id;
+function cambiarVista(idVista) {
+    vistasPopup.forEach((vista) => {
+        vista.hidden = vista.id !== idVista;
     });
+    // la grilla va con fondo blanco
+    cajaPopupBandejas.classList.toggle("fondo-blanco", idVista === "vistaBandejas");
 }
 
-// Delegación de eventos: funciona con las recetas que se crean con el fetch
-scrolleo.addEventListener("click", (e) => {
-    const icono = e.target.closest(".guardado");
-    if (!icono) return;
-
-    recetaGuardando = {
-        id: icono.closest(".publicacion").dataset.id,
-        icono: icono
-    };
-    inputBandeja.value = "";
-    mostrarVista("vista-opciones");
-    bandejaPopup.showModal();
-});
-
-// Cerrar tocando el fondo
-bandejaPopup.addEventListener("click", (e) => {
-    if (e.target === bandejaPopup) bandejaPopup.close();
-});
-
-// Guarda la receta en la bandeja y pone el ícono amarillo
-async function guardarEnBandeja(idBandeja) {
-    try {
-        const respuesta = await fetch("http://localhost:3000/mango/guardarRec", {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ idBandeja: idBandeja, idRec: recetaGuardando.id })
-        });
-
-        if (respuesta.ok) {
-            recetaGuardando.icono.src = "guardado-amariillo.png";
-            bandejaPopup.close();
-        }
-    } catch (error) {
-        console.error("No se pudo guardar la receta:", error);
-    }
+function mostrarPopupBandeja(idReceta, img) {
+    recetaAGuardar = { id: idReceta, img: img };
+    bandejaElegida = null;
+    let seGuardo = false;
+    inputNombreBandeja.value = "";
+    img.src = "guardado.png";  // resetear el ícono a gris
+    cambiarVista("vistaOpciones");
+    popupBandejas.showModal();
 }
 
-// Opción 1: crear bandeja
-document.getElementById("opcion-crear").addEventListener("click", () => {
-    mostrarVista("vista-crear");
-    inputBandeja.focus();
+// cerrar tocando el fondo oscuro
+popupBandejas.addEventListener("click", (e) => {
+    if (e.target === popupBandejas) popupBandejas.close();
 });
 
-document.getElementById("boton-crear-bandeja").addEventListener("click", async () => {
-    const nombre = inputBandeja.value.trim();
+// ----- crear bandeja nueva -----
+document.getElementById("botonCrearBandeja").addEventListener("click", () => {
+    cambiarVista("vistaNuevaBandeja");
+    inputNombreBandeja;
+});
+
+document.getElementById("botonGuardarNuevaBandeja").addEventListener("click", async () => {
+    const nombre = inputNombreBandeja.value.trim();
     if (nombre === "") return;
 
     try {
@@ -163,24 +175,78 @@ document.getElementById("boton-crear-bandeja").addEventListener("click", async (
     }
 });
 
-// Opción 2: agregar a una bandeja ya existente
-document.getElementById("opcion-existente").addEventListener("click", async () => {
-    mostrarVista("vista-lista");
-    vistaLista.innerHTML = "";
+// ----- bandeja ya existente -----
+document.getElementById("botonBandejaExistente").addEventListener("click", async () => {
+    cambiarVista("vistaBandejas");
+    grillaBandejas.innerHTML = "";
 
     try {
-        // OJO: esta ruta todavía no existe en el back (ver abajo)
         const respuesta = await fetch(`http://localhost:3000/mango/bandejasUsuario/${idUsuario}`);
         const bandejas = await respuesta.json();
 
+        if (bandejas.length === 0) {
+            grillaBandejas.innerHTML = "<p>Todavía no tenés bandejas</p>";
+            return;
+        }
+
         bandejas.forEach((bandeja) => {
-            const boton = document.createElement("button");
-            boton.className = "bandeja-opcion";
-            boton.textContent = bandeja.nombre_bandeja;
-            boton.addEventListener("click", () => guardarEnBandeja(bandeja.id));
-            vistaLista.appendChild(boton);
+            const foto = document.createElement("img");
+            foto.className = "bandeja-foto";
+            foto.src = bandeja.imagen_bandeja;
+            foto.alt = bandeja.nombre_bandeja;
+            foto.title = bandeja.nombre_bandeja;
+            foto.dataset.id = bandeja.id;
+            grillaBandejas.appendChild(foto);
         });
     } catch (error) {
-        vistaLista.innerHTML = "<p>No se pudieron cargar tus bandejas</p>";
+        grillaBandejas.innerHTML = "<p>No se pudieron cargar tus bandejas</p>";
     }
-});*/
+});
+
+// elegir una bandeja (borde naranja, una sola a la vez)
+grillaBandejas.addEventListener("click", (e) => {
+    const foto = e.target.closest(".bandeja-foto");
+    if (!foto) return;
+
+    grillaBandejas.querySelectorAll(".bandeja-foto").forEach((f) => f.classList.remove("elegida"));
+    foto.classList.add("elegida");
+    bandejaElegida = foto.dataset.id;
+});
+
+document.getElementById("botonGuardarEnBandeja").addEventListener("click", () => {
+    if (!bandejaElegida) return;
+    guardarEnBandeja(bandejaElegida);
+});
+
+// ----- guardar la receta en la bandeja -----
+async function guardarEnBandeja(idBandeja) {
+    try {
+        const respuesta = await fetch("http://localhost:3000/mango/guardarRec", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ idBandeja: idBandeja, idRec: recetaAGuardar.id })
+        });
+
+        const texto = await respuesta.text();
+        try {
+            JSON.parse(texto);
+        } catch {
+            // el back manda texto plano si ya estaba guardada o no la encontró
+            alert(texto);
+            return;
+        }
+
+        seGuardo = true;
+        recetaAGuardar.img.src = "guardado-amarillo.png";
+        popupBandejas.close();
+        
+    } catch (error) {
+        console.error("No se pudo guardar la receta:", error);
+    }
+}
+popupBandejas.addEventListener("close", () => {
+    if (!seGuardo) {
+        recetaAGuardar.img.src = "guardado.png";
+    }
+});
+

@@ -18,7 +18,7 @@
              <a href="buscadorreecetas.html"><img src="../buscador-vector.png" alt="buscar" class="buscador"></a>
               <section class="cajita">
                  <button class="opciones toco" id="posteo"><a class="a" href="homeposts.html">Posts</a></button>
-                 <button class="opciones seleccion" id="recetas">Recetas</button>
+                 <button class="opciones seleccion">Recetas</button>
              </a>
              </section>
              <div class="logo"><img class="logo" src="../Logo.png" alt="Logo Mango"></div>
@@ -37,9 +37,9 @@
                 <p class="descripcion" id="descripcion">Esta es una breve descripción de la receta.</p>
             </div>
             <div class="interacciones">
-                <span><img class="guardado" src="guardado.png" alt="guardar"></span>
-                <span><img class="comentarios" src="comentariosr.png" alt="comentar"></span>
-                <span><img class="hipervinculo" src="link.png" alt="hipervinculo"></span>
+                <span class="icono"><img class="guardado" src="guardado.png" alt="guardar"></span>
+                <span class="icono"><img class="comentarios" src="comentariosr.png" alt="comentar"></span>
+                <span class="icono"><img class="hipervinculo" src="link.png" alt="hipervinculo"></span>
             </div>
             <div class="filtros">
                 <span class="filtro"></span>
@@ -49,25 +49,33 @@
         </section>
     </main>
 
-   <dialog class="bandeja-fondo" id="bandejaPopup">
-    <section class="bandeja-popup">
-        <span class="bandeja-linea"></span>
+   <dialog class="bandejas-fondo" id="popupBandejas">
+    <section class="bandejas-popup" id="cajaPopupBandejas">
 
-        <article class="bandeja-vista" id="vista-opciones">
-            <button class="bandeja-opcion" id="opcion-crear">
+        
+        <article class="bandejas-vista" id="vistaOpciones">
+            <button class="bandejas-opcion" id="botonCrearBandeja">
                 <span>Crear bandeja</span>
-                <span class="bandeja-opcion-icono">+</span>
+                <span class="bandejas-opcion-icono"><img src="mas-bandeja.png" alt="mas"></span>
             </button>
-            <button class="bandeja-opcion" id="opcion-existente">
+            <button class="bandejas-opcion" id="botonBandejaExistente">
                 <span>Agregar a bandeja ya existente</span>
-                <span class="bandeja-opcion-icono">→</span>
+                <span class="bandejas-opcion-icono"><img src="flecha-bandeja.png" alt="flecha"></span>
             </button>
         </article>
 
-    <article class="bandeja-vista" id="vista-lista" hidden>
-    <section class="bandeja-grilla" id="grilla-bandejas"></section>
-    <button class="bandeja-boton" id="boton-guardar-bandeja">Guardar</button>
-</article>
+        
+        <article class="bandejas-vista" id="vistaBandejas" hidden>
+            <section class="bandejas-grilla" id="grillaBandejas"></section>
+            <button class="bandejas-guardar" id="botonGuardarEnBandeja">Guardar</button>
+        </article>
+
+        
+        <article class="bandejas-vista" id="vistaNuevaBandeja" hidden>
+            <input type="text" class="bandejas-nombre" id="inputNombreBandeja" placeholder="Nombre">
+            <button class="bandejas-guardar" id="botonGuardarNuevaBandeja">Guardar</button>
+        </article>
+    </section>
 </dialog>
 
     <footer class="footer">

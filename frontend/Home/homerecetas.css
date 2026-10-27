@@ -57,17 +57,16 @@ body {font-family: 'Nunito'}
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.2vh;
+    gap: 1.37vh;
 }
 
 .publicacion {
     position: relative;          /* para ubicar las interacciones arriba a la derecha */
     width: 100%;
-    height: 16.934vh;            /* 148px */
+    height: 16.934vh;            
     background-color: #FFFFFF;
     display: grid;
-    grid-template-columns: 41.79vw 1fr;   /* foto | resto */
-    grid-template-rows: 1fr auto;
+    grid-template-columns: 42vw 1fr;   
     column-gap: 2vw;
     padding-right: 2vw;
 }
@@ -129,35 +128,20 @@ body {font-family: 'Nunito'}
     gap: 0.8vh;
 }
 
+/* si en cambio ponés <img> adentro de los span */
 .guardado,
 .comentarios,
-.hipervinculo {
+.hipervinculo{
     display: block;
     width: 4.5vw;
     aspect-ratio: 1 / 1;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    cursor: pointer;
-}
-
-/* estado "tocado" = naranja (le agregás la clase .activo con JS) */
-.guardado.activo { background-image: url("estrellanaranja.png"); }
-.hipervinculo.activo { background-image: url("linknaranja.png"); }
-
-/* si en cambio ponés <img> adentro de los span */
-.guardado img,
-.comentarios img,
-.hipervinculo img {
-    width: 100%;
-    height: 100%;
     object-fit: contain;
 }
 
 /* ===== FILTROS (3 circulos + pastilla) ===== */
 .filtros {
     align-self: end;
-    padding-bottom: 1vh;
+    padding-bottom: 1.4vh;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -165,10 +149,15 @@ body {font-family: 'Nunito'}
 }
 
 .filtro {
-    width: 6.5vw;
+    width: 8.706vw;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     background-color: #FFC96C;
+}
+.grande {
+    width: 17.412vw;
+    aspect-ratio: 2.3/1;
+    border-radius: 0.9rem
 }
 
 .más{
@@ -177,7 +166,7 @@ body {font-family: 'Nunito'}
     line-height: 1.2;
 }
 /* ===== POPUP DE BANDEJAS ===== */
-.bandeja-fondo {
+.bandejas-fondo {
     width: 100%;
     max-width: 100%;
     margin: auto 0 0 0;
@@ -186,18 +175,18 @@ body {font-family: 'Nunito'}
     background: none;
 }
 
-.bandeja-fondo[open] {
+.bandejas-fondo[open] {
     display: flex;
     flex-direction: column;
 }
 
-.bandeja-fondo::backdrop {
+.bandejas-fondo::backdrop {
     background-color: rgb(0 0 0 / 0.4);
 }
 
-.bandeja-popup {
+.bandejas-popup {
     width: 100%;
-    background-color: #F6F7DC;
+    background-color: #F9F9DF;
     border-radius: 2rem 2rem 0 0;
     padding-top: 1.5vh;
     display: flex;
@@ -205,25 +194,18 @@ body {font-family: 'Nunito'}
     align-items: center;
 }
 
-.bandeja-linea {
-    width: 19.9vw;
-    height: 0.4vh;
-    background-color: #616060;
-    border-radius: 1rem;
-    margin-bottom: 1.5vh;
-}
 
-.bandeja-vista {
+.bandejas-vista {
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.bandeja-vista[hidden] {
+.bandejas-vista[hidden] {
     display: none;
 }
 
-.bandeja-opcion {
+.bandejas-opcion {
     width: 100%;
     height: 7vh;
     padding: 0 5vw;
@@ -232,7 +214,7 @@ body {font-family: 'Nunito'}
     align-items: center;
     background: none;
     border: none;
-    border-top: 0.1vh solid #C9CDB0;
+    border-top: 0.01vh solid #C9CDB0;
     font-family: 'Nunito';
     font-size: 1.125rem;
     font-weight: 500;
@@ -240,12 +222,8 @@ body {font-family: 'Nunito'}
     cursor: pointer;
 }
 
-.bandeja-opcion-icono {
-    font-size: 1.8rem;
-    color: #6D813A;
-}
 
-.bandeja-input {
+.bandejas-nombre {
     width: 90vw;
     height: 5.5vh;
     margin: 1vh auto 2vh;
@@ -258,17 +236,7 @@ body {font-family: 'Nunito'}
     outline: none;
 }
 
-.bandeja-guardar {
-    justify-content: center;
-    color: #6D813A;
-    font-weight: 700;
-}
-/* vista de bandejas existentes: fondo blanco */
-.bandeja-popup.con-bandejas {
-    background-color: #FFFFFF;
-}
-
-.bandeja-grilla {
+.bandejas-grilla {
     width: 100%;
     max-height: 40vh;
     overflow-y: auto;
@@ -278,7 +246,7 @@ body {font-family: 'Nunito'}
     gap: 4vw;
 }
 
-.bandeja-tarjeta {
+.bandeja-foto {
     width: 100%;
     aspect-ratio: 1 / 1.2;
     object-fit: cover;
@@ -289,11 +257,11 @@ body {font-family: 'Nunito'}
     transition: border-color 0.2s ease;
 }
 
-.bandeja-tarjeta.seleccionado {
+.bandeja-foto.elegida {
     border-color: #F3A73C;
 }
 
-.bandeja-boton {
+.bandejas-guardar {
     width: 90vw;
     height: 6vh;
     margin: 4vh auto 5vh;
@@ -304,7 +272,6 @@ body {font-family: 'Nunito'}
     font-family: 'Nunito';
     font-size: 1.25rem;
     font-weight: 700;
-    cursor: pointer;
 }
 /*.publicacion {
     width: 89.0547vw;
