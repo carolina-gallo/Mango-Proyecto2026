@@ -18,10 +18,11 @@ body {
 
 .encabezadoperfil {
     width: 100%;
-    padding: 2.4vh 4vw 1.5vh;
+    padding: 2.4vh 4vw 2vh;
     display: flex;
     flex-direction: column;
     gap: 1.5vh;
+    height: auto;
 }
 
 .datosperfil {
@@ -32,7 +33,7 @@ body {
 }
 
 .fotoperfil {
-    width: 24.6269vw;
+    width: 20.895vw;
     aspect-ratio: 1 / 1;
     flex-shrink: 0;
     border-radius: 50%;
@@ -47,10 +48,11 @@ body {
 }
 
 .infoperfil {
+    height: auto;
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 1.2vh;
+    gap: 1vh;
 }
 
 .nombreyeditar {
@@ -117,7 +119,7 @@ body {
 }
 
 /* ===== PESTAÑAS (Recetas | Post | Bandejas) ===== */
-.pestanas {
+.pestañas {
     width: 100%;
     height: 5.5vh;
     border-top: 0.1vh solid #AFACAC;
@@ -127,7 +129,7 @@ body {
     align-items: center;
 }
 
-.pestana {
+.pestaña {
     font-family: 'Nunito';
     font-size: 0.9rem;
     font-weight: 500;
@@ -136,6 +138,9 @@ body {
     border: none;
     cursor: pointer;
 }
+
+
+
 
 /* ===== LISTA DE RECETAS (misma card que homerecetas) ===== */
 .scrolleo {
