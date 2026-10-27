@@ -1,4 +1,5 @@
 const idReceta = localStorage.getItem("idReceta");
+const usuarioId = localStorage.getItem("id");
 
 fetch("http://localhost:3000/mango/feedRecetas")
   .then(response => response.json())

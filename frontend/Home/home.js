@@ -2,18 +2,21 @@
 let posts = [];
 let postActual;
  const containerPosts = document.getElementById("container-posts");
+ const usuarioId = localStorage.getItem("id");
 
 
 (async () => {
     let response;
     let usuarios;
+    
     try{
-        response = await fetch('http://localhost:3000/mango/feedPost');
+        response = await fetch('http://localhost:3000/mango/feedPost?id_usuario=${idUsuario}');
         posts = await response.json();
         response = await fetch('http://localhost:3000/listaUsuarios');
         usuarios = await response.json();
         mostrarPosts(posts, usuarios);
         activarVerMas()
+        obtenerDatosUsuario();
 
     }
     catch (error) {
@@ -97,7 +100,7 @@ if (icono.alt === "like") {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            idUs: Number(localStorage.getItem("id")),
+            idUs: usuarioId,
             idPost: idPost
         })
     });
@@ -124,55 +127,95 @@ function buscarPost(idPost) {
 function mostrarComentarios(idPost) {
     lista.innerHTML = "";
     const comentarioPost = buscarPost(idPost);
-    if (comentarioPost.comentarios.length === 0) {
+    if (!comentarioPost || comentarioPost.comentarios.length === 0) {
         lista.innerHTML = 
-        `<section class= "sin-comentarios">
+        `<section class="sin-comentarios">
         <article class="comentarios-vacio">
         <p class="vacio-titulo">Todavía no hay comentarios</p>
-        <p class= "segundo-texto">Deja tu huella</p>
+        <p class="segundo-texto">Deja tu huella</p>
         </article>
         </section>`;
         input.placeholder = "Empieza la conversación...";
     } else {
         comentarioPost.comentarios.forEach((c) => {
-        lista.innerHTML += 
-        `<section class= "comentarios-sección">
-        <article class="comentario">
-        <figure class="comentarios-avatar"></figure>
-        <div>
-            <p class="comentario-nombre">${c.username}</p>
-            <p class="comentario-texto">${c.texto}</p>
-            <p class="comentario-fecha">${c.fecha}</p>
-        </div>
-        </article>
-        </section>`;
-        input.placeholder = "Únete a la conversación...";
-        })
+            lista.innerHTML += 
+            `<section class="comentarios-sección">
+            <article class="comentario">
+            <figure class="comentarios-avatar"></figure>
+            <div>
+                <p class="comentario-nombre">${c.username}</p>
+                <p class="comentario-texto">${c.texto}</p>
+                <p class="comentario-fecha">${c.fecha}</p>
+            </div>
+            </article>
+            </section>`;
+            input.placeholder = "Únete a la conversación...";
+        });
     }
 }
 
+async function publicarComentario() {
+    // 1. Obtenemos el texto del input primero
+    const textoComentario = input.value.trim();
+    if (textoComentario === "") return; // Si está vacío, no hace nada
 
-function enviarComentario() {
-    const texto = input.value;
-    if (texto === "") return;
+    const idUsuario = localStorage.getItem("id_usuario");
+    const idUsuario = localStorage.getItem("id_usuario");
+
+async function obtenerDatosUsuario() {
+  if (!idUsuario) return;
+
+  try {
+    const respuesta = await fetch(`http://localhost:3000/mango/listaUsuarios/${idUsuario}`);
+    const datos = await respuesta.json();
+    
+    // Guardas el nombre que vino del servidor
+    let nombreUsuario = localStorage.setItem("nombre_usuario", datos.username); 
+  } catch (error) {
+    console.error("Error al obtener perfil de usuario:", error);
+  }
+}
 
     const idPost = popup.dataset.id;
-    const comentarioPost = buscarPost(idPost);
 
-    comentarioPost.comentarios.push({
-        username: "Tu usuario",
-        idPost: idPost,
-        texto: texto,
-        fecha: new Date().toISOString()
-    });
-    comentarioPost.comentarios_post++;
+    try {
+        // 2. Envías la petición al servidor (con la coma corregida)
+        await fetch("http://localhost:3000/mango/post/comentar", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                username: nombreUsuario, // <--- Coma agregada aquí
+                id_usuario: idUsuario,
+                idPost: idPost,
+                texto: textoComentario,
+                fecha: new Date().toISOString()
+            })
+        });
 
-    input.value = "";
-    mostrarComentarios(idPost);
-    enviar.src = "enviar3.png";        
-    setTimeout(() => {
-        enviar.src = "enviar2.png";    
-    }, 100); 
+        // 3. Actualizas la interfaz localmente
+        const comentarioPost = buscarPost(idPost);
+        if (comentarioPost) {
+            comentarioPost.comentarios.push({
+                username: nombreUsuario,
+                idPost: idPost,
+                texto: textoComentario,
+                fecha: new Date().toISOString()
+            });
+            comentarioPost.comentarios_post++;
+        }
+
+        // 4. Limpias el input y refrescas
+        input.value = "";
+        mostrarComentarios(idPost);
+
+        enviar.src = "enviar3.png";        
+        setTimeout(() => {
+            enviar.src = "enviar2.png";    
+        }, 100);
+
+    } catch (error) {
+        console.error("Error al publicar comentario:", error);
+    }
 }
 
 popup.addEventListener("click", (e) => {
@@ -181,7 +224,7 @@ popup.addEventListener("click", (e) => {
   }
 });
 
-enviar.addEventListener("click", enviarComentario);
+enviar.addEventListener("click", publicarComentario);
 input.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") enviarComentario();
+  if (e.key === "Enter") publicarComentario();
 });

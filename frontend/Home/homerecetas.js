@@ -2,6 +2,8 @@
 let recetas = [];
 let postActual;
  const containerRecetas = document.getElementById("recetas");
+ const usuarioId = localStorage.getItem("id");
+ const usuarioNombre = localStorage.getItem("")
 
 
 (async () => {

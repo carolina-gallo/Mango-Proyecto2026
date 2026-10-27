@@ -1,6 +1,7 @@
 const form = document.getElementById("formPost");
 const botonImagen = document.querySelector(".subir-imagen");
 const botonVinculo = document.getElementById("botonVinculo");
+const usuarioId = localStorage.getItem("id");
  
 function camposvacios() {
     document.querySelectorAll(".error").forEach(e => e.classList.remove("error"));

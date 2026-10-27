@@ -1,3 +1,4 @@
+const usuarioId = localStorage.getItem("id");
 const filtrosCirculares = document.querySelectorAll(
     ".filtro-circular, .filtro-circular1, .filtro-circular2"
 );
