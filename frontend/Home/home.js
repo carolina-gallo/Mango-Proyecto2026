@@ -1,22 +1,34 @@
-
 let posts = [];
 let postActual;
- const containerPosts = document.getElementById("container-posts");
- const usuarioId = localStorage.getItem("id");
+const containerPosts = document.getElementById("container-posts");
+const idUsuario = localStorage.getItem("id_usuario");
 
+function obtenerDatosUsuario() {
+  if (!idUsuario) return;
+
+  fetch(`http://localhost:3000/mango/usuario/${idUsuario}`)
+    .then(respuesta => respuesta.text())
+    .then(nombre => {
+      localStorage.setItem("nombre_usuario", nombre);
+    })
+    .catch(error => console.error("Error al obtener usuario:", error));
+}
 
 (async () => {
     let response;
     let usuarios;
     
     try{
-        response = await fetch('http://localhost:3000/mango/feedPost?id_usuario=${idUsuario}');
+        await obtenerDatosUsuario();
+
+        response = await fetch(`http://localhost:3000/mango/feedPost?id_usuario=${idUsuario}`);
         posts = await response.json();
+
         response = await fetch('http://localhost:3000/listaUsuarios');
         usuarios = await response.json();
+        
         mostrarPosts(posts, usuarios);
         activarVerMas()
-        obtenerDatosUsuario();
 
     }
     catch (error) {
@@ -100,7 +112,7 @@ if (icono.alt === "like") {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            idUs: usuarioId,
+            idUs: idUsuario,
             idPost: idPost
         })
     });
@@ -159,24 +171,8 @@ async function publicarComentario() {
     const textoComentario = input.value.trim();
     if (textoComentario === "") return; // Si está vacío, no hace nada
 
-    const idUsuario = localStorage.getItem("id_usuario");
-    const idUsuario = localStorage.getItem("id_usuario");
-
-async function obtenerDatosUsuario() {
-  if (!idUsuario) return;
-
-  try {
-    const respuesta = await fetch(`http://localhost:3000/mango/listaUsuarios/${idUsuario}`);
-    const datos = await respuesta.json();
-    
-    // Guardas el nombre que vino del servidor
-    let nombreUsuario = localStorage.setItem("nombre_usuario", datos.username); 
-  } catch (error) {
-    console.error("Error al obtener perfil de usuario:", error);
-  }
-}
-
     const idPost = popup.dataset.id;
+    const nombre = localStorage.getItem("nombre_usuario") || "Usuario";
 
     try {
         // 2. Envías la petición al servidor (con la coma corregida)
@@ -184,8 +180,7 @@ async function obtenerDatosUsuario() {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                username: nombreUsuario, // <--- Coma agregada aquí
-                id_usuario: idUsuario,
+                id_usuario: localStorage.getItem("id_usuario"),
                 idPost: idPost,
                 texto: textoComentario,
                 fecha: new Date().toISOString()
@@ -196,7 +191,7 @@ async function obtenerDatosUsuario() {
         const comentarioPost = buscarPost(idPost);
         if (comentarioPost) {
             comentarioPost.comentarios.push({
-                username: nombreUsuario,
+                username: nombre,
                 idPost: idPost,
                 texto: textoComentario,
                 fecha: new Date().toISOString()
