@@ -87,7 +87,7 @@ async function enviarMensaje() {
 
         const conversacionActualizada = await res.json();
 
-        // meli dice q esta mejor asi ñañañañañ
+        // me dicdn q esta mejor asi ñañañañañ
         input.value = "";
         const contenedor = document.getElementById("contenedorMensajes");
         renderizarMensajes(conversacionActualizada.mensajes, idUs, contenedor);
@@ -112,7 +112,7 @@ function renderizarMensajes(mensajes, idUs, contenedor) {
     contenedor.innerHTML = "";
 
     if (!mensajes || mensajes.length === 0) {
-        contenedor.innerHTML = "<p>No hay mensajes aún.</p>";
+        contenedor.innerHTML = "<p>No hay mensajes</p>";
         return;
     }
 
@@ -127,7 +127,5 @@ function renderizarMensajes(mensajes, idUs, contenedor) {
 
         contenedor.appendChild(divMensaje);
     });
-
-    //scroll q me parecio epico
-    contenedor.scrollTop = contenedor.scrollHeight;
+    
 }
