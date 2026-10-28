@@ -157,37 +157,56 @@ function mostrarComentarios(comentarios) {
     contenedorComentarios.appendChild(seccionComentario);
   }
 
-  // 2. Caso: Hay 3 o menos comentarios -> Mostramos todos de una vez
-  if (comentarios.length <= 3) {
-    comentarios.forEach((c) => {
-      agregarComentario(c);
-    });
-  } 
-  // 3. Caso: Hay más de 3 comentarios
-  else {
-    // Mostramos únicamente los primeros 3
+// 2. Caso: Hay 3 o menos comentarios -> Mostramos todos
+if (comentarios.length <= 3) {
+  comentarios.forEach((c) => {
+    agregarComentario(c);
+  });
+} 
+// 3. Caso: Hay más de 3 comentarios
+else {
+  // Función para mostrar solo los primeros 3 comentarios
+  function mostrarPrimerosTres() {
+    contenedorComentarios.innerHTML = `<h1 class="titulocomentarios">Comentarios</h1>`; // Limpiamos el contenedor para no duplicar
+
     for (let i = 0; i < 3; i++) {
       agregarComentario(comentarios[i]);
     }
 
-    // Creamos el botón con la flecha para ver los demás
     const masComentarios = document.createElement("div");
     masComentarios.classList.add("bajarcomentarios");
     masComentarios.innerHTML = `<img src="bajar-comentarios.png" alt="flechabajo" class="bajar">`;
     contenedorComentarios.appendChild(masComentarios);
 
-    // Al hacer click, cargamos el resto y quitamos la flecha
+    // Al hacer clic en la flecha de abajo, mostramos todos los comentarios
     masComentarios.addEventListener("click", () => {
-
-      // Dibujamos desde el índice 3 en adelante
-      for (let i = 3; i < comentarios.length; i++) {
-        agregarComentario(comentarios[i]);
-      }
-      masComentarios.innerHTML = `<img src="subir-comentarios.png" alt="flechaarriba" class="bajar">`; 
+      mostrarTodos();
     });
   }
-}
 
+  // Función para mostrar todos los comentarios
+  function mostrarTodos() {
+    contenedorComentarios.innerHTML = `<h1 class="titulocomentarios">Comentarios</h1>`; // Limpiamos los primeros 3 para volver a dibujar todo
+
+    comentarios.forEach((c) => {
+      agregarComentario(c);
+    });
+
+    const menosComentarios = document.createElement("div");
+    menosComentarios.classList.add("bajarcomentarios");
+    menosComentarios.innerHTML = `<img src="subir-comentarios.png" alt="flechaarriba" class="bajar">`;
+    contenedorComentarios.appendChild(menosComentarios);
+
+    // Al hacer clic en la flecha de arriba, volvemos al estado inicial de 3 comentarios
+    menosComentarios.addEventListener("click", () => {
+      mostrarPrimerosTres();
+    });
+  }
+
+  // Ejecutamos la vista inicial (solo 3)
+  mostrarPrimerosTres();
+}
+}
 
 async function publicarComentario() {
   const textoComentario = input.value.trim();
