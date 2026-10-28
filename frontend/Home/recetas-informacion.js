@@ -49,6 +49,7 @@ async function obtenerDatosUsuario() {
     if (recetaActual) {
       mostrarReceta(recetaActual);
       mostrarComentarios(recetaActual.comentarios || []);
+      mostrarCreador(recetaActual)
     } else {
       contenedor.innerHTML = "<p>No se encontró la receta solicitada.</p>";
     }
@@ -113,6 +114,29 @@ function mostrarReceta(receta) {
   });
 }
 
+function mostrarCreador(receta) {
+  // Seleccionamos los elementos HTML indicados
+  const nombreCreador = document.getElementById("usuarioReceta");
+  const fotoCreador = document.getElementById("fotoUsuarioReceta");
+
+  // Si los elementos no existen en el DOM, detenemos la ejecución
+  if (!nombreCreador || !fotoCreador) return;
+
+  // Buscamos al creador en la lista de usuarios obtenida en la carga inicial
+  const creador = listaUsuarios.find(usuario => usuario.id == receta.id_usuario);
+
+  if (creador) {
+    // Insertamos el nombre de usuario
+    nombreCreador.textContent = creador.username || creador.nombre || "Usuario desconocido";
+
+    // Insertamos la imagen según el tipo de elemento
+    if (creador) {
+      fotoCreador.innerHTML = `<img src="${creador.foto_perfil || 'ruta/por/defecto/avatar.png'}" alt="${creador.username}">`;
+    }
+  } else {
+    nombreCreador.textContent = "Usuario";
+  }
+}
 function buscarFoto(username) {
   for (let i = 0; i < listaUsuarios.length; i++) {
     if (listaUsuarios[i].username === username || listaUsuarios[i].nombre === username) {
