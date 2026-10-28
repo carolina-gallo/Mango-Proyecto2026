@@ -5,23 +5,90 @@
 }
 body {font-family: 'Nunito'}
 
-.filtros{
-    width: 100%;
-    gap: 5.722vw;
-    padding-top: 2.3vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-
-    overflow-x: auto;
-    overflow-y: hidden;
-    scrollbar-width: none;
+header{
+    position: fixed;
 }
+.filtros-header{
+    min-height: 29.633vh;
+    padding-top: 17.33vh;
+    padding-left: 2vw;
+    display: flex;
+    flex-direction:column;
+    align-items: flex-start;
+    gap: 2vh;
+}
+.restricciones{
+    font-size: 1.2rem;
+}
+
 .restriccionesydietas{
     display: flex;
+    align-items: center;
+    gap: 5vw;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+}
+.restriccionesydietas::-webkit-scrollbar,
+.muchascositas::-webkit-scrollbar {
+  display: none;
+}
+button{
+    border:none;
+    text-decoration: none;
+    background: none;
+}
+.filtro-circular,
+.filtro-circular1 {
+  flex: 0 0 auto;
+  width: 11.194vw;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background-color: #616060;
+  object-fit: contain;
+}
+
+.otrosfiltros {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.muchascositas {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+  padding-bottom: 0.2rem;
+}
+
+.filtros-random,
+.tipodecomida,
+.saborytiempoydifymetodo {
+  flex: 0 0 auto;
+}
+
+.flecha-cerrar{
+    width: 100%;
+    background-color: #FFFFFF;
+    height: 2.86vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cerrar{
+    width: 5.472vw;
+    height: 1.43vh;
+    object-fit: cover;
 }
 .scrolleo {
     padding-bottom: 6.8649vh;    /* lugar para el footer */
+    padding-top: 45vh;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -14,7 +14,8 @@
 </head>
 
 <body>
-    <header class="header-buscador">
+    <header>
+        <main class="header-buscador">
         <article class="barra-superior">
             <div class="buscar">
                 <img src="icono-buscador.png" alt="icono-buscador" class="vector">
@@ -27,54 +28,44 @@
             <button id="btn-posts" class="opciones toco"><a class="a" href="../Home/buscadorposts.html">Posts</a></button>
             <button id="btn-perfil" class="opciones toco"><a class="a" href="../Home/buscadorperfiles.html">Perfil</a></button>
         </div>
-    </header>
-    <main class="filtros">
-        <section class="restriccionesydietas">
+    </main>
+    <main class="filtros-header">
         <h1 class="restricciones">Restricciones y Dietas</h1>
-        <button type="button" class="filtro-circular1" data-filtro="vegano">
-                            <span class="circulo"></span>
-                            <span class="nombre-filtro">Sin TACC</span>
-                        </button>
-                        <button type="button" class="filtro-circular" data-filtro="sin_tacc">
-                            <span class="circulo"></span>
-                            <span class="nombre-filtro">Vegano</span>
-                        </button>
-                        <button type="button" class="filtro-circular" data-filtro="sin_lactosa">
-                            <span class="circulo"></span>
-                            <span class="nombre-filtro">Vegetariano</span>
-                        </button>
-                        <button type="button" class="filtro-circular" data-filtro="sin_azucar">
-                            <span class="circulo"></span>
-                            <span class="nombre-filtro">Kosher</span>
-                        </button>
-                        <button type="button" class="filtro-circular" data-filtro="vegano">
-                            <span class="circulo"></span>
-                            <span class="nombre-filtro">Hipertenso</span>
-                        </button>
-                        <button type="button" class="filtro-circular" data-filtro="sin_tacc">
-                            <span class="circulo"></span>
-                            <span class="nombre-filtro">Sin azucar</span>
-                        </button>
-                        <button type="button" class="filtro-circular" data-filtro="sin_lactosa">
-                            <span class="circulo"></span>
-                            <span class="nombre-filtro">Bajo colesterol</span>
-                        </button>
-                        <button type="button" class="filtro-circular" data-filtro="sin_azucar">
-                            <span class="circulo"></span>
-                            <span class="nombre-filtro">Keto</span>
-                        </button>
-                        <button type="button" class="filtro-circular" data-filtro="vegano">
-                            <span class="circulo"></span>
-                            <span class="nombre-filtro">Sin frutos secos</span>
-                        </button>
-                        <button type="button" class="filtro-circular2" data-filtro="sin_tacc">
-                            <span class="circulo"></span>
-                            <span class="nombre-filtro">Sin lactosa</span>
-                        </button>
-                    </section>
-        <section class="Otrosfiltros">
+        <section class="restriccionesydietas">
+         <button type="button" class="filtro-circular1" data-filtro="vegano">
+                <span class="circulo" id="vegano"></span>
+            </button>
+            <button type="button" class="filtro-circular" data-filtro="sin_tacc">
+                <span class="circulo" id="sintacc"></span>
+            </button>
+            <button type="button" class="filtro-circular" data-filtro="sin_lactosa">
+                <span class="circulo" id="vegetariano"></span>
+            </button>
+            <button type="button" class="filtro-circular" data-filtro="sin_azucar">
+                <span class="circulo" id="kosher"></span>
+            </button>
+            <button type="button" class="filtro-circular" data-filtro="vegano">
+                <span class="circulo" id="hipertenso"></span>
+            </button>
+            <button type="button" class="filtro-circular" data-filtro="sin_tacc">
+                <span class="circulo" id="diabetes"></span>
+            </button>
+            <button type="button" class="filtro-circular" data-filtro="sin_lactosa">
+                <span class="circulo" id="bajocolesterol"></span>
+            </button>
+            <button type="button" class="filtro-circular" data-filtro="sin_azucar">
+                <span class="circulo" id="keto"></span>
+            </button>
+            <button type="button" class="filtro-circular" data-filtro="vegano">
+                <span class="circulo" id="alergiafrutossecos"></span>
+            </button>
+            <button type="button" class="filtro-circular" data-filtro="sin_tacc">
+                <span class="circulo" id="sinlactosa"></span>
+            </button>
+        </section>
+        <section class="otrosfiltros">
+            <h1 class="restricciones">Otros filtros</h1>
             <article class="muchascositas">
-                <h1 class="otros">Otros filtros</h1>
                 <button type="button" class="filtros-random" data-filtros-random="dulce">
                 <span>Dulce</span>
                 </button>
@@ -93,24 +84,7 @@
                 <button type="button" class="filtros-random" data-filtros-random="acido">
                     <span>Ácido</span>
                 </button>
-            </article>
 
-            <article class="muchascositas">
-                <button type="button" class="filtros-random" data-filtros-random="1-15m">
-                    <span>1-15m</span>
-                </button>
-                <button type="button" class="filtros-random" data-filtros-random="15-30m">
-                    <span>15-30m</span>
-                </button>
-                <button type="button" class="filtros-random" data-filtros-random="30-60m">
-                    <span>30-60m</span>
-                </button>
-                <button type="button" class="filtros-random" data-filtros-random="+60m">
-                    <span>+60m</span>
-                </button>
-            </article>
-
-            <article class="muchascositas">
                 <button type="button" class="tipodecomida" data-tipo="bebida">
                     <span class="cuadradito"></span>
                     <span class="nombre-comida">Bebida</span>
@@ -130,48 +104,150 @@
             </article>
 
             <article class="muchascositas">
-                <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="alta">
-                    <span>Alta</span>
+                <button type="button" class="filtros-random" data-filtros-random="1-15m">
+                    <span>1-15m</span>
                 </button>
-                <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="media">
-                    <span>Media</span>
+                <button type="button" class="filtros-random" data-filtros-random="15-30m">
+                    <span>15-30m</span>
                 </button>
-                <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="baja">
-                    <span>Baja</span>
+                <button type="button" class="filtros-random" data-filtros-random="30-60m">
+                    <span>30-60m</span>
                 </button>
+                <button type="button" class="filtros-random" data-filtros-random="+60m">
+                    <span>+60m</span>
+                </button>
+
+                    <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="alta">
+                        <span>Alta</span>
+                    </button>
+                    <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="media">
+                        <span>Media</span>
+                    </button>
+                    <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="baja">
+                        <span>Baja</span>
+                    </button>
+
+                    <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="horo">
+                        <span>Horno</span>
+                    </button>
+                    <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="airfryer">
+                        <span>Airfryer</span>
+                    </button>
+                    <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="sarten">
+                        <span>Sartén</span>
+                    </button>
+                    <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="olla">
+                        <span>Olla</span>
+                    </button>
+                    <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="microondas">
+                        <span>Microondas</span>
+                    </button>
+                    <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="heladera">
+                        <span>Heladera</span>
+                    </button>
+                    <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="nada">
+                        <span>Nada</span>
+                    </button>
             </article>
 
             <article class="muchascositas">
-                <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="horo">
-                    <span>Horno</span>
-                </button>
-                <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="airfryer">
-                    <span>Airfryer</span>
-                </button>
-                <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="sarten">
-                    <span>Sartén</span>
-                </button>
-                <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="olla">
-                    <span>Olla</span>
-                </button>
-                <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="microondas">
-                    <span>Microondas</span>
-                </button>
-                <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="heladera">
-                    <span>Heladera</span>
-                </button>
-                <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="nada">
-                    <span>Nada</span>
-                </button>
+                
+            </article>
+
+            
+
+            <article class="muchascositas">
+                
             </article>
         </section>
         <div class="flecha-cerrar">
             <img src="cerrar.png" alt="cerrar-filtros" class="cerrar">
         </div>
     </main>
+</header>
 
     <main class="scrolleo" id="recetas">
 
+        <section class="publicacion">
+            <figure class="imagen">
+                <img id="fotoReceta" src="ruta-de-la-imagen.jpg" alt="Foto de la receta"></img>
+                <p class="nombredeusuario" id="username"></p>
+            </figure>
+            <div class="contenido">
+                <h2 class="titulo" id="tituloReeceta">Receta de ejemplo</h2>
+                <p class="descripcion" id="descripcion">Esta es una breve descripción de la receta.</p>
+            </div>
+            <div class="interacciones">
+                <span class="icono"><img class="guardado" src="guardado.png" alt="guardar"></span>
+                <span class="icono"><img class="comentarios" src="comentariosr.png" alt="comentar"></span>
+                <span class="icono"><img class="hipervinculo" src="link.png" alt="hipervinculo"></span>
+            </div>
+            <div class="filtros">
+                <span class="filtro"></span>
+                <span class="filtro"></span>
+                <span class="filtro"></span>
+            </div>
+        </section>
+        <section class="publicacion">
+            <figure class="imagen">
+                <img id="fotoReceta" src="ruta-de-la-imagen.jpg" alt="Foto de la receta"></img>
+                <p class="nombredeusuario" id="username"></p>
+            </figure>
+            <div class="contenido">
+                <h2 class="titulo" id="tituloReeceta">Receta de ejemplo</h2>
+                <p class="descripcion" id="descripcion">Esta es una breve descripción de la receta.</p>
+            </div>
+            <div class="interacciones">
+                <span class="icono"><img class="guardado" src="guardado.png" alt="guardar"></span>
+                <span class="icono"><img class="comentarios" src="comentariosr.png" alt="comentar"></span>
+                <span class="icono"><img class="hipervinculo" src="link.png" alt="hipervinculo"></span>
+            </div>
+            <div class="filtros">
+                <span class="filtro"></span>
+                <span class="filtro"></span>
+                <span class="filtro"></span>
+            </div>
+        </section>
+        <section class="publicacion">
+            <figure class="imagen">
+                <img id="fotoReceta" src="ruta-de-la-imagen.jpg" alt="Foto de la receta"></img>
+                <p class="nombredeusuario" id="username"></p>
+            </figure>
+            <div class="contenido">
+                <h2 class="titulo" id="tituloReeceta">Receta de ejemplo</h2>
+                <p class="descripcion" id="descripcion">Esta es una breve descripción de la receta.</p>
+            </div>
+            <div class="interacciones">
+                <span class="icono"><img class="guardado" src="guardado.png" alt="guardar"></span>
+                <span class="icono"><img class="comentarios" src="comentariosr.png" alt="comentar"></span>
+                <span class="icono"><img class="hipervinculo" src="link.png" alt="hipervinculo"></span>
+            </div>
+            <div class="filtros">
+                <span class="filtro"></span>
+                <span class="filtro"></span>
+                <span class="filtro"></span>
+            </div>
+        </section>
+        <section class="publicacion">
+            <figure class="imagen">
+                <img id="fotoReceta" src="ruta-de-la-imagen.jpg" alt="Foto de la receta"></img>
+                <p class="nombredeusuario" id="username"></p>
+            </figure>
+            <div class="contenido">
+                <h2 class="titulo" id="tituloReeceta">Receta de ejemplo</h2>
+                <p class="descripcion" id="descripcion">Esta es una breve descripción de la receta.</p>
+            </div>
+            <div class="interacciones">
+                <span class="icono"><img class="guardado" src="guardado.png" alt="guardar"></span>
+                <span class="icono"><img class="comentarios" src="comentariosr.png" alt="comentar"></span>
+                <span class="icono"><img class="hipervinculo" src="link.png" alt="hipervinculo"></span>
+            </div>
+            <div class="filtros">
+                <span class="filtro"></span>
+                <span class="filtro"></span>
+                <span class="filtro"></span>
+            </div>
+        </section>
         <section class="publicacion">
             <figure class="imagen">
                 <img id="fotoReceta" src="ruta-de-la-imagen.jpg" alt="Foto de la receta"></img>
