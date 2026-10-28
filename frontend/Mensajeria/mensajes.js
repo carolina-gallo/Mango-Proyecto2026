@@ -51,7 +51,7 @@ async function cargarConversaciones() {
 
             // Obtener la imagen de perfil (si existe)
             const HTMLFoto = usuarioEncontrado && usuarioEncontrado.foto_perfil 
-                ? `<img src="${usuarioEncontrado.foto_perfil}" alt="${nombreUs}">`
+                ? `<img class="persona" src="${usuarioEncontrado.foto_perfil}" alt="${nombreUs}">`
                 : "";
 
             const ultimoMsg = conv.mensajes && conv.mensajes.length > 0 
