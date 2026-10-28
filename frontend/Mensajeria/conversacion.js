@@ -122,7 +122,7 @@ function renderizarMensajes(mensajes, idUs, contenedor) {
         const idEmisor = msg.emisorId || msg.emisor || msg.idEmisor || msg.idUs;
         const esMio = Number(idEmisor) === idUs;
 
-        divMensaje.classList.add("mensaje", esMio ? "mensaje-mio" : "mensaje-otro");
+        divMensaje.classList.add("mensaje", esMio ? "mimensaje" : "otromensaje");
         divMensaje.innerHTML = `<p class="contenido">${msg.texto}</p>`;
 
         contenedor.appendChild(divMensaje);

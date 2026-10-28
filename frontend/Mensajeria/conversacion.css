@@ -5,15 +5,14 @@
     border-radius: 12px;
 }
 
-/* Mensajes enviados por ti */
-.mensaje-mio {
+.mimensaje {
     align-self: flex-end;
     background-color: #d1e7dd;
     margin-left: auto;
 }
 
-/* Mensajes recibidos del otro usuario */
-.mensaje-otro {
+
+.otromensaje {
     align-self: flex-start;
     background-color: #f8f9fa;
     margin-right: auto;
