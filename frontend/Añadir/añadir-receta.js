@@ -1,4 +1,36 @@
 const usuarioId = localStorage.getItem("id");
+
+let imagenBase64 = "";
+ 
+const botonImagen = document.querySelector(".subir-imagen");
+const inputImagen = document.getElementById("inputImagen");
+const camaraImg = document.querySelector(".camaritauwu");
+const textoImagen = botonImagen.querySelector(".h2");
+ 
+botonImagen.addEventListener("click", () => {
+    inputImagen.click();
+});
+ 
+inputImagen.addEventListener("change", () => {
+    const archivo = inputImagen.files[0];
+    if (!archivo) return;
+ 
+    if (archivo.size > 5 * 1024 * 1024) {
+        alert("La imagen es muy pesada");
+        inputImagen.value = "";
+        return;
+    }
+ 
+    const lector = new FileReader();
+    lector.addEventListener("load", () => {
+        imagenBase64 = lector.result;               
+        camaraImg.src = imagenBase64;             
+        camaraImg.style.objectFit = "cover";
+        textoImagen.textContent = "Cambiar imagen";
+    });
+    lector.readAsDataURL(archivo);
+});
+
 const filtrosCirculares = document.querySelectorAll(
     ".filtro-circular, .filtro-circular1, .filtro-circular2"
 );
@@ -130,7 +162,8 @@ function validar() {
 
 const ingredientes = Array.from(document.querySelectorAll(".ingredientes"));
 const pasos = Array.from(document.querySelectorAll(".pasos"));
- 
+    
+    exigir(imagenBase64, botonImagen, "Agregar una imagen");
     exigir(form.titulo.value.trim(), form.titulo, "Agregar un título");
     exigir(form.descripcion.value.trim(), form.descripcion, "Agregar una descripción");
     exigir(ingredientes.some(i => i.value.trim()), ingredientes[0], "Agregar al menos un ingrediente");
@@ -154,7 +187,7 @@ async function subirReceta() {
     if (!validar()) return;
  
     const receta = {
-        imagen_receta: "",
+        imagen_receta: imagenBase64,
         idUs: Number(localStorage.getItem("id")),
         nombre: form.titulo.value.trim(),
         descripcion: form.descripcion.value.trim(),
