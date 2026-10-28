@@ -127,6 +127,7 @@ const contenedorComentarios = document.getElementById("comentariosReceta");
 function mostrarComentarios(comentarios) {
   contenedorComentarios.innerHTML = "";
 
+  // 1. Caso: No hay comentarios
   if (!comentarios || comentarios.length === 0) {
     contenedorComentarios.innerHTML = `
       <h1 class="titulocomentarios">Comentarios</h1>
@@ -136,8 +137,10 @@ function mostrarComentarios(comentarios) {
         </article>
       </section>`;
     input.placeholder = "Añade un comentario";
+    return; // STOP: Evita que siga ejecutando el resto del código
   } 
-  
+
+  // Si hay comentarios, continuamos aquí:
   contenedorComentarios.innerHTML = `<h1 class="titulocomentarios">Comentarios</h1>`;
   input.placeholder = "Añade un comentario";
 
@@ -157,55 +160,50 @@ function mostrarComentarios(comentarios) {
     contenedorComentarios.appendChild(seccionComentario);
   }
 
-// 2. Caso: Hay 3 o menos comentarios -> Mostramos todos
-if (comentarios.length <= 3) {
-  comentarios.forEach((c) => {
-    agregarComentario(c);
-  });
-} 
-// 3. Caso: Hay más de 3 comentarios
-else {
-  // Función para mostrar solo los primeros 3 comentarios
-  function mostrarPrimerosTres() {
-    contenedorComentarios.innerHTML = `<h1 class="titulocomentarios">Comentarios</h1>`; // Limpiamos el contenedor para no duplicar
-
-    for (let i = 0; i < 3; i++) {
-      agregarComentario(comentarios[i]);
-    }
-
-    const masComentarios = document.createElement("div");
-    masComentarios.classList.add("bajarcomentarios");
-    masComentarios.innerHTML = `<img src="bajar-comentarios.png" alt="flechabajo" class="bajar">`;
-    contenedorComentarios.appendChild(masComentarios);
-
-    // Al hacer clic en la flecha de abajo, mostramos todos los comentarios
-    masComentarios.addEventListener("click", () => {
-      mostrarTodos();
-    });
-  }
-
-  // Función para mostrar todos los comentarios
-  function mostrarTodos() {
-    contenedorComentarios.innerHTML = `<h1 class="titulocomentarios">Comentarios</h1>`; // Limpiamos los primeros 3 para volver a dibujar todo
-
+  // 2. Caso: Hay 3 o menos comentarios -> Mostramos todos
+  if (comentarios.length <= 3) {
     comentarios.forEach((c) => {
       agregarComentario(c);
     });
+  } 
+  // 3. Caso: Hay más de 3 comentarios
+  else {
+    function mostrarPrimerosTres() {
+      contenedorComentarios.innerHTML = `<h1 class="titulocomentarios">Comentarios</h1>`;
 
-    const menosComentarios = document.createElement("div");
-    menosComentarios.classList.add("bajarcomentarios");
-    menosComentarios.innerHTML = `<img src="subir-comentarios.png" alt="flechaarriba" class="bajar">`;
-    contenedorComentarios.appendChild(menosComentarios);
+      for (let i = 0; i < 3; i++) {
+        agregarComentario(comentarios[i]);
+      }
 
-    // Al hacer clic en la flecha de arriba, volvemos al estado inicial de 3 comentarios
-    menosComentarios.addEventListener("click", () => {
-      mostrarPrimerosTres();
-    });
+      const masComentarios = document.createElement("div");
+      masComentarios.classList.add("bajarcomentarios");
+      masComentarios.innerHTML = `<img src="bajar-comentarios.png" alt="flechabajo" class="bajar">`;
+      contenedorComentarios.appendChild(masComentarios);
+
+      masComentarios.addEventListener("click", () => {
+        mostrarTodos();
+      });
+    }
+
+    function mostrarTodos() {
+      contenedorComentarios.innerHTML = `<h1 class="titulocomentarios">Comentarios</h1>`;
+
+      comentarios.forEach((c) => {
+        agregarComentario(c);
+      });
+
+      const menosComentarios = document.createElement("div");
+      menosComentarios.classList.add("bajarcomentarios");
+      menosComentarios.innerHTML = `<img src="subir-comentarios.png" alt="flechaarriba" class="bajar">`;
+      contenedorComentarios.appendChild(menosComentarios);
+
+      menosComentarios.addEventListener("click", () => {
+        mostrarPrimerosTres();
+      });
+    }
+
+    mostrarPrimerosTres();
   }
-
-  // Ejecutamos la vista inicial (solo 3)
-  mostrarPrimerosTres();
-}
 }
 
 async function publicarComentario() {
