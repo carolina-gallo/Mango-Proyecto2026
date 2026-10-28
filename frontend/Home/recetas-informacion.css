@@ -38,6 +38,9 @@
         overflow-x: hidden;
         font-family: 'Nunito' ;
     }
+    .app{
+        padding-bottom:6.8649vh;
+    }
     .contenedorRecetas{
         width: 100vw;
         background-color: white;
@@ -128,7 +131,7 @@
     flex-direction: column;
     justify-content: center;
     flex-wrap: wrap;
-    list-style-type: none;
+    padding-left: 5vw
     }
     .pasos{
         display: flex;
@@ -144,11 +147,12 @@
     list-style: none;
     counter-reset: mi-lista;
     padding-left: 0;
+    gap: 1.716vh;
     }
 
     ol li {
     width: 86.31vw;
-    min-height: 7.78vh;
+    height: auto;
     counter-increment: mi-lista;
     display: flex;
     justify-content: flex-start;
@@ -181,6 +185,8 @@
     .lista-trucos {
       display: flex;
       flex-direction: column;
+      list-style: none;
+      padding: 0;
       gap: 1.716vh;  
     }
 
@@ -205,10 +211,10 @@
     height: 100%;                
     display: flex;
     justify-content: flex;
-    align-items: center
+    align-items: center;
+    padding-bottom: 1.716vh;
 }
 .comentarios-escribir {
-    position: sticky;
     bottom: 0;
     width: 100%;
     height: 7.43707vh;
