@@ -1,0 +1,20 @@
+.mensaje {
+    max-width: 70%;
+    margin: 8px;
+    padding: 10px 14px;
+    border-radius: 12px;
+}
+
+/* Mensajes enviados por ti */
+.mensaje-mio {
+    align-self: flex-end;
+    background-color: #d1e7dd;
+    margin-left: auto;
+}
+
+/* Mensajes recibidos del otro usuario */
+.mensaje-otro {
+    align-self: flex-start;
+    background-color: #f8f9fa;
+    margin-right: auto;
+}

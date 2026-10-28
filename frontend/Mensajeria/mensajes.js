@@ -72,7 +72,7 @@ async function cargarConversaciones() {
             article.addEventListener("click", () => {
                 localStorage.setItem("idConversacionActiva", conv.id);
                 localStorage.setItem("idChatCon", otroId);
-                // window.location.href = "../Mensajeria/chat.html";
+                window.location.href = "conversacion.html"
             });
 
             contenedor.appendChild(article);
