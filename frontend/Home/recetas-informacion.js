@@ -262,3 +262,152 @@ if (input) {
     if (e.key === "Enter") publicarComentario();
   });
 }
+
+// ===== GUARDAR EN BANDEJA =====
+const popupBandejas = document.getElementById("popupBandejas");
+const cajaPopupBandejas = document.getElementById("cajaPopupBandejas");
+const vistasPopup = popupBandejas.querySelectorAll(".bandejas-vista");
+const grillaBandejas = document.getElementById("grillaBandejas");
+const inputNombreBandeja = document.getElementById("inputNombreBandeja");
+
+let iconoGuardado = null;    // la img de guardar que tocó
+let bandejaElegida = null;   // id de la bandeja que tocó en la grilla
+let seGuardo = false;
+
+function alternarIcono(img, normal, activo) {
+    const estaActivo = img.src.includes(activo);
+    img.src = estaActivo ? normal : activo;
+}
+
+function cambiarVista(idVista) {
+    vistasPopup.forEach((vista) => {
+        vista.hidden = vista.id !== idVista;
+    });
+    cajaPopupBandejas.classList.toggle("fondo-blanco", idVista === "vistaBandejas");
+}
+
+function mostrarPopupBandeja(img) {
+    iconoGuardado = img;
+    bandejaElegida = null;
+    seGuardo = false;
+    inputNombreBandeja.value = "";
+    img.src = "guardado.png";
+    cambiarVista("vistaOpciones");
+    popupBandejas.showModal();
+}
+
+// el icono se crea con innerHTML, así que el click va en el contenedor
+contenedor.addEventListener("click", (e) => {
+    const img = e.target.closest(".guardado");
+    if (!img) return;
+    alternarIcono(img, "guardado.png", "guardado-amarillo.png");
+    mostrarPopupBandeja(img);
+});
+
+// cerrar tocando el fondo oscuro
+popupBandejas.addEventListener("click", (e) => {
+    if (e.target === popupBandejas) popupBandejas.close();
+});
+
+
+// ----- crear bandeja nueva -----
+document.getElementById("botonCrearBandeja").addEventListener("click", () => {
+    cambiarVista("vistaNuevaBandeja");
+});
+
+document.getElementById("botonGuardarNuevaBandeja").addEventListener("click", async () => {
+    const nombre = inputNombreBandeja.value.trim();
+    if (nombre === "") return;
+
+    try {
+        const respuesta = await fetch("http://localhost:3000/mango/crearBandeja", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                id_usuario: idUsuario,
+                imagen_bandeja: "default.jpg",
+                nombre_bandeja: nombre,
+                filtros: {}
+            })
+        });
+        const bandeja = await respuesta.json();
+        guardarEnBandeja(bandeja.id);
+    } catch (error) {
+        console.error("No se pudo crear la bandeja:", error);
+    }
+});
+
+// ----- bandeja ya existente -----
+document.getElementById("botonBandejaExistente").addEventListener("click", async () => {
+    cambiarVista("vistaBandejas");
+    grillaBandejas.innerHTML = "";
+
+    try {
+        const respuesta = await fetch(`http://localhost:3000/mango/bandejasUsuario/${idUsuario}`);
+        const bandejas = await respuesta.json();
+
+        if (bandejas.length === 0) {
+            grillaBandejas.innerHTML = "<p>Todavía no tenés bandejas</p>";
+            return;
+        }
+
+        bandejas.forEach((bandeja) => {
+            const foto = document.createElement("img");
+            foto.className = "bandeja-foto";
+            foto.src = bandeja.imagen_bandeja;
+            foto.alt = bandeja.nombre_bandeja;
+            foto.title = bandeja.nombre_bandeja;
+            foto.dataset.id = bandeja.id;
+            grillaBandejas.appendChild(foto);
+        });
+    } catch (error) {
+        grillaBandejas.innerHTML = "<p>No se pudieron cargar tus bandejas</p>";
+    }
+});
+
+// elegir una bandeja (borde naranja, una sola a la vez)
+grillaBandejas.addEventListener("click", (e) => {
+    const foto = e.target.closest(".bandeja-foto");
+    if (!foto) return;
+
+    grillaBandejas.querySelectorAll(".bandeja-foto").forEach((f) => f.classList.remove("elegida"));
+    foto.classList.add("elegida");
+    bandejaElegida = foto.dataset.id;
+});
+
+document.getElementById("botonGuardarEnBandeja").addEventListener("click", () => {
+    if (!bandejaElegida) return;
+    guardarEnBandeja(bandejaElegida);
+});
+
+// ----- guardar la receta en la bandeja -----
+async function guardarEnBandeja(idBandeja) {
+    try {
+        const respuesta = await fetch("http://localhost:3000/mango/guardarRec", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ idBandeja: idBandeja, idRec: idReceta })
+        });
+
+        const texto = await respuesta.text();
+        try {
+            JSON.parse(texto);
+        } catch {
+            // el back manda texto plano si ya estaba guardada o no la encontró
+            alert(texto);
+            return;
+        }
+
+        seGuardo = true;
+        iconoGuardado.src = "guardado-amarillo.png";
+        popupBandejas.close();
+    } catch (error) {
+        console.error("No se pudo guardar la receta:", error);
+    }
+}
+
+popupBandejas.addEventListener("close", () => {
+    if (!seGuardo && iconoGuardado) {
+        iconoGuardado.src = "guardado.png";
+    }
+});

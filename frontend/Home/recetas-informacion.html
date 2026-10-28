@@ -26,15 +26,43 @@
     </div>
   </article>
 
+  <section class="final">
   <article class="ultimacosa">
-    <p class="publicadopor">Publicado por</p>
+    <p class="publicadopor"></p>
     <div class="usuariodereceta">
-      <figure class="fotousuarioreceta"></figure>
+      <figure class="avatar-usuario"></figure>
       <p class="usuarioreceta" id="usuarioReceta">Pepito</p>
     </div>
   </article>
 
   <button type="button" class="seguir">Seguir</button>
+</section>
+
+  <dialog class="bandejas-fondo" id="popupBandejas">
+    <section class="bandejas-popup" id="cajaPopupBandejas">
+
+        <article class="bandejas-vista" id="vistaOpciones">
+            <button class="bandejas-opcion" id="botonCrearBandeja">
+                <span>Crear bandeja</span>
+                <span class="bandejas-opcion-icono"><img src="mas-bandeja.png" alt="mas"></span>
+            </button>
+            <button class="bandejas-opcion" id="botonBandejaExistente">
+                <span>Agregar a bandeja ya existente</span>
+                <span class="bandejas-opcion-icono"><img src="flecha-bandeja.png" alt="flecha"></span>
+            </button>
+        </article>
+
+        <article class="bandejas-vista" id="vistaBandejas" hidden>
+            <section class="bandejas-grilla" id="grillaBandejas"></section>
+            <button class="bandejas-guardar" id="botonGuardarEnBandeja">Guardar</button>
+        </article>
+
+        <article class="bandejas-vista" id="vistaNuevaBandeja" hidden>
+            <input type="text" class="bandejas-nombre" id="inputNombreBandeja" placeholder="Nombre">
+            <button class="bandejas-guardar" id="botonGuardarNuevaBandeja">Guardar</button>
+        </article>
+    </section>
+</dialog>
 </main>
 <footer class="footer">
     <a href="../Home/homeposts.html" class="fcolorcitos">H</a>
@@ -45,6 +73,7 @@
     <a href="../Rachas/rachas.html" class="fcolorcitos">R</a>
     <a href="../Perfil/perfil.html" class="fcolorcitos naranjita">P</a>
 </footer>
+
 
   <script src="recetas-informacion.js"></script>
 </body>
