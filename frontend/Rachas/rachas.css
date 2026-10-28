@@ -11,27 +11,25 @@ body {
 
 .app {
     width: 100%;
-    padding-top: 5.5vh;          /* lugar para las pestañas fijas */
-    padding-bottom: 6.8649vh;    /* lugar para el footer */
+    padding-top: 5.5vh;          
+    padding-bottom: 6.8649vh;   
+    margin-bottom: 3vh;
     display: flex;
     flex-direction: column;
 }
 
-/* ===== PESTAÑAS (Metas | Misiones | Maestrías) ===== */
-.pestanas {
+.pestañas {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 5.5vh;
-    background-color: #F6B14D;
+    background-color: #FFC96C;
     display: flex;
     flex-direction: row;
-    align-items: stretch;
-    z-index: 10;
 }
 
-.pestana {
+.pestaña {
     flex: 1;
     display: flex;
     justify-content: center;
@@ -42,15 +40,6 @@ body {
     color: black;
 }
 
-.pestana + .pestana {
-    border-left: 0.1vh solid rgb(0 0 0 / 0.35);
-}
-
-.pestana.seleccionada {
-    background-color: #FFF3DC;
-}
-
-/* ===== TÍTULO ===== */
 .encabezadometas {
     padding: 3vh 6vw 2vh;
     display: flex;
@@ -59,22 +48,22 @@ body {
 }
 
 .tituloseccion {
-    font-size: 1.9rem;
-    font-weight: 900;
+    font-size: 1.875rem;
+    font-weight: 800;
     font-style: italic;
-    color: #5A3A0A;
+    color: #633B14;
 }
 
 .subtituloseccion {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: 500;
     font-style: italic;
     color: #5A3A0A;
     line-height: 1.2;
 }
 
-/* ===== LISTA DE METAS ===== */
-.listametas {
+.metas {
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -82,10 +71,11 @@ body {
 }
 
 .meta {
+    margin-top: 1vh;
     width: 89vw;
-    min-height: 15.5vh;
-    background-color: #FFFBF2;
-    border: 0.1vh solid #D9C9A6;
+    height: 16.132vh;
+    background-color: white;
+    border: 0.01vh solid #CCB6B6;
     padding: 1.6vh 4vw;
     display: flex;
     flex-direction: row;
@@ -97,40 +87,37 @@ body {
 .infometa {
     flex: 1;
     min-width: 0;
+    height: 100%;
     display: flex;
     flex-direction: column;
     gap: 0.6vh;
 }
 
 .nombremeta {
-    font-size: 1.1rem;
-    font-weight: 700;
+    font-size: 1.25rem;
+    width: 45vw;
+    height: auto;
+    font-weight: bold;
     color: black;
     line-height: 1.2;
 }
 
 .textoproceso {
-    font-size: 0.85rem;
+    font-size: 1.0625rem;
     font-weight: 700;
-    color: #6D813A;
+    color: #6E8039;
 }
 
 .progreso {
-    width: 19vw;
-    height: 3.4vh;
+    width: 23.134vw;
+    height: 3.546vh;
     background-color: #A3AD83;
     border-radius: 0.6rem;
-    font-size: 0.85rem;
-    font-weight: 600;
+    font-size: 1.0625rem;
+    font-weight: bold;
     color: black;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.mascota {
-    width: 27vw;
-    aspect-ratio: 1 / 1;
-    object-fit: contain;
-    flex-shrink: 0;
-}
