@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function cargarRecetasUsuario() {
-    // Revisa cómo guardaste la clave en localStorage (ej: 'idUsuario' o 'idUs')
+    // Revisaaaaa cómo guardaste la clave en localStorage (ej: 'idUsuario' o 'idUs')
     const idUsuarioLogueado = localStorage.getItem('idUsuario') || localStorage.getItem('idUs'); 
 
     if (!idUsuarioLogueado) {
