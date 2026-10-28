@@ -252,7 +252,7 @@ align-self: flex-start;
 
 .comentarios-enviar{
     position: absolute;
-    right: 9vw;
+    right: 5vw;
     top: 50%;
     transform: translateY(-50%);   /* lo centra vertical */
     width: 6vw;
@@ -299,6 +299,26 @@ font-size: 1rem;
     color: #000000;
     font-size: 1.5625rem;
     font-weight: 500;
+}
+.ultimacosa{
+    width: 100%;
+    height: 17.04vh;
+}
+
+.seguir{
+    align-self: center;
+    width: 47.761vw;
+    height: 5.377vh;
+    background-color: #6D813A;
+    color: #FFFFFF;
+    border-radius: 1rem;
+    font-size: 1.6825rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    text-decoration: none;
+    font-family: 'Nunito';
 }
 
     
