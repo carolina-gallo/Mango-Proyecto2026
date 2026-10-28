@@ -34,12 +34,12 @@ async function guardarRestricciones(event) {
         })
     });
 
-    if (respuesta.status === 200) {
-        localStorage.setItem("id", user.id);
-        window.location.href = "../../Home/homeposts.html";
-    } else {
-            alert("No se pudieron guardar las restricciones");
-        }
+   if (respuesta.status === 200) {
+    const usuarioNuevo = await respuesta.json();
+    localStorage.setItem("id", usuarioNuevo.id);
+    
+    window.location.href = "../../Home/homeposts.html";
+}
 }
 
 botonRestricciones.addEventListener("click", guardarRestricciones);

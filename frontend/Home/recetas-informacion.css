@@ -34,8 +34,7 @@
     body{
         width: 100%;
         max-width: 100%;
-        overflow-x: hidden;
-        height: 100%;
+        overflow-x:hidden;
         font-family: 'Nunito' ;
     }
     .contenedorRecetas{
@@ -43,7 +42,6 @@
         background-color: white;
         display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
         align-items: flex-start;
     }
     .fotoreceta {
@@ -180,6 +178,125 @@
       flex-direction: column;
       gap: 1.716vh;  
     }
+
+    .comentarios {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: white;
+    margin-left:5vw;
+    margin-top: 2.144vh;
+    margin-right: 2.4875vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1.716vh;
+}
+.titulocomentarios {
+    font-size: 1.6875;
+    color: #6D813A;
+    font-weight: 700;
+}
+.sin-comentarios{
+    width: 100%;
+    height: 100%;                
+    display: flex;
+    justify-content: flex;
+    align-items: center
+}
+.comentarios-escribir {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    height: 7.43707vh;
+    padding: 0 3vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 3vw;
+    background-color: #FFFFFF;
+    z-index: 2;
+    margin-top: 1vh;
+}
+.comentarios-titulo{
+    padding-top: 1.2766vh;
+    font-size: 1.4375rem;
+    font-weight: 500;
+}
+
+.comentarios-avatar{
+width: 9.9502vw;
+aspect-ratio: 1/1;
+background-color: #170069;
+border-radius: 10rem;
+align-self: flex-start;
+}
+
+.enviar-comentario{
+    position: relative;   /* la referencia para ubicar el ícono */
+    flex: 1;              /* ocupa todo el ancho que sobra al lado del avatar */
+}
+
+.comentarios-input{
+    width: 79.1vw;
+    height: 4.3478vh;
+    background-color: #FFFFFF;
+    border-radius: 3.125rem;
+    border: 0.1rem solid rgb(107 107 107 / 0.69);
+    padding: 0 12vw 0 1rem;   /* espacio a la derecha para que el texto no pise el ícono */
+    outline: none;
+    font-size: 1.125rem;
+}
+
+.comentarios-enviar{
+    position: absolute;
+    right: 9vw;
+    top: 50%;
+    transform: translateY(-50%);   /* lo centra vertical */
+    width: 6vw;
+}
+
+.comentario{
+height: auto;
+width: 100%;
+display: flex;
+justify-content: flex-start;
+align-items: center;
+padding: 0 0 2vh 0;
+gap: 2.487vw;
+}
+.comentario-nombre{
+font-size: 1rem;
+}
+.comentario-texto{
+font-size: 1rem;
+}
+.comentario-fecha{
+    font-size:0.8rem;
+    color: #666565;
+}
+.bajarcomentarios{
+    background-color: #FFFFFF;
+    width: 100%;
+    height: 3.775vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+.comentarios-vacio{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.2883vh;
+}
+.vacio-titulo{
+    color: #000000;
+    font-size: 1.5625rem;
+    font-weight: 500;
+}
+
     
 
 

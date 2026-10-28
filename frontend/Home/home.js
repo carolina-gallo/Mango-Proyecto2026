@@ -1,22 +1,28 @@
 let posts = [];
+let usuarios = [];
 let postActual;
 const containerPosts = document.getElementById("container-posts");
-const idUsuario = localStorage.getItem("id_usuario");
+const idUsuario = Number(localStorage.getItem("id"));
 
-function obtenerDatosUsuario() {
+async function obtenerDatosUsuario() {
   if (!idUsuario) return;
+  try {
+    const respuesta = await fetch(`http://localhost:3000/mango/usuario/${idUsuario}`);
+    const usuario = await respuesta.json();
+    console.log("usuario recibido:", usuario);
 
-  fetch(`http://localhost:3000/mango/usuario/${idUsuario}`)
-    .then(respuesta => respuesta.text())
-    .then(nombre => {
-      localStorage.setItem("nombre_usuario", nombre);
-    })
-    .catch(error => console.error("Error al obtener usuario:", error));
+    localStorage.setItem("nombre_usuario", usuario.username);
+    localStorage.setItem("foto_perfil", usuario.foto_perfil);
+
+    document.querySelector(".comentarios-avatar.mio").innerHTML =
+      `<img src="${usuario.foto_perfil}" alt="${usuario.username}">`;
+
+  } catch (error) {
+    console.error("Error al obtener usuario:", error);
+  }
 }
-
 (async () => {
     let response;
-    let usuarios;
     
     try{
         await obtenerDatosUsuario();
@@ -26,7 +32,7 @@ function obtenerDatosUsuario() {
 
         response = await fetch('http://localhost:3000/listaUsuarios');
         usuarios = await response.json();
-        
+
         mostrarPosts(posts, usuarios);
         activarVerMas()
 
@@ -112,7 +118,7 @@ if (icono.alt === "like") {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            idUs: idUsuario,
+            idUs: Number(localStorage.getItem("id")),
             idPost: idPost
         })
     });
@@ -149,11 +155,20 @@ function mostrarComentarios(idPost) {
         </section>`;
         input.placeholder = "Empieza la conversación...";
     } else {
+        function buscarFoto(username) {
+            for (let i = 0; i < usuarios.length; i++) {
+            if (usuarios[i].username === username) {
+                return usuarios[i].foto_perfil || "default.jpg";
+            }
+            } 
+            return "default.jpg";
+            }
+    
         comentarioPost.comentarios.forEach((c) => {
             lista.innerHTML += 
             `<section class="comentarios-sección">
             <article class="comentario">
-            <figure class="comentarios-avatar"></figure>
+            <figure class="comentarios-avatar">"${buscarFoto(c.username)}"</figure>
             <div>
                 <p class="comentario-nombre">${c.username}</p>
                 <p class="comentario-texto">${c.texto}</p>
@@ -172,7 +187,7 @@ async function publicarComentario() {
     if (textoComentario === "") return; // Si está vacío, no hace nada
 
     const idPost = popup.dataset.id;
-    const nombre = localStorage.getItem("nombre_usuario") || "Usuario";
+    const nombre = localStorage.getItem("nombre_usuario") || "Anonimo";
 
     try {
         // 2. Envías la petición al servidor (con la coma corregida)
@@ -180,7 +195,7 @@ async function publicarComentario() {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                id_usuario: localStorage.getItem("id_usuario"),
+                username: nombre,
                 idPost: idPost,
                 texto: textoComentario,
                 fecha: new Date().toISOString()

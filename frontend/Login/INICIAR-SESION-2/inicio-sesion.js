@@ -14,8 +14,8 @@ async function validarRespuestas(respuestas) {
     });
 
     if (respuesta.status === 200) { 
-      const usuario = await respuesta.text();
-      localStorage.setItem("id_usuario", usuario.id);
+      const usuario = await respuesta.json();
+      localStorage.setItem("id", usuario.id);
       window.location.href = "../../Home/homeposts.html";
     } else {
       const mensaje = await respuesta.text();

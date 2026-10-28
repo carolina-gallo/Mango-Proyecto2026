@@ -1,14 +1,31 @@
 
 let recetas = [];
+let usuarios = [];
 let postActual;
  const containerRecetas = document.getElementById("recetas");
- const usuarioId = localStorage.getItem("id");
- const usuarioNombre = localStorage.getItem("")
+ const idUsuario = Number(localStorage.getItem("id"));
+
+async function obtenerDatosUsuario() {
+  if (!idUsuario) return;
+  try {
+    const respuesta = await fetch(`http://localhost:3000/mango/usuario/${idUsuario}`);
+    const usuario = await respuesta.json();
+    console.log("usuario recibido:", usuario);
+
+    localStorage.setItem("nombre_usuario", usuario.username);
+    localStorage.setItem("foto_perfil", usuario.foto_perfil);
+
+    document.querySelector(".comentarios-avatar.mio").innerHTML =
+      `<img src="${usuario.foto_perfil}" alt="${usuario.username}">`;
+
+  } catch (error) {
+    console.error("Error al obtener usuario:", error);
+  }
+}
 
 
 (async () => {
     let response;
-    let usuarios;
     try{
         response = await fetch('http://localhost:3000/mango/feedRecetas');
         recetas = await response.json();
@@ -120,7 +137,6 @@ const cajaPopupBandejas = document.getElementById("cajaPopupBandejas");
 const vistasPopup = popupBandejas.querySelectorAll(".bandejas-vista");
 const grillaBandejas = document.getElementById("grillaBandejas");
 const inputNombreBandeja = document.getElementById("inputNombreBandeja");
-const idUsuario = Number(localStorage.getItem("id"));
 
 let recetaAGuardar = null;   // { id, img }
 let bandejaElegida = null;   // id de la bandeja que tocó en la grilla
