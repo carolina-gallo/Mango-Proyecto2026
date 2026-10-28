@@ -108,6 +108,11 @@ containerRecetas.addEventListener("click", (e) => {
         if (img.classList.contains("hipervinculo")) {
             alternarIcono(img, "link.png", "link-amarillo.png");
         }
+        if (img.classList.contains("comentarios")) {
+            const idReceta = img.closest(".publicacion").dataset.id; // o la clase/dataset que uses para el ID
+             localStorage.setItem("idReceta", idReceta);
+            window.location.href = "recetas-informacion.html#comentariosReceta";
+        }
         return;
     }
     const objetivo = e.target;
