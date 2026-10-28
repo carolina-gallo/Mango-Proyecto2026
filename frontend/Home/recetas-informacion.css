@@ -31,10 +31,11 @@
         padding: 0;
         box-sizing:border-box
     }
+
     body{
         width: 100%;
         max-width: 100%;
-        overflow-x:hidden;
+        overflow-x: hidden;
         font-family: 'Nunito' ;
     }
     .contenedorRecetas{
@@ -92,6 +93,10 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        width: 100%;               /* Toma el ancho de su contenedor padre */
+        overflow-x: auto;          /* Muestra la barra de scroll horizontal SOLO si el contenido se sale */
+        overflow-y: hidden;        /* Evita scroll vertical indeseado dentro del contenedor */
+        white-space: nowrap;       /* Opcional: evita que los elementos hijos bajen a otra línea */
     }
     .filtro{
         width: 13.6815vw;
@@ -180,7 +185,6 @@
     }
 
     .comentarios {
-    width: 100%;
     height: 100%;
     overflow-y: auto;
     background-color: white;
@@ -215,7 +219,6 @@
     gap: 3vw;
     background-color: #FFFFFF;
     z-index: 2;
-    margin-top: 1vh;
 }
 .comentarios-titulo{
     padding-top: 1.2766vh;
@@ -282,6 +285,7 @@ font-size: 1rem;
     justify-content: center;
     align-items: center;
     border: none;
+    gap:none;
 }
 
 .comentarios-vacio{
