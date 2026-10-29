@@ -23,8 +23,8 @@ align-items: center;
 
 
 .header {
-    width: 84.825vw;
-    height: 5.6956vh;
+    width: 89.89vw;
+    height: 6vh;
 
     display: flex;
     flex-direction: column;
@@ -33,12 +33,10 @@ align-items: center;
 
 
 .atras {
-    width: 9.7014vw;
-    height: 3.547vh;
+    width: 6.73vw;
+    height: 2.517vh;
 
     color: white;
-    font-size: 10vw;
-    text-decoration: none;
 }
 
 .htexto {
@@ -77,7 +75,6 @@ align-items: center;
 .camaritauwu {
     height: 11.556vh;
     width: 33.5vw;
-
 }
 
 .h2 {
@@ -132,7 +129,7 @@ align-items: center;
     font-family: 'nunito';
     color: #616060;
     font-size: 1.25rem;
-    margin-left: 2vw;.
+    margin-left: 2vw;
 }
 
 .masdevinculo {
