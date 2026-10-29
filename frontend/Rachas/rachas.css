@@ -33,6 +33,12 @@ body {
 .pestaña {
     width: 33.33vw;
     height: 4.233vh;
+
+    border-top: none; 
+    border-left: none;   
+    border-right: none;  
+    border-bottom: 0.3vh solid #633B14;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,7 +52,13 @@ body {
 .pestaña-activa {
     width: 33.33vw;
     height: 4.233vh;
-    margin-bottom: -1px;
+    margin-bottom: -0.01vh;
+
+    border-top: 0.3vh solid #633B14; 
+    border-left: 0.5vw solid #633B14;   
+    border-right: 0.5vw solid #633B14;  
+    border-bottom: none;
+
     border-radius: 0.8rem 0.8rem 0 0;
     display: flex;
     justify-content: center;

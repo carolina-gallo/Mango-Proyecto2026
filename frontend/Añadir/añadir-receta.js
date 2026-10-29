@@ -55,14 +55,14 @@ const dificultad = document.querySelectorAll("#dificultad .saborytiempoydifymeto
 dificultad.forEach(opcion => {
     opcion.addEventListener("click", () => {
         dificultad.forEach(o => o.classList.remove("seleccionado"));
-        opcion.classList.add("seleccionado");
+        opcion.classList.add("seleccionado-naranja");
     });
 });
 
 const metodo = document.querySelectorAll("#metodo .saborytiempoydifymetodo");
 metodo.forEach(opcion => {
     opcion.addEventListener("click", () => {
-        opcion.classList.toggle("seleccionado");
+        opcion.classList.toggle("seleccionado-azul");
     });
 });
 

@@ -407,8 +407,8 @@ h4 {
     padding-right: 2.233vw;
     padding-bottom: 1.8rem;
     border: solid transparent;
-    border-radius: 0.5rem;
-    background-color: #D9D9D9;
+    border-radius: 0.9rem;
+    background-color: white;
     font-weight: bold;
     font-size: 1.3rem;
     font-family: 'Nunito';
@@ -417,6 +417,28 @@ h4 {
 
 .saborytiempoydifymetodo.seleccionado {
     border: 0.5vh solid #F3A73C;
+}
+
+.saborytiempoydifymetodo.seleccionado-azul {
+    background-color: #2B6E7F;
+    color: white;
+    border: none;
+    border: 0.5vh solid #2B6E7F;
+}
+
+.metodo {
+    border: 0.5vh solid #2B6E7F;
+}
+
+.saborytiempoydifymetodo.seleccionado-naranja {
+    background-color: #E3B03B;
+    color: white;
+    border: none;
+    border: 0.5vh solid #E3B03B;
+}
+
+.dificultadd {
+    border: 0.5vh solid #E3B03B;
 }
 
 .tiposdecomidas {
