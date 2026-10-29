@@ -400,46 +400,33 @@ h4 {
 }
 
 .saborytiempoydifymetodo {
+    --color: #6E8039;
     width: auto;
     height: 3.432vh;
     flex-shrink: 0;
     padding-left: 2.233vw;
     padding-right: 2.233vw;
     padding-bottom: 1.8rem;
-    border: solid transparent;
-    border-radius: 0.9rem;
+    border: 0.5vh solid var(--color);
+    border-radius: 0.8rem;
     background-color: white;
+    color: black;
     font-weight: bold;
     font-size: 1.3rem;
     font-family: 'Nunito';
     align-items: center;
 }
 
+#sabor .saborytiempoydifymetodo      { --color: #B73838; }
+#tiempo .saborytiempoydifymetodo     { --color: #657547; } 
+#metodo .saborytiempoydifymetodo     { --color: #2B6E7F; }
+#dificultad .saborytiempoydifymetodo { --color: #E3B03B; }
+
 .saborytiempoydifymetodo.seleccionado {
-    border: 0.5vh solid #F3A73C;
-}
-
-.saborytiempoydifymetodo.seleccionado-azul {
-    background-color: #2B6E7F;
+    background-color: var(--color);
     color: white;
-    border: none;
-    border: 0.5vh solid #2B6E7F;
 }
 
-.metodo {
-    border: 0.5vh solid #2B6E7F;
-}
-
-.saborytiempoydifymetodo.seleccionado-naranja {
-    background-color: #E3B03B;
-    color: white;
-    border: none;
-    border: 0.5vh solid #E3B03B;
-}
-
-.dificultadd {
-    border: 0.5vh solid #E3B03B;
-}
 
 .tiposdecomidas {
     height: 24.828vh;

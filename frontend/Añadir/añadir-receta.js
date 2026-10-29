@@ -40,29 +40,18 @@ filtrosCirculares.forEach(filtro => {
     });
 });
 
-const sabores = document.querySelectorAll(".saboresytiempos .saborytiempoydifymetodo");
-sabores.forEach(saborytiempoydifymetodo => {
-    saborytiempoydifymetodo.addEventListener("click", () => {
-        const grupo = saborytiempoydifymetodo.parentElement;
-        grupo.querySelectorAll(".saborytiempoydifymetodo").forEach(opcion => {
-            opcion.classList.remove("seleccionado");
-        });
-        saborytiempoydifymetodo.classList.add("seleccionado");
+document.querySelectorAll("#sabor, #tiempo, #dificultad").forEach(grupo => {
+    grupo.addEventListener("click", (e) => {
+        const boton = e.target.closest(".saborytiempoydifymetodo");
+        if (!boton) return;
+        grupo.querySelectorAll(".saborytiempoydifymetodo").forEach(o => o.classList.remove("seleccionado"));
+        boton.classList.add("seleccionado");
     });
 });
 
-const dificultad = document.querySelectorAll("#dificultad .saborytiempoydifymetodo");
-dificultad.forEach(opcion => {
+document.querySelectorAll("#metodo .saborytiempoydifymetodo").forEach(opcion => {
     opcion.addEventListener("click", () => {
-        dificultad.forEach(o => o.classList.remove("seleccionado"));
-        opcion.classList.add("seleccionado-naranja");
-    });
-});
-
-const metodo = document.querySelectorAll("#metodo .saborytiempoydifymetodo");
-metodo.forEach(opcion => {
-    opcion.addEventListener("click", () => {
-        opcion.classList.toggle("seleccionado-azul");
+        opcion.classList.toggle("seleccionado");
     });
 });
 
