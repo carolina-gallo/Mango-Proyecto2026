@@ -131,7 +131,7 @@ function mostrarCreador(receta) {
 
     // Insertamos la imagen según el tipo de elemento
     if (creador) {
-      fotoCreador.innerHTML = `<img src="${creador.foto_perfil || 'ruta/por/defecto/avatar.png'}" alt="${creador.username}">`;
+      fotoCreador.innerHTML = `<img src="${creador.foto_perfil || 'ruta/por/defecto/avatar.png'}" alt="${creador.username}" class="avatar-usuario">`;
     }
   } else {
     nombreCreador.textContent = "Usuario";
