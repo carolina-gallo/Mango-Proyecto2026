@@ -63,8 +63,12 @@ function renderizarRecetas(recetas) {
     }
 
     recetas.forEach(receta => {
-        const tarjeta = document.createElement('article');
+        // Cambiamos 'article' por 'a' para la navegación directa
+        const tarjeta = document.createElement('a');
         tarjeta.classList.add('tarjeta-receta');
+        
+        // Redirige a la pantalla pasando el id de la receta
+        tarjeta.href = `recetas-informacion.html?id=${receta.id}`;
 
         tarjeta.innerHTML = `
             <img class="img-receta" src="${receta.imagen_receta}" alt="${receta.nombre}">

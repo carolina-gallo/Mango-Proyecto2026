@@ -36,8 +36,7 @@ function renderizarBandejas(listaBandejas) {
     }
 
     listaBandejas.forEach(bandeja => {
-        // Jaipuru <a> tag ikatu haguáicha oho 'bandejas.html'-pe
-        const enlaceBandeja = document.createElement('a');
+         const enlaceBandeja = document.createElement('a');
         enlaceBandeja.classList.add('bandeja');
         enlaceBandeja.href = `bandejas.html?id=${bandeja.id}`;
 
