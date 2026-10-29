@@ -21,7 +21,6 @@ align-items: center;
     flex-direction: column;
 }
 
-
 .header {
     width: 89.89vw;
     height: 6vh;
@@ -59,8 +58,8 @@ align-items: center;
 .subir-imagen {
     box-sizing: border-box;
     border: solid transparent;
-    width: 84.825vw;
-    height: 32.2654vh;
+    width: 89.89vw;
+    min-height: 32.2654vh;
     padding-top: 8.352vh;
     padding-bottom: 4.119vh;
     border-radius: 2rem;
@@ -71,6 +70,24 @@ align-items: center;
     justify-content:space-between;
     align-items: center;
     }
+
+.subir-imagen {
+    position: relative;
+    overflow: hidden; 
+}
+
+.subir-imagen.con-imagen {
+    padding: 0;
+    border: none;
+}
+
+.subir-imagen.con-imagen .camaritauwu {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 .camaritauwu {
     height: 11.556vh;

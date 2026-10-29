@@ -25,7 +25,7 @@ inputImagen.addEventListener("change", () => {
     lector.addEventListener("load", () => {
         imagenBase64 = lector.result;               
         camaraImg.src = imagenBase64;             
-        camaraImg.style.objectFit = "cover";
+        botonImagen.classList.add("con-imagen"); 
         textoImagen.textContent = "Cambiar imagen";
     });
     lector.readAsDataURL(archivo);
