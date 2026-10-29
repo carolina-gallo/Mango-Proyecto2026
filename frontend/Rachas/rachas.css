@@ -11,7 +11,7 @@ body {
 
 .app {
     width: 100%;
-    padding-top: 5.5vh;          
+    padding-top: 5.4vh;          
     padding-bottom: 6.8649vh;   
     margin-bottom: 3vh;
     display: flex;
@@ -46,6 +46,8 @@ body {
 .pestaña-activa {
     width: 33.33vw;
     height: 4.233vh;
+    margin-bottom: -1px;
+    border-radius: 0.8rem 0.8rem 0 0;
     display: flex;
     justify-content: center;
     align-items: center;
