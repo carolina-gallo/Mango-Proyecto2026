@@ -12,7 +12,7 @@
     height: 13.5vh;
     background-color: white;
     border: 0.01vh solid #CCB6B6;
-    padding: 1.6vh 4vw;
+    padding: 1.6vh 0 1.6vh 4vw;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -22,4 +22,13 @@
 
 .fotoDeMangos{
     height: 13.5vh;
+}
+
+.seguiryseguidores {
+    font-size: 1.25rem;
+    width: 60vw;
+    height: auto;
+    font-weight: bold;
+    color: black;
+    line-height: 1.2;
 }
