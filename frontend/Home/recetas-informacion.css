@@ -236,7 +236,6 @@ width: 9.9502vw;
 aspect-ratio: 1/1;
 background-color: #170069;
 border-radius: 10rem;
-align-self: flex-start;
 }
 
 .enviar-comentario{
@@ -314,6 +313,7 @@ font-size: 1rem;
 }
 .ultimacosa{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 3vw;
@@ -325,12 +325,21 @@ flex-direction: row;
 gap: 1vh;
 align-items: center;
 }
+.circulo-usuario{
+    width: 9.9502vw;
+    aspect-ratio: 1/1;
+    border-radius: 10rem;
+}
 .avatar-usuario{
     width: 9.9502vw;
     aspect-ratio: 1/1;
-    background-color: #F3A73C;
     border-radius: 10rem;
-    }
+}
+.usuarioreceta{
+    flex-wrap: wrap;
+    overflow-wrap: break-word;
+}
+
 .seguir{
     align-self: center;
     width: 47.761vw;
