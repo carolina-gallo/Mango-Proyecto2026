@@ -6,7 +6,6 @@ async function obtenerBandejasUsuario() {
     const idUsuario = localStorage.getItem('idUsuario') || 67; 
 
     try {
-        // Coloca la URL completa con el puerto de tu servidor Express (ej: http://localhost:3000)
         const respuesta = await fetch('http://localhost:3000/mango/mostrarBandejas', {
             method: 'POST',
             headers: {
@@ -37,23 +36,22 @@ function renderizarBandejas(listaBandejas) {
     }
 
     listaBandejas.forEach(bandeja => {
-        const divBandeja = document.createElement('div');
-        divBandeja.classList.add('bandeja');
+         const enlaceBandeja = document.createElement('a');
+        enlaceBandeja.classList.add('bandeja');
+        enlaceBandeja.href = `bandejas.html?id=${bandeja.id}`;
 
-        // Extraer la última receta guardada en el arreglo recetas_bandeja
         const recetas = bandeja.recetas_bandeja || [];
         const ultimaReceta = recetas.length > 0 ? recetas[recetas.length - 1] : null;
 
-        // Si existe al menos una receta con imagen, la usamos; si no, mostramos un fallback
         const imagenUrl = (ultimaReceta && ultimaReceta.imagen_receta) 
             ? ultimaReceta.imagen_receta 
             : 'https://via.placeholder.com/300?text=Sin+recetas';
 
-        divBandeja.innerHTML = `
+        enlaceBandeja.innerHTML = `
             <img class="fotoBandeja" src="${imagenUrl}" alt="${bandeja.nombre_bandeja}">
             <p class="NombreBandeja">${bandeja.nombre_bandeja}</p>
         `;
 
-        contenedor.appendChild(divBandeja);
+        contenedor.appendChild(enlaceBandeja);
     });
 }
