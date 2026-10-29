@@ -4,82 +4,318 @@
     padding: 0;
 }
 
-.post,
-.post2 {
-    width: 83.0845vw;   /* 334px */
-    min-height: 36.8421vh;  /* 322px */
-    background-color: #FFC96C;
-    border: 0.05rem solid black; /* 2px */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-    /* padding: 0.625rem; */
-    gap: 0.2rem;       /* 8px */;
-}
-
-.post h2,
-.post2 h2 {
-    font-size: 1.2em;
-    margin-left: 0.4rem;
-    margin-top: 0.4rem;
-    display: flex;
-    justify-content: flex-start;
-}
-
-.post p,
-.post2 p {
-    font-size: 0.8em;
-    margin-left: 0.4rem;
-    overflow-wrap: anywhere;
-}
-
-.foto {
-    width: 75.62189vw;
-    height: 17.96338vh;
-    flex: 1 1 auto;   /* la imagen crece y ocupa todo el espacio sobrante */
-    min-height: 0;    /* evita que el flex la desborde */
-    object-fit: cover;
-    border: 0.03rem solid black; /* 1px */
-    background-color: white;
-    margin:auto;
-    margin-top: 4.6910vh;
-    margin-bottom: 2.5171vh;
-}
-
-.bottom {
-    background-color: #d9d9d9;
-    width: 100%; /* 20px */
-    margin: 0;
-    height: 5.26vh; /* 46px */;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.interacciones {
-    width: 70%;
+body {font-family: 'Nunito'}
+.app {
+    padding-top: 11.61556vh;
+    width: 100%;
     height: 100%;
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: column;
+    }
+
+.cajita {
+    /*background-color: #585757; */
+    width: 100%;  /* 200px */
+    height: 100%; 
+    min-height: 2.29vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 11.44278vw; 
 }
 
-.icono {
-width: 12.68656vw;
-height: 100%;
-font-size: 1.2rem;
-background-color: #f6b14d;
-display: flex;
-justify-content: center;
-align-items: center;
+.opciones {
+    font-size: 1.25rem ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.15rem; /* 10px */
+    color: black;
+    text-decoration: none;
+    border: none;
+    font-weight: 500;
+    background: none;
 }
+
+.toco:hover {
+    background-color: #f6b14d;
+    color: #FFFFFF;
+}
+
 
 .scrolleo {
-    margin-top: 13vh;
+    padding-top: 15.30vh;
     display: flex;
     flex-direction: column;
     justify-content: stretch;
     align-items: center;
     overflow-y: auto;
     padding-bottom: 6.8649vh;
-    gap: 2.97482vh;
+    gap: 2.4027vh;
+}
+
+.post {
+    width: 100%;
+    min-height: 43.70709vh;  /* 382px */
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    /* padding: 0.625rem; */
+}
+
+.usuario {
+    width: 100%;
+    height: 6.75057vh;
+    background-color: #FFFFFF;
+    padding: 0.375rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
+.fotodeperfil {
+    width: 11.69154vw;
+    aspect-ratio: 1/1;
+    background-color: grey;
+    border-radius: 10rem;
+}
+.post h2 {
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.post p {
+    font-size: 0.8em;
+    margin-left: 0.4rem;
+    overflow-wrap: anywhere;
+}
+
+.foto {
+    width: 100%;
+    min-height: 29.5vh;           
+    max-height: 58vh;
+    flex: none;               
+    object-fit: contain;
+    background-color: white;
+}
+
+.bottom {
+    background-color: #FFECCC;
+    width: 100%;
+    margin: 0;
+    padding: 1.0869vh 5.3482vw 1.0869vh 5.3482vw;
+    min-height: 6.6407322vh; /*56px */;
+    display: flex;
+    justify-content: flex-start;
+    gap: 3.98vw;
+}
+
+.interacciones {
+    width: 32.08955vw;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icono {
+align-self: center;
+width: 7.66915vw;
+aspect-ratio: 1/1;
+/*background-color: #f6b14d;*/
+display: flex;
+justify-content: center;
+align-items: center;
+object-fit: contain;
+cursor: pointer;
+}
+
+.descripcion {
+    width: 52.7363vw;
+    min-height: 4.11899vh;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+    align-self: center;
+}
+.mas {
+    color: grey;
+    cursor: pointer;
+}
+
+.comentarios-fondo {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    margin: auto 0 0 0;      /* lo pega abajo */
+    padding: 0;
+    border: none;
+    border-radius: 2rem 2rem 0 0;
+    background: none;
+}
+.comentarios-fondo[open] {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    height: 60.41189vh;
+    background-color: #FFFFFF;
+    padding-top: 0;            /* el espacio de arriba lo maneja .comentarios-arriba */
+}
+
+.comentarios-popup {
+    width: 100%;
+    height: 100%;              /* antes 60.41189vh */
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.comentarios-fondo[open] {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    height: 60.41189vh;
+    background-color: #FFFFFF;
+    padding-top: 4vh;
+    overflow: hidden; 
+}
+
+.comentarios-fondo::backdrop {
+    background-color: rgb(0 0 0 / 0.4);
+}
+.comentarios-popup{
+    width: 100%;
+    height: 60.41189vh;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.comentarios-linea{
+width: 19.9vw;
+height: 0.1vh;
+background-color: #616060;
+}
+.comentarios-arriba {
+    position: fixed;
+    top: 39.58811vh;           /* 100vh - 60.41189vh: borde de arriba del dialog */
+    width: 100%;
+    padding-top: 3vh;          /* el que antes tenía el dialog */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    border-radius: 2rem 2rem 0 0;
+    z-index: 2;
+}
+
+.comentarios-lista {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;          /* acá scrollea */
+    padding-top: 4.3vh;         /* alto del título + la línea, así el 1er comentario no queda tapado */
+    padding-bottom: 9.43707vh; 
+}
+.sin-comentarios{
+    width: 100%;
+    height: 100%;                
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+.comentarios-escribir {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 7.43707vh;
+    padding: 0 3vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 3vw;
+    background-color: #FFFFFF;
+    z-index: 2;
+}
+.comentarios-titulo{
+    padding-top: 1.2766vh;
+    font-size: 1.4375rem;
+    font-weight: 500;
+}
+
+.comentarios-avatar{
+width: 9.9502vw;
+aspect-ratio: 1/1;
+background-color: #E99848;
+border-radius: 10rem;
+}
+
+.enviar-comentario{
+    position: relative;   /* la referencia para ubicar el ícono */
+    flex: 1;              /* ocupa todo el ancho que sobra al lado del avatar */
+}
+
+.comentarios-input{
+    width: 100%;
+    height: 4.3478vh;
+    background-color: #FFFFFF;
+    border-radius: 3.125rem;
+    border: 0.1rem solid rgb(107 107 107 / 0.69);
+    padding: 0 12vw 0 1rem;   /* espacio a la derecha para que el texto no pise el ícono */
+    outline: none;
+    font-size: 1.125rem;
+}
+
+.comentarios-enviar{
+    position: absolute;
+    right: 3vw;
+    top: 50%;
+    transform: translateY(-50%);   /* lo centra vertical */
+    width: 6vw;
+}
+
+.comentario{
+min-height: 8.5812vh;
+width: 100%;
+display: flex;
+justify-content: flex-start;
+align-items: center;
+padding: 0 3vw;
+gap: 2.487vw;
+}
+.comentario-nombre{
+font-size: 1rem;
+}
+.comentario-texto{
+font-size: 1rem;
+}
+.comentario-fecha{
+    font-size:0.8rem;
+    color: #666565;
+}
+
+.comentarios-vacio{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.2883vh;
+}
+.vacio-titulo{
+    color: #6D813A;
+    font-size: 1.5625rem;
+    font-weight: 700;
+}
+.segundo-texto{
+    font-size: 1.125rem;
+    color: black;
+    font-weight: 600;
 }
