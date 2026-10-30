@@ -99,8 +99,33 @@ button{
 .filtro-circular.seleccionado .circulo 
 { border: 0.6vh solid #F3A73C; }
 
-.filtros-random.seleccionado 
-{ background-color: #F3A73C; color: white; }
+.sabor.seleccionado 
+{ background-color: #B73838; color: white; }
+.tipodecomida.seleccionado 
+{ background-color: #8E5A39; color: white; }
+.tiempo.seleccionado 
+{ background-color: #657547; color: white; }
+.dificultad.seleccionado 
+{ background-color: #E3B03B; color: white; }
+.metodo.seleccionado 
+{ background-color: #2B6E7F; color: white; }
+.filtros-random.seleccionado
+{font-weight:500}
+/*.sabor{
+    border: 0.2rem solid #B73838;
+}
+.tipodecomida{
+    border: 0.2rem solid #8E5A39;
+}
+.tiempo{
+    border: 0.2rem solid #657547;
+}
+.dificultad{
+    border: 0.2rem solid #E3B03B;
+}
+.metodo{
+    border: 0.2rem solid #2B6E7F;
+}*/
 
 .otrosfiltros {
   display: flex;
@@ -116,7 +141,6 @@ button{
   width: 100vw;
   overflow-x: auto;
   white-space: nowrap;
-  scrollbar-width: none;
   padding-bottom: 0.2rem;
 }
 
@@ -124,7 +148,24 @@ button{
     width: 21.9vw;
     height: 3.43vh;
     border-radius: 10rem;
-   background-color: #616060;
+   background-color: white;
+   font-size: 1.6875;
+   font-weight: bold;
+}
+.sabor{
+    border: 0.2rem solid #B73838;
+}
+.tipodecomida{
+    border: 0.2rem solid #8E5A39;
+}
+.tiempo{
+    border: 0.2rem solid #657547;
+}
+.dificultad{
+    border: 0.2rem solid #E3B03B;
+}
+.metodo{
+    border: 0.2rem solid #2B6E7F;
 }
 .filtro-circular,
 .filtro-circular1,

@@ -91,7 +91,7 @@ body {font-family: 'Nunito'}
 }
 
 .post p {
-    font-size: 0.8em;
+    font-size: 1rem;
     margin-left: 0.4rem;
     overflow-wrap: anywhere;
 }
@@ -133,6 +133,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 object-fit: contain;
+margin-top:0.4rem;
 cursor: pointer;
 }
 
