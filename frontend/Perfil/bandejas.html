@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle de Bandeja</title>
-    <link rel="stylesheet" href="../General/general.css">
+    <title>Contenido de la Bandeja</title>
+
     <link rel="stylesheet" href="bandejas.css">
+    <link rel="stylesheet" href="../General/general.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+    </style>
 </head>
 <body>
-
     <header class="encabezado-bandeja">
-        <button id="btnVolver" class="btn-volver">&larr; Volver</button>
-        <h1 id="tituloBandeja">Cargando...</h1>
+        <a href="perfil-bandejas.html" class="boton-volver">&#8592; Volver</a>
+        <h1 id="titulo-bandeja">Cargando...</h1>
     </header>
 
-    <main class="contenedor-recetas" id="contenedorRecetas">
-        <!-- Las recetas de la bandeja se cargarán dinámicamente aquí -->
+    <main class="scrolleo" id="contenedor-recetas">
+        <!-- Las recetas de la bandeja se renderizan aquí -->
     </main>
 
     <script src="bandejas.js"></script>
