@@ -4,6 +4,8 @@ const panel = document.querySelector(".filtros-header");
 const objetosFiltrados = document.getElementById("objetosfiltrados");
 const flechaCerrarpopup = document.getElementById("flecha-cerrar");
 const flechaImg = document.querySelector(".cerrar");
+const header = document.querySelector("header");
+const lista = document.getElementById("recetas");
 
 botonesFiltro.forEach(boton => {
     boton.addEventListener("click", () => {
@@ -35,23 +37,35 @@ function buscarConFiltros() {
         });
 }
 function mostrarObjetosFiltrados() {
-    objetosFiltrados.innerHTML = "";
     const elegidos = document.querySelectorAll(".seleccionado");
+    objetosFiltrados.innerHTML = "";
     elegidos.forEach(boton => {
         objetosFiltrados.innerHTML += `<span class="objetofiltrado">${boton.dataset.filtro} ✕</span>`;
     });
 }
 
 flechaCerrarpopup.addEventListener("click", () => {
-if (panel.hidden) {
+    const elegidos = document.querySelectorAll(".filtro-circular.seleccionado, .filtros-random.seleccionado");
+
+    if (panel.hidden) {
         panel.hidden = false;
         objetosFiltrados.hidden = true;
-        flechaImg.src = "flecha-abajo.png"; 
+        header.classList.remove("colapsado");
+        lista.classList.remove("colapsado");
+        flechaImg.src = "flecha-arriba.png";
     } else {
         panel.hidden = true;
-        objetosFiltrados.hidden = false;
-        flechaImg.src = "flecha-arriba.png";
-        mostrarObjetosFiltrados();
+        header.classList.add("colapsado");
+        lista.classList.add("colapsado");
+        flechaImg.src = "flecha-abajo.png";
+
+        if (elegidos.length === 0) {
+            objetosFiltrados.hidden = true;
+        } else {
+            objetosFiltrados.hidden = false;
+            mostrarObjetosFiltrados();
+        }
+
         buscarConFiltros();
     }
 });

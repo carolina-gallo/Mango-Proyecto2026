@@ -12,6 +12,9 @@ header{
     display: flex;
     flex-direction: column;
     gap: 1.716vh;
+    width: 100%;
+    top: 0;
+    left: 0;
 }
 .filtros-header{
     min-height: 29.633vh;
@@ -22,9 +25,43 @@ header{
     align-items: flex-start;
     gap: 2vh;
 }
-.filtros-header[hidden] { display: none; }
+
 .restricciones{
     font-size: 1.2rem;
+}
+
+header.colapsado {
+    padding-top: 16.33vh;
+    gap: 0
+}
+
+.filtros-header[hidden],
+.objetosfiltrados[hidden] {
+    display: none;
+}
+
+.objetosfiltrados {
+    display: flex;
+    justify-content: center;
+    gap: 2vw;
+    padding: 1vh 3vw;
+    background-color: #FFFFFF;
+    overflow-x: auto;
+    scrollbar-width: none;
+    text-transform: capitalize;
+}
+
+.objetofiltrado {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.5rem;
+    background-color: #E9E9E9;
+    font-size: 0.9rem;
+}
+
+.scrolleo.colapsado {
+    padding-top: 22vh;
 }
 
 .restriccionesydietas{
