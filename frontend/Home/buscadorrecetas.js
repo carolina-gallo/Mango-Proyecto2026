@@ -106,7 +106,7 @@ function buscarConFiltros() {
         .then(datos => {
             console.log("Recetas:", datos.recetas);
             cargarRecetas(datos.recetas)
-            activarVerMas()
+            
         })
         .catch(error => console.error("Error al buscar:", error));
     }

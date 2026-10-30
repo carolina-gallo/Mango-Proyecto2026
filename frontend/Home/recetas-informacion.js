@@ -174,7 +174,7 @@ function mostrarComentarios(comentarios) {
     seccionComentario.innerHTML = `
       <article class="comentario">
         <figure class="comentarios-avatar">
-          <img src="${buscarFoto(c.username)}" alt="${c.username}">
+          <img src="${buscarFoto(c.username)}" alt="${c.username}" class="comentarios-avatar">
         </figure>
         <div>
           <p class="comentario-nombre">${c.username || "Anónimo" }</p>
