@@ -1,4 +1,4 @@
-
+/*
 let recetas_encontrada = buscar(input_usuario);
 
 receta_encontrada.descripcion
@@ -37,3 +37,4 @@ recetas = buscarRecetas(input_usuario);
 borrarFeedActual();
 mostrarRecetas(recetas);
 
+*/

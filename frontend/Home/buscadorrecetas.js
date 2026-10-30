@@ -1,56 +1,57 @@
 
-const filtrosCirculares = document.querySelector("filtro-circular")
+const botonesFiltro = document.querySelectorAll(".filtro-circular, .filtros-random");
+const panel = document.querySelector(".filtros-header");
+const objetosFiltrados = document.getElementById("objetosfiltrados");
+const flechaCerrarpopup = document.getElementById("flecha-cerrar");
+const flechaImg = document.querySelector(".cerrar");
 
-filtrosCirculares.forEach(filtro => {
-    filtro.addEventListener("click", () => {
-        filtro.classList.toggle("seleccionado");
+botonesFiltro.forEach(boton => {
+    boton.addEventListener("click", () => {
+        boton.classList.toggle("seleccionado");
+        buscarConFiltros();
     });
 });
 
-const sabores = document.querySelectorAll(".saboresytiempos");
-sabores.forEach(saborytiempoydifymetodo => {
-    saborytiempoydifymetodo.addEventListener("click", () => {
-        const grupo = saborytiempoydifymetodo.parentElement;
-        grupo.querySelectorAll(".saborytiempoydifymetodo").forEach(opcion => {
-            opcion.classList.remove("seleccionado");
+function leerFiltros() {
+    const filtros = {};
+    document.querySelectorAll(".filtro-circular.seleccionado, .filtros-random.seleccionado").forEach(boton => {
+        filtros[boton.dataset.filtro] = true;
+    });
+    return filtros;
+}
+
+function buscarConFiltros() {
+    fetch("http://localhost:3000/mango/busqueda", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ filtros: leerFiltros() })
+    })
+        .then(response => response.json())
+        .then(datos => {
+            console.log("recetas:", datos.recetas);
+        })
+        .catch(error => {
+            console.error("Error al buscar:", error);
         });
-        saborytiempoydifymetodo.classList.add("seleccionado");
+}
+function mostrarObjetosFiltrados() {
+    objetosFiltrados.innerHTML = "";
+    const elegidos = document.querySelectorAll(".seleccionado");
+    elegidos.forEach(boton => {
+        objetosFiltrados.innerHTML += `<span class="objetofiltrado">${boton.dataset.filtro} ✕</span>`;
     });
+}
+
+flechaCerrarpopup.addEventListener("click", () => {
+if (panel.hidden) {
+        panel.hidden = false;
+        objetosFiltrados.hidden = true;
+        flechaImg.src = "flecha-abajo.png"; 
+    } else {
+        panel.hidden = true;
+        objetosFiltrados.hidden = false;
+        flechaImg.src = "flecha-arriba.png";
+        mostrarObjetosFiltrados();
+        buscarConFiltros();
+    }
 });
-
-const dificultad = document.querySelectorAll(".dificultad");
-dificultad.forEach(opcion => {
-    opcion.addEventListener("click", () => {
-        dificultad.forEach(o => o.classList.remove("seleccionado"));
-        opcion.classList.add("seleccionado");
-    });
-});
-
-const metodo = document.querySelectorAll(".metodo");
-metodo.forEach(opcion => {
-    opcion.addEventListener("click", () => {
-        opcion.classList.toggle("seleccionado");
-    });
-});
-
-
-const tiposDeComida = document.querySelectorAll(".tipodecomida");
-tiposDeComida.forEach(tipo => {
-    tipo.addEventListener("click", () => {
-        tiposDeComida.forEach(opcion => {
-            opcion.classList.remove("seleccionado");
-        });
-
-        tipo.classList.add("seleccionado");
-    });
-});
-    const tiempos = document.querySelectorAll(".tiempo");
-    tiempos.forEach(tiempo => {
-    tiempo.addEventListener("click", () => {
-        tiempo.forEach(opcion => {
-            opcion.classList.remove("seleccionado");
-        });
-
-        tipo.classList.add("seleccionado");
-    });
-})

@@ -22,6 +22,7 @@ header{
     align-items: flex-start;
     gap: 2vh;
 }
+.filtros-header[hidden] { display: none; }
 .restricciones{
     font-size: 1.2rem;
 }
@@ -41,15 +42,26 @@ button{
     text-decoration: none;
     background: none;
 }
-.filtro-circular,
-.filtro-circular1 {
+.filtro-circular{
   flex: 0 0 auto;
-  width: 11.194vw;
+  width: 12.194vw;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  background-color: #616060;
   object-fit: contain;
 }
+
+.circulo {
+    width: 12.194vw;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    transition: 0.2s;
+}
+
+.filtro-circular.seleccionado .circulo 
+{ border: 0.5vh solid #F3A73C; }
+
+.filtros-random.seleccionado 
+{ background-color: #F3A73C; color: white; }
 
 .otrosfiltros {
   display: flex;
@@ -90,16 +102,17 @@ button{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin:0.6vh;
 }
 .cerrar{
     align-self: center;
     width: 5.472vw;
     height: 1.43vh;
-    object-fit: cover;
+    object-fit: contain;
 }
 .scrolleo {
     padding-bottom: 6.8649vh;    /* lugar para el footer */
-    padding-top: 45vh;
+    padding-top: 15.70vh;
     display: flex;
     flex-direction: column;
     align-items: center;
