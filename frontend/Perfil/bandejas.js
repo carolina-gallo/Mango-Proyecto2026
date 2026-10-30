@@ -1,32 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Configurar botón volver
-    document.getElementById('btnVolver').addEventListener('click', () => {
-        window.history.back();
-    });
-
-    cargarDetalleBandeja();
+    cargarRecetasDeBandeja();
 });
 
-async function cargarDetalleBandeja() {
-    // 1. Obtener el ID de la bandeja desde los parámetros de la URL
+async function cargarRecetasDeBandeja() {
     const urlParams = new URLSearchParams(window.location.search);
     const idBandeja = urlParams.get('id');
 
+    const idUsuario = localStorage.getItem('idUsuario') || localStorage.getItem('id') || localStorage.getItem('id_usuario') || 67;
+    const idEnviar = isNaN(Number(idUsuario)) ? idUsuario : Number(idUsuario);
+
+    const tituloElemento = document.getElementById('titulo-bandeja');
+    const contenedor = document.getElementById('contenedor-recetas');
+
     if (!idBandeja) {
-        document.getElementById('tituloBandeja').textContent = 'Bandeja no encontrada';
+        if (tituloElemento) tituloElemento.textContent = 'Bandeja no encontrada';
+        if (contenedor) contenedor.innerHTML = '<p class="sin-recetas">No se especificó ninguna bandeja.</p>';
         return;
     }
 
-    const idUsuario = localStorage.getItem('idUsuario') || 67; 
-
     try {
-        // 2. Traer las bandejas del usuario
         const respuesta = await fetch('http://localhost:3000/mango/mostrarBandejas', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ idUs: Number(idUsuario) })
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ idUs: idEnviar })
         });
 
         if (!respuesta.ok) {
@@ -34,50 +30,68 @@ async function cargarDetalleBandeja() {
         }
 
         const bandejas = await respuesta.json();
+        const bandejaElegida = bandejas.find(b => String(b.id) === String(idBandeja));
 
-        // 3. Filtrar la bandeja seleccionada por ID
-        const bandejaEncontrada = bandejas.find(b => b.id === idBandeja);
-
-        if (!bandejaEncontrada) {
-            document.getElementById('tituloBandeja').textContent = 'Bandeja no existe';
+        if (!bandejaElegida) {
+            if (tituloElemento) tituloElemento.textContent = 'Bandeja no encontrada';
+            if (contenedor) contenedor.innerHTML = '<p class="sin-recetas">La bandeja solicitada no existe.</p>';
             return;
         }
 
-        // 4. Actualizar título y renderizar las recetas
-        document.getElementById('tituloBandeja').textContent = bandejaEncontrada.nombre_bandeja;
-        renderizarRecetas(bandejaEncontrada.recetas_bandeja || []);
+        if (tituloElemento) {
+            tituloElemento.textContent = bandejaElegida.nombre_bandeja;
+        }
+
+        const recetas = bandejaElegida.recetas_bandeja || bandejaElegida.recetas || [];
+        renderizarRecetas(recetas);
 
     } catch (error) {
         console.error('Error al cargar la bandeja:', error);
-        document.getElementById('tituloBandeja').textContent = 'Error al cargar';
+        if (contenedor) {
+            contenedor.innerHTML = '<p class="sin-recetas">Error al cargar las recetas.</p>';
+        }
     }
 }
 
-function renderizarRecetas(recetas) {
-    const contenedor = document.getElementById('contenedorRecetas');
+function renderizarRecetas(listaRecetas) {
+    const contenedor = document.getElementById('contenedor-recetas');
+    if (!contenedor) return;
+
     contenedor.innerHTML = '';
 
-    if (recetas.length === 0) {
-        contenedor.innerHTML = '<p class="sin-recetas">Esta bandeja está vacía.</p>';
+    if (!Array.isArray(listaRecetas) || listaRecetas.length === 0) {
+        contenedor.innerHTML = '<p class="sin-recetas">Esta bandeja no contiene recetas aún.</p>';
         return;
     }
 
-    recetas.forEach(receta => {
-        // Cambiamos 'article' por 'a' para la navegación directa
-        const tarjeta = document.createElement('a');
+    listaRecetas.forEach(receta => {
+        const tarjeta = document.createElement('article');
         tarjeta.classList.add('tarjeta-receta');
-        
-        // Redirige a la pantalla dentro de la carpeta Home pasando el id
-        tarjeta.href = `Home/recetas-informacion.html?id=${receta.id}`;
+        tarjeta.style.cursor = 'pointer';
+
+        const nombre = receta.nombre || receta.titulo || 'Receta sin título';
+        const imagen = receta.imagen_receta || receta.imagen || 'https://via.placeholder.com/300?text=Sin+imagen';
+        const descripcion = receta.descripcion || '';
 
         tarjeta.innerHTML = `
-            <img class="img-receta" src="${receta.imagen_receta}" alt="${receta.nombre}">
+            <img class="foto-receta" src="${imagen}" alt="${nombre}">
             <div class="info-receta">
-                <h3>${receta.nombre}</h3>
-                <p class="desc-receta">${receta.descripcion || ''}</p>
-                <span class="likes">❤️ ${receta.likes_receta || 0}</span>
+                <h3>${nombre}</h3>
+                <p>${descripcion}</p>
             </div>
         `;
+
+        // Guarda el ID y abre la vista detallada en Home
+        tarjeta.addEventListener('click', () => {
+            const idReceta = receta.id ?? receta.id_receta ?? receta.idRec;
+
+            if (idReceta !== undefined && idReceta !== null) {
+                localStorage.setItem('idReceta', String(idReceta));
+                window.location.href = '../Home/recetas-informacion.html';
+            } else {
+                console.error('La receta no posee ID:', receta);
+            }
+        });
 
         contenedor.appendChild(tarjeta);
     });

@@ -3,15 +3,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function obtenerBandejasUsuario() {
-    const idUsuario = localStorage.getItem('idUsuario') || 67; 
+    const idUsuario = localStorage.getItem('idUsuario') || localStorage.getItem('id') || localStorage.getItem('id_usuario') || 67; 
+    const idEnviar = isNaN(Number(idUsuario)) ? idUsuario : Number(idUsuario);
 
     try {
         const respuesta = await fetch('http://localhost:3000/mango/mostrarBandejas', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ idUs: Number(idUsuario) })
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ idUs: idEnviar })
         });
 
         if (!respuesta.ok) {
@@ -28,32 +27,37 @@ async function obtenerBandejasUsuario() {
 
 function renderizarBandejas(listaBandejas) {
     const contenedor = document.getElementById('bandejas');
+    if (!contenedor) return;
+
     contenedor.innerHTML = '';
 
-    if (!listaBandejas || listaBandejas.length === 0) {
+    if (!Array.isArray(listaBandejas) || listaBandejas.length === 0) {
         contenedor.innerHTML = '<p class="sin-bandejas">No tienes bandejas creadas.</p>';
         return;
     }
 
     listaBandejas.forEach(bandeja => {
-         const enlaceBandeja = document.createElement('a');
-        enlaceBandeja.classList.add('bandeja');
-        enlaceBandeja.href = `bandejas.html?id=${bandeja.id}`;
+        const tarjetaBandeja = document.createElement('div');
+        tarjetaBandeja.classList.add('bandeja');
+        tarjetaBandeja.style.cursor = 'pointer';
 
-        const recetas = bandeja.recetas_bandeja || [];
+        const recetas = bandeja.recetas_bandeja || bandeja.recetas || [];
         const ultimaReceta = recetas.length > 0 ? recetas[recetas.length - 1] : null;
 
-        const imagenUrl = (ultimaReceta && ultimaReceta.imagen_receta) 
-            ? ultimaReceta.imagen_receta 
+        const imagenUrl = (ultimaReceta && (ultimaReceta.imagen_receta || ultimaReceta.imagen)) 
+            ? (ultimaReceta.imagen_receta || ultimaReceta.imagen) 
             : 'https://via.placeholder.com/300?text=Sin+recetas';
 
-        enlaceBandeja.innerHTML = `
+        tarjetaBandeja.innerHTML = `
             <img class="fotoBandeja" src="${imagenUrl}" alt="${bandeja.nombre_bandeja}">
             <p class="NombreBandeja">${bandeja.nombre_bandeja}</p>
         `;
 
-        contenedor.appendChild(enlaceBandeja);
-    });
+        // Al tocar la bandeja redirige a bandejas.html pasando la ID en la URL
+        tarjetaBandeja.addEventListener('click', () => {
+            window.location.href = `bandejas.html?id=${bandeja.id}`;
+        });
 
-    
+        contenedor.appendChild(tarjetaBandeja);
+    });
 }
