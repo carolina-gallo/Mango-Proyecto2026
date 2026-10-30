@@ -54,4 +54,6 @@ function renderizarBandejas(listaBandejas) {
 
         contenedor.appendChild(enlaceBandeja);
     });
+
+    
 }
