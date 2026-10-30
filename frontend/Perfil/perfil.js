@@ -30,32 +30,31 @@ async function obtenerRecetasUsuario() {
     }
 }
 
-function renderizarRecetas(listaRecetas) {
-    const contenedor = document.getElementById('recetas');
-    if (!contenedor) return;
-
+function renderizarRecetas(recetas) {
+    const contenedor = document.getElementById('contenedorRecetas');
     contenedor.innerHTML = '';
 
-    if (!listaRecetas || listaRecetas.length === 0) {
-        contenedor.innerHTML = '<p class="sin-recetas">No tienes recetas creadas.</p>';
+    if (recetas.length === 0) {
+        contenedor.innerHTML = '<p class="sin-recetas">Esta bandeja está vacía.</p>';
         return;
     }
 
-    listaRecetas.forEach(receta => {
-        const enlaceReceta = document.createElement('a');
-        enlaceReceta.classList.add('receta');
+    recetas.forEach(receta => {
+        const tarjeta = document.createElement('a');
+        tarjeta.classList.add('tarjeta-receta');
         
-        const idReceta = receta.id || receta.id_receta;
-        enlaceReceta.href = `recetas.html?id=${idReceta}`;
+        // Sube un nivel desde 'Perfil' para ingresar a 'Home'
+        tarjeta.href = `/frontend/Home/recetas-informacion.html?id=${receta.id}`;
 
-        const imagenUrl = receta.imagen_receta || receta.imagen || 'https://via.placeholder.com/300?text=Sin+imagen';
-        const nombreReceta = receta.nombre_receta || receta.nombre || receta.titulo || 'Receta sin título';
-
-        enlaceReceta.innerHTML = `
-            <img class="fotoReceta" src="${imagenUrl}" alt="${nombreReceta}">
-            <p class="NombreReceta">${nombreReceta}</p>
+        tarjeta.innerHTML = `
+            <img class="img-receta" src="${receta.imagen_receta}" alt="${receta.nombre}">
+            <div class="info-receta">
+                <h3>${receta.nombre}</h3>
+                <p class="desc-receta">${receta.descripcion || ''}</p>
+                <span class="likes">❤️ ${receta.likes_receta || 0}</span>
+            </div>
         `;
 
-        contenedor.appendChild(enlaceReceta);
+        contenedor.appendChild(tarjeta);
     });
 }

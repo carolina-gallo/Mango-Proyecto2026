@@ -67,8 +67,8 @@ function renderizarRecetas(recetas) {
         const tarjeta = document.createElement('a');
         tarjeta.classList.add('tarjeta-receta');
         
-        // Redirige a la pantalla pasando el id de la receta
-        tarjeta.href = `recetas-informacion.html?id=${receta.id}`;
+        // Redirige a la pantalla dentro de la carpeta Home pasando el id
+        tarjeta.href = `Home/recetas-informacion.html?id=${receta.id}`;
 
         tarjeta.innerHTML = `
             <img class="img-receta" src="${receta.imagen_receta}" alt="${receta.nombre}">
