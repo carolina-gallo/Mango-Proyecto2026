@@ -273,6 +273,7 @@ gap: 2.487vw;
 }
 .comentario-nombre{
 font-size: 1rem;
+font-weight: bold;
 }
 .comentario-texto{
 font-size: 1rem;

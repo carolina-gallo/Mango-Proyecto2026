@@ -99,40 +99,43 @@ const lista = document.getElementById("lista-comentarios");
 const input = document.getElementById("input-comentario");
 const enviar = document.querySelector(".comentarios-enviar");
 
-containerPosts.addEventListener("click", async (icon) => {
-    const icono = icon.target.closest(".icono");
-    if (!icono) return;
-
-if (icono.alt === "like") {
-    const tieneLike = icono.src.includes("likenaranja.png");
-    if (tieneLike) {
-    icono.src = "likenegro.png";
-    } else {
-    icono.src = "likenaranja.png";
+containerPosts.addEventListener("click", (e) => {
+    const icono = e.target.closest(".icono");
+    if (!icono || icono.alt !== "like") return;
 
     const idPost = icono.closest(".post").dataset.id;
-    console.log("idPost:", idPost);
-    console.log("idUs:", localStorage.getItem("id"));
-// CHEQUEAR SI ESTO ANDAAA Y LE LLEGA A MARTU
-    await fetch("http://localhost:3000/mango/post/like", {
+    const idUs = Number(localStorage.getItem("id"));
+
+    if (!idUs) {
+        console.warn("Usuario no autenticado");
+        return;
+    }
+
+    fetch("http://localhost:3000/mango/post/like", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            idUs: Number(localStorage.getItem("id")),
-            idPost: idPost
-        })
+        body: JSON.stringify
+            ({ idUs, idPost })
+    })
+    .then((respuesta) => respuesta.json())
+    .then((data) => {
+        if (data.status === "liked") {
+            icono.src = "likenaranja.png";
+        } else if (data.status === "unliked") {
+            icono.src = "likenegro.png";
+        }
+    })
+    .catch((error) => {
+        console.error("Error al enviar el like:", error);
     });
-    }
-  }
+});
 
   if (icono.alt === "comentarios") {
-    const idPost = icono.closest(".post").dataset.id;
     popup.dataset.id = idPost;
     console.log("idPost:", idPost, "posts:", posts);
     mostrarComentarios(idPost);
     popup.showModal();
   }
-});
 
 function buscarPost(idPost) {
     for (let i = 0; i < posts.length; i++) {

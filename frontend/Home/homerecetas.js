@@ -112,7 +112,7 @@ containerRecetas.addEventListener("click", (e) => {
         if (img.classList.contains("comentarios")) {
             const idReceta = img.closest(".publicacion").dataset.id; // o la clase/dataset que uses para el ID
              localStorage.setItem("idReceta", idReceta);
-            window.location.href = "recetas-informacion.html#comentariosReceta";
+            window.location.href = "recetas-informacion.html#ComentariosReceta";
         }
         return;
     }
