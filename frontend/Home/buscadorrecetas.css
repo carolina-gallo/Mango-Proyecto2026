@@ -7,6 +7,14 @@ body {font-family: 'Nunito'}
 
 header{
     position: fixed;
+    z-index: 999;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    gap: 1.716vh;
+    width: 100%;
+    top: 0;
+    left: 0;
 }
 .filtros-header{
     min-height: 29.633vh;
@@ -17,38 +25,107 @@ header{
     align-items: flex-start;
     gap: 2vh;
 }
+
 .restricciones{
     font-size: 1.2rem;
+}
+
+header.colapsado {
+    padding-top: 16.33vh;
+    gap: 0
+}
+
+.filtros-header[hidden],
+.objetosfiltrados[hidden] {
+    display: none;
+}
+
+.objetosfiltrados {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 2vw;
+    padding: 1vh 3vw;
+    background-color: #FFFFFF;
+    overflow-x: auto;
+    scrollbar-width: none;
+    flex-wrap: wrap;
+    text-transform: capitalize;
+}
+
+.objetofiltrado {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.5rem;
+    background-color: #E9E9E9;
+    font-size: 0.9rem;
+}
+
+.scrolleo.colapsado {
+    padding-top: 28vh;
 }
 
 .restriccionesydietas{
     display: flex;
     align-items: center;
     gap: 5vw;
-    width: 100%;
-    overflow-x: auto;
+    width: 100vw;
     overflow-y: hidden;
     padding-bottom: 0.5rem;
     scrollbar-width: none;
-}
-.restriccionesydietas::-webkit-scrollbar,
-.muchascositas::-webkit-scrollbar {
-  display: none;
+    overflow-x: auto
 }
 button{
     border:none;
     text-decoration: none;
     background: none;
 }
-.filtro-circular,
-.filtro-circular1 {
+.filtro-circular{
   flex: 0 0 auto;
-  width: 11.194vw;
+  width: 12.194vw;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  background-color: #616060;
   object-fit: contain;
 }
+
+.circulo {
+    width: 12.194vw;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    transition: 0.2s;
+}
+
+.filtro-circular.seleccionado .circulo 
+{ border: 0.6vh solid #F3A73C; }
+
+.sabor.seleccionado 
+{ background-color: #B73838; color: white; }
+.tipodecomida.seleccionado 
+{ background-color: #8E5A39; color: white; }
+.tiempo.seleccionado 
+{ background-color: #657547; color: white; }
+.dificultad.seleccionado 
+{ background-color: #E3B03B; color: white; }
+.metodo.seleccionado 
+{ background-color: #2B6E7F; color: white; }
+.filtros-random.seleccionado
+{font-weight:500}
+/*.sabor{
+    border: 0.2rem solid #B73838;
+}
+.tipodecomida{
+    border: 0.2rem solid #8E5A39;
+}
+.tiempo{
+    border: 0.2rem solid #657547;
+}
+.dificultad{
+    border: 0.2rem solid #E3B03B;
+}
+.metodo{
+    border: 0.2rem solid #2B6E7F;
+}*/
 
 .otrosfiltros {
   display: flex;
@@ -61,16 +138,41 @@ button{
   display: flex;
   align-items: center;
   gap: 1rem;
+  width: 100vw;
   overflow-x: auto;
   white-space: nowrap;
-  scrollbar-width: none;
   padding-bottom: 0.2rem;
 }
 
+.filtros-random{
+    width: 21.9vw;
+    height: 3.43vh;
+    border-radius: 10rem;
+   background-color: white;
+   font-size: 1.6875;
+   font-weight: bold;
+}
+.sabor{
+    border: 0.2rem solid #B73838;
+}
+.tipodecomida{
+    border: 0.2rem solid #8E5A39;
+}
+.tiempo{
+    border: 0.2rem solid #657547;
+}
+.dificultad{
+    border: 0.2rem solid #E3B03B;
+}
+.metodo{
+    border: 0.2rem solid #2B6E7F;
+}
+.filtro-circular,
+.filtro-circular1,
 .filtros-random,
 .tipodecomida,
 .saborytiempoydifymetodo {
-  flex: 0 0 auto;
+    flex: 0 0 auto;        
 }
 
 .flecha-cerrar{
@@ -80,15 +182,17 @@ button{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin:0.6vh;
 }
 .cerrar{
+    align-self: center;
     width: 5.472vw;
     height: 1.43vh;
-    object-fit: cover;
+    object-fit: contain;
 }
 .scrolleo {
     padding-bottom: 6.8649vh;    /* lugar para el footer */
-    padding-top: 45vh;
+    padding-top: 15.70vh;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -103,6 +103,7 @@ containerRecetas.addEventListener("click", (e) => {
 
         if (img.classList.contains("guardado")) {
             alternarIcono(img, "guardado.png", "guardado-amarillo.png");
+            const imagenReceta = publicacion.querySelector(".fotoReceta").src;
             mostrarPopupBandeja(img.closest(".publicacion").dataset.id, img);
         }
         if (img.classList.contains("hipervinculo")) {
@@ -143,22 +144,21 @@ const vistasPopup = popupBandejas.querySelectorAll(".bandejas-vista");
 const grillaBandejas = document.getElementById("grillaBandejas");
 const inputNombreBandeja = document.getElementById("inputNombreBandeja");
 
-let recetaAGuardar = null;   // { id, img }
-let bandejaElegida = null;   // id de la bandeja que tocó en la grilla
+let recetaAGuardar;
+let bandejaElegida;
 let seGuardo;
 
 function cambiarVista(idVista) {
     vistasPopup.forEach((vista) => {
         vista.hidden = vista.id !== idVista;
     });
-    // la grilla va con fondo blanco
     cajaPopupBandejas.classList.toggle("fondo-blanco", idVista === "vistaBandejas");
 }
 
 function mostrarPopupBandeja(idReceta, img) {
-    recetaAGuardar = { id: idReceta, img: img };
+    recetaAGuardar = { id: idReceta, img: img, imagen:imagenReceta};
     bandejaElegida = null;
-    let seGuardo = false;
+    seGuardo = false;
     inputNombreBandeja.value = "";
     img.src = "guardado.png";  // resetear el ícono a gris
     cambiarVista("vistaOpciones");
@@ -186,7 +186,7 @@ document.getElementById("botonGuardarNuevaBandeja").addEventListener("click", as
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 id_usuario: idUsuario,
-                imagen_bandeja: "default.jpg",
+                imagen_bandeja: recetaAGuardar.imagen,
                 nombre_bandeja: nombre,
                 filtros: {}
             })
@@ -215,7 +215,7 @@ document.getElementById("botonBandejaExistente").addEventListener("click", async
         bandejas.forEach((bandeja) => {
             const foto = document.createElement("img");
             foto.className = "bandeja-foto";
-            foto.src = bandeja.imagen_bandeja;
+            foto.src = recetaAGuardar.imagen;
             foto.alt = bandeja.nombre_bandeja;
             foto.title = bandeja.nombre_bandeja;
             foto.dataset.id = bandeja.id;

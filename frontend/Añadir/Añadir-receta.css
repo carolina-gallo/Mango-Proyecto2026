@@ -27,8 +27,8 @@ align-items: center;
 }
 
 .header {
-    width: 84.825vw;
-    height: 5.6956vh;
+    width: 89.89vw;
+    height: 6vh;
 
     display: flex;
     flex-direction: column;
@@ -37,12 +37,10 @@ align-items: center;
 
 
 .atras {
-    width: 9.7014vw;
-    height: 3.547vh;
+    width: 6.73vw;
+    height: 2.517vh;
 
     color: white;
-    font-size: 10vw;
-    text-decoration: none;
 }
 
 .htexto {
@@ -89,7 +87,7 @@ align-items: center;
     box-sizing: border-box;
     border: solid transparent;
     width: 89.89vw;
-    height: 32.2654vh;
+    min-height: 32.2654vh;
     padding-top: 8.352vh;
     padding-bottom: 4.119vh;
     border-radius: 2rem;
@@ -100,6 +98,24 @@ align-items: center;
     justify-content:space-between;
     align-items: center;
     }
+
+.subir-imagen {
+    position: relative;
+    overflow: hidden; 
+}
+
+.subir-imagen.con-imagen {
+    padding: 0;
+    border: none;
+}
+
+.subir-imagen.con-imagen .camaritauwu {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 .camaritauwu {
     height: 11.556vh;
@@ -384,24 +400,33 @@ h4 {
 }
 
 .saborytiempoydifymetodo {
+    --color: #6E8039;
     width: auto;
     height: 3.432vh;
     flex-shrink: 0;
     padding-left: 2.233vw;
     padding-right: 2.233vw;
     padding-bottom: 1.8rem;
-    border: solid transparent;
-    border-radius: 0.5rem;
-    background-color: #D9D9D9;
+    border: 0.5vh solid var(--color);
+    border-radius: 0.8rem;
+    background-color: white;
+    color: black;
     font-weight: bold;
     font-size: 1.3rem;
     font-family: 'Nunito';
     align-items: center;
 }
 
+#sabor .saborytiempoydifymetodo      { --color: #B73838; }
+#tiempo .saborytiempoydifymetodo     { --color: #657547; } 
+#metodo .saborytiempoydifymetodo     { --color: #2B6E7F; }
+#dificultad .saborytiempoydifymetodo { --color: #E3B03B; }
+
 .saborytiempoydifymetodo.seleccionado {
-    border: 0.5vh solid #F3A73C;
+    background-color: var(--color);
+    color: white;
 }
+
 
 .tiposdecomidas {
     height: 24.828vh;

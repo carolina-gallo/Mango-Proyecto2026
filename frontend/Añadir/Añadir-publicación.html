@@ -17,16 +17,20 @@
 <div class="app">
     <main class="main">
         <header class="header">
-            <a href="Añadir.html" class="atras"> ← </a>
+            <a href="../Home/homeposts.html">
+                <img class="atras" src="Atras.png" alt="atras">
+            </a>
         </header>  
             <div class="texto-superior"> 
                 <h1 class="htexto">CREAR POST</h1>
             </div>
         <form class="form" id="formPost">
             <button type="button" class="subir-imagen">
-                <img class="camaritauwu" src="camara.png" alt="camarita">
-                <h2 class="h2">Agregar foto</h2>
+                        <img class="camaritauwu" src="camara.png" alt="camarita">
+                        <h2 class="h2">Añade una imagen</h2>
             </button>
+            <input type="file" id="inputImagen" accept="image/*" hidden>
+            
             <textarea class="descripcion" id="descripcion" name="descripcion" placeholder="Añade una descripción..."></textarea>
             <button type="button" class="vinculo" id="botonVinculo">
                 <img class="simboloenlace" src="simboloenlace.png" alt="enlace">

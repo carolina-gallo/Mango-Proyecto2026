@@ -1,0 +1,19 @@
+.maestrias{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1vh;
+}
+
+.maestria {
+    margin-top: 1vh;
+    width: 89vw;
+    height: 8.352vh;
+    padding: 1.6vh 4vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2vw;
+}

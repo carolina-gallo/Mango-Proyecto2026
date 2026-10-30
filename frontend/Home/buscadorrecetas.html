@@ -15,7 +15,7 @@
 
 <body>
     <header>
-        <main class="header-buscador">
+        <section class="header-buscador">
         <article class="barra-superior">
             <div class="buscar">
                 <img src="icono-buscador.png" alt="icono-buscador" class="vector">
@@ -28,142 +28,133 @@
             <button id="btn-posts" class="opciones toco"><a class="a" href="../Home/buscadorposts.html">Posts</a></button>
             <button id="btn-perfil" class="opciones toco"><a class="a" href="../Home/buscadorperfiles.html">Perfil</a></button>
         </div>
-    </main>
-    <main class="filtros-header">
+        </section>
+    <section class="filtros-header">
         <h1 class="restricciones">Restricciones y Dietas</h1>
         <section class="restriccionesydietas">
-         <button type="button" class="filtro-circular1" data-filtro="vegano">
-                <span class="circulo" id="vegano"></span>
+            <button type="button" class="filtro-circular" data-filtro="celiacx">
+                <img class="circulo" src="../Sin tacc.png" alt="sin tacc">
             </button>
-            <button type="button" class="filtro-circular" data-filtro="sin_tacc">
-                <span class="circulo" id="sintacc"></span>
+            <button type="button" class="filtro-circular" data-filtro="veganx">
+                <img class="circulo" src="../Vegano.png" alt="vegano">
             </button>
-            <button type="button" class="filtro-circular" data-filtro="sin_lactosa">
-                <span class="circulo" id="vegetariano"></span>
+            <button type="button" class="filtro-circular" data-filtro="vegetarianx">
+                <img class="circulo" src="../Vegetariano.png" alt="vegetariano">
             </button>
-            <button type="button" class="filtro-circular" data-filtro="sin_azucar">
-                <span class="circulo" id="kosher"></span>
+            <button type="button" class="filtro-circular" data-filtro="kosher">
+                <img class="circulo" src="../Kosher.png" alt="kosher">
             </button>
-            <button type="button" class="filtro-circular" data-filtro="vegano">
-                <span class="circulo" id="hipertenso"></span>
+            <button type="button" class="filtro-circular" data-filtro="hipertensx">
+                <img class="circulo" src="../Hipertencion.png" alt="hipertenso">
             </button>
-            <button type="button" class="filtro-circular" data-filtro="sin_tacc">
-                <span class="circulo" id="diabetes"></span>
+            <button type="button" class="filtro-circular" data-filtro="diabeticx">
+                <img class="circulo" src="../Diabetes.png" alt="diabetes">
             </button>
-            <button type="button" class="filtro-circular" data-filtro="sin_lactosa">
-                <span class="circulo" id="bajocolesterol"></span>
+            <button type="button" class="filtro-circular" data-filtro="bajo colesterol">
+                <img class="circulo" src="../Bajo colesterol.png" alt="bajo colesterol">
             </button>
-            <button type="button" class="filtro-circular" data-filtro="sin_azucar">
-                <span class="circulo" id="keto"></span>
+            <button type="button" class="filtro-circular" data-filtro="keto">
+                <img class="circulo" src="../keto.png" alt="keto">
             </button>
-            <button type="button" class="filtro-circular" data-filtro="vegano">
-                <span class="circulo" id="alergiafrutossecos"></span>
+            <button type="button" class="filtro-circular" data-filtro="alergia a frutos secos">
+                <img class="circulo" src="../A. mani.png" alt="frutos secos">
             </button>
-            <button type="button" class="filtro-circular" data-filtro="sin_tacc">
-                <span class="circulo" id="sinlactosa"></span>
+            <button type="button" class="filtro-circular" data-filtro="intolerancia a la lactosa">
+                <img class="circulo" src="../Intolerancia a la lactosa.png" alt="intolerancia a la lactosa">
             </button>
         </section>
         <section class="otrosfiltros">
             <h1 class="restricciones">Otros filtros</h1>
             <article class="muchascositas">
-                <button type="button" class="filtros-random" data-filtros-random="dulce">
+                <button type="button" class="filtros-random sabor" data-filtro="dulce">
                 <span>Dulce</span>
                 </button>
-                <button type="button" class="filtros-random" data-filtros-random="salado">
+                <button type="button" class="filtros-random sabor" data-filtro="salado">
                     <span>Salado</span>
                 </button>
-                <button type="button" class="filtros-random" data-filtros-random="umami">
+                <button type="button" class="filtros-random sabor" data-filtro="umami">
                     <span>Umami</span>
                 </button>
-                <button type="button" class="filtros-random" data-filtros-random="picante">
+                <button type="button" class="filtros-random sabor" data-filtro="picante">
                     <span>Picante</span>
                 </button>
-                <button type="button" class="filtros-random" data-filtros-random="agridulce">
+                <button type="button" class="filtros-random sabor" data-filtro="agridulce">
                     <span>Agridulce</span>
                 </button>
-                <button type="button" class="filtros-random" data-filtros-random="acido">
+                <button type="button" class="filtros-random sabor" data-filtro="acido" >
                     <span>Ácido</span>
                 </button>
 
-                <button type="button" class="tipodecomida" data-tipo="bebida">
+                <button type="button" class="filtros-random tipodecomida" data-filtro="bebida">
                     <span class="cuadradito"></span>
                     <span class="nombre-comida">Bebida</span>
                 </button>
-                <button type="button" class="tipodecomida" data-tipo="postre">
+                <button type="button" class="filtros-random tipodecomida" data-filtro="postre">
                     <span class="cuadradito"></span>
                     <span class="nombre-comida">Postre</span>
                 </button>
-                <button type="button" class="tipodecomida" data-tipo="comida">
+                <button type="button" class="filtros-random tipodecomida" data-filtro="comida">
                     <span class="cuadradito"></span>
                     <span class="nombre-comida">Comida</span>
                 </button>
-                <button type="button" class="tipodecomida" data-tipo="snack">
+                <button type="button" class="filtros-random tipodecomida" data-filtro="snack">
                     <span class="cuadradito"></span>
                     <span class="nombre-comida">Snack</span>
                 </button>
             </article>
 
             <article class="muchascositas">
-                <button type="button" class="filtros-random" data-filtros-random="1-15m">
+                <button type="button" class="filtros-random tiempo" data-filtro="1-15min">
                     <span>1-15m</span>
                 </button>
-                <button type="button" class="filtros-random" data-filtros-random="15-30m">
+                <button type="button" class="filtros-random tiempo" data-filtro="15-30min">
                     <span>15-30m</span>
                 </button>
-                <button type="button" class="filtros-random" data-filtros-random="30-60m">
+                <button type="button" class="filtros-random tiempo" data-filtro="30-60min">
                     <span>30-60m</span>
                 </button>
-                <button type="button" class="filtros-random" data-filtros-random="+60m">
+                <button type="button" class="filtros-random tiempo" data-filtro="+60min">
                     <span>+60m</span>
                 </button>
 
-                    <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="alta">
+                    <button type="button" class="filtros-random dificultad" data-filtro="alta">
                         <span>Alta</span>
                     </button>
-                    <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="media">
+                    <button type="button" class="filtros-random dificultad" data-filtro="media">
                         <span>Media</span>
                     </button>
-                    <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="baja">
+                    <button type="button" class="filtros-random dificultad" data-filtro="baja">
                         <span>Baja</span>
                     </button>
 
-                    <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="horo">
+                    <button type="button" class="filtros-random metodo" data-filtro="horno">
                         <span>Horno</span>
                     </button>
-                    <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="airfryer">
+                    <button type="button" class="filtros-random metodo" data-filtro="airfryer">
                         <span>Airfryer</span>
                     </button>
-                    <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="sarten">
+                    <button type="button" class="filtros-random metodo" data-filtro="sarten">
                         <span>Sartén</span>
                     </button>
-                    <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="olla">
+                    <button type="button" class="filtros-random metodo" data-filtro="olla">
                         <span>Olla</span>
                     </button>
-                    <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="microondas">
+                    <button type="button" class="filtros-random metodo" data-filtro="microondas">
                         <span>Microondas</span>
                     </button>
-                    <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="heladera">
+                    <button type="button" class="filtros-random metodo" data-filtro="heladera">
                         <span>Heladera</span>
                     </button>
-                    <button type="button" class="saborytiempoydifymetodo" data-saborytiempoydifymetodo="nada">
+                    <button type="button" class="filtros-random metodo" data-filtro="nada">
                         <span>Nada</span>
                     </button>
             </article>
-
-            <article class="muchascositas">
-                
-            </article>
-
-            
-
-            <article class="muchascositas">
-                
-            </article>
         </section>
-        <div class="flecha-cerrar">
-            <img src="cerrar.png" alt="cerrar-filtros" class="cerrar">
-        </div>
-    </main>
+    </section>
+    <section class="objetosfiltrados" id="objetosfiltrados" hidden></section>
+    <div class="flecha-cerrar" id="flecha-cerrar">
+        <img src="flecha-abajo.png" alt="cerrar-filtros" class="cerrar">
+    </div>
 </header>
 
     <main class="scrolleo" id="recetas">
@@ -302,14 +293,24 @@
    
 
     <footer class="footer">
-    <a href="../Home/homeposts.html" class="fcolorcitos">H</a>
-    <a href="../Mensajeria/mensajes.html" class="fcolorcitos">M</a>
+    <a href="../Home/homeposts.html">
+        <img class="fotoEnElFooter" src="../home naranja.png" alt="foto home naranja">
+    </a>
+    <a href="../Mensajeria/mensajes.html">
+        <img class="fotoEnElFooter" src="../mensajeria negro.png" alt="foto mensajeria">
+    </a>
     <div>
-    <a href="#" class="fcuadraditote" id="botonMas">+</a>
+    <a href="#" class="fcuadraditote" id="botonMas">
+        <img class="fotoEnElFooter" src="../mas negro.png" alt="mas">
+    </a>
     </div>
-    <a href="../Rachas/rachas.html" class="fcolorcitos">R</a>
-    <a href="../Perfil/perfil.html" class="fcolorcitos naranjita">P</a>
-</footer>
+    <a href="../Rachas/rachas.html">
+        <img class="fotoEnElFooter" src="../triple m negro.png" alt="foto rachas">
+    </a>
+    <a href="../Perfil/perfil.html">
+        <img class="fotoEnElFooter" src="../perfil negro.png" alt="foto perfil">
+    </a>
+    </footer>
 
     <dialog class="menuCrearpopup" id="menuCrearpopup">
         <section class="crearpopup" id="crearpopup">
@@ -331,7 +332,9 @@
     </dialog>
 
 </main>
+<script src="buscadorrecetas.js"></script>
 <script src="buscador.js"></script>
+<script src="homerecetas.js"></script>
 <script src="../General/general.js"></script>
 </body>
 </html>

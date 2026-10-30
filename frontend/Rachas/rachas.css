@@ -11,7 +11,7 @@ body {
 
 .app {
     width: 100%;
-    padding-top: 5.5vh;          
+    padding-top: 5.4vh;          
     padding-bottom: 6.8649vh;   
     margin-bottom: 3vh;
     display: flex;
@@ -27,17 +27,48 @@ body {
     background-color: #FFC96C;
     display: flex;
     flex-direction: row;
+    align-items:flex-end;
 }
 
 .pestaña {
-    flex: 1;
+    width: 33.33vw;
+    height: 4.233vh;
+
+    border-top: none; 
+    border-left: none;   
+    border-right: none;  
+    border-bottom: 0.3vh solid #633B14;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 0.9rem;
+    font-size: 1.125rem;
     font-weight: 600;
     font-style: italic;
-    color: black;
+    color: #633B14;
+    text-decoration: none;
+}
+
+.pestaña-activa {
+    width: 33.33vw;
+    height: 4.233vh;
+    margin-bottom: -0.06vh;
+
+    border-top: 0.3vh solid #633B14; 
+    border-left: 0.5vw solid #633B14;   
+    border-right: 0.5vw solid #633B14;  
+    border-bottom: none;
+
+    border-radius: 0.8rem 0.8rem 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFF3DC;
+    font-size: 1.125rem;
+    font-weight: 600;
+    font-style: italic;
+    color: #633B14;
+    text-decoration: none;
 }
 
 .encabezadometas {
@@ -67,7 +98,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2vh;
+    gap: 0.1vh;
 }
 
 .meta {
@@ -120,4 +151,3 @@ body {
     justify-content: center;
     align-items: center;
 }
-
