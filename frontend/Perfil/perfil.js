@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function cargarRecetasUsuario() {
     // Revisaaaaa cómo guardaste la clave en localStorage (ej: 'idUsuario' o 'idUs')
-    const idUsuarioLogueado = localStorage.getItem('idUsuario') || localStorage.getItem('idUs'); 
+    const idUsuarioLogueado= localStorage.getItem('id') || localStorage.getItem('idUs'); 
 
     if (!idUsuarioLogueado) {
         console.error('No se encontró el ID del usuario en localStorage.');
