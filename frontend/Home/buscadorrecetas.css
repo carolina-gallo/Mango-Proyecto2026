@@ -41,6 +41,7 @@ header.colapsado {
 }
 
 .objetosfiltrados {
+    width: 100%;
     display: flex;
     justify-content: center;
     gap: 2vw;
@@ -48,6 +49,7 @@ header.colapsado {
     background-color: #FFFFFF;
     overflow-x: auto;
     scrollbar-width: none;
+    flex-wrap: wrap;
     text-transform: capitalize;
 }
 
@@ -61,7 +63,7 @@ header.colapsado {
 }
 
 .scrolleo.colapsado {
-    padding-top: 22vh;
+    padding-top: 28vh;
 }
 
 .restriccionesydietas{
@@ -95,7 +97,7 @@ button{
 }
 
 .filtro-circular.seleccionado .circulo 
-{ border: 0.5vh solid #F3A73C; }
+{ border: 0.6vh solid #F3A73C; }
 
 .filtros-random.seleccionado 
 { background-color: #F3A73C; color: white; }

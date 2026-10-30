@@ -177,7 +177,7 @@ function mostrarComentarios(comentarios) {
           <img src="${buscarFoto(c.username)}" alt="${c.username}">
         </figure>
         <div>
-          <p class="comentario-nombre">${c.username}</p>
+          <p class="comentario-nombre">${c.username || "Anónimo" }</p>
           <p class="comentario-texto">${c.texto}</p>
         </div>
       </article>`;

@@ -144,15 +144,14 @@ const vistasPopup = popupBandejas.querySelectorAll(".bandejas-vista");
 const grillaBandejas = document.getElementById("grillaBandejas");
 const inputNombreBandeja = document.getElementById("inputNombreBandeja");
 
-let recetaAGuardar = null;   // { id, img }
-let bandejaElegida = null;   // id de la bandeja que tocó en la grilla
+let recetaAGuardar;
+let bandejaElegida;
 let seGuardo;
 
 function cambiarVista(idVista) {
     vistasPopup.forEach((vista) => {
         vista.hidden = vista.id !== idVista;
     });
-    // la grilla va con fondo blanco
     cajaPopupBandejas.classList.toggle("fondo-blanco", idVista === "vistaBandejas");
 }
 
