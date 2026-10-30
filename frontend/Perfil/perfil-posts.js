@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            // Reemplaza con la URL completa y puerto de tu servidor Node.js/Express
             const URL_BACKEND = 'http://localhost:3000/mango/postUsuario';
 
             const respuesta = await fetch(URL_BACKEND, {
@@ -32,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const posts = await respuesta.json();
 
-            // Datos del usuario logueado tomados directamente del perfil en el HTML
             const datosUsuarioLogueado = [{
                 id: idUs,
                 id_usuario: idUs,
@@ -54,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!containerPosts) return;
         containerPosts.innerHTML = "";
 
-        // Actualizar el contador de publicaciones en el encabezado
+        
         if (cantPublicaciones) {
             cantPublicaciones.textContent = posts.length;
         }

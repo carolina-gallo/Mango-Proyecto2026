@@ -53,7 +53,6 @@ function renderizarBandejas(listaBandejas) {
             <p class="NombreBandeja">${bandeja.nombre_bandeja}</p>
         `;
 
-        // Al tocar la bandeja redirige a bandejas.html pasando la ID en la URL
         tarjetaBandeja.addEventListener('click', () => {
             window.location.href = `bandejas.html?id=${bandeja.id}`;
         });

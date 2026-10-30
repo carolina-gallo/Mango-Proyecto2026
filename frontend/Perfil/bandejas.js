@@ -81,7 +81,6 @@ function renderizarRecetas(listaRecetas) {
             </div>
         `;
 
-        // Guarda el ID y abre la vista detallada en Home
         tarjeta.addEventListener('click', () => {
             const idReceta = receta.id ?? receta.id_receta ?? receta.idRec;
 
