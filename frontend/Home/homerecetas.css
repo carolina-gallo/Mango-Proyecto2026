@@ -168,7 +168,7 @@ body {font-family: 'Nunito'}
     object-fit: cover;
 }
 .grande {
-    min-width: 17.412vw;
+    width: auto;
     aspect-ratio: none;
     height:3.20366vh;
     border-radius: 0.9rem;
@@ -185,6 +185,19 @@ body {font-family: 'Nunito'}
     color: rgb(0, 0, 0, 73);
     font-size: 0.8rem;
     line-height: 1.2;
+}
+
+.like-receta{
+    position: absolute;
+    width: 10.7vw;
+    height: 3.9vh;
+    background-color: rgb(243, 167, 60, 0.70);
+    top:5%
+}
+.corazon{
+    width: .71vw;
+    aspect-ratio: 1/1;
+    object-fit: cover;
 }
 /* ===== POPUP DE BANDEJAS ===== */
 .bandejas-fondo {

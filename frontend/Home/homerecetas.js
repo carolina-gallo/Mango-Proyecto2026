@@ -91,9 +91,9 @@ function mostrarRecetas(recetas, usuarios) {
         break;
       }
     }
-const likeVacio = "like-vacio.png";
-const likeLleno = "like-lleno.png";
-
+const likeVacio = "likenegro.png";
+const likeLleno = "likenaranja.png";
+const yaLeDioLike = (receta.likes_usuarios || []).includes(idUsuario);
 
     let htmlFiltros = "";
 const listaFiltros = receta.filtros || [];
@@ -116,6 +116,9 @@ for (let i = 0; i < listaFiltros.length; i++) {
     section.dataset.id = receta.id;
     section.innerHTML = `
         <figure class="imagen">
+             <div class="like-receta">
+            <img class="corazon" src="${yaLeDioLike ? likeLleno : likeVacio}" alt="like">
+            </div>
             <img class="fotoReceta" src="${receta.imagen_receta}" alt="${receta.nombre}">
             <p class="nombredeusuario">${nombreAMostrar}</p>
         </figure>
@@ -147,6 +150,11 @@ function activarVerMas() {
 }
 
 containerRecetas.addEventListener("click", (e) => {
+    const botonLike = e.target.closest(".like-receta");
+    if (botonLike) {
+        alternarLike(botonLike);
+        return;
+    }
   const icono = e.target.closest(".icono");
   if (icono) {
     const img = icono.querySelector("img");
@@ -193,6 +201,26 @@ containerRecetas.addEventListener("click", (e) => {
 function alternarIcono(img, normal, activo) {
   const estaActivo = img.src.includes(activo);
   img.src = estaActivo ? normal : activo;
+}
+async function alternarLike(botonLike) {
+    const img = botonLike.querySelector(".corazon");
+    const idRec = botonLike.closest(".publicacion").dataset.id;
+
+    if (img.src.includes(likeLleno)) {
+        img.src = likeVacio;
+        await fetch("http://localhost:3000/mango/receta/dislike", {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ idUs: idUsuario, idRec: idRec })
+        });
+    } else {
+        img.src = likeLleno;
+        await fetch("http://localhost:3000/mango/receta/like", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ idUs: idUsuario, idRec: idRec })
+        });
+    }
 }
 
 const popupBandejas = document.getElementById("popupBandejas");
