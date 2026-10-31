@@ -1,99 +1,87 @@
 document.addEventListener('DOMContentLoaded', () => {
     const idUs = Number(localStorage.getItem('id'));
     const containerPosts = document.getElementById('post');
-    const cantPublicaciones = document.getElementById('cantPublicaciones');
-    const nombreUsuarioElem = document.getElementById('nombreUsuario');
-    const fotoPerfilElem = document.getElementById('fotoPerfil');
 
-    async function obtenerPostsUsuario() {
+    function resolverFoto(foto) {
+        if (!foto) return "../avatares/default.png";
+        if (foto.startsWith("http") || foto.startsWith("data:")) return foto;
+        return `../avatares/${foto}.png`;
+    }
+
+    async function obtenerDatosUsuario() {
+        if (!idUs) return null;
+        try {
+            const respuesta = await fetch(`http://localhost:3000/mango/usuario/${idUs}`);
+            const usuario = await respuesta.json();
+
+            document.getElementById("fotoPerfil").src = resolverFoto(usuario.foto_perfil);
+            document.getElementById("nombreUsuario").textContent = usuario.username;
+            document.getElementById("descripcionPerfil").textContent = usuario.descripcion ?? "";
+            document.getElementById("cantPublicaciones").textContent = usuario.qpub ?? 0;
+            document.getElementById("cantSeguidores").textContent = usuario.seguidores ?? 0;
+            document.getElementById("cantSeguidos").textContent = usuario.seguidos ?? 0;
+
+            return usuario;
+        } catch (error) {
+            console.error("Error al obtener usuario:", error);
+            return null;
+        }
+    }
+
+    async function obtenerPostsUsuario(usuario) {
         if (!idUs || isNaN(idUs)) {
-            console.error('No se encontró el idUs en localStorage');
-            if (containerPosts) {
-                containerPosts.innerHTML = '<p class="sin-posts">Inicia sesión para ver tus publicaciones.</p>';
-            }
+            containerPosts.innerHTML = '<p class="sin-posts">Inicia sesión para ver tus publicaciones.</p>';
             return;
         }
 
         try {
-            const URL_BACKEND = 'http://localhost:3000/mango/postUsuario';
-
-            const respuesta = await fetch(URL_BACKEND, {
+            const respuesta = await fetch('http://localhost:3000/mango/postUsuario', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ idUs: idUs })
             });
 
-            if (!respuesta.ok) {
-                throw new Error(`Error en el servidor: HTTP ${respuesta.status}`);
-            }
+            if (!respuesta.ok) throw new Error(`Error en el servidor: HTTP ${respuesta.status}`);
 
             const posts = await respuesta.json();
-
-            const datosUsuarioLogueado = [{
-                id: idUs,
-                id_usuario: idUs,
-                nombre: nombreUsuarioElem ? nombreUsuarioElem.textContent.trim() : 'Usuario',
-                foto_perfil: fotoPerfilElem ? fotoPerfilElem.src : ''
-            }];
-
-            mostrarPosts(posts, datosUsuarioLogueado);
-
+            mostrarPosts(posts, usuario);
         } catch (error) {
             console.error('Error al obtener publicaciones:', error);
-            if (containerPosts) {
-                containerPosts.innerHTML = '<p class="sin-posts">Ocurrió un error al cargar las publicaciones.</p>';
-            }
+            containerPosts.innerHTML = '<p class="sin-posts">Ocurrió un error al cargar las publicaciones.</p>';
         }
     }
 
-    function mostrarPosts(posts, usuarios = []) {
-        if (!containerPosts) return;
+    function mostrarPosts(posts, usuario) {
         containerPosts.innerHTML = "";
-
-        
-        if (cantPublicaciones) {
-            cantPublicaciones.textContent = posts.length;
-        }
 
         if (!Array.isArray(posts) || posts.length === 0) {
             containerPosts.innerHTML = '<p class="sin-posts">Aún no realizaste ninguna publicación.</p>';
             return;
         }
 
-        posts.forEach(post => {
-            let nombreAMostrar = "Usuario";
-            let fotoPerfil = "";
+        const nombre = usuario?.username || "Usuario";
+        const fotoUsuario = resolverFoto(usuario?.foto_perfil);
 
-            for (let i = 0; i < usuarios.length; i++) {
-                if (usuarios[i].id === post.id_usuario || usuarios[i].id_usuario === post.id_usuario) {
-                    nombreAMostrar = usuarios[i].nombre_usuario || usuarios[i].username || usuarios[i].nombre || nombreAMostrar;
-                    if (usuarios[i].foto_perfil) {
-                        fotoPerfil = usuarios[i].foto_perfil;
-                    }
-                    break;
-                }
-            }
-
-            containerPosts.innerHTML += `
-                <article class="post" data-id="${post.id || ''}">
-                    <div class="usuario">
-                        <img src="${fotoPerfil}" alt="Foto de perfil" class="fotodeperfil">
-                        <h2>${nombreAMostrar}</h2>
+        containerPosts.innerHTML = posts.map(post => `
+            <article class="post" data-id="${post.id || ''}">
+                <div class="usuario">
+                    <img src="${fotoUsuario}" alt="Foto de perfil" class="fotodeperfil">
+                    <h2>${nombre}</h2>
+                </div>
+                ${post.imagen_post ? `<img class="foto" src="${post.imagen_post}" alt="foto">` : ''}
+                <div class="bottom">
+                    <div class="interacciones">
+                        <span><img class="icono" src="../Home/likenegro.png" alt="like"></span>
+                        <span><img class="icono" src="../Home/comentarios.png" alt="comentarios"></span>
+                        <span><img class="icono" src="../Home/enviar.png" alt="enviar"></span>
                     </div>
-                    <img class="foto" src="${post.imagen_post || post.imagen || ''}" alt="foto">
-                    <div class="bottom">
-                        <div class="interacciones">
-                            <span><img class="icono" src="../likenegro.png" alt="like"></span>
-                            <span><img class="icono" src="../comentarios.png" alt="comentarios"></span>
-                            <span><img class="icono" src="../enviar.png" alt="enviar"></span>
-                        </div>
-                        <p class="descripcion">${post.descripcion || post.texto || ''}</p>
-                    </div>
-                </article>`;
-        });
+                    <p class="descripcion">${post.descripcion || ''}</p>
+                </div>
+            </article>`).join("");
     }
 
-    obtenerPostsUsuario();
+    (async () => {
+        const usuario = await obtenerDatosUsuario();
+        await obtenerPostsUsuario(usuario);
+    })();
 });
