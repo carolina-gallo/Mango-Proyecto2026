@@ -6,17 +6,23 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function obtenerDatosUsuario() {
-  if (!idUsuario) return;
-  try {
-    const respuesta = await fetch(`http://localhost:3000/mango/usuario/${idUsuario}`);
-    const usuario = await respuesta.json();
+    if (!idUsuario) return;
+    try {
+        const respuesta = await fetch(`http://localhost:3000/mango/usuario/${idUsuario}`);
+        const usuario = await respuesta.json();
 
-    document.getElementById("fotoPerfil").src = usuario.foto_perfil;
-    document.getElementById("nombreUsuario").textContent = usuario.username;
-    document.getElementById("descripcionPerfil").textContent = usuario.descripcion;
-  } catch (error) {
-    console.error("Error al obtener usuario:", error);
-  }
+        const foto = usuario.foto_perfil || "default.jpg";
+        document.getElementById("fotoPerfil").src = foto.startsWith("http") ? foto : `../avatares/${foto}.png`;
+
+        document.getElementById("nombreUsuario").textContent = usuario.username;
+        document.getElementById("descripcionPerfil").textContent = usuario.descripcion;
+
+        document.getElementById("cantPublicaciones").textContent = usuario.qpub ?? 0;
+        document.getElementById("cantSeguidores").textContent = usuario.seguidores ?? 0;
+        document.getElementById("cantSeguidos").textContent = usuario.seguidos ?? 0;
+    } catch (error) {
+        console.error("Error al obtener usuario:", error);
+    }
 }
 
 async function cargarRecetasUsuario() {
