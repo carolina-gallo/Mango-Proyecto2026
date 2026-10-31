@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const idUs = Number(localStorage.getItem('id'));
-    const containerPosts = document.getElementById('recetas');
+    const containerPosts = document.getElementById('post');
 
     async function obtenerDatosUsuario() {
         try {
