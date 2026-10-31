@@ -199,7 +199,7 @@ function mostrarComentarios(comentarios) {
     seccionComentario.innerHTML = `
       <article class="comentario">
         <figure class="comentarios-avatar">
-          <img src="${buscarFoto(comentario.username)}" alt="${comentario.username}" class="comentarios-avatar">
+          <img src="${buscarFoto(comentario.username)}" alt="${comentario.username}" class="avatar-comment">
         </figure>
         <div>
           <p class="comentario-nombre">${comentario.username || "Anónimo"}</p>
@@ -300,14 +300,15 @@ if (input) {
 }
 
 // ===== GUARDAR EN BANDEJA =====
+// ===== GUARDAR EN BANDEJA =====
 const popupBandejas = document.getElementById("popupBandejas");
 const cajaPopupBandejas = document.getElementById("cajaPopupBandejas");
 const vistasPopup = popupBandejas.querySelectorAll(".bandejas-vista");
 const grillaBandejas = document.getElementById("grillaBandejas");
 const inputNombreBandeja = document.getElementById("inputNombreBandeja");
 
-let iconoGuardado = null;    // la img de guardar que tocó
-let bandejaElegida = null;   // id de la bandeja que tocó en la grilla
+let iconoGuardado = null;    // el icono que se tocó
+let bandejaElegida = null;   // id de la bandeja seleccionada
 let seGuardo = false;
 
 function alternarIcono(img, normal, activo) {
@@ -332,27 +333,30 @@ function mostrarPopupBandeja(img) {
     popupBandejas.showModal();
 }
 
-// el icono se crea con innerHTML, así que el click va en el contenedor
+// Delegación de eventos para la flecha de volver y el botón de guardar receta
 contenedor.addEventListener("click", (e) => {
-  const flecha = e.target.closest("#flechaatras, .flechaatras");
+    // Volver atrás en el historial
+    const flecha = e.target.closest("#flechaatras, .flechaatras");
     if (flecha) {
         window.history.back();
         return;
     }
-    
+
+    // Abrir popup de bandejas
     const img = e.target.closest(".guardado");
-    if (!img) return;
-    alternarIcono(img, "guardado.png", "guardado-amarillo.png");
-    mostrarPopupBandeja(img);
+    if (img) {
+        alternarIcono(img, "guardado.png", "guardado-amarillo.png");
+        mostrarPopupBandeja(img);
+        return;
+    }
 });
 
-// cerrar tocando el fondo oscuro
+// Cerrar popup tocando el fondo oscuro
 popupBandejas.addEventListener("click", (e) => {
     if (e.target === popupBandejas) popupBandejas.close();
 });
 
-
-// ----- crear bandeja nueva -----
+// ----- Crear bandeja nueva -----
 document.getElementById("botonCrearBandeja").addEventListener("click", () => {
     cambiarVista("vistaNuevaBandeja");
 });
@@ -366,12 +370,13 @@ document.getElementById("botonGuardarNuevaBandeja").addEventListener("click", as
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                id_usuario: idUsuario,
-                imagen_bandeja: "default.jpg",
+                id_usuario: Number(idUsuario),
+                imagen_bandeja: recetaActual ? recetaActual.imagen_receta : "default.jpg",
                 nombre_bandeja: nombre,
                 filtros: {}
             })
         });
+
         const bandeja = await respuesta.json();
         guardarEnBandeja(bandeja.id);
     } catch (error) {
@@ -379,35 +384,55 @@ document.getElementById("botonGuardarNuevaBandeja").addEventListener("click", as
     }
 });
 
-// ----- bandeja ya existente -----
+//Mostrar bandejas existentes 
 document.getElementById("botonBandejaExistente").addEventListener("click", async () => {
     cambiarVista("vistaBandejas");
     grillaBandejas.innerHTML = "";
 
+    if (!idUsuario) {
+        grillaBandejas.innerHTML = "<p>Inicia sesión para ver tus bandejas</p>";
+        return;
+    }
+
     try {
-        const respuesta = await fetch(`http://localhost:3000/mango/bandejasUsuario/${idUsuario}`);
+        const respuesta = await fetch("http://localhost:3000/mango/mostrarBandejas", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ idUs: Number(idUsuario) })
+        });
+
+        if (!respuesta.ok) throw new Error("Error al obtener bandejas");
+
         const bandejas = await respuesta.json();
 
-        if (bandejas.length === 0) {
+        if (!bandejas || bandejas.length === 0) {
             grillaBandejas.innerHTML = "<p>Todavía no tenés bandejas</p>";
             return;
         }
 
         bandejas.forEach((bandeja) => {
-            const foto = document.createElement("img");
-            foto.className = "bandeja-foto";
-            foto.src = bandeja.imagen_bandeja;
-            foto.alt = bandeja.nombre_bandeja;
-            foto.title = bandeja.nombre_bandeja;
-            foto.dataset.id = bandeja.id;
-            grillaBandejas.appendChild(foto);
+            const recetas = bandeja.recetas_bandeja || [];
+            const ultimaReceta = recetas.length > 0 ? recetas[recetas.length - 1] : null;
+            const imagenUrl = (ultimaReceta && ultimaReceta.imagen_receta) 
+                ? ultimaReceta.imagen_receta 
+                : (bandeja.imagen_bandeja || (recetaActual ? recetaActual.imagen_receta : "default.jpg"));
+
+            const itemBandeja = document.createElement("div");
+            itemBandeja.className = "bandeja-opcion";
+            itemBandeja.innerHTML = `
+                <img class="bandeja-foto" src="${imagenUrl}" alt="${bandeja.nombre_bandeja}" data-id="${bandeja.id}">
+                <p class="bandeja-nombre">${bandeja.nombre_bandeja}</p>
+            `;
+
+            grillaBandejas.appendChild(itemBandeja);
         });
     } catch (error) {
+        console.error("Error al cargar bandejas:", error);
         grillaBandejas.innerHTML = "<p>No se pudieron cargar tus bandejas</p>";
     }
 });
 
-// elegir una bandeja (borde naranja, una sola a la vez)
+// Seleccionar una bandeja (resaltado con clase .elegida)
 grillaBandejas.addEventListener("click", (e) => {
     const foto = e.target.closest(".bandeja-foto");
     if (!foto) return;
@@ -417,39 +442,47 @@ grillaBandejas.addEventListener("click", (e) => {
     bandejaElegida = foto.dataset.id;
 });
 
+// Botón para confirmar guardado en bandeja seleccionada
 document.getElementById("botonGuardarEnBandeja").addEventListener("click", () => {
-    if (!bandejaElegida) return;
+    if (!bandejaElegida) {
+        alert("Por favor selecciona una bandeja");
+        return;
+    }
     guardarEnBandeja(bandejaElegida);
 });
 
-// ----- guardar la receta en la bandeja -----
+// Guardar receta en la bandeja
 async function guardarEnBandeja(idBandeja) {
     try {
         const respuesta = await fetch("http://localhost:3000/mango/guardarRec", {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ idBandeja: idBandeja, idRec: idReceta })
+            body: JSON.stringify({ 
+                idBandeja: Number(idBandeja), 
+                idRec: Number(idReceta) 
+            })
         });
 
         const texto = await respuesta.text();
         try {
             JSON.parse(texto);
         } catch {
-            // el back manda texto plano si ya estaba guardada o no la encontró
             alert(texto);
             return;
         }
 
         seGuardo = true;
-        iconoGuardado.src = "guardado-amarillo.png";
+        if (iconoGuardado) iconoGuardado.src = "guardado-amarillo.png";
         popupBandejas.close();
     } catch (error) {
         console.error("No se pudo guardar la receta:", error);
     }
 }
 
+// Resetear icono si se cerró sin guardar
 popupBandejas.addEventListener("close", () => {
     if (!seGuardo && iconoGuardado) {
         iconoGuardado.src = "guardado.png";
     }
 });
+

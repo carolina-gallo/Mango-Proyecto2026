@@ -257,10 +257,15 @@
 .comentarios-avatar{
 width: 9.9502vw;
 aspect-ratio: 1/1;
-background-color: #170069;
 border-radius: 10rem;
 }
-
+.avatar-comment{
+    width: 9.9502vw;
+aspect-ratio: 1/1;
+background-color: #170069;
+border-radius: 10rem;
+object-fit: cover
+}
 .enviar-comentario{
     position: relative;   /* la referencia para ubicar el ícono */
     flex: 1;              /* ocupa todo el ancho que sobra al lado del avatar */

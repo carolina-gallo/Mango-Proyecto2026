@@ -1,10 +1,6 @@
-document.addEventListener("DOMContentLoaded", () => {
-    cargarConversaciones();
-});
-
 async function cargarConversaciones() {
     const contenedor = document.querySelector(".mensajes");
-    const idUs = Number(localStorage.getItem("id")); 
+    const idUs = Number(localStorage.getItem("id"));
 
     if (!idUs) {
         contenedor.innerHTML = "<p>No has iniciado sesión correctamente.</p>";
@@ -12,11 +8,9 @@ async function cargarConversaciones() {
     }
 
     try {
-        // 1. Obtener lista de todos los usuarios
         const resUsuarios = await fetch("http://localhost:3000/listaUsuarios");
         const usuarios = await resUsuarios.json();
 
-        // 2. Obtener las conversaciones del usuario logueado
         const res = await fetch("http://localhost:3000/mango/conversaciones", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -31,33 +25,69 @@ async function cargarConversaciones() {
         contenedor.innerHTML = "";
 
         if (!conversaciones || conversaciones.length === 0) {
-            contenedor.innerHTML = "<p>No tienes conversaciones aún.</p>";
+            contenedor.innerHTML = `<p class="no-mensajes">No tienes conversaciones aún.</p>`;
             return;
         }
 
-        // 3. Iterar conversaciones y cruzar los datos con la lista de usuarios
-        conversaciones.forEach(conv => {
-            const otroId = conv.participantes.find(id => Number(id) !== idUs);
-            
-            // Buscar coincidencia del usuario en la lista
-            const usuarioEncontrado = usuarios.find(
-                u => Number(u.id) === Number(otroId) || Number(u.id_usuario) === Number(otroId)
-            );
+        for (let i = 0; i < conversaciones.length; i++) {
+            const conv = conversaciones[i];
 
-            // Obtener el nombre
+            // 1. Obtener el ID del otro participante
+            let otroId;
+            for (let j = 0; j < conv.participantes.length; j++) {
+                const id = Number(conv.participantes[j]);
+                if (id !== idUs) {
+                    otroId = id;
+                    break;
+                }
+            }
+
+            // 2. Buscar datos del otro usuario
+            let usuarioEncontrado;
+            for (let k = 0; k < usuarios.length; k++) {
+                const u = usuarios[k];
+                const idUsuarioActual = Number(u.id || u.id_usuario);
+                if (idUsuarioActual === otroId) {
+                    usuarioEncontrado = u;
+                    break;
+                }
+            }
+
             const nombreUs = usuarioEncontrado 
                 ? (usuarioEncontrado.nombre_usuario || usuarioEncontrado.username || usuarioEncontrado.nombre)
                 : `Usuario ${otroId}`;
 
-            // Obtener la imagen de perfil (si existe)
             const HTMLFoto = usuarioEncontrado && usuarioEncontrado.foto_perfil 
                 ? `<img class="persona" src="${usuarioEncontrado.foto_perfil}" alt="${nombreUs}">`
                 : "";
 
-            const ultimoMsg = conv.mensajes && conv.mensajes.length > 0 
-                ? conv.mensajes[conv.mensajes.length - 1].texto 
-                : "Sin mensajes";
+            // 3. Contar mensajes sin leer enviados por el otro participante
+            const listaMensajes = conv.mensajes || [];
+            let sinLeer = 0;
 
+            for (let m = 0; m < listaMensajes.length; m++) {
+                const msg = listaMensajes[m];
+                const remitente = Number(msg.emisorId || msg.id_emisor || msg.id_usuario);
+
+                if (remitente !== idUs && msg.leido === false) {
+                    sinLeer++;
+                }
+            }
+
+            // 4. Configurar texto y punto naranja según corresponda
+            let textoAbajo = "";
+            let circuloNaranja = "";
+
+            if (sinLeer > 0) {
+                textoAbajo = `${sinLeer} ${sinLeer === 1 ? "mensaje nuevo" : "mensajes nuevos"}`;
+                circuloNaranja = `<div class="punto"></div>`;
+            } else {
+                const ultimo = listaMensajes[listaMensajes.length - 1];
+                textoAbajo = ultimo ? ultimo.texto : "Sin mensajes";
+                circuloNaranja = "";
+            }
+
+            // 5. Crear la tarjeta del chat
             const article = document.createElement("article");
             article.classList.add("chats");
 
@@ -65,21 +95,37 @@ async function cargarConversaciones() {
                 <figure class="persona">${HTMLFoto}</figure>
                 <div class="textos">
                     <h2 class="nombre">${nombreUs}</h2>
-                    <p class="mensajito">${ultimoMsg}</p>
+                    <p class="mensajito">${textoAbajo}</p>
                 </div>
+                ${circuloNaranja}
             `;
 
             article.addEventListener("click", () => {
                 localStorage.setItem("idConversacionActiva", conv.id);
                 localStorage.setItem("idChatCon", otroId);
-                window.location.href = "conversacion.html"
+                window.location.href = "conversacion.html";
             });
 
             contenedor.appendChild(article);
-        });
+        }
+
+        activarVerMas();
 
     } catch (error) {
         console.error("Error cargando conversaciones:", error);
         contenedor.innerHTML = "<p>Error al cargar las conversaciones.</p>";
     }
 }
+
+function activarVerMas() {
+    const descripciones = document.querySelectorAll(".mensajito");
+    descripciones.forEach((descripcion) => {
+        const completo = descripcion.textContent;
+
+        if (completo.length > 30) {
+            descripcion.innerHTML = completo.substring(0, 30) + '<span class="mas">... más</span>';
+        }
+    });
+}
+
+cargarConversaciones();
