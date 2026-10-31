@@ -1,28 +1,126 @@
-export async function buscar(texto) {
-    const respuesta = await fetch(`http://localhost:3000/mango/busqueda/${texto}`);
-    return await respuesta.json();
+const inputBuscar = document.getElementById("inputBuscar");
+const contenedorResultados = document.getElementById("resultados");
+
+let esperar;
+
+function obtenerFiltros() {
+    const filtros = {};
+
+    const inputsFiltros = document.querySelectorAll(".filtro-input");
+    inputsFiltros.forEach(input => {
+        if (input.type === "checkbox" || input.type === "radio") {
+            if (input.checked) filtros[input.name] = input.value;
+        } else if (input.value) {
+            filtros[input.name] = input.value;
+        }
+    });
+
+    return filtros;
 }
 
-export function activarBuscador(mostrarResultado, volverAlInicio) {
-    const inputBuscar = document.getElementById("inputBuscar");
-    let esperar;
+async function buscar(texto, filtros) {
+    try {
+        const respuesta = await fetch("http://localhost:3000/mango/busquedaporTexto", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                texto: texto,
+                filtros: filtros
+            })
+        });
 
-    inputBuscar.addEventListener("input", () => {
-        clearTimeout(esperar);
+        if (!respuesta.ok) throw new Error("Error en la respuesta del servidor");
 
-        esperar = setTimeout(async () => {
-            const texto = inputBuscar.value.trim();
+        return await respuesta.json();
+    } catch (error) {
+        console.error("Error al buscar:", error);
+        return { usuarios: [], recetas: [], posts: [] };
+    }
+}
 
-            if (texto === "") {
-                if (volverAlInicio) volverAlInicio();
-                return;
-            }
+function borrarResultados() {
+    if (contenedorResultados) contenedorResultados.innerHTML = "";
+}
 
-            const resultado = await buscar(texto);
-            mostrarResultado(resultado);
-        }, 300);
+
+function cargarRecetas(recetas) {
+    const contenedor = document.getElementById("resultados") || contenedorResultados;
+
+    contenedor.innerHTML = "";
+
+    if (!recetas || recetas.length === 0) {
+        contenedor.innerHTML = "<p>No se encontraron recetas.</p>";
+        return;
+    }
+
+    recetas.forEach((receta) => {
+        const div = document.createElement("div");
+        div.className = "resultado-card receta";
+        div.innerHTML = `
+            <h3>📖 ${receta.nombre}</h3>
+            <p>${receta.descripcion || ''}</p>
+        `;
+        contenedor.appendChild(div);
     });
 }
+
+
+function mostrarResultados(datos) {
+    borrarResultados();
+    if (!contenedorResultados) return;
+
+    const { recetas, usuarios, posts } = datos;
+
+    if ((!recetas || recetas.length === 0) && 
+        (!usuarios || usuarios.length === 0) && 
+        (!posts || posts.length === 0)) {
+        contenedorResultados.innerHTML = "<p>No se encontraron resultados.</p>";
+        return;
+    }
+
+    if (recetas) {
+        cargarRecetas(recetas);
+    }
+
+    if (usuarios) {
+        usuarios.forEach((usuario) => {
+            const div = document.createElement("div");
+            div.className = "resultado-card usuario";
+            div.innerHTML = `<h3>👤 @${usuario.username}</h3>`;
+            contenedorResultados.appendChild(div);
+        });
+    }
+}
+
+
+async function ejecutarBusqueda() {
+    if (!inputBuscar) return;
+
+    const texto = inputBuscar.value.trim();
+    const filtros = obtenerFiltros();
+
+    console.log("Texto:", texto);
+    console.log("Filtros a enviar:", filtros);
+
+    const resultados = await buscar(texto, filtros);
+    mostrarResultados(resultados);
+}
+
+
+if (inputBuscar) {
+    inputBuscar.addEventListener("input", () => {
+        clearTimeout(esperar);
+        esperar = setTimeout(ejecutarBusqueda, 300);
+    });
+}
+
+const elementosFiltro = document.querySelectorAll(".filtro-input");
+elementosFiltro.forEach(elemento => {
+    elemento.addEventListener("change", ejecutarBusqueda);
+});
+
 
 /*
 const inputBuscar = document.getElementById("inputBuscar")
