@@ -2,15 +2,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const idUs = Number(localStorage.getItem('id'));
     const containerPosts = document.getElementById('post');
 
+    function resolverFoto(foto) {
+        if (!foto) return "../avatares/default.png";
+        if (foto.startsWith("http") || foto.startsWith("data:")) return foto;
+        return `../avatares/${foto}.png`;
+    }
+
     async function obtenerDatosUsuario() {
+        if (!idUs) return null;
         try {
             const respuesta = await fetch(`http://localhost:3000/mango/usuario/${idUs}`);
             const usuario = await respuesta.json();
 
-            const foto = usuario.foto_perfil || "default.jpg";
-            document.getElementById("fotoPerfil").src = foto.startsWith("http") ? foto : `../avatares/${foto}.png`;
+            document.getElementById("fotoPerfil").src = resolverFoto(usuario.foto_perfil);
             document.getElementById("nombreUsuario").textContent = usuario.username;
-            document.getElementById("descripcionPerfil").textContent = usuario.descripcion;
+            document.getElementById("descripcionPerfil").textContent = usuario.descripcion ?? "";
             document.getElementById("cantPublicaciones").textContent = usuario.qpub ?? 0;
             document.getElementById("cantSeguidores").textContent = usuario.seguidores ?? 0;
             document.getElementById("cantSeguidos").textContent = usuario.seguidos ?? 0;
@@ -54,26 +60,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const nombre = usuario?.username || "Usuario";
-        const fotoUsuario = document.getElementById("fotoPerfil").src;
+        const fotoUsuario = resolverFoto(usuario?.foto_perfil);
 
-        posts.forEach(post => {
-            containerPosts.innerHTML += `
-                <article class="post" data-id="${post.id || ''}">
-                    <div class="usuario">
-                        <img src="${fotoUsuario}" alt="Foto de perfil" class="fotodeperfil">
-                        <h2>${nombre}</h2>
+        containerPosts.innerHTML = posts.map(post => `
+            <article class="post" data-id="${post.id || ''}">
+                <div class="usuario">
+                    <img src="${fotoUsuario}" alt="Foto de perfil" class="fotodeperfil">
+                    <h2>${nombre}</h2>
+                </div>
+                ${post.imagen_post ? `<img class="foto" src="${post.imagen_post}" alt="foto">` : ''}
+                <div class="bottom">
+                    <div class="interacciones">
+                        <span><img class="icono" src="../Home/likenegro.png" alt="like"></span>
+                        <span><img class="icono" src="../Home/comentarios.png" alt="comentarios"></span>
+                        <span><img class="icono" src="../Home/enviar.png" alt="enviar"></span>
                     </div>
-                    <img class="foto" src="${post.imagen_post || ''}" alt="foto">
-                    <div class="bottom">
-                        <div class="interacciones">
-                            <span><img class="icono" src="../Home/likenegro.png" alt="like"></span>
-                            <span><img class="icono" src="../Home/comentarios.png" alt="comentarios"></span>
-                            <span><img class="icono" src="../Home/enviar.png" alt="enviar"></span>
-                        </div>
-                        <p class="descripcion">${post.descripcion || ''}</p>
-                    </div>
-                </article>`;
-        });
+                    <p class="descripcion">${post.descripcion || ''}</p>
+                </div>
+            </article>`).join("");
     }
 
     (async () => {
