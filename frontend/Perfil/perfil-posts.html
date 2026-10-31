@@ -6,6 +6,7 @@
     <title>Perfil posts</title>
 
     <link rel="stylesheet" href="perfil.css">
+    <link rel="stylesheet" href="../Home/homeposts.css">
     <link rel="stylesheet" href="../General/general.css">
 
     <style>
@@ -63,7 +64,34 @@
         <main class="scrolleo" id="post">
 
         </main>
-    </main>
+
+
+<!-- popup de comentarios (mismo que homeposts.html) -->
+<dialog class="comentarios-fondo" id="comentarios">
+    <section class="comentarios-popup">
+        <div class="comentarios-arriba">
+            <span class="comentarios-linea"></span>
+            <h3 class="comentarios-titulo">Comentarios</h3>
+        </div>
+        <article class="comentarios-lista" id="lista-comentarios"></article>
+        <article class="comentarios-escribir">
+            <figure class="comentarios-avatar mio"></figure>
+            <div class="enviar-comentario">
+                <input type="text" class="comentarios-input" id="input-comentario" placeholder="Únete a la conversación...">
+                <img class="comentarios-enviar" src="../Home/enviar2.png" alt="enviar">
+            </div>
+        </article>
+    </section>
+</dialog>
+
+<!-- popup para enviar el post por mensaje -->
+<dialog class="enviar-fondo" id="popupEnviar">
+    <section class="enviar-popup">
+        <h3 class="enviar-titulo">Enviar a</h3>
+        <article id="listaChats"></article>
+    </section>
+</dialog>
+
 
     <footer class="footer">
     <a href="../Home/homeposts.html">
