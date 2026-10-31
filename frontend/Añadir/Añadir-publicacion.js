@@ -4,7 +4,6 @@ const usuarioId = localStorage.getItem("id");
 
 let imagenBase64 = "";
 
-/* ---------- IMAGEN ---------- */
 const botonImagen = document.querySelector(".subir-imagen");
 const inputImagen = document.getElementById("inputImagen");
 const camaraImg = document.querySelector(".camaritauwu");
@@ -33,6 +32,9 @@ inputImagen.addEventListener("change", () => {
     });
     lector.readAsDataURL(archivo);
 });
+
+
+
 
 /* ---------- VINCULAR RECETA (popup buscador) ---------- */
 const dialogRecetas = document.getElementById("buscadorRecetas");

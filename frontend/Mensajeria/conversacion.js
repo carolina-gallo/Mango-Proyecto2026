@@ -1,7 +1,5 @@
 let idConversacionActual = localStorage.getItem("idConversacionActiva") || "";
 
-document.addEventListener("DOMContentLoaded", () => {
-    cargarConversacion();
 
     const botonEnviar = document.getElementById("botonEnviar");
     const inputMensaje = document.getElementById("inputMensaje");
@@ -17,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-});
 
 async function cargarConversacion() {
     const contenedor = document.getElementById("contenedorMensajes");
@@ -129,3 +126,4 @@ function renderizarMensajes(mensajes, idUs, contenedor) {
     });
     
 }
+cargarConversacion();

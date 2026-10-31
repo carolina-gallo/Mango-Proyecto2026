@@ -58,9 +58,9 @@ async function obtenerDatosUsuario() {
       localStorage.setItem("nombre_usuario", usuario.username);
       localStorage.setItem("foto_perfil", usuario.foto_perfil);
 
-      const avatarMio = document.querySelector(".comentarios-avatar.mio");
+      const avatarMio = document.getElementById("avatarmio");
       if (avatarMio && usuario.foto_perfil) {
-        avatarMio.innerHTML = `<img src="${usuario.foto_perfil}" alt="${usuario.username}">`;
+        avatarMio.innerHTML = `<img src="${usuario.foto_perfil}" alt="${usuario.username}" class="comentarios-avatar mio">`;
       }
     }
   } catch (error) {
@@ -113,9 +113,7 @@ function mostrarReceta(receta) {
   contenedor.innerHTML = `
     <img src="${receta.imagen_receta}" alt="${receta.nombre}" class="fotoreceta">
     <span>
-      <a href="homerecetas.html">
-        <img class="flechaatras" src="flechaatras.png" alt="volver">
-      </a>
+        <img class="flechaatras" src="flechaatras.png" alt="volver" id="flechaatras">
     </span>
     <span><img class="guardado" src="guardado.png" alt="guardar"></span>
 
@@ -336,6 +334,12 @@ function mostrarPopupBandeja(img) {
 
 // el icono se crea con innerHTML, así que el click va en el contenedor
 contenedor.addEventListener("click", (e) => {
+  const flecha = e.target.closest("#flechaatras, .flechaatras");
+    if (flecha) {
+        window.history.back();
+        return;
+    }
+    
     const img = e.target.closest(".guardado");
     if (!img) return;
     alternarIcono(img, "guardado.png", "guardado-amarillo.png");

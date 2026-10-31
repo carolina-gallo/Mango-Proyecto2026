@@ -73,7 +73,7 @@ function mostrarPosts(posts, usuarios) {
             <img src="${fotoPerfil}" alt="${fotoPerfil}" class="fotodeperfil"></img>
             <h2>${nombreAMostrar}</h2>
             </div>
-            <img class="foto" src="${post.imagen_post}" alt="foto">
+            <img class="foto" src="${post.imagen_post}" alt="foto" data-id-receta="${post.id_receta}">
             <div class="bottom">
                 <div class="interacciones">
                 <span><img class="icono" src="${iconoLike}" alt="like"></span>
@@ -100,13 +100,24 @@ descripciones.forEach((descripcion) => {
     }
 });
 }
+
 const popup = document.getElementById("comentarios");
 const lista = document.getElementById("lista-comentarios");
 const input = document.getElementById("input-comentario");
 const enviar = document.querySelector(".comentarios-enviar");
 
-containerPosts.addEventListener("click", async(icon) => {
-    const icono = icon.target.closest(".icono");
+containerPosts.addEventListener("click", async(e) => {
+    const foto = e.target.closest(".foto");
+    if (foto) {
+        const idReceta = foto.dataset.idReceta || foto.closest(".post").dataset.idReceta;
+
+        if (idReceta) {
+            localStorage.setItem("idReceta", idReceta);
+            window.location.href = "recetas-informacion.html";
+        }
+        return;
+    }
+    const icono = e.target.closest(".icono");
     if (!icono) return;
 
 if (icono.alt === "like") {

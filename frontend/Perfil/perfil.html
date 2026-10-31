@@ -24,9 +24,16 @@
                 <div class="infoperfil">
                     <div class="nombreyeditar">
                         <h1 class="nombreusuario" id="nombreUsuario">Martuuu</h1>
-                        <a href="editar-perfil.html">
-                            <img class="editar" src="lapiz.png" alt="editar perfil">
-                        </a>
+                        <button command="show-modal" commandfor="menueditarperfil">
+                            <img class="editar" src="menu.png" alt="editar perfil">
+                        </button>
+
+                        <dialog id="menueditarperfil">
+                            <section class="editarperfil">
+                            <button command="close" commandfor="menueditarperfil">Cerrar</button>
+                            </section>
+                        </dialog>
+
                     </div>
 
                     <div class="estadisticas">
@@ -68,27 +75,27 @@
         </main>
 
         <dialog class="bandejas-fondo" id="popupBandejas">
-    <section class="bandejas-popup" id="cajaPopupBandejas">
-        <article class="bandejas-vista" id="vistaOpciones">
-            <button class="bandejas-opcion" id="botonCrearBandeja">
-                <span>Crear bandeja</span>
-                <span class="bandejas-opcion-icono"><img src="../Home/mas-bandeja.png" alt="mas"></span>
-            </button>
-            <button class="bandejas-opcion" id="botonBandejaExistente">
-                <span>Agregar a bandeja ya existente</span>
-                <span class="bandejas-opcion-icono"><img src="../Home/flecha-bandeja.png" alt="flecha"></span>
-            </button>
-        </article>
-        <article class="bandejas-vista" id="vistaBandejas" hidden>
-            <section class="bandejas-grilla" id="grillaBandejas"></section>
-            <button class="bandejas-guardar" id="botonGuardarEnBandeja">Guardar</button>
-        </article>
-        <article class="bandejas-vista" id="vistaNuevaBandeja" hidden>
-            <input type="text" class="bandejas-nombre" id="inputNombreBandeja" placeholder="Nombre">
-            <button class="bandejas-guardar" id="botonGuardarNuevaBandeja">Guardar</button>
-        </article>
-    </section>
-</dialog>
+        <section class="bandejas-popup" id="cajaPopupBandejas">
+            <article class="bandejas-vista" id="vistaOpciones">
+                <button class="bandejas-opcion" id="botonCrearBandeja">
+                    <span>Crear bandeja</span>
+                    <span class="bandejas-opcion-icono"><img src="../Home/mas-bandeja.png" alt="mas"></span>
+                </button>
+                <button class="bandejas-opcion" id="botonBandejaExistente">
+                    <span>Agregar a bandeja ya existente</span>
+                    <span class="bandejas-opcion-icono"><img src="../Home/flecha-bandeja.png" alt="flecha"></span>
+                </button>
+            </article>
+            <article class="bandejas-vista" id="vistaBandejas" hidden>
+                <section class="bandejas-grilla" id="grillaBandejas"></section>
+                <button class="bandejas-guardar" id="botonGuardarEnBandeja">Guardar</button>
+            </article>
+            <article class="bandejas-vista" id="vistaNuevaBandeja" hidden>
+                <input type="text" class="bandejas-nombre" id="inputNombreBandeja" placeholder="Nombre">
+                <button class="bandejas-guardar" id="botonGuardarNuevaBandeja">Guardar</button>
+            </article>
+        </section>
+        </dialog>
 
     <footer class="footer">
     <a href="../Home/homeposts.html">
