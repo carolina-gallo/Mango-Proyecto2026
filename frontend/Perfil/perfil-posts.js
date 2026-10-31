@@ -1,99 +1,72 @@
+const idUsuario = Number(localStorage.getItem("id"));
+
 document.addEventListener('DOMContentLoaded', () => {
-    const idUs = Number(localStorage.getItem('id'));
-    const containerPosts = document.getElementById('post');
-    const cantPublicaciones = document.getElementById('cantPublicaciones');
-    const nombreUsuarioElem = document.getElementById('nombreUsuario');
-    const fotoPerfilElem = document.getElementById('fotoPerfil');
+    obtenerDatosUsuario();
+    cargarPostsUsuario();
+});
 
-    async function obtenerPostsUsuario() {
-        if (!idUs || isNaN(idUs)) {
-            console.error('No se encontró el idUs en localStorage');
-            if (containerPosts) {
-                containerPosts.innerHTML = '<p class="sin-posts">Inicia sesión para ver tus publicaciones.</p>';
-            }
-            return;
-        }
+async function obtenerDatosUsuario() {
+    if (!idUsuario) return;
+    try {
+        const respuesta = await fetch(`http://localhost:3000/mango/usuario/${idUsuario}`);
+        const usuario = await respuesta.json();
 
-        try {
-            const URL_BACKEND = 'http://localhost:3000/mango/postUsuario';
+        const foto = usuario.foto_perfil || "default.jpg";
+        document.getElementById("fotoPerfil").src = foto.startsWith("http") ? foto : `../avatares/${foto}.png`;
 
-            const respuesta = await fetch(URL_BACKEND, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ idUs: idUs })
-            });
+        document.getElementById("nombreUsuario").textContent = usuario.username;
+        document.getElementById("descripcionPerfil").textContent = usuario.descripcion;
 
-            if (!respuesta.ok) {
-                throw new Error(`Error en el servidor: HTTP ${respuesta.status}`);
-            }
+        document.getElementById("cantPublicaciones").textContent = usuario.qpub ?? 0;
+        document.getElementById("cantSeguidores").textContent = usuario.seguidores ?? 0;
+        document.getElementById("cantSeguidos").textContent = usuario.seguidos ?? 0;
+    } catch (error) {
+        console.error("Error al obtener usuario:", error);
+    }
+}
 
-            const posts = await respuesta.json();
+async function cargarPostsUsuario() {
+    const contenedorPosts = document.getElementById('recetas');
 
-            const datosUsuarioLogueado = [{
-                id: idUs,
-                id_usuario: idUs,
-                nombre: nombreUsuarioElem ? nombreUsuarioElem.textContent.trim() : 'Usuario',
-                foto_perfil: fotoPerfilElem ? fotoPerfilElem.src : ''
-            }];
-
-            mostrarPosts(posts, datosUsuarioLogueado);
-
-        } catch (error) {
-            console.error('Error al obtener publicaciones:', error);
-            if (containerPosts) {
-                containerPosts.innerHTML = '<p class="sin-posts">Ocurrió un error al cargar las publicaciones.</p>';
-            }
-        }
+    if (!idUsuario) {
+        contenedorPosts.innerHTML = '<p class="mensaje-vacio">No se encontró la sesión del usuario.</p>';
+        return;
     }
 
-    function mostrarPosts(posts, usuarios = []) {
-        if (!containerPosts) return;
-        containerPosts.innerHTML = "";
+    try {
+        const respuesta = await fetch('http://localhost:3000/mango/postsUsuario', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ idUs: idUsuario })
+        });
 
-        
-        if (cantPublicaciones) {
-            cantPublicaciones.textContent = posts.length;
-        }
+        if (!respuesta.ok) throw new Error(`Error HTTP: ${respuesta.status}`);
+
+        const posts = await respuesta.json();
 
         if (!Array.isArray(posts) || posts.length === 0) {
-            containerPosts.innerHTML = '<p class="sin-posts">Aún no realizaste ninguna publicación.</p>';
+            contenedorPosts.innerHTML = '<p class="mensaje-vacio">No has publicado posts todavía.</p>';
             return;
         }
 
+        contenedorPosts.innerHTML = '';
+
         posts.forEach(post => {
-            let nombreAMostrar = "Usuario";
-            let fotoPerfil = "";
+            const card = document.createElement('article');
+            card.classList.add('tarjeta-receta');
 
-            for (let i = 0; i < usuarios.length; i++) {
-                if (usuarios[i].id === post.id_usuario || usuarios[i].id_usuario === post.id_usuario) {
-                    nombreAMostrar = usuarios[i].nombre_usuario || usuarios[i].username || usuarios[i].nombre || nombreAMostrar;
-                    if (usuarios[i].foto_perfil) {
-                        fotoPerfil = usuarios[i].foto_perfil;
-                    }
-                    break;
-                }
-            }
+            card.innerHTML = `
+                ${post.imagen_post ? `<img src="${post.imagen_post}" alt="post">` : ''}
+                <div class="info-receta">
+                    <p>${post.descripcion || ''}</p>
+                </div>
+            `;
 
-            containerPosts.innerHTML += `
-                <article class="post" data-id="${post.id || ''}">
-                    <div class="usuario">
-                        <img src="${fotoPerfil}" alt="Foto de perfil" class="fotodeperfil">
-                        <h2>${nombreAMostrar}</h2>
-                    </div>
-                    <img class="foto" src="${post.imagen_post || post.imagen || ''}" alt="foto">
-                    <div class="bottom">
-                        <div class="interacciones">
-                            <span><img class="icono" src="../likenegro.png" alt="like"></span>
-                            <span><img class="icono" src="../comentarios.png" alt="comentarios"></span>
-                            <span><img class="icono" src="../enviar.png" alt="enviar"></span>
-                        </div>
-                        <p class="descripcion">${post.descripcion || post.texto || ''}</p>
-                    </div>
-                </article>`;
+            contenedorPosts.appendChild(card);
         });
-    }
 
-    obtenerPostsUsuario();
-});
+    } catch (error) {
+        console.error('Error al cargar los posts:', error);
+        contenedorPosts.innerHTML = '<p class="mensaje-error">Error al cargar los posts.</p>';
+    }
+}
