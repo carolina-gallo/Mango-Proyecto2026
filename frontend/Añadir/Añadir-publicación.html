@@ -44,8 +44,16 @@
         </form>
 
         <dialog class="buscadorDeRecetas" id="buscadorRecetas">
-            
+            <header class="bdr-header">
+            <div class="bdr-buscar">
+                <img src="../Home/icono-buscador.png" alt="icono-buscador" class="bdr-vector">
+                <input type="text" class="bdr-input" placeholder="Qué haces hoy?" id="inputBuscar">
+            </div>
+            <button type="button" class="bdr-cerrar" id="cerrarBuscadorRecetas">✕</button>
+            </header>
+            <main class="bdr-resultados" id="resultadosRecetas"></main>
         </dialog>
+
     </main>
     <script src="Añadir-publicacion.js"></script>
 </div>
