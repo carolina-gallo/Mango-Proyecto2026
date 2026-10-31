@@ -80,7 +80,7 @@ body {font-family: 'Nunito'}
     overflow: hidden;
 }
 
-.imagen img {
+.fotoReceta{
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -192,10 +192,15 @@ body {font-family: 'Nunito'}
     width: 10.7vw;
     height: 3.9vh;
     background-color: rgb(243, 167, 60, 0.70);
-    top:5%
+    border-radius: .625rem;
+    border-top-left-radius: 0rem;
+    top:0; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .corazon{
-    width: .71vw;
+    width: 6.71vw;
     aspect-ratio: 1/1;
     object-fit: cover;
 }

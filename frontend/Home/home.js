@@ -3,6 +3,8 @@ let usuarios = [];
 let postActual;
 const containerPosts = document.getElementById("container-posts");
 const idUsuario = Number(localStorage.getItem("id"));
+const likeLleno = "likenaranja.png";
+const likeVacio = "likenegro.png"
 
 async function obtenerDatosUsuario() {
   if (!idUsuario) return;
@@ -60,6 +62,10 @@ function mostrarPosts(posts, usuarios) {
         }
     break
       }}
+      let iconoLike = likeVacio;
+    if ((post.likes_usuarios || []).includes(idUsuario)) {
+        iconoLike = likeLleno;
+    }
 
    containerPosts.innerHTML += 
         `<article class="post" data-id="${post.id}">
@@ -70,7 +76,7 @@ function mostrarPosts(posts, usuarios) {
             <img class="foto" src="${post.imagen_post}" alt="foto">
             <div class="bottom">
                 <div class="interacciones">
-                <span><img class="icono" src="likenegro.png" alt="like"></span>
+                <span><img class="icono" src="${iconoLike}" alt="like"></span>
                 <span><img class="icono" src="comentarios.png" alt="comentarios"></span>
                 <span><img class="icono" src="enviar.png" alt="enviar"></span>
                 </div>
@@ -99,35 +105,30 @@ const lista = document.getElementById("lista-comentarios");
 const input = document.getElementById("input-comentario");
 const enviar = document.querySelector(".comentarios-enviar");
 
-containerPosts.addEventListener("click", (e) => {
-    const icono = e.target.closest(".icono");
-    if (!icono || icono.alt !== "like") return;
+containerPosts.addEventListener("click", async(icon) => {
+    const icono = icon.target.closest(".icono");
+    if (!icono) return;
+
+if (icono.alt === "like") {
+    if (icono.src.includes(likeLleno)) {
+    icono.src = "likenegro.png";
+    } else {
+    icono.src = "likenaranja.png";
 
     const idPost = icono.closest(".post").dataset.id;
-    const idUs = Number(localStorage.getItem("id"));
-
-    if (!idUs) {
-        console.warn("Usuario no autenticado");
-        return;
-    }
-
-    fetch("http://localhost:3000/mango/post/like", {
+    console.log("idPost:", idPost);
+    console.log("idUs:", localStorage.getItem("id"));
+// CHEQUEAR SI ESTO ANDAAA Y LE LLEGA A MARTU
+    await fetch("http://localhost:3000/mango/post/like", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify
-            ({ idUs, idPost })
-    })
-    .then((respuesta) => respuesta.json())
-    .then((data) => {
-        if (data.status === "liked") {
-            icono.src = "likenaranja.png";
-        } else if (data.status === "unliked") {
-            icono.src = "likenegro.png";
-        }
-    })
-    .catch((error) => {
-        console.error("Error al enviar el like:", error);
+        body: JSON.stringify({
+            idUs: Number(localStorage.getItem("id")),
+            idPost: idPost
+        })
     });
+    }
+  }
 });
 
   if (icono.alt === "comentarios") {

@@ -3,6 +3,8 @@ let usuarios = [];
 let postActual;
  const containerRecetas = document.getElementById("recetas");
  const idUsuario = Number(localStorage.getItem("id"));
+ const likeVacio = "likenegro.png";
+const likeLleno = "likenaranja.png";
 
 const etiquetasFiltros = {
     celiacx: `<img src="../Sin tacc.png" alt="Sin TACC" class="filtro">`,
@@ -91,9 +93,10 @@ function mostrarRecetas(recetas, usuarios) {
         break;
       }
     }
-const likeVacio = "likenegro.png";
-const likeLleno = "likenaranja.png";
-const yaLeDioLike = (receta.likes_usuarios || []).includes(idUsuario);
+let iconoLike = likeVacio;
+    if ((receta.likes_usuarios || []).includes(idUsuario)) {
+        iconoLike = likeLleno;
+    }
 
     let htmlFiltros = "";
 const listaFiltros = receta.filtros || [];
@@ -117,7 +120,7 @@ for (let i = 0; i < listaFiltros.length; i++) {
     section.innerHTML = `
         <figure class="imagen">
              <div class="like-receta">
-            <img class="corazon" src="${yaLeDioLike ? likeLleno : likeVacio}" alt="like">
+            <img class="corazon" src="${iconoLike}" alt="like">
             </div>
             <img class="fotoReceta" src="${receta.imagen_receta}" alt="${receta.nombre}">
             <p class="nombredeusuario">${nombreAMostrar}</p>
@@ -149,7 +152,7 @@ function activarVerMas() {
   });
 }
 
-containerRecetas.addEventListener("click", (e) => {
+containerRecetas.addEventListener("click", async(e) => {
     const botonLike = e.target.closest(".like-receta");
     if (botonLike) {
         alternarLike(botonLike);
