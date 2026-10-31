@@ -321,7 +321,23 @@ button{
     font-size: 0.8rem;
     line-height: 1.2;
 }
-
+.like-receta{
+    position: absolute;
+    width: 10.7vw;
+    height: 3.9vh;
+    background-color: rgb(243, 167, 60, 0.70);
+    border-radius: .625rem;
+    border-top-left-radius: 0rem;
+    top:0; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.corazon{
+    width: 6.71vw;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
 /* ===== POPUP DE BANDEJAS ===== */
 .bandejas-fondo {
     width: 100%;
