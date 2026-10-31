@@ -97,32 +97,44 @@
         overflow-wrap: anywhere;
         word-break: break-word;
     }
-    .filtros{
-        width: 94.776vw;
-        height: 8.5812vh;
-        padding-right: 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;               /* Toma el ancho de su contenedor padre */
-        overflow-x: auto;          /* Muestra la barra de scroll horizontal SOLO si el contenido se sale */
-        overflow-y: hidden;        /* Evita scroll vertical indeseado dentro del contenedor */
-        white-space: nowrap;       /* Opcional: evita que los elementos hijos bajen a otra línea */
-    }
-    .filtro{
-        width: 13.6815vw;
-        aspect-ratio: 1/1;
-        border-radius: 10rem;
-        background-color: #616060;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        object-fit: contain;
-    }
-    .grande {
-        width: 21.8905vw;
-        aspect-ratio: 2.3/1;
-    }
+    .filtros {
+    width: 100%;
+    max-width: 100%;
+    padding-bottom: 1.4vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2.5vw;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    scrollbar-width: none;
+}
+
+.filtro {
+    width: 13.68159vw;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+.grande {
+    width: 21.8905vw;
+    min-width: fit-content;
+    height: 4.11vh;
+    border-radius: 1.25rem;
+    background-color: #FFC96C;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;       
+    flex-shrink: 0;        
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #000000;
+}
     .ingredientes{
         display: flex;
         flex-direction: column;

@@ -5,7 +5,47 @@ const input = document.getElementById("input-comentario");
 const enviar = document.querySelector(".comentarios-enviar");
 
 let listaUsuarios = [];
-let recetaActual; // Guardamos la receta aquí para acceder desde publicarComentario
+let recetaActual;
+
+const etiquetasFiltros = {
+  celiacx: `<img src="../Sin tacc.png" alt="Sin TACC" class="filtro">`,
+  diabeticx: `<img src="../Diabetes.png" alt="Diabetes" class="filtro">`,
+  veganx: `<img src="../Vegano.png" alt="Vegano" class="filtro">`,
+  vegetarianx: `<img src="../Vegetariano.png" alt="Vegetariano" class="filtro">`,
+  kosher: `<img src="../Kosher.png" alt="Kosher" class="filtro">`,
+  hipertensx: `<img src="../Hipertencion.png" alt="Hipertencion" class="filtro">`,
+  "bajo colesterol": `<img src="../Bajo colesterol.png" alt="Bajo colesterol" class="filtro">`,
+  keto: `<img src="../keto.png" alt="keto" class="filtro">`,
+  "intolerancia a la lactosa": `<img src="../intolerancia a la lactosa.png" alt="intolerancia a la lactosa" class="filtro">`,
+  "alergia a los frutos secos": `<img src="../A. mani.png" alt="A. mani" class="filtro">`
+};
+
+const otrosFiltros = {
+  salado: `<p class="filtro grande">Salado</p>`,
+  dulce: `<p class="filtro grande">Dulce</p>`,
+  umami: `<p class="filtro grande">Umami</p>`,
+  picante: `<p class="filtro grande">Picante</p>`,
+  agridulce: `<p class="filtro grande">Agridulce</p>`,
+  acido: `<p class="filtro grande">Ácido</p>`,
+  bebida: `<p class="filtro grande">Bebida</p>`,
+  comida: `<p class="filtro grande">Comida</p>`,
+  postre: `<p class="filtro grande">Postre</p>`,
+  snack: `<p class="filtro grande">Snack</p>`,
+  "1-15min": `<p class="filtro grande">1-15 min</p>`,
+  "15-30min": `<p class="filtro grande">15-30 min</p>`,
+  "30-60min": `<p class="filtro grande">30-60 min</p>`,
+  "60+min": `<p class="filtro grande">+60 min</p>`,
+  horno: `<p class="filtro grande">Horno</p>`,
+  airfryer: `<p class="filtro grande">Airfryer</p>`,
+  sarten: `<p class="filtro grande">Sarten</p>`,
+  olla: `<p class="filtro grande">Olla</p>`,
+  microondas: `<p class="filtro grande">Microondas</p>`,
+  heladera: `<p class="filtro grande">Heladera</p>`,
+  nada: `<p class="filtro grande">Nada</p>`,
+  alta: `<p class="filtro grande">Alta</p>`,
+  media: `<p class="filtro grande">Media</p>`,
+  baja: `<p class="filtro grande">Baja</p>`
+};
 
 async function obtenerDatosUsuario() {
   if (!idUsuario || idUsuario === "undefined") return;
@@ -28,7 +68,6 @@ async function obtenerDatosUsuario() {
   }
 }
 
-// Carga inicial de datos
 (async () => {
   try {
     await obtenerDatosUsuario();
@@ -39,17 +78,12 @@ async function obtenerDatosUsuario() {
     const resRecetas = await fetch("http://localhost:3000/mango/feedRecetas");
     const recetas = await resRecetas.json();
 
-    for (let i = 0; i < recetas.length; i++) {
-      if (recetas[i].id == idReceta) {
-        recetaActual = recetas[i];
-        break;
-      }
-    }
+    recetaActual = recetas.find(receta => receta.id == idReceta);
 
     if (recetaActual) {
       mostrarReceta(recetaActual);
       mostrarComentarios(recetaActual.comentarios || []);
-      mostrarCreador(recetaActual)
+      mostrarCreador(recetaActual);
     } else {
       contenedor.innerHTML = "<p>No se encontró la receta solicitada.</p>";
     }
@@ -59,6 +93,23 @@ async function obtenerDatosUsuario() {
 })();
 
 function mostrarReceta(receta) {
+  const listaFiltros = receta.filtros || [];
+  let htmlFiltros = "";
+
+  for (let indice = 0; indice < listaFiltros.length; indice++) {
+    const filtroNombre = listaFiltros[indice];
+    if (etiquetasFiltros[filtroNombre]) {
+      htmlFiltros += etiquetasFiltros[filtroNombre];
+    }
+  }
+
+  for (let indice = 0; indice < listaFiltros.length; indice++) {
+    const filtroNombre = listaFiltros[indice];
+    if (otrosFiltros[filtroNombre]) {
+      htmlFiltros += otrosFiltros[filtroNombre];
+    }
+  }
+
   contenedor.innerHTML = `
     <img src="${receta.imagen_receta}" alt="${receta.nombre}" class="fotoreceta">
     <span>
@@ -73,17 +124,13 @@ function mostrarReceta(receta) {
       <p class="descripcion">${receta.descripcion}</p>
       
       <section class="filtros">
-        <span class="filtro">img</span>
-        <span class="filtro">img</span>
-        <span class="filtro">img</span>
-        <span class="filtro grande">img</span>
-        <span class="filtro grande">img</span>
+        ${htmlFiltros}
       </section>
 
       <section class="ingredientes" id="ingredientesReceta">
         <h2>Ingredientes</h2>
         <ul>
-          ${(receta.ingredientes || []).map(ing => `<li>${ing}</li>`).join('')}
+          ${(receta.ingredientes || []).map(ingrediente => `<li>${ingrediente}</li>`).join('')}
         </ul>
       </section>
 
@@ -101,57 +148,38 @@ function mostrarReceta(receta) {
         </ul>
       </section>
     </article>`;
-
-  const circulos = contenedor.querySelectorAll(".filtros .filtro");
-  const filtros = receta.filtros || [];
-  circulos.forEach((circulo, i) => {
-    if (circulo.classList.contains("grande")) {
-      const resto = filtros.length - 3;
-      circulo.textContent = resto > 0 ? `+${resto}` : "";
-    } else {
-      circulo.title = filtros[i] || "";
-    }
-  });
 }
 
 function mostrarCreador(receta) {
-  // Seleccionamos los elementos HTML indicados
   const nombreCreador = document.getElementById("usuarioReceta");
   const fotoCreador = document.getElementById("fotoUsuarioReceta");
 
-  // Si los elementos no existen en el DOM, detenemos la ejecución
   if (!nombreCreador || !fotoCreador) return;
 
-  // Buscamos al creador en la lista de usuarios obtenida en la carga inicial
   const creador = listaUsuarios.find(usuario => usuario.id == receta.id_usuario);
 
   if (creador) {
-    // Insertamos el nombre de usuario
     nombreCreador.textContent = creador.username || creador.nombre || "Usuario desconocido";
-
-    // Insertamos la imagen según el tipo de elemento
-    if (creador) {
-      fotoCreador.innerHTML = `<img src="${creador.foto_perfil || 'ruta/por/defecto/avatar.png'}" alt="${creador.username}" class="avatar-usuario">`;
-    }
+    fotoCreador.innerHTML = `<img src="${creador.foto_perfil || 'ruta/por/defecto/avatar.png'}" alt="${creador.username}" class="avatar-usuario">`;
   } else {
     nombreCreador.textContent = "Usuario";
   }
 }
+
 function buscarFoto(username) {
-  for (let i = 0; i < listaUsuarios.length; i++) {
-    if (listaUsuarios[i].username === username || listaUsuarios[i].nombre === username) {
-      return listaUsuarios[i].foto_perfil || "default.jpg";
+  for (let indice = 0; indice < listaUsuarios.length; indice++) {
+    if (listaUsuarios[indice].username === username || listaUsuarios[indice].nombre === username) {
+      return listaUsuarios[indice].foto_perfil || "default.jpg";
     }
   }
   return "default.jpg";
 }
-const contenedorComentarios = document.getElementById("comentariosReceta");
 
+const contenedorComentarios = document.getElementById("comentariosReceta");
 
 function mostrarComentarios(comentarios) {
   contenedorComentarios.innerHTML = "";
 
-  // 1. Caso: No hay comentarios
   if (!comentarios || comentarios.length === 0) {
     contenedorComentarios.innerHTML = `
       <h1 class="titulocomentarios">Comentarios</h1>
@@ -161,42 +189,35 @@ function mostrarComentarios(comentarios) {
         </article>
       </section>`;
     input.placeholder = "Añade un comentario";
-    return; // STOP: Evita que siga ejecutando el resto del código
-  } 
+    return;
+  }
 
-  // Si hay comentarios, continuamos aquí:
   contenedorComentarios.innerHTML = `<h1 class="titulocomentarios">Comentarios</h1>`;
   input.placeholder = "Añade un comentario";
 
-  function agregarComentario(c) {
+  function agregarComentario(comentario) {
     const seccionComentario = document.createElement("section");
     seccionComentario.classList.add("comentarios-seccion");
     seccionComentario.innerHTML = `
       <article class="comentario">
         <figure class="comentarios-avatar">
-          <img src="${buscarFoto(c.username)}" alt="${c.username}" class="comentarios-avatar">
+          <img src="${buscarFoto(comentario.username)}" alt="${comentario.username}" class="comentarios-avatar">
         </figure>
         <div>
-          <p class="comentario-nombre">${c.username || "Anónimo" }</p>
-          <p class="comentario-texto">${c.texto}</p>
+          <p class="comentario-nombre">${comentario.username || "Anónimo"}</p>
+          <p class="comentario-texto">${comentario.texto}</p>
         </div>
       </article>`;
     contenedorComentarios.appendChild(seccionComentario);
   }
 
-  // 2. Caso: Hay 3 o menos comentarios -> Mostramos todos
   if (comentarios.length <= 3) {
-    comentarios.forEach((c) => {
-      agregarComentario(c);
-    });
-  } 
-  // 3. Caso: Hay más de 3 comentarios
-  else {
+    comentarios.forEach(comentario => agregarComentario(comentario));
+  } else {
     function mostrarPrimerosTres() {
       contenedorComentarios.innerHTML = `<h1 class="titulocomentarios">Comentarios</h1>`;
-
-      for (let i = 0; i < 3; i++) {
-        agregarComentario(comentarios[i]);
+      for (let indice = 0; indice < 3; indice++) {
+        agregarComentario(comentarios[indice]);
       }
 
       const masComentarios = document.createElement("div");
@@ -204,26 +225,19 @@ function mostrarComentarios(comentarios) {
       masComentarios.innerHTML = `<img src="bajar-comentarios.png" alt="flechabajo" class="bajar">`;
       contenedorComentarios.appendChild(masComentarios);
 
-      masComentarios.addEventListener("click", () => {
-        mostrarTodos();
-      });
+      masComentarios.addEventListener("click", () => mostrarTodos());
     }
 
     function mostrarTodos() {
       contenedorComentarios.innerHTML = `<h1 class="titulocomentarios">Comentarios</h1>`;
-
-      comentarios.forEach((c) => {
-        agregarComentario(c);
-      });
+      comentarios.forEach(comentario => agregarComentario(comentario));
 
       const menosComentarios = document.createElement("div");
       menosComentarios.classList.add("bajarcomentarios");
       menosComentarios.innerHTML = `<img src="subir-comentarios.png" alt="flechaarriba" class="bajar">`;
       contenedorComentarios.appendChild(menosComentarios);
 
-      menosComentarios.addEventListener("click", () => {
-        mostrarPrimerosTres();
-      });
+      menosComentarios.addEventListener("click", () => mostrarPrimerosTres());
     }
 
     mostrarPrimerosTres();

@@ -6,6 +6,7 @@
     <title>Perfil principal</title>
 
     <link rel="stylesheet" href="perfil.css">
+    <link rel="stylesheet" href="../Home/homerecetas.css">
     <link rel="stylesheet" href="../General/general.css">
 
     <style>
@@ -54,7 +55,7 @@
             </section>
     </header>
         <nav class="pestañas">
-            <button class="pestaña seleccionada" id="btn-recetas">Recetas</button>
+            <button class="pestañaseleccionada" id="btn-recetas">Recetas</button>
             <a href="perfil-posts.html" class="pestaña">Posts</a>
             <a href="perfil-bandejas.html" class="pestaña">Bandejas</a>
         </nav>
@@ -62,6 +63,29 @@
         <main class="scrolleo" id="recetas">
             
         </main>
+
+        <dialog class="bandejas-fondo" id="popupBandejas">
+    <section class="bandejas-popup" id="cajaPopupBandejas">
+        <article class="bandejas-vista" id="vistaOpciones">
+            <button class="bandejas-opcion" id="botonCrearBandeja">
+                <span>Crear bandeja</span>
+                <span class="bandejas-opcion-icono"><img src="../Home/mas-bandeja.png" alt="mas"></span>
+            </button>
+            <button class="bandejas-opcion" id="botonBandejaExistente">
+                <span>Agregar a bandeja ya existente</span>
+                <span class="bandejas-opcion-icono"><img src="../Home/flecha-bandeja.png" alt="flecha"></span>
+            </button>
+        </article>
+        <article class="bandejas-vista" id="vistaBandejas" hidden>
+            <section class="bandejas-grilla" id="grillaBandejas"></section>
+            <button class="bandejas-guardar" id="botonGuardarEnBandeja">Guardar</button>
+        </article>
+        <article class="bandejas-vista" id="vistaNuevaBandeja" hidden>
+            <input type="text" class="bandejas-nombre" id="inputNombreBandeja" placeholder="Nombre">
+            <button class="bandejas-guardar" id="botonGuardarNuevaBandeja">Guardar</button>
+        </article>
+    </section>
+</dialog>
 
     <footer class="footer">
     <a href="../Home/homeposts.html">

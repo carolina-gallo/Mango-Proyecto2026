@@ -66,7 +66,7 @@ function renderizarBandejas(listaBandejas) {
 
         const recetas = bandeja.recetas_bandeja || [];
         const ultimaReceta = recetas.length > 0 ? recetas[recetas.length - 1] : null;
-
+        
         const imagenUrl = (ultimaReceta && ultimaReceta.imagen_receta)
             ? ultimaReceta.imagen_receta
             : bandeja.imagen_bandeja;

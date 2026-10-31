@@ -1,4 +1,3 @@
-
 let recetas = [];
 let usuarios = [];
 let postActual;
@@ -17,6 +16,33 @@ etiquetasFiltros = {
     "intolerancia a la lactosa": `<img src="../intolerancia a la lactosa.png" alt="intolerancia a la lactosa" class="filtro">`,
     "alergia a los frutos secos":`<img src="../A. mani.png" alt="A. mani" class="filtro">`
 };
+const otrosFiltros = {
+  salado: `<p class="filtro grande">Salado</p>`,
+  dulce: `<p class="filtro grande">Dulce</p>`,
+  umami: `<p class="filtro grande">Umami</p>`,
+  picante: `<p class="filtro grande">Picante</p>`,
+  agridulce: `<p class="filtro grande">Agridulce</p>`,
+  acido: `<p class="filtro grande">Ácido</p>`,
+  bebida: `<p class="filtro grande">Bebida</p>`,
+  comida: `<p class="filtro grande">Comida</p>`,
+  postre: `<p class="filtro grande">Postre</p>`,
+  snack: `<p class="filtro grande">Snack</p>`,
+  "1-15min": `<p class="filtro grande">1-15 min</p>`,
+  "15-30min": `<p class="filtro grande">15-30 min</p>`,
+  "30-60min": `<p class="filtro grande">30-60 min</p>`,
+  "60+min": `<p class="filtro grande">+60 min</p>`,
+  horno: `<p class="filtro grande">Horno</p>`,
+  airfryer: `<p class="filtro grande">Airfryer</p>`,
+  sarten: `<p class="filtro grande">Sarten</p>`,
+  olla: `<p class="filtro grande">Olla</p>`,
+  microondas: `<p class="filtro grande">Microondas</p>`,
+  heladera: `<p class="filtro grande">Heladera</p>`,
+  nada: `<p class="filtro grande">Nada</p>`,
+  alta: `<p class="filtro grande">Alta</p>`,
+  media: `<p class="filtro grande">Media</p>`,
+  baja: `<p class="filtro grande">Baja</p>`
+};
+
 
 function obtenerImagenFiltro(nombreFiltro) {
   const clave = String(nombreFiltro).toLowerCase().trim();
@@ -28,56 +54,71 @@ async function obtenerDatosUsuario() {
   try {
     const respuesta = await fetch(`http://localhost:3000/mango/usuario/${idUsuario}`);
     const usuario = await respuesta.json();
-    console.log("usuario recibido:", usuario);
 
     localStorage.setItem("nombre_usuario", usuario.username);
     localStorage.setItem("foto_perfil", usuario.foto_perfil);
 
-    document.querySelector(".comentarios-avatar.mio").innerHTML =
-      `<img src="${usuario.foto_perfil}" alt="${usuario.username}">`;
-
+    const avatar = document.querySelector(".comentarios-avatar.mio");
+    if (avatar) {
+      avatar.innerHTML = `<img src="${usuario.foto_perfil}" alt="${usuario.username}">`;
+    }
   } catch (error) {
     console.error("Error al obtener usuario:", error);
   }
 }
 
-
 (async () => {
-    let response;
-    try{
-        response = await fetch('http://localhost:3000/mango/feedRecetas');
-        recetas = await response.json();
-        response = await fetch('http://localhost:3000/listaUsuarios');
-        usuarios = await response.json();
-        mostrarRecetas(recetas, usuarios);
-        activarVerMas()
-
-    }
-    catch (error) {
+  try {
+    let response = await fetch('http://localhost:3000/mango/feedRecetas');
+    recetas = await response.json();
+    response = await fetch('http://localhost:3000/listaUsuarios');
+    usuarios = await response.json();
+    mostrarRecetas(recetas, usuarios);
+    activarVerMas();
+  } catch (error) {
     console.log("Error al cargar datos:", error);
   }
-
-
 })();
 
-
-
 function mostrarRecetas(recetas, usuarios) {
- containerRecetas.innerHTML = "";
+  containerRecetas.innerHTML = "";
 
- recetas.forEach(receta => {
+  recetas.forEach(receta => {
     let nombreAMostrar = "Usuario";
-   for (let i = 0; i < usuarios.length; i++) {
+    for (let i = 0; i < usuarios.length; i++) {
       if (usuarios[i].id === receta.id_usuario || usuarios[i].id_usuario === receta.id_usuario) {
         nombreAMostrar = usuarios[i].nombre_usuario || usuarios[i].username || usuarios[i].nombre;
-    break
-      }}
+        break;
+      }
+    }
+const likeVacio = "likenegro.png";
+const likeLleno = "likenaranja.png";
+const yaLeDioLike = (receta.likes_usuarios || []).includes(idUsuario);
 
-   const section = document.createElement("section");
+    let htmlFiltros = "";
+const listaFiltros = receta.filtros || [];
+
+for (let i = 0; i < listaFiltros.length; i++) {
+    const f = listaFiltros[i];
+    if (etiquetasFiltros[f]) {
+        htmlFiltros += etiquetasFiltros[f];
+    }
+}
+for (let i = 0; i < listaFiltros.length; i++) {
+    const f = listaFiltros[i];
+    if (otrosFiltros[f]) {
+        htmlFiltros += otrosFiltros[f];
+    }
+}
+
+    const section = document.createElement("section");
     section.className = "publicacion";
     section.dataset.id = receta.id;
     section.innerHTML = `
         <figure class="imagen">
+             <div class="like-receta">
+            <img class="corazon" src="${yaLeDioLike ? likeLleno : likeVacio}" alt="like">
+            </div>
             <img class="fotoReceta" src="${receta.imagen_receta}" alt="${receta.nombre}">
             <p class="nombredeusuario">${nombreAMostrar}</p>
         </figure>
@@ -91,10 +132,7 @@ function mostrarRecetas(recetas, usuarios) {
             <span class="icono"><img class="hipervinculo" src="link.png" alt="hipervinculo"></span>
         </div>
         <div class="filtros">
-            <span class="filtro"></span>
-            <span class="filtro"></span>
-            <span class="filtro"></span>
-            <span class="filtro grande"></span>
+            ${htmlFiltros}
         </div>`;
         
     containerRecetas.appendChild(section);
@@ -103,57 +141,86 @@ function mostrarRecetas(recetas, usuarios) {
 
 function activarVerMas() {
   const descripciones = document.querySelectorAll(".descripcion");
-
   descripciones.forEach((descripcion) => {
     const completo = descripcion.textContent;
     if (completo.length > 47) {
       descripcion.innerHTML = completo.substring(0, 47) + '<span class="mas" style="cursor: pointer; font-weight: bold;">... más</span>';
     }
-    });
-    };
-
-
+  });
+}
 
 containerRecetas.addEventListener("click", (e) => {
-    const icono = e.target.closest(".icono");
-    if (icono) {
-        const img = icono.querySelector("img");
-
-        if (img.classList.contains("guardado")) {
-            alternarIcono(img, "guardado.png", "guardado-amarillo.png");
-            const imagenReceta = publicacion.querySelector(".fotoReceta").src;
-            mostrarPopupBandeja(img.closest(".publicacion").dataset.id, img);
-        }
-        if (img.classList.contains("hipervinculo")) {
-            alternarIcono(img, "link.png", "link-amarillo.png");
-        }
-        if (img.classList.contains("comentarios")) {
-            const idReceta = img.closest(".publicacion").dataset.id; // o la clase/dataset que uses para el ID
-             localStorage.setItem("idReceta", idReceta);
-            window.location.href = "recetas-informacion.html#ComentariosReceta";
-        }
+    const botonLike = e.target.closest(".like-receta");
+    if (botonLike) {
+        alternarLike(botonLike);
         return;
     }
-    const objetivo = e.target;
-    const esClickeable = objetivo.classList.contains("titulo") ||
-                         objetivo.classList.contains("fotoReceta") ||
-                         objetivo.classList.contains("descripcion") ||
-                         objetivo.classList.contains("mas") ||
-                         objetivo.classList.contains("filtro") ||
-                         objetivo.classList.contains("filtros");
+  const icono = e.target.closest(".icono");
+  if (icono) {
+    const img = icono.querySelector("img");
 
-    if (!esClickeable) return;
-    objetivo.style.cursor = "pointer";
-    const publicacion = objetivo.closest(".publicacion");
-    if (!publicacion) return;
+    if (img.classList.contains("guardado")) {
+    alternarIcono(img, "guardado.png", "guardado-amarillo.png");
+    
+    // 1. Obtenemos la publicación primero
+    const publicacion = img.closest(".publicacion");
+    const idReceta = publicacion.dataset.id;
+    const imagenReceta = publicacion.querySelector(".fotoReceta").src;
 
-    localStorage.setItem("idReceta", publicacion.dataset.id);
-    window.location.href = "recetas-informacion.html";
+    // 2. Le pasamos la imagen a la función
+    mostrarPopupBandeja(idReceta, img, imagenReceta);
+    return;
+    }
+    if (img.classList.contains("hipervinculo")) {
+      alternarIcono(img, "link.png", "link-amarillo.png");
+    }
+    if (img.classList.contains("comentarios")) {
+      const idReceta = img.closest(".publicacion").dataset.id;
+      localStorage.setItem("idReceta", idReceta);
+      window.location.href = "recetas-informacion.html#ComentariosReceta";
+    }
+    return;
+  }
+  const objetivo = e.target;
+  const esClickeable = objetivo.classList.contains("titulo") ||
+                       objetivo.classList.contains("fotoReceta") ||
+                       objetivo.classList.contains("descripcion") ||
+                       objetivo.classList.contains("mas") ||
+                       objetivo.classList.contains("filtro") ||
+                       objetivo.classList.contains("filtros");
+
+  if (!esClickeable) return;
+  objetivo.style.cursor = "pointer";
+  const publicacion = objetivo.closest(".publicacion");
+  if (!publicacion) return;
+
+  localStorage.setItem("idReceta", publicacion.dataset.id);
+  window.location.href = "recetas-informacion.html";
 });
 
 function alternarIcono(img, normal, activo) {
-    const estaActivo = img.src.includes(activo);
-    img.src = estaActivo ? normal : activo;
+  const estaActivo = img.src.includes(activo);
+  img.src = estaActivo ? normal : activo;
+}
+async function alternarLike(botonLike) {
+    const img = botonLike.querySelector(".corazon");
+    const idRec = botonLike.closest(".publicacion").dataset.id;
+
+    if (img.src.includes(likeLleno)) {
+        img.src = likeVacio;
+        await fetch("http://localhost:3000/mango/receta/dislike", {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ idUs: idUsuario, idRec: idRec })
+        });
+    } else {
+        img.src = likeLleno;
+        await fetch("http://localhost:3000/mango/receta/like", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ idUs: idUsuario, idRec: idRec })
+        });
+    }
 }
 
 const popupBandejas = document.getElementById("popupBandejas");
@@ -167,127 +234,119 @@ let bandejaElegida;
 let seGuardo;
 
 function cambiarVista(idVista) {
-    vistasPopup.forEach((vista) => {
-        vista.hidden = vista.id !== idVista;
-    });
-    cajaPopupBandejas.classList.toggle("fondo-blanco", idVista === "vistaBandejas");
+  vistasPopup.forEach((vista) => {
+    vista.hidden = vista.id !== idVista;
+  });
+  cajaPopupBandejas.classList.toggle("fondo-blanco", idVista === "vistaBandejas");
 }
 
-function mostrarPopupBandeja(idReceta, img) {
-    recetaAGuardar = { id: idReceta, img: img, imagen:imagenReceta};
+function mostrarPopupBandeja(idReceta, img, imagenReceta) {
+    recetaAGuardar = { id: idReceta, img: img, imagen: imagenReceta };
     bandejaElegida = null;
     seGuardo = false;
     inputNombreBandeja.value = "";
-    img.src = "guardado.png";  // resetear el ícono a gris
+    img.src = "guardado.png";  // resetear el ícono
     cambiarVista("vistaOpciones");
     popupBandejas.showModal();
 }
 
-// cerrar tocando el fondo oscuro
 popupBandejas.addEventListener("click", (e) => {
-    if (e.target === popupBandejas) popupBandejas.close();
+  if (e.target === popupBandejas) popupBandejas.close();
 });
 
-// ----- crear bandeja nueva -----
 document.getElementById("botonCrearBandeja").addEventListener("click", () => {
-    cambiarVista("vistaNuevaBandeja");
-    inputNombreBandeja;
+  cambiarVista("vistaNuevaBandeja");
 });
 
 document.getElementById("botonGuardarNuevaBandeja").addEventListener("click", async () => {
-    const nombre = inputNombreBandeja.value.trim();
-    if (nombre === "") return;
+  const nombre = inputNombreBandeja.value.trim();
+  if (nombre === "") return;
 
-    try {
-        const respuesta = await fetch("http://localhost:3000/mango/crearBandeja", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                id_usuario: idUsuario,
-                imagen_bandeja: recetaAGuardar.imagen,
-                nombre_bandeja: nombre,
-                filtros: {}
-            })
-        });
-        const bandeja = await respuesta.json();
-        guardarEnBandeja(bandeja.id);
-    } catch (error) {
-        console.error("No se pudo crear la bandeja:", error);
-    }
+  try {
+    const respuesta = await fetch("http://localhost:3000/mango/crearBandeja", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id_usuario: idUsuario,
+        imagen_bandeja: recetaAGuardar.imagen,
+        nombre_bandeja: nombre,
+        filtros: {}
+      })
+    });
+    const bandeja = await respuesta.json();
+    guardarEnBandeja(bandeja.id);
+  } catch (error) {
+    console.error("No se pudo crear la bandeja:", error);
+  }
 });
 
-// ----- bandeja ya existente -----
 document.getElementById("botonBandejaExistente").addEventListener("click", async () => {
-    cambiarVista("vistaBandejas");
-    grillaBandejas.innerHTML = "";
+  cambiarVista("vistaBandejas");
+  grillaBandejas.innerHTML = "";
 
-    try {
-        const respuesta = await fetch(`http://localhost:3000/mango/bandejasUsuario/${idUsuario}`);
-        const bandejas = await respuesta.json();
+  try {
+    const respuesta = await fetch(`http://localhost:3000/mango/bandejasUsuario/${idUsuario}`);
+    const bandejas = await respuesta.json();
 
-        if (bandejas.length === 0) {
-            grillaBandejas.innerHTML = "<p>Todavía no tenés bandejas</p>";
-            return;
-        }
-
-        bandejas.forEach((bandeja) => {
-            const foto = document.createElement("img");
-            foto.className = "bandeja-foto";
-            foto.src = recetaAGuardar.imagen;
-            foto.alt = bandeja.nombre_bandeja;
-            foto.title = bandeja.nombre_bandeja;
-            foto.dataset.id = bandeja.id;
-            grillaBandejas.appendChild(foto);
-        });
-    } catch (error) {
-        grillaBandejas.innerHTML = "<p>No se pudieron cargar tus bandejas</p>";
+    if (bandejas.length === 0) {
+      grillaBandejas.innerHTML = "<p>Todavía no tenés bandejas</p>";
+      return;
     }
+
+    bandejas.forEach((bandeja) => {
+      const foto = document.createElement("img");
+      foto.className = "bandeja-foto";
+      foto.src = recetaAGuardar.imagen;
+      foto.alt = bandeja.nombre_bandeja;
+      foto.title = bandeja.nombre_bandeja;
+      foto.dataset.id = bandeja.id;
+      grillaBandejas.appendChild(foto);
+    });
+  } catch (error) {
+    grillaBandejas.innerHTML = "<p>No se pudieron cargar tus bandejas</p>";
+  }
 });
 
-// elegir una bandeja (borde naranja, una sola a la vez)
 grillaBandejas.addEventListener("click", (e) => {
-    const foto = e.target.closest(".bandeja-foto");
-    if (!foto) return;
+  const foto = e.target.closest(".bandeja-foto");
+  if (!foto) return;
 
-    grillaBandejas.querySelectorAll(".bandeja-foto").forEach((f) => f.classList.remove("elegida"));
-    foto.classList.add("elegida");
-    bandejaElegida = foto.dataset.id;
+  grillaBandejas.querySelectorAll(".bandeja-foto").forEach((f) => f.classList.remove("elegida"));
+  foto.classList.add("elegida");
+  bandejaElegida = foto.dataset.id;
 });
 
 document.getElementById("botonGuardarEnBandeja").addEventListener("click", () => {
-    if (!bandejaElegida) return;
-    guardarEnBandeja(bandejaElegida);
+  if (!bandejaElegida) return;
+  guardarEnBandeja(bandejaElegida);
 });
 
-// ----- guardar la receta en la bandeja -----
 async function guardarEnBandeja(idBandeja) {
+  try {
+    const respuesta = await fetch("http://localhost:3000/mango/guardarRec", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ idBandeja: idBandeja, idRec: recetaAGuardar.id })
+    });
+
+    const texto = await respuesta.text();
     try {
-        const respuesta = await fetch("http://localhost:3000/mango/guardarRec", {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ idBandeja: idBandeja, idRec: recetaAGuardar.id })
-        });
-
-        const texto = await respuesta.text();
-        try {
-            JSON.parse(texto);
-        } catch {
-            // el back manda texto plano si ya estaba guardada o no la encontró
-            alert(texto);
-            return;
-        }
-
-        seGuardo = true;
-        recetaAGuardar.img.src = "guardado-amarillo.png";
-        popupBandejas.close();
-        
-    } catch (error) {
-        console.error("No se pudo guardar la receta:", error);
+      JSON.parse(texto);
+    } catch {
+      alert(texto);
+      return;
     }
+
+    seGuardo = true;
+    recetaAGuardar.img.src = "guardado-amarillo.png";
+    popupBandejas.close();
+  } catch (error) {
+    console.error("No se pudo guardar la receta:", error);
+  }
 }
-popupBandejas.addEventListener("close", () => {
-    if (!seGuardo) {
-        recetaAGuardar.img.src = "guardado.png";
-    }
-});
 
+popupBandejas.addEventListener("close", () => {
+  if (!seGuardo) {
+    recetaAGuardar.img.src = "guardado.png";
+  }
+});
