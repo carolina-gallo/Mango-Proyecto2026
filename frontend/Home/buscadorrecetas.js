@@ -6,7 +6,7 @@ const flechaCerrarpopup = document.getElementById("flecha-cerrar");
 const flechaImg = document.querySelector(".cerrar");
 const header = document.querySelector("header");
 
-const etiquetasFiltros = {
+const nombresFiltros = {
     celiacx: "Sin TACC",
     diabeticx: "Bajo en azúcares",
     veganx: "Vegano",
@@ -26,7 +26,16 @@ function leerFiltros() {
     });
     return filtros;
 }
+function activarVerMas() {
+  const descripciones = document.querySelectorAll(".descripcion");
 
+  descripciones.forEach((descripcion) => {
+    const completo = descripcion.textContent;
+    if (completo.length > 47) {
+      descripcion.innerHTML = completo.substring(0, 47) + '<span class="mas" style="cursor: pointer; font-weight: bold;">... más</span>';
+    }
+    });
+    };
 
 function buscarConFiltros() {
     const inputBuscar = document.getElementById("inputBuscar");
@@ -79,52 +88,7 @@ botonesFiltro.forEach(boton => {
 function cargarRecetas(recetas, listaUsuarios = []) {
     const lista = document.getElementById("recetas");
     if (!lista) return;
-
-    lista.innerHTML = "";
-
-    if (!recetas || recetas.length === 0) {
-        lista.innerHTML = "<p>No se encontraron recetas con los criterios seleccionados.</p>";
-        return;
-    }
-
-    const usuariosMap = new Map(listaUsuarios.map(u => [u.id || u.id_usuario, u]));
-
-    lista.innerHTML = recetas.map(receta => {
-        const autor = usuariosMap.get(receta.id_usuario) || {};
-        const nombreAMostrar = autor.nombre_usuario || autor.username || autor.nombre || "Usuario";
-    
-
-        let filtrosHTML = "";
-        for (let clave in receta.filtros) {
-            if (receta.filtros[clave] === true) {
-                let nombreLindo = etiquetasFiltros[clave] || clave;
-                filtrosHTML += `<span class="filtro">${nombreLindo}</span>`;
-            }
-        }
-
-        return `<section class="publicacion" data-id="${receta.id}">
-                <figure class="imagen">
-                    <img class="fotoReceta" src="${receta.imagen_receta}" alt="${receta.nombre}">
-                    <div class="usuario-info">
-                        <p class="nombredeusuario">${nombreAMostrar}</p>
-                    </div>
-                </figure>
-                <div class="contenido">
-                    <h2 class="titulo">${receta.nombre}</h2>
-                    <p class="descripcion">${receta.descripcion}</p>
-                </div>
-                <div class="interacciones">
-                    <span class="icono"><img class="guardado" src="guardado.png" alt="guardar"></span>
-                    <span class="icono"><img class="comentarios" src="comentariosr.png" alt="comentar"></span>
-                    <span class="icono"><img class="hipervinculo" src="link.png" alt="hipervinculo"></span>
-                </div>
-                <div class="filtros">
-                    ${filtrosHTML}
-                </div>
-            </section> `;
-    }).join("");
 }
-
 function mostrarObjetosFiltrados() {
     if (!objetosFiltrados) return;
     const elegidos = document.querySelectorAll(".filtro-circular.seleccionado, .filtros-random.seleccionado");
@@ -132,7 +96,7 @@ function mostrarObjetosFiltrados() {
 
     elegidos.forEach(boton => {
         const clave = boton.dataset.filtro;
-        const nombreVisible = etiquetasFiltros[clave] || clave;
+        const nombreVisible = nombresFiltros[clave] || clave;
 
         objetosFiltrados.innerHTML += `
             <span class="objetofiltrado">
@@ -143,57 +107,49 @@ function mostrarObjetosFiltrados() {
 }
 
 
-if (objetosFiltrados) {
-    objetosFiltrados.addEventListener("click", (e) => {
-        if (e.target.classList.contains("eliminarFiltro")) {
-            const filtroAEliminar = e.target.dataset.filtro;
-            const botonOriginal = document.querySelector(`[data-filtro="${filtroAEliminar}"]`);
-            if (botonOriginal) {
-                botonOriginal.classList.remove("seleccionado");
-            }
+objetosFiltrados.addEventListener("click", (e) => {
+    if (e.target.classList.contains("eliminarFiltro")) {
+        const filtroAEliminar = e.target.dataset.filtro;
 
-            mostrarObjetosFiltrados();
-
-            const restantes = document.querySelectorAll(".filtro-circular.seleccionado, .filtros-random.seleccionado");
-            if (restantes.length === 0) {
-                objetosFiltrados.hidden = true;
-            }
-
-            buscarConFiltros();
+        const botonOriginal = document.querySelector(`[data-filtro="${filtroAEliminar}"]`);
+        if (botonOriginal) {
+            botonOriginal.classList.remove("seleccionado");
         }
-    });
-}
 
-if (flechaCerrarpopup) {
-    flechaCerrarpopup.addEventListener("click", () => {
-        const elegidos = document.querySelectorAll(".filtro-circular.seleccionado, .filtros-random.seleccionado");
-        const listaRecetas = document.getElementById("recetas");
+        mostrarObjetosFiltrados();
 
-        if (panel.hidden) {
-            panel.hidden = false;
-            if (objetosFiltrados) objetosFiltrados.hidden = true;
-            if (header) header.classList.remove("omg");
-            if (listaRecetas) listaRecetas.classList.remove("omg");
-            if (flechaImg) flechaImg.src = "flecha-abajo.png";
+        const restantes = document.querySelectorAll(".filtro-circular.seleccionado, .filtros-random.seleccionado");
+        if (restantes.length === 0) {
+            objetosFiltrados.hidden = true;
+        }
+
+        buscarConFiltros();
+    }
+});
+
+flechaCerrarpopup.addEventListener("click", () => {
+    const elegidos = document.querySelectorAll(".filtro-circular.seleccionado, .filtros-random.seleccionado");
+
+    if (panel.hidden) {
+        panel.hidden = false;
+        objetosFiltrados.hidden = true;
+        header.classList.remove("colapsado");
+        flechaImg.src = "flecha-abajo.png";
+    } else {
+        panel.hidden = true;
+        header.classList.add("colapsado");
+        flechaImg.src = "flecha-arriba.png";
+
+        if (elegidos.length === 0) {
+            objetosFiltrados.hidden = true;
         } else {
-            panel.hidden = true;
-            if (header) header.classList.add("omg");
-            if (listaRecetas) listaRecetas.classList.add("omg");
-            if (flechaImg) flechaImg.src = "flecha-arriba.png";
-
-            if (elegidos.length === 0) {
-                if (objetosFiltrados) objetosFiltrados.hidden = true;
-            } else {
-                if (objetosFiltrados) {
-                    objetosFiltrados.hidden = false;
-                    mostrarObjetosFiltrados();
-                }
-            }
-
-            buscarConFiltros();
+            objetosFiltrados.hidden = false;
+            mostrarObjetosFiltrados();
         }
-    });
-}
+
+        buscarConFiltros();
+    }
+})
 
 
 buscarConFiltros();
