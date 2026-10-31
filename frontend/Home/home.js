@@ -156,7 +156,19 @@ function buscarPost(idPost) {
         }
     }
 }
-
+function formatearFechaHora(fechaIso) {
+  if (!fechaIso) return "";
+  
+  const fecha = new Date(fechaIso);
+  
+  return fecha.toLocaleString("es-AR", {
+    day: "2-digit",
+    month: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false
+  });
+}
 function mostrarComentarios(idPost) {
     lista.innerHTML = "";
     const comentarioPost = buscarPost(idPost);

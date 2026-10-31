@@ -51,7 +51,17 @@ async function cargarConversacion() {
         }
     }
 }
-
+function formatearHora(fechaIso) {
+  if (!fechaIso) return "";
+  
+  const fecha = new Date(fechaIso);
+  
+  return fecha.toLocaleTimeString("es-AR", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false // formato 24 hs (ej: 14:30 en vez de 2:30 PM)
+  });
+}
 async function enviarMensaje() {
     const input = document.getElementById("inputMensaje");
     if (!input) return;
@@ -120,7 +130,9 @@ function renderizarMensajes(mensajes, idUs, contenedor) {
         const esMio = Number(idEmisor) === idUs;
 
         divMensaje.classList.add("mensaje", esMio ? "mimensaje" : "otromensaje");
-        divMensaje.innerHTML = `<p class="contenido">${msg.texto}</p>`;
+        divMensaje.innerHTML = 
+        `<p class="contenido">${msg.texto}</p>
+        <p class="hora">${formatearHora(msg.fecha)}</p>`;
 
         contenedor.appendChild(divMensaje);
     });
