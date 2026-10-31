@@ -54,7 +54,6 @@ async function cargarRecetasUsuario() {
         recetas.forEach(receta => {
             const card = document.createElement('article');
             card.classList.add('tarjeta-receta');
-            card.style.cursor = 'pointer';
 
             card.innerHTML = `
                 <div class="info-receta">
