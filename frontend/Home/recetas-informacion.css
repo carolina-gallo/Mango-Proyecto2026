@@ -29,20 +29,23 @@
     *{
         margin: 0;
         padding: 0;
-        box-sizing:border-box
+        box-sizing:border-box;
     }
 
     body{
         width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
+        overflow-x: clip;
         font-family: 'Nunito' ;
     }
     .app{
+        width: 100%;
+        max-width: 100%;
         padding-bottom:6.8649vh;
+        overflow: hidden;
     }
     .contenedorRecetas{
-        width: 100vw;
+        width: 100%;
+        max-width: 100%;
         background-color: white;
         display: flex;
         flex-direction: column;
@@ -50,7 +53,7 @@
     }
     .fotoreceta {
         position: relative;
-        width: 100vw;
+        width: 100%;
         min-height: 32.8375vh;
         max-height: 58vh;              
         object-fit: cover;
@@ -70,14 +73,18 @@
         top:1.5rem
     }
     .contenedorInfo{
-        margin-left:5vw;
-        margin-top: 2.144vh;
-        margin-right: 2.4875vw;
+        width: 100%;
+        max-width: 100%;
+        padding-left:5vw;
+        padding-top: 2.144vh;
+        padding-right: 2.4875vw;
         display: flex;
         flex-direction: column;
         gap: 1.716vh;
+        flex-wrap: wrap;
     }
-    .h1{
+    h1{
+        width: 100%;
         font-size: 1.6875rem;
         color: black;
         font-weight: 700;
@@ -85,6 +92,7 @@
         word-break: break-word;
     }
     .descripcion{
+        width: 100%;
         font-size: 1.25rem;
         overflow-wrap: anywhere;
         word-break: break-word;
@@ -92,7 +100,7 @@
     .filtros{
         width: 94.776vw;
         height: 8.5812vh;
-        margin-right: 0;
+        padding-right: 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -177,9 +185,10 @@
     }
 
     .trucos {
+        width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 1.716vh;  
+      gap: 1.716vh;
     }
 
     .lista-trucos {
@@ -187,21 +196,23 @@
       flex-direction: column;
       list-style: none;
       padding: 0;
-      gap: 1.716vh;  
+      gap: 1.716vh;
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
     .comentarios {
     height: 100%;
     overflow-y: auto;
     background-color: white;
-    margin-left:5vw;
-    margin-top: 2.144vh;
-    margin-right: 2.4875vw;
+    padding-left:5vw;
+    padding-top: 2.144vh;
+    padding-right: 2.4875vw;
     display: flex;
     flex-direction: column;
     gap: 1.716vh;
 }
 .titulocomentarios {
-    font-size: 1.6875;
+    font-size: 1.6875rem;
     color: #6D813A;
     font-weight: 700;
 }
@@ -209,7 +220,7 @@
     width: 100%;
     height: 100%;                
     display: flex;
-    justify-content: flex;
+    justify-content: center;
     align-items: center;
     padding-bottom: 1.716vh;
 }

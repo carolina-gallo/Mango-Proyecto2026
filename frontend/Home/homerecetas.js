@@ -5,6 +5,24 @@ let postActual;
  const containerRecetas = document.getElementById("recetas");
  const idUsuario = Number(localStorage.getItem("id"));
 
+const etiquetasFiltros = {
+    celiacx: `<img src="../Sin tacc.png" alt="Sin TACC" class="filtro">`,
+    diabeticx: `<img src="../Diabetes.png" alt="Diabetes" class="filtro">`,
+    veganx: `<img src="../Vegano.png" alt="Vegano" class="filtro">`,
+    vegetarianx: `<img src="../Vegetariano.png" alt="Vegetariano" class="filtro">`,
+    kosher: `<img src="../Kosher.png" alt="Kosher" class="filtro">`,
+    hipertensx: `<img src="../Hipertencion.png" alt="Hipertencion" class="filtro">`,
+    "bajo colesterol": `<img src="../Bajo colesterol.png" alt="Bajo colesterol" class="filtro">`,
+    keto: `<img src="../keto.png" alt="keto" class="filtro">`,
+    "intolerancia a la lactosa": `<img src="../intolerancia a la lactosa.png" alt="intolerancia a la lactosa" class="filtro">`,
+    "alergia a los frutos secos":`<img src="../A. mani.png" alt="A. mani" class="filtro">`
+};
+
+function obtenerImagenFiltro(nombreFiltro) {
+  const clave = String(nombreFiltro).toLowerCase().trim();
+  return mapaFiltros[clave] || "filtros/default.png";
+}
+
 async function obtenerDatosUsuario() {
   if (!idUsuario) return;
   try {
