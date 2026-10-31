@@ -16,6 +16,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    text-decoration: none;  
 }
 
 .fotoBandeja {
@@ -35,5 +36,4 @@
     font-size: 0.937rem;
     font-weight: 500;
     color: black; 
-    text-decoration: none;
 }
