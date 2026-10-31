@@ -1,23 +1,24 @@
 let recetas = [];
 let usuarios = [];
 let postActual;
- const containerRecetas = document.getElementById("recetas");
- const idUsuario = Number(localStorage.getItem("id"));
- const likeVacio = "likenegro.png";
+const containerRecetas = document.getElementById("recetas");
+const idUsuario = Number(localStorage.getItem("id"));
+const likeVacio = "likenegro.png";
 const likeLleno = "likenaranja.png";
 
-etiquetasFiltros = {
-    celiacx: `<img src="../Sin tacc.png" alt="Sin TACC" class="filtro">`,
-    diabeticx: `<img src="../Diabetes.png" alt="Diabetes" class="filtro">`,
-    veganx: `<img src="../Vegano.png" alt="Vegano" class="filtro">`,
-    vegetarianx: `<img src="../Vegetariano.png" alt="Vegetariano" class="filtro">`,
-    kosher: `<img src="../Kosher.png" alt="Kosher" class="filtro">`,
-    hipertensx: `<img src="../Hipertencion.png" alt="Hipertencion" class="filtro">`,
-    "bajo colesterol": `<img src="../Bajo colesterol.png" alt="Bajo colesterol" class="filtro">`,
-    keto: `<img src="../keto.png" alt="keto" class="filtro">`,
-    "intolerancia a la lactosa": `<img src="../intolerancia a la lactosa.png" alt="intolerancia a la lactosa" class="filtro">`,
-    "alergia a los frutos secos":`<img src="../A. mani.png" alt="A. mani" class="filtro">`
+const etiquetasFiltros = {
+  celiacx: `<img src="../Sin tacc.png" alt="Sin TACC" class="filtro">`,
+  diabeticx: `<img src="../Diabetes.png" alt="Diabetes" class="filtro">`,
+  veganx: `<img src="../Vegano.png" alt="Vegano" class="filtro">`,
+  vegetarianx: `<img src="../Vegetariano.png" alt="Vegetariano" class="filtro">`,
+  kosher: `<img src="../Kosher.png" alt="Kosher" class="filtro">`,
+  hipertensx: `<img src="../Hipertencion.png" alt="Hipertencion" class="filtro">`,
+  "bajo colesterol": `<img src="../Bajo colesterol.png" alt="Bajo colesterol" class="filtro">`,
+  keto: `<img src="../keto.png" alt="keto" class="filtro">`,
+  "intolerancia a la lactosa": `<img src="../intolerancia a la lactosa.png" alt="intolerancia a la lactosa" class="filtro">`,
+  "alergia a los frutos secos": `<img src="../A. mani.png" alt="A. mani" class="filtro">`
 };
+
 const otrosFiltros = {
   salado: `<p class="filtro grande">Salado</p>`,
   dulce: `<p class="filtro grande">Dulce</p>`,
@@ -44,12 +45,6 @@ const otrosFiltros = {
   media: `<p class="filtro grande">Media</p>`,
   baja: `<p class="filtro grande">Baja</p>`
 };
-
-
-function obtenerImagenFiltro(nombreFiltro) {
-  const clave = String(nombreFiltro).toLowerCase().trim();
-  return mapaFiltros[clave] || "filtros/default.png";
-}
 
 async function obtenerDatosUsuario() {
   if (!idUsuario) return;
@@ -93,51 +88,52 @@ function mostrarRecetas(recetas, usuarios) {
         break;
       }
     }
-let iconoLike = likeVacio;
+
+    let iconoLike = likeVacio;
     if ((receta.likes_usuarios || []).includes(idUsuario)) {
-        iconoLike = likeLleno;
+      iconoLike = likeLleno;
     }
 
     let htmlFiltros = "";
-const listaFiltros = receta.filtros || [];
+    const listaFiltros = receta.filtros || [];
 
-for (let i = 0; i < listaFiltros.length; i++) {
-    const f = listaFiltros[i];
-    if (etiquetasFiltros[f]) {
+    for (let i = 0; i < listaFiltros.length; i++) {
+      const f = listaFiltros[i];
+      if (etiquetasFiltros[f]) {
         htmlFiltros += etiquetasFiltros[f];
+      }
     }
-}
-for (let i = 0; i < listaFiltros.length; i++) {
-    const f = listaFiltros[i];
-    if (otrosFiltros[f]) {
+    for (let i = 0; i < listaFiltros.length; i++) {
+      const f = listaFiltros[i];
+      if (otrosFiltros[f]) {
         htmlFiltros += otrosFiltros[f];
+      }
     }
-}
 
     const section = document.createElement("section");
     section.className = "publicacion";
     section.dataset.id = receta.id;
     section.innerHTML = `
-        <figure class="imagen">
-             <div class="like-receta">
-            <img class="corazon" src="${iconoLike}" alt="like">
-            </div>
-            <img class="fotoReceta" src="${receta.imagen_receta}" alt="${receta.nombre}">
-            <p class="nombredeusuario">${nombreAMostrar}</p>
-        </figure>
-        <div class="contenido">
-            <h2 class="titulo">${receta.nombre}</h2>
-            <p class="descripcion">${receta.descripcion}</p>
+      <figure class="imagen">
+        <div class="like-receta">
+          <img class="corazon" src="${iconoLike}" alt="like">
         </div>
-        <div class="interacciones">
-            <span class="icono"><img class="guardado" src="guardado.png" alt="guardar"></span>
-            <span class="icono"><img class="comentarios" src="comentariosr.png" alt="comentar"></span>
-            <span class="icono"><img class="hipervinculo" src="link.png" alt="hipervinculo"></span>
-        </div>
-        <div class="filtros">
-            ${htmlFiltros}
-        </div>`;
-        
+        <img class="fotoReceta" src="${receta.imagen_receta}" alt="${receta.nombre}">
+        <p class="nombredeusuario">${nombreAMostrar}</p>
+      </figure>
+      <div class="contenido">
+        <h2 class="titulo">${receta.nombre}</h2>
+        <p class="descripcion">${receta.descripcion}</p>
+      </div>
+      <div class="interacciones">
+        <span class="icono"><img class="guardado" src="guardado.png" alt="guardar"></span>
+        <span class="icono"><img class="comentarios" src="comentariosr.png" alt="comentar"></span>
+        <span class="icono"><img class="hipervinculo" src="link.png" alt="hipervinculo"></span>
+      </div>
+      <div class="filtros">
+        ${htmlFiltros}
+      </div>`;
+
     containerRecetas.appendChild(section);
   });
 }
@@ -152,27 +148,26 @@ function activarVerMas() {
   });
 }
 
-containerRecetas.addEventListener("click", async(e) => {
-    const botonLike = e.target.closest(".like-receta");
-    if (botonLike) {
-        alternarLike(botonLike);
-        return;
-    }
+containerRecetas.addEventListener("click", async (e) => {
+  const botonLike = e.target.closest(".like-receta");
+  if (botonLike) {
+    alternarLike(botonLike);
+    return;
+  }
+
   const icono = e.target.closest(".icono");
   if (icono) {
     const img = icono.querySelector("img");
 
     if (img.classList.contains("guardado")) {
-    alternarIcono(img, "guardado.png", "guardado-amarillo.png");
-    
-    // 1. Obtenemos la publicación primero
-    const publicacion = img.closest(".publicacion");
-    const idReceta = publicacion.dataset.id;
-    const imagenReceta = publicacion.querySelector(".fotoReceta").src;
+      alternarIcono(img, "guardado.png", "guardado-amarillo.png");
 
-    // 2. Le pasamos la imagen a la función
-    mostrarPopupBandeja(idReceta, img, imagenReceta);
-    return;
+      const publicacion = img.closest(".publicacion");
+      const idReceta = publicacion.dataset.id;
+      const imagenReceta = publicacion.querySelector(".fotoReceta").src;
+
+      mostrarPopupBandeja(idReceta, img, imagenReceta);
+      return;
     }
     if (img.classList.contains("hipervinculo")) {
       alternarIcono(img, "link.png", "link-amarillo.png");
@@ -184,6 +179,7 @@ containerRecetas.addEventListener("click", async(e) => {
     }
     return;
   }
+
   const objetivo = e.target;
   const esClickeable = objetivo.classList.contains("titulo") ||
                        objetivo.classList.contains("fotoReceta") ||
@@ -205,25 +201,26 @@ function alternarIcono(img, normal, activo) {
   const estaActivo = img.src.includes(activo);
   img.src = estaActivo ? normal : activo;
 }
-async function alternarLike(botonLike) {
-    const img = botonLike.querySelector(".corazon");
-    const idRec = botonLike.closest(".publicacion").dataset.id;
 
-    if (img.src.includes(likeLleno)) {
-        img.src = likeVacio;
-        await fetch("http://localhost:3000/mango/receta/dislike", {
-            method: "DELETE",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ idUs: idUsuario, idRec: idRec })
-        });
-    } else {
-        img.src = likeLleno;
-        await fetch("http://localhost:3000/mango/receta/like", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ idUs: idUsuario, idRec: idRec })
-        });
-    }
+async function alternarLike(botonLike) {
+  const img = botonLike.querySelector(".corazon");
+  const idRec = botonLike.closest(".publicacion").dataset.id;
+
+  if (img.src.includes(likeLleno)) {
+    img.src = likeVacio;
+    await fetch("http://localhost:3000/mango/receta/dislike", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ idUs: idUsuario, idRec: idRec })
+    });
+  } else {
+    img.src = likeLleno;
+    await fetch("http://localhost:3000/mango/receta/like", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ idUs: idUsuario, idRec: idRec })
+    });
+  }
 }
 
 const popupBandejas = document.getElementById("popupBandejas");
@@ -244,13 +241,13 @@ function cambiarVista(idVista) {
 }
 
 function mostrarPopupBandeja(idReceta, img, imagenReceta) {
-    recetaAGuardar = { id: idReceta, img: img, imagen: imagenReceta };
-    bandejaElegida = null;
-    seGuardo = false;
-    inputNombreBandeja.value = "";
-    img.src = "guardado.png";  // resetear el ícono
-    cambiarVista("vistaOpciones");
-    popupBandejas.showModal();
+  recetaAGuardar = { id: idReceta, img: img, imagen: imagenReceta };
+  bandejaElegida = null;
+  seGuardo = false;
+  inputNombreBandeja.value = "";
+  img.src = "guardado.png";
+  cambiarVista("vistaOpciones");
+  popupBandejas.showModal();
 }
 
 popupBandejas.addEventListener("click", (e) => {
@@ -287,25 +284,45 @@ document.getElementById("botonBandejaExistente").addEventListener("click", async
   cambiarVista("vistaBandejas");
   grillaBandejas.innerHTML = "";
 
+  if (!idUsuario) {
+    grillaBandejas.innerHTML = "<p>Iniciá sesión para ver tus bandejas</p>";
+    return;
+  }
+
   try {
-    const respuesta = await fetch(`http://localhost:3000/mango/bandejasUsuario/${idUsuario}`);
+    const respuesta = await fetch("http://localhost:3000/mango/mostrarBandejas", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ idUs: idUsuario })
+    });
+
+    if (!respuesta.ok) throw new Error("Error al obtener bandejas");
+
     const bandejas = await respuesta.json();
 
-    if (bandejas.length === 0) {
-      grillaBandejas.innerHTML = "<p>Todavía no tenés bandejas</p>";
+    if (!bandejas || bandejas.length === 0) {
+      grillaBandejas.innerHTML = "<p>Todavía no tenés bandejas creadas</p>";
       return;
     }
 
     bandejas.forEach((bandeja) => {
-      const foto = document.createElement("img");
-      foto.className = "bandeja-foto";
-      foto.src = recetaAGuardar.imagen;
-      foto.alt = bandeja.nombre_bandeja;
-      foto.title = bandeja.nombre_bandeja;
-      foto.dataset.id = bandeja.id;
-      grillaBandejas.appendChild(foto);
+      const recetas = bandeja.recetas_bandeja || [];
+      const ultimaReceta = recetas.length > 0 ? recetas[recetas.length - 1] : null;
+      const imagenUrl = (ultimaReceta && ultimaReceta.imagen_receta) 
+        ? ultimaReceta.imagen_receta 
+        : (bandeja.imagen_bandeja || "default.jpg");
+
+      const itemBandeja = document.createElement("div");
+      itemBandeja.className = "bandeja-opcion";
+      itemBandeja.innerHTML = `
+        <img class="bandeja-foto" src="${imagenUrl}" alt="${bandeja.nombre_bandeja}" data-id="${bandeja.id}">
+        <p class="bandeja-nombre">${bandeja.nombre_bandeja}</p>
+      `;
+
+      grillaBandejas.appendChild(itemBandeja);
     });
   } catch (error) {
+    console.error("Error al cargar bandejas existentes:", error);
     grillaBandejas.innerHTML = "<p>No se pudieron cargar tus bandejas</p>";
   }
 });
@@ -353,3 +370,5 @@ popupBandejas.addEventListener("close", () => {
     recetaAGuardar.img.src = "guardado.png";
   }
 });
+
+obtenerDatosUsuario();
