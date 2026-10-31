@@ -6,7 +6,7 @@ let postActual;
  const likeVacio = "likenegro.png";
 const likeLleno = "likenaranja.png";
 
-const etiquetasFiltros = {
+etiquetasFiltros = {
     celiacx: `<img src="../Sin tacc.png" alt="Sin TACC" class="filtro">`,
     diabeticx: `<img src="../Diabetes.png" alt="Diabetes" class="filtro">`,
     veganx: `<img src="../Vegano.png" alt="Vegano" class="filtro">`,
