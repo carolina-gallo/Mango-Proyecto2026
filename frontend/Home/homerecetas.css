@@ -16,6 +16,7 @@ body {font-family: 'Nunito'}
     height: 100%;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
     }
 
 .cajita {
@@ -141,12 +142,19 @@ body {font-family: 'Nunito'}
 
 /* ===== FILTROS (3 circulos + pastilla) ===== */
 .filtros {
-    align-self: end;
+    width: 100%;
+    max-width: 100%;
     padding-bottom: 1.4vh;
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 2vw;
+    
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+
+    scrollbar-width: none;
 }
 
 .filtro {
@@ -154,11 +162,22 @@ body {font-family: 'Nunito'}
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     background-color: #FFC96C;
+    
+    /* EVITA QUE FLEXBOX APLASTE LOS CÍRCULOS AL SCROLLEAR */
+    flex-shrink: 0;
+    object-fit: cover;
 }
 .grande {
-    width: 17.412vw;
-    aspect-ratio: 2.3/1;
-    border-radius: 0.9rem
+    min-width: 17.412vw;
+    aspect-ratio: 2.3 / 1;
+    border-radius: 0.9rem;
+    background-color: #FFC96C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    padding: 0 2vw;
+    flex-shrink: 0;
 }
 
 .más{
