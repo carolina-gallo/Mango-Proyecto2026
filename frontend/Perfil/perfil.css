@@ -68,7 +68,7 @@ body {
 }
 
 .editar {
-    width: 10.696vw;
+    width: 9.696vw;
     aspect-ratio: 1 / 1;
     object-fit: contain;
     display: block;
@@ -157,6 +157,13 @@ body {
     padding-bottom: 6.8649vh;
 }
 
+.editarperfil {
+    width: 50vw;
+    height: 100vh;
+    max-height: 100%;          
+    border: none;
+    background-color: #FFF7ED;
+}
 
 
 

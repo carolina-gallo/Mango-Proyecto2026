@@ -32,7 +32,7 @@ function buscarFoto(username) {
     return resolverFoto(u?.foto_perfil);
 }
 
-/* ---------- datos del usuario / header ---------- */
+
 async function obtenerDatosUsuario() {
     if (!idUs) return null;
     try {
@@ -56,7 +56,7 @@ async function obtenerDatosUsuario() {
     }
 }
 
-/* ---------- posts ---------- */
+
 async function cargarPosts() {
     if (!idUs) {
         containerPosts.innerHTML = '<p class="sin-posts">Inicia sesión para ver tus publicaciones.</p>';
@@ -122,7 +122,7 @@ function activarVerMas() {
     });
 }
 
-/* ---------- like / comentarios / enviar ---------- */
+
 containerPosts.addEventListener('click', (e) => {
     const icono = e.target.closest('.icono');
     if (!icono) return;
@@ -149,7 +149,7 @@ async function darLike(icono, idPost) {
     }
 }
 
-/* ----- comentarios ----- */
+
 function abrirComentarios(idPost) {
     popup.dataset.id = idPost;
     mostrarComentarios(idPost);
@@ -285,7 +285,7 @@ popupEnviar.addEventListener('click', (e) => {
     if (e.target === popupEnviar) popupEnviar.close();
 });
 
-/* ---------- arranque ---------- */
+
 (async () => {
     usuarioActual = await obtenerDatosUsuario();
     await cargarPosts();
