@@ -91,6 +91,9 @@ function mostrarRecetas(recetas, usuarios) {
         break;
       }
     }
+const likeVacio = "like-vacio.png";
+const likeLleno = "like-lleno.png";
+
 
     let htmlFiltros = "";
 const listaFiltros = receta.filtros || [];

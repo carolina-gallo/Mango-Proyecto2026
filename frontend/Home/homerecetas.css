@@ -169,14 +169,15 @@ body {font-family: 'Nunito'}
 }
 .grande {
     min-width: 17.412vw;
-    aspect-ratio: 2.3 / 1;
+    aspect-ratio: none;
+    height:3.20366vh;
     border-radius: 0.9rem;
     background-color: #FFC96C;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: nowrap;
-    padding: 0 2vw;
+    padding: 2.5vw;
     flex-shrink: 0;
 }
 
