@@ -122,7 +122,7 @@ body {
 
 
 
-/* ===== PESTAÑAS (Recetas | Post | Bandejas) ===== */
+
 .pestañas {
     width: 100%;
     height: 5.5vh;
@@ -258,28 +258,24 @@ body {
 .bandeja {
     position: relative;
     width: 100%;
-    
-    /* Tamaño mínimo y máximo individual */
     min-width: 140px;
     max-width: 200px;
-    
-    /* Al fijar la proporción (4 alto por 5 ancho), todas miden exactamente lo mismo de alto */
     aspect-ratio: 4 / 5; 
     
     border-radius: 16px;
     overflow: hidden;
-    margin: 0 auto; /* Centra la tarjeta dentro de su celda de la grilla */
+    margin: 0 auto; 
 }
 
-/* ===== IMAGEN DENTRO DE LA TARJETA ===== */
+
 .fotoBandeja {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Recorta la imagen para llenar la tarjeta sin deformarse */
+    object-fit: cover; 
     display: block;
 }
 
-/* ===== TEXTO SOBRE LA IMAGEN ===== */
+
 .NombreBandeja {
     position: absolute;
     bottom: 10px;
@@ -287,50 +283,103 @@ body {
     margin: 0;
     font-size: 17px;
     font-weight: 600;
-    color: #000000; /* Texto en blanco para mejor legibilidad sobre imágenes */
-    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.8); /* Sombra para que destaque sobre cualquier foto */
+    color: #000000; 
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.8); 
 }
-.publicacion {
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
+.post {
+    width: 100%;
+    min-height: 43.70709vh;
+    background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+}
+
+
+.usuario {
     width: 100%;
-    border: 1px solid #e0e0e0;
+    height: 6.75057vh;
+    background-color: #FFFFFF;
+    padding: 0.375rem 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
 }
 
-/* Imagen dentro de la publicación */
-.img-post {
+.fotodeperfil {
+    width: 11.69154vw;
+    aspect-ratio: 1/1;
+    background-color: grey;
+    border-radius: 10rem;
+    object-fit: cover;
+}
+
+.post h2 {
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: flex-start;
+    color: #000000;
+}
+
+
+.foto {
     width: 100%;
-    max-height: 350px;
-    object-fit: cover; /* Ajusta la imagen sin deformarla */
-    display: block;
-    background-color: #f3f3f3; /* Fondo gris claro si la imagen tarda en cargar */
+    min-height: 29.5vh;
+    max-height: 58vh;
+    flex: none;
+    object-fit: cover;
+    background-color: #f3f3f3;
 }
 
-/* Texto y descripción del post */
-.contenido-post {
-    padding: 15px;
-    color: #222222;
-    font-family: 'Nunito', sans-serif;
+
+.bottom {
+    background-color: #FFECCC;
+    width: 100%;
+    margin: 0;
+    padding: 1.0869vh 5.3482vw;
+    min-height: 6.6407vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 3.98vw;
 }
 
-.contenido-post p {
-    margin: 0 0 8px 0;
-    font-size: 15px;
-    line-height: 1.4;
-    word-break: break-word;
+.interacciones {
+    width: 32.08955vw;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-/* Estilo para los mensajes de 'Aún no realizaste ninguna publicación' o errores */
-.sin-posts, .cargando, .error {
+.icono {
+    align-self: center;
+    width: 7.66915vw;
+    aspect-ratio: 1/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.descripcion {
+    width: 52.7363vw;
+    min-height: 4.11899vh;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding: 0.1rem 0;
+    align-self: center;
+    color: #000000;
+    overflow-wrap: anywhere;
+}
+
+.sin-posts {
     text-align: center;
-    padding: 30px 15px;
+    padding: 5vh 2vw;
     color: #666666;
-    font-family: 'Nunito', sans-serif;
-    font-size: 16px;
+    font-size: 1rem;
     width: 100%;
-    box-sizing: border-box;
 }
