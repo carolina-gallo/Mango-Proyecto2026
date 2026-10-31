@@ -21,7 +21,37 @@ function resolverFoto(foto) {
     if (foto.startsWith('http') || foto.startsWith('data:')) return foto;
     return `../avatares/${foto}.png`;
 }
+/* ---------- insignias ---------- */
 
+// Obtener usuario logeado desde localStorage (o tu fuente de almacenamiento)
+const usuarioLogeado = JSON.parse(localStorage.getItem("usuarioLogeado"));
+
+function cargarInsignias(usuario) {
+  if (!usuario || !usuario.nivel) return;
+
+  const spans = document.querySelectorAll("#insignias span[data-maestria]");
+
+  spans.forEach((span) => {
+    const maestria = span.getAttribute("data-maestria");
+    
+    // Obtener el nivel asignado en el objeto del usuario (default "Tierra" si no existe)
+    const nivel = usuario.nivel[maestria] || "Tierra";
+
+    // Convertir a minúsculas y reemplazar espacios/caracteres especiales por guiones bajos
+    const maestriaSlug = maestria.toLowerCase().trim().replace(/[^a-z0-9]+/g, "_");
+    const nivelSlug = nivel.toLowerCase().trim().replace(/[^a-z0-9]+/g, "_");
+
+    // Construir la ruta final de la imagen
+    const rutaImagen = `img/insignias/${maestriaSlug}_${nivelSlug}.png`;
+
+    // Asignar la imagen dentro del span
+    span.innerHTML = `<img src="${rutaImagen}" alt="Insignia ${maestria} ${nivel}" class="insignia-img">`;
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  cargarInsignias(usuarioLogeado);
+});
 /* ---------- header ---------- */
 async function obtenerDatosUsuario() {
     if (!idUsuario) return null;
