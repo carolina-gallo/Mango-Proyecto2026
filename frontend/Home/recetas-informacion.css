@@ -378,6 +378,10 @@ align-items: center;
     border: none;
     text-decoration: none;
     font-family: 'Nunito';
+    font-weight: 600;
+}
+.siguiendo{
+    align-self: center;
 }
 /* ===== POPUP DE BANDEJAS ===== */
 .bandejas-fondo {
@@ -400,13 +404,14 @@ align-items: center;
 
 .bandejas-popup {
     width: 100%;
-    background-color: #F9F9F9;
+    background-color: #F9F9DF;
     border-radius: 2rem 2rem 0 0;
     padding-top: 1.5vh;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 
 .bandejas-vista {
     width: 100%;
@@ -434,6 +439,7 @@ align-items: center;
     color: black;
     cursor: pointer;
 }
+
 
 .bandejas-nombre {
     width: 90vw;

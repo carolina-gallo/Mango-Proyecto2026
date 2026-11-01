@@ -90,6 +90,7 @@ async function obtenerDatosUsuario() {
   } catch (error) {
     console.error("Error al cargar los datos:", error);
   }
+  configurarBotonSeguir(recetaActual.id_usuario);
 })();
 
 function mostrarReceta(receta) {
@@ -398,7 +399,7 @@ document.getElementById("botonBandejaExistente").addEventListener("click", async
         const respuesta = await fetch("http://localhost:3000/mango/mostrarBandejas", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ idUs: Number(idUsuario) })
+            body: JSON.stringify({ idUs: Number(idUsuario), idReceta: localStorage.getItem("idReceta")})
         });
 
         if (!respuesta.ok) throw new Error("Error al obtener bandejas");
@@ -452,18 +453,34 @@ document.getElementById("botonGuardarEnBandeja").addEventListener("click", () =>
 });
 
 // Guardar receta en la bandeja
+// Guardar receta en la bandeja
 async function guardarEnBandeja(idBandeja) {
+    // Si idReceta no existe arriba, intentamos sacarlo de la receta actual o del localStorage
+    const recId = idReceta || (recetaActual ? recetaActual.id : localStorage.getItem("idReceta"));
+
+    if (!recId) {
+        alert("No se pudo identificar la receta para guardar.");
+        return;
+    }
+
     try {
         const respuesta = await fetch("http://localhost:3000/mango/guardarRec", {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ 
-                idBandeja: Number(idBandeja), 
-                idRec: Number(idReceta) 
+                idBandeja: idBandeja,
+                idRec: recId        
             })
         });
 
         const texto = await respuesta.text();
+
+        // Si el backend respondió un error (status 400 u otro), mostramos el mensaje
+        if (!respuesta.ok) {
+            alert(texto || "Error al guardar la receta en la bandeja.");
+            return;
+        }
+
         try {
             JSON.parse(texto);
         } catch {
@@ -479,7 +496,6 @@ async function guardarEnBandeja(idBandeja) {
     }
 }
 
-// Resetear icono si se cerró sin guardar
 popupBandejas.addEventListener("close", () => {
     if (!seGuardo && iconoGuardado) {
         iconoGuardado.src = "guardado.png";
