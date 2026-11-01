@@ -15,9 +15,9 @@ async function obtenerDatosUsuario() {
 
     localStorage.setItem("nombre_usuario", usuario.username);
     localStorage.setItem("foto_perfil", usuario.foto_perfil);
-
-    document.querySelector(".comentarios-avatar.mio").innerHTML =
-      `<img src="${usuario.foto_perfil}" alt="${usuario.username}">`;
+    const fotoUsuario = document.getElementById("fotoUsuario")
+    fotoUsuario.innerHTML =
+      `<img src="${usuario.foto_perfil}" alt="${usuario.username}" class="comentarios-avatar">`;
 
   } catch (error) {
     console.error("Error al obtener usuario:", error);
@@ -107,7 +107,13 @@ const input = document.getElementById("input-comentario");
 const enviar = document.querySelector(".comentarios-enviar");
 
 containerPosts.addEventListener("click", async(e) => {
+    const post = e.target.closest(".post");
+    if (!post) return;
+
+    const idPost = e.target.closest(".post").dataset.id;
     const foto = e.target.closest(".foto");
+    const icono = e.target.closest(".icono");
+
     if (foto) {
         const idReceta = foto.dataset.idReceta || foto.closest(".post").dataset.idReceta;
 
@@ -117,7 +123,6 @@ containerPosts.addEventListener("click", async(e) => {
         }
         return;
     }
-    const icono = e.target.closest(".icono");
     if (!icono) return;
 
 if (icono.alt === "like") {
@@ -126,9 +131,6 @@ if (icono.alt === "like") {
     } else {
     icono.src = "likenaranja.png";
 
-    const idPost = icono.closest(".post").dataset.id;
-    console.log("idPost:", idPost);
-    console.log("idUs:", localStorage.getItem("id"));
 // CHEQUEAR SI ESTO ANDAAA Y LE LLEGA A MARTU
     await fetch("http://localhost:3000/mango/post/like", {
         method: "POST",
@@ -140,14 +142,14 @@ if (icono.alt === "like") {
     });
     }
   }
-});
-
   if (icono.alt === "comentarios") {
     popup.dataset.id = idPost;
     console.log("idPost:", idPost, "posts:", posts);
     mostrarComentarios(idPost);
     popup.showModal();
   }
+});
+
 
 function buscarPost(idPost) {
     for (let i = 0; i < posts.length; i++) {
@@ -156,19 +158,16 @@ function buscarPost(idPost) {
         }
     }
 }
-function formatearFechaHora(fechaIso) {
-  if (!fechaIso) return "";
   
-  const fecha = new Date(fechaIso);
-  
-  return fecha.toLocaleString("es-AR", {
-    day: "2-digit",
-    month: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false
-  });
-}
+  function formatearFecha(fecha) {
+    if (!fecha) return "";
+    return new Date(fecha).toLocaleDateString("es-AR", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric"
+    })
+};
+
 function mostrarComentarios(idPost) {
     lista.innerHTML = "";
     const comentarioPost = buscarPost(idPost);
@@ -190,16 +189,16 @@ function mostrarComentarios(idPost) {
             } 
             return "default.jpg";
             }
-    
+
         comentarioPost.comentarios.forEach((c) => {
             lista.innerHTML += 
             `<section class="comentarios-sección">
             <article class="comentario">
-            <figure class="comentarios-avatar">"${buscarFoto(c.username)}"</figure>
+            <img src="${buscarFoto(c.username)}" alt="${c.username}" class="comentarios-avatar">
             <div>
                 <p class="comentario-nombre">${c.username}</p>
                 <p class="comentario-texto">${c.texto}</p>
-                <p class="comentario-fecha">${c.fecha}</p>
+                <p class="comentario-fecha">${formatearFecha(c.fecha)}</p>
             </div>
             </article>
             </section>`;
@@ -207,9 +206,9 @@ function mostrarComentarios(idPost) {
         });
     }
 }
-
 async function publicarComentario() {
-    // 1. Obtenemos el texto del input primero
+    const fecha = new Date()
+    
     const textoComentario = input.value.trim();
     if (textoComentario === "") return; // Si está vacío, no hace nada
 
@@ -225,7 +224,7 @@ async function publicarComentario() {
                 username: nombre,
                 idPost: idPost,
                 texto: textoComentario,
-                fecha: new Date().toISOString()
+                fecha: formatearFecha(fecha)
             })
         });
 
@@ -236,7 +235,7 @@ async function publicarComentario() {
                 username: nombre,
                 idPost: idPost,
                 texto: textoComentario,
-                fecha: new Date().toISOString()
+                fecha: formatearFecha(fecha)
             });
             comentarioPost.comentarios_post++;
         }

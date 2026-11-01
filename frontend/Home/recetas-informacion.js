@@ -17,7 +17,7 @@ const etiquetasFiltros = {
   "bajo colesterol": `<img src="../Bajo colesterol.png" alt="Bajo colesterol" class="filtro">`,
   keto: `<img src="../keto.png" alt="keto" class="filtro">`,
   "intolerancia a la lactosa": `<img src="../intolerancia a la lactosa.png" alt="intolerancia a la lactosa" class="filtro">`,
-  "alergia a los frutos secos": `<img src="../A. mani.png" alt="A. mani" class="filtro">`
+  "alergia a frutos secos": `<img src="../A. mani.png" alt="A. mani" class="filtro">`
 };
 
 const otrosFiltros = {
@@ -198,8 +198,8 @@ function mostrarComentarios(comentarios) {
     seccionComentario.classList.add("comentarios-seccion");
     seccionComentario.innerHTML = `
       <article class="comentario">
-        <figure class="comentarios-avatar">
-          <img src="${buscarFoto(comentario.username)}" alt="${comentario.username}" class="avatar-comment">
+        <figure class"comentarios-avatar">
+          <img src="${buscarFoto(comentario.username)}" alt="${comentario.username}" class="comentarios-avatar">
         </figure>
         <div>
           <p class="comentario-nombre">${comentario.username || "Anónimo"}</p>

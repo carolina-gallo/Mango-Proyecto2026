@@ -68,8 +68,8 @@ body {font-family: 'Nunito'}
     background-color: #FFFFFF;
     display: grid;
     grid-template-columns: 42vw 1fr;   
+    grid-template-rows: minmax(0, 1fr) auto;
     column-gap: 2vw;
-    padding-right: 2vw;
 }
 
 /* foto */
@@ -94,12 +94,15 @@ body {font-family: 'Nunito'}
     font-size: 0.8rem;
     font-weight: 700;
     color: black;
+    background-color: rgb(243, 167, 60, 0.70);
+    border-radius: 0.4rem;
+    padding: 0.125rem 0.4375rem 0.125rem 0.4375rem
 }
 
 /* titulo + descripcion */
 .contenido {
     padding-top: 0.8vh;
-    padding-right: 7vw;          /* lugar para los iconos */
+    padding-right: 8vw;          /* lugar para los iconos */
     min-width: 0;
     display: flex;
     flex-direction: column;
@@ -111,6 +114,10 @@ body {font-family: 'Nunito'}
     font-size: 1rem;
     font-weight: 700;
     color: black;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .descripcion {
@@ -145,6 +152,7 @@ body {font-family: 'Nunito'}
     width: 100%;
     max-width: 100%;
     padding-bottom: 1.4vh;
+    padding-top: 0.4rem;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -182,7 +190,7 @@ body {font-family: 'Nunito'}
 }
 
 .más{
-    color: rgb(0, 0, 0, 73);
+    color: rgb(0, 0, 0, 0.70);
     font-size: 0.8rem;
     line-height: 1.2;
 }

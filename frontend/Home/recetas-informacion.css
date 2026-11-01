@@ -240,7 +240,7 @@
     bottom: 0;
     width: 100%;
     height: 7.43707vh;
-    padding: 0 3vw;
+    padding: 0 4.5vw;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -258,14 +258,9 @@
 width: 9.9502vw;
 aspect-ratio: 1/1;
 border-radius: 10rem;
+object-fit: cover;
 }
-.avatar-comment{
-    width: 9.9502vw;
-aspect-ratio: 1/1;
-background-color: #170069;
-border-radius: 10rem;
-object-fit: cover
-}
+
 .enviar-comentario{
     position: relative;   /* la referencia para ubicar el ícono */
     flex: 1;              /* ocupa todo el ancho que sobra al lado del avatar */

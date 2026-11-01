@@ -260,6 +260,7 @@ width: 9.9502vw;
 aspect-ratio: 1/1;
 background-color: #E99848;
 border-radius: 10rem;
+object-fit: cover;
 }
 
 .enviar-comentario{
