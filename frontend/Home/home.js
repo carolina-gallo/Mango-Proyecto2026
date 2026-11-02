@@ -70,7 +70,7 @@ function mostrarPosts(posts, usuarios) {
    containerPosts.innerHTML += 
         `<article class="post" data-id="${post.id}">
             <div class="usuario">
-            <img src="${fotoPerfil}" alt="${fotoPerfil}" class="fotodeperfil"></img>
+            <img src="../avatares/${fotoPerfil}.png" alt="${fotoPerfil}" class="fotodeperfil"></img>
             <h2>${nombreAMostrar}</h2>
             </div>
             <img class="foto" src="${post.imagen_post}" alt="foto" data-id-receta="${post.id_receta}">
