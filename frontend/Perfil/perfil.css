@@ -194,7 +194,45 @@ html {
     height: 7vh;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
+    padding-left: 5.97vw;
+    padding-right: 5.97vw;
+    text-decoration: none;
+}
+
+.menu{
+    border-bottom: 0.3vh solid #E5E5E5;
+}
+
+.imagenseccion {
+    width: auto;
+    height: 2.3vh;
+}
+
+.cerrareditar {
+    height: 2.3vh;
+    aspect-ratio: 1 / 1;
+}
+
+.menutextito {
+    font-size: 1.5625rem;
+    font-weight: 700;
+    color: #6E8039;
+}
+
+.textoporseccion{
+    color: black;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 45vw;
+}
+
+.textoeliminarcuenta {
+    color: #C71F1F;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 52vw;
 }
 
 

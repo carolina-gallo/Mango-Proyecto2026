@@ -24,9 +24,40 @@
                 <div class="infoperfil">
                     <div class="nombreyeditar">
                         <h1 class="nombreusuario" id="nombreUsuario">Martuuu</h1>
-                        <a href="editar-perfil.html">
-                            <img class="editar" src="lapiz.png" alt="editar perfil">
-                        </a>
+                        <button command="show-modal" commandfor="menueditarperfil">
+                            <img class="editar" src="menu.png" alt="editar perfil">
+                        </button>
+
+                        <dialog class="menucompleto" id="menueditarperfil">
+                            <section class="editarperfil">
+                                <article class="unadelassecciones menu">
+                                    <p class="menutextito">Menú</p>
+                                    <button command="close" commandfor="menueditarperfil">
+                                        <img class="cerrareditar" src="Cerrar.png" alt="cerrar editar perfil">
+                                    </button>
+                                </article>
+                                <a href="../Perfil/Editar-perfil.html" class="unadelassecciones">
+                                    <img class="imagenseccion" src="lapiz.png" alt="lapiz">
+                                    <p class="textoporseccion">Editar perfil</p>
+                                    <img class="flecha" src="flecha.png" alt="flecha">
+                                </a>
+                                <a href="../Perfil/tienda.html" class="unadelassecciones">
+                                    <img class="imagenseccion" src="tienda.png" alt="tienda">
+                                    <p class="textoporseccion">Tienda</p>
+                                    <img class="flecha" src="flecha.png" alt="flecha">
+                                </a>
+                                <a href="../Perfil/informacion.html" class="unadelassecciones">
+                                    <img class="imagenseccion" src="info.png" alt="informacion">
+                                    <p class="textoporseccion">Información</p>
+                                    <img class="flecha" src="flecha.png" alt="flecha">
+                                </a>
+                                <article class="unadelassecciones">
+                                    <img class="imagenseccion" src="basura.png" alt="eliminar cuenta">
+                                    <p class="textoeliminarcuenta">Eliminar cuenta</p>
+                                </article>
+                            </section>
+                        </dialog>
+
                     </div>
 
                     <div class="estadisticas">
