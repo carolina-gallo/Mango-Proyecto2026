@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
 async function cargarRecetasDeBandeja() {
     const urlParams = new URLSearchParams(window.location.search);
     const idBandeja = urlParams.get('id');
-
     const idUsuario = localStorage.getItem('idUsuario') || localStorage.getItem('id') || localStorage.getItem('id_usuario') ||67;
     const idEnviar = isNaN(Number(idUsuario)) ? idUsuario : Number(idUsuario);
 
@@ -14,7 +13,7 @@ async function cargarRecetasDeBandeja() {
 
     if (!idBandeja) {
         if (tituloElemento) tituloElemento.textContent = 'Bandeja no encontrada';
-        if (contenedor) contenedor.innerHTML = '<p class="sin-recetas">No se especificó ninguna bandeja.</p>';
+        if (contenedor) contenedor.innerHTML = '<p class="sin-recetas">No hay ninguna bandeja.</p>';
         return;
     }
 
@@ -24,26 +23,24 @@ async function cargarRecetasDeBandeja() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ idUs: idEnviar })
         });
-
+        
         if (!respuesta.ok) {
             throw new Error(`Error HTTP: ${respuesta.status}`);
         }
-
         const bandejas = await respuesta.json();
         const bandejaElegida = bandejas.find(b => String(b.id) === String(idBandeja));
-
+        
         if (!bandejaElegida) {
             if (tituloElemento) tituloElemento.textContent = 'Bandeja no encontrada';
             if (contenedor) contenedor.innerHTML = '<p class="sin-recetas">La bandeja solicitada no existe.</p>';
             return;
         }
-
+        
         if (tituloElemento) {
             tituloElemento.textContent = bandejaElegida.nombre_bandeja;
         }
-
         const recetas = bandejaElegida.recetas_bandeja || bandejaElegida.recetas || [];
-        renderizarRecetas(recetas);
+        generarRecetas(recetas);
 
     } catch (error) {
         console.error('Error al cargar la bandeja:', error);
@@ -53,7 +50,7 @@ async function cargarRecetasDeBandeja() {
     }
 }
 
-function renderizarRecetas(listaRecetas) {
+function generarRecetas(listaRecetas) {
     const contenedor = document.getElementById('contenedor-recetas');
     if (!contenedor) return;
 
@@ -66,7 +63,7 @@ function renderizarRecetas(listaRecetas) {
 
     listaRecetas.forEach(receta => {
         const tarjeta = document.createElement('article');
-        tarjeta.classList.add('tarjeta-receta');
+        tarjeta.classList.add('recetaenbandeja');
         tarjeta.style.cursor = 'pointer';
 
         const nombre = receta.nombre || receta.titulo || 'Receta sin título';
@@ -74,7 +71,7 @@ function renderizarRecetas(listaRecetas) {
         const descripcion = receta.descripcion || '';
 
         tarjeta.innerHTML = `
-            <img class="foto-receta" src="${imagen}" alt="${nombre}">
+            <img class="foto-receta" src="${imagen}">
             <div class="info-receta">
                 <h3>${nombre}</h3>
                 <p>${descripcion}</p>
