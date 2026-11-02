@@ -6,7 +6,7 @@ async function cargarRecetasDeBandeja() {
     const urlParams = new URLSearchParams(window.location.search);
     const idBandeja = urlParams.get('id');
 
-    const idUsuario = localStorage.getItem('idUsuario') || localStorage.getItem('id') || localStorage.getItem('id_usuario') || 67;
+    const idUsuario = localStorage.getItem('idUsuario') || localStorage.getItem('id') || localStorage.getItem('id_usuario') ||67;
     const idEnviar = isNaN(Number(idUsuario)) ? idUsuario : Number(idUsuario);
 
     const tituloElemento = document.getElementById('titulo-bandeja');

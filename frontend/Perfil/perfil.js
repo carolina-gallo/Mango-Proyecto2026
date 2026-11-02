@@ -21,6 +21,17 @@ function resolverFoto(foto) {
     if (foto.startsWith('http') || foto.startsWith('data:')) return foto;
     return `../avatares/${foto}.png`;
 }
+
+
+
+
+
+
+
+
+
+
+
 /* ---------- insignias ---------- */
 
 // Obtener usuario logeado desde localStorage (o tu fuente de almacenamiento)
@@ -52,6 +63,20 @@ function cargarInsignias(usuario) {
 document.addEventListener("DOMContentLoaded", () => {
   cargarInsignias(usuarioLogeado);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ---------- header ---------- */
 async function obtenerDatosUsuario() {
     if (!idUsuario) return null;
@@ -71,6 +96,7 @@ async function obtenerDatosUsuario() {
         return null;
     }
 }
+
 
 /* ---------- recetas ---------- */
 function clavesActivas(filtros) {
