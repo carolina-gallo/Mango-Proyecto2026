@@ -1,11 +1,17 @@
 const idUsuario = Number(localStorage.getItem('id'));
 
 async function obtenerprogresometa() {
-    if (!idUsuario) return null;
+    if (!idUsuario) {
+        console.warn('No hay id en localStorage, iniciá sesión');
+        return null;
+    }
     try {
-        const res = await fetch(`http://localhost:3000/mango/MMM/metasPorUsuario`);
+        const res = await fetch(`http://localhost:3000/mango/MMM/metasPorUsuario/${idUsuario}`);
+        console.log('status:', res.status);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
         const u = await res.json();
+        console.log('respuesta del back:', u);
 
         document.getElementById('progreso-grasas').textContent = `${u.bajo_en_colesterol ?? 0} /10`;
         document.getElementById('progreso-proteinas').textContent = `${u.alto_en_proteina ?? 0} /10`;
@@ -19,6 +25,4 @@ async function obtenerprogresometa() {
     }
 }
 
-(async () => {
-    await obtenerprogresometa();
-})();
+obtenerprogresometa();
