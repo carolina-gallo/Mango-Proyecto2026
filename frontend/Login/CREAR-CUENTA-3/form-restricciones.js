@@ -3,7 +3,6 @@ const botonRestricciones = document.getElementById("botonlogin");
 async function guardarRestricciones(event) {
     event.preventDefault();
 
-    // 1. Traemos los datos que guardamos en la pantalla anterior
     const user = JSON.parse(sessionStorage.getItem("datosRegistro"));
 
     // 2. Armamos el objeto de restricciones: true si el checkbox está tildado, false si no
@@ -20,7 +19,6 @@ async function guardarRestricciones(event) {
         "kosher": document.getElementById("kosher").checked
     };
 
-    // 3. Mandamos todo junto al back
     const respuesta = await fetch("http://localhost:3000/mango/registrarse", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

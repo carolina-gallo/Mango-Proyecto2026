@@ -7,26 +7,25 @@ const likeLleno = "likenaranja.png";
 const likeVacio = "likenegro.png"
 
 async function obtenerDatosUsuario() {
-  if (!idUsuario) return;
-  try {
-    const respuesta = await fetch(`http://localhost:3000/mango/usuario/${idUsuario}`);
-    const usuario = await respuesta.json();
-    console.log("usuario recibido:", usuario);
+    if (!idUsuario) return;
+    try {
+        const respuesta = await fetch(`http://localhost:3000/mango/usuario/${idUsuario}`);
+        const usuario = await respuesta.json();
+        console.log("usuario recibido:", usuario);
 
-    localStorage.setItem("nombre_usuario", usuario.username);
-    localStorage.setItem("foto_perfil", usuario.foto_perfil);
-    const fotoUsuario = document.getElementById("fotoUsuario")
-    fotoUsuario.innerHTML =
-      `<img src="${usuario.foto_perfil}" alt="${usuario.username}" class="comentarios-avatar">`;
+        localStorage.setItem("nombre_usuario", usuario.username);
+        localStorage.setItem("foto_perfil", usuario.foto_perfil);
+        const fotoUsuario = document.getElementById("fotoUsuario")
+        fotoUsuario.innerHTML =
+            `<img src="${usuario.foto_perfil}" alt="${usuario.username}" class="comentarios-avatar">`;
 
-  } catch (error) {
-    console.error("Error al obtener usuario:", error);
-  }
+    } catch (error) {
+        console.error("Error al obtener usuario:", error);
+    }
 }
 (async () => {
     let response;
-    
-    try{
+
         await obtenerDatosUsuario();
 
         response = await fetch(`http://localhost:3000/mango/feedPost?id_usuario=${idUsuario}`);
@@ -38,67 +37,66 @@ async function obtenerDatosUsuario() {
         mostrarPosts(posts, usuarios);
         activarVerMas()
 
+    if (!response.ok){
+        console.log("Error al cargar datos:", error);
     }
-    catch (error) {
-    console.log("Error al cargar datos:", error);
-  }
-
 
 })();
 
 
 
 function mostrarPosts(posts, usuarios) {
- containerPosts.innerHTML = "";
+    containerPosts.innerHTML = "";
 
- posts.forEach(post => {
-    let nombreAMostrar;
-    let fotoPerfil;
-   for (let i = 0; i < usuarios.length; i++) {
-      if (usuarios[i].id === post.id_usuario || usuarios[i].id_usuario === post.id_usuario) {
-        nombreAMostrar = usuarios[i].nombre_usuario || usuarios[i].username || usuarios[i].nombre;
-        if (usuarios[i].foto_perfil) {
-          fotoPerfil = usuarios[i].foto_perfil;
+    posts.forEach(post => {
+        let nombreAMostrar;
+        let fotoPerfil;
+        for (let i = 0; i < usuarios.length; i++) {
+            if (usuarios[i].id === post.id_usuario || usuarios[i].id_usuario === post.id_usuario) {
+                nombreAMostrar = usuarios[i].nombre_usuario || usuarios[i].username || usuarios[i].nombre;
+                if (usuarios[i].foto_perfil) {
+                    fotoPerfil = usuarios[i].foto_perfil;
+                }
+                break
+            }
         }
-    break
-      }}
-      let iconoLike = likeVacio;
-    if ((post.likes_usuarios || []).includes(idUsuario)) {
-        iconoLike = likeLleno;
-    }
+        let iconoLike = likeVacio;
+        if ((post.likes_usuarios || []).includes(idUsuario)) {
+            iconoLike = likeLleno;
+        }
 
-   containerPosts.innerHTML += 
-        `<article class="post" data-id="${post.id}">
-            <div class="usuario">
-            <img src="../avatares/${fotoPerfil}.png" alt="${fotoPerfil}" class="fotodeperfil"></img>
-            <h2>${nombreAMostrar}</h2>
-            </div>
-            <img class="foto" src="${post.imagen_post}" alt="foto" data-id-receta="${post.id_receta}">
+        containerPosts.innerHTML +=
+            `<article class="post" data-id="${post.id}">
+                <div class="usuario">
+                    <img src="../avatares/${fotoPerfil}.png" alt="${fotoPerfil}" class="fotodeperfil"></img>
+                    <h2>${nombreAMostrar}</h2>
+                 </div>
+                <img class="foto" src="${post.imagen_post}" alt="foto" data-id-receta="${post.id_receta}">
             <div class="bottom">
                 <div class="interacciones">
-                <span><img class="icono" src="${iconoLike}" alt="like"></span>
-                <span><img class="icono" src="comentarios.png" alt="comentarios"></span>
-                <span><img class="icono" src="enviar.png" alt="enviar"></span>
+                    <span><img class="icono" src="${iconoLike}" alt="like"></span>
+                    <span><img class="icono" src="comentarios.png" alt="comentarios"></span>
+                    <span><img class="icono" src="enviar.png" alt="enviar"></span>
                 </div>
                 <p class="descripcion" id="descripcion">${post.descripcion}</p>
             </div>
         </article>`
-   });
+    });
 }
 
 function activarVerMas() {
-const descripciones = document.querySelectorAll(".descripcion");
-descripciones.forEach((descripcion) => {
-    const completo = descripcion.textContent;
+    const descripciones = document.querySelectorAll(".descripcion");
+    descripciones.forEach((descripcion) => {
+        const completo = descripcion.textContent;
 
-    if (completo.length > 47) {
-        descripcion.innerHTML = completo.substring(0, 47) + '<span class="mas">... más</span>';
+        if (completo.length > 47) {
+            descripcion.innerHTML = completo.substring(0, 47) + '<span class="mas">... más</span>';
 
-        descripcion.querySelector(".mas").addEventListener("click", () => {
-            descripcion.textContent = completo;
-        });
-    }
-});
+            descripcion.querySelector(".mas").addEventListener("click", () => {
+                descripcion.textContent = completo;
+            });
+        }
+    });
 }
 
 const popup = document.getElementById("comentarios");
@@ -106,7 +104,7 @@ const lista = document.getElementById("lista-comentarios");
 const input = document.getElementById("input-comentario");
 const enviar = document.querySelector(".comentarios-enviar");
 
-containerPosts.addEventListener("click", async(e) => {
+containerPosts.addEventListener("click", async (e) => {
     const post = e.target.closest(".post");
     if (!post) return;
 
@@ -125,29 +123,29 @@ containerPosts.addEventListener("click", async(e) => {
     }
     if (!icono) return;
 
-if (icono.alt === "like") {
-    if (icono.src.includes(likeLleno)) {
-    icono.src = "likenegro.png";
-    } else {
-    icono.src = "likenaranja.png";
+    if (icono.alt === "like") {
+        if (icono.src.includes(likeLleno)) {
+            icono.src = "likenegro.png";
+        } else {
+            icono.src = "likenaranja.png";
 
-// CHEQUEAR SI ESTO ANDAAA Y LE LLEGA A MARTU
-    await fetch("http://localhost:3000/mango/post/like", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            idUs: Number(localStorage.getItem("id")),
-            idPost: idPost
-        })
-    });
+            // CHEQUEAR SI ESTO ANDAAA Y LE LLEGA A MARTU
+            await fetch("http://localhost:3000/mango/post/like", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    idUs: Number(localStorage.getItem("id")),
+                    idPost: idPost
+                })
+            });
+        }
     }
-  }
-  if (icono.alt === "comentarios") {
-    popup.dataset.id = idPost;
-    console.log("idPost:", idPost, "posts:", posts);
-    mostrarComentarios(idPost);
-    popup.showModal();
-  }
+    if (icono.alt === "comentarios") {
+        popup.dataset.id = idPost;
+        console.log("idPost:", idPost, "posts:", posts);
+        mostrarComentarios(idPost);
+        popup.showModal();
+    }
 });
 
 
@@ -158,8 +156,8 @@ function buscarPost(idPost) {
         }
     }
 }
-  
-  function formatearFecha(fecha) {
+
+function formatearFecha(fecha) {
     if (!fecha) return "";
     return new Date(fecha).toLocaleDateString("es-AR", {
         day: "2-digit",
@@ -172,8 +170,8 @@ function mostrarComentarios(idPost) {
     lista.innerHTML = "";
     const comentarioPost = buscarPost(idPost);
     if (!comentarioPost || comentarioPost.comentarios.length === 0) {
-        lista.innerHTML = 
-        `<section class="sin-comentarios">
+        lista.innerHTML =
+            `<section class="sin-comentarios">
         <article class="comentarios-vacio">
         <p class="vacio-titulo">Todavía no hay comentarios</p>
         <p class="segundo-texto">Deja tu huella</p>
@@ -183,16 +181,16 @@ function mostrarComentarios(idPost) {
     } else {
         function buscarFoto(username) {
             for (let i = 0; i < usuarios.length; i++) {
-            if (usuarios[i].username === username) {
-                return usuarios[i].foto_perfil || "default.jpg";
+                if (usuarios[i].username === username) {
+                    return usuarios[i].foto_perfil || "default.jpg";
+                }
             }
-            } 
             return "default.jpg";
-            }
+        }
 
         comentarioPost.comentarios.forEach((c) => {
-            lista.innerHTML += 
-            `<section class="comentarios-sección">
+            lista.innerHTML +=
+                `<section class="comentarios-sección">
             <article class="comentario">
             <img src="${buscarFoto(c.username)}" alt="${c.username}" class="comentarios-avatar">
             <div>
@@ -208,7 +206,7 @@ function mostrarComentarios(idPost) {
 }
 async function publicarComentario() {
     const fecha = new Date()
-    
+
     const textoComentario = input.value.trim();
     if (textoComentario === "") return; // Si está vacío, no hace nada
 
@@ -244,9 +242,9 @@ async function publicarComentario() {
         input.value = "";
         mostrarComentarios(idPost);
 
-        enviar.src = "enviar3.png";        
+        enviar.src = "enviar3.png";
         setTimeout(() => {
-            enviar.src = "enviar2.png";    
+            enviar.src = "enviar2.png";
         }, 100);
 
     } catch (error) {
@@ -255,12 +253,12 @@ async function publicarComentario() {
 }
 
 popup.addEventListener("click", (e) => {
-  if (e.target === popup || e.target.closest(".comentarios-linea")) {
-    popup.close();
-  }
+    if (e.target === popup || e.target.closest(".comentarios-linea")) {
+        popup.close();
+    }
 });
 
 enviar.addEventListener("click", publicarComentario);
 input.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") publicarComentario();
+    if (e.key === "Enter") publicarComentario();
 });

@@ -1,9 +1,9 @@
 async function cargarConversaciones() {
     const contenedor = document.querySelector(".mensajes");
-    const idUs = Number(localStorage.getItem("id"));
+    const idUs = localStorage.getItem("id");
 
     if (!idUs) {
-        contenedor.innerHTML = "<p>No has iniciado sesión correctamente.</p>";
+        contenedor.innerHTML = `<p class="error">No has iniciado sesión correctamente.</p>`;
         return;
     }
 
