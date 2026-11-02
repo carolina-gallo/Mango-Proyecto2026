@@ -122,8 +122,8 @@ function activarVerMas() {
     descripciones.forEach((descripcion) => {
         const completo = descripcion.textContent;
 
-        if (completo.length > 30) {
-            descripcion.innerHTML = completo.substring(0, 30) + '<span class="mas">... más</span>';
+        if (completo.length > 25) {
+            descripcion.innerHTML = completo.substring(0, 25) + '<span class="mas">... más</span>';
         }
     });
 }
