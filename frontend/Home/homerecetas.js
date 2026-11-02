@@ -3,8 +3,8 @@ let usuarios = [];
 let postActual;
 const containerRecetas = document.getElementById("recetas");
 const idUsuario = Number(localStorage.getItem("id"));
-const likeVacio = "likenegro.png";
-const likeLleno = "likenaranja.png";
+const likeVacio = "like_vacio.png";
+const likeLleno = "like_lleno.png";
 
 const etiquetasFiltros = {
   celiacx: `<img src="../Sin tacc.png" alt="Sin TACC" class="filtro">`,
@@ -128,7 +128,6 @@ function mostrarRecetas(recetas, usuarios) {
       <div class="interacciones">
         <span class="icono"><img class="guardado" src="guardado.png" alt="guardar"></span>
         <span class="icono"><img class="comentarios" src="comentariosr.png" alt="comentar"></span>
-        <span class="icono"><img class="hipervinculo" src="link.png" alt="hipervinculo"></span>
       </div>
       <div class="filtros">
         ${htmlFiltros}

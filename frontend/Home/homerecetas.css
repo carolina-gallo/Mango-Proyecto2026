@@ -75,7 +75,7 @@ body {font-family: 'Nunito'}
 /* foto */
 .imagen {
     position: relative;
-    grid-row: 1 / 3;             /* ocupa las dos filas */
+    grid-row: 1 / 3;             
     background-color: #d9d9d9;
     overflow: hidden;
 }
@@ -86,14 +86,13 @@ body {font-family: 'Nunito'}
     object-fit: cover;
 }
 
-/* nombre del usuario sobre la foto (abajo a la derecha) */
 .nombredeusuario {
     position: absolute;
     right: 1.5vw;
     bottom: 0.8vh;
     font-size: 0.8rem;
     font-weight: 700;
-    color: black;
+    color: rgb(255, 255, 255);
     background-color: rgb(243, 167, 60, 0.70);
     border-radius: 0.4rem;
     padding: 0.125rem 0.4375rem 0.125rem 0.4375rem
@@ -210,7 +209,7 @@ body {font-family: 'Nunito'}
 .corazon{
     width: 6.71vw;
     aspect-ratio: 1/1;
-    object-fit: cover;
+    object-fit: contain;
 }
 /* ===== POPUP DE BANDEJAS ===== */
 .bandejas-fondo {
