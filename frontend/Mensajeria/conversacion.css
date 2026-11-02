@@ -1,70 +1,117 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-body{
-  font-family: 'Nunito';  
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
   background-color: #FFFFFF;
+  font-family: 'Nunito', sans-serif;
 }
-header{
-    position:fixed;
-    top:0;
-    width: 100%;
-    height: 10.411vh;
-    background-color: #8E9C65;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 4vw
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 10.411vh;
+  background-color: #8E9C65;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4vw;
+  z-index: 10;
 }
-.ubicarcosas{
-    display: flex;
-    gap:6vw;
-    align-items: center;
+
+.ubicarcosas {
+  display: flex;
+  gap: 6vw;
+  align-items: center;
 }
-.volver{
-width: 3.7313vw;
-height: 3.775vh;
-object-fit: contain;
-justify-self: flex-start;
+
+.volver {
+  width: 3.7313vw;
+  height: 3.775vh;
+  object-fit: contain;
 }
-.logo{
-    justify-self: flex-end;
+
+.usuario-emisor {
+  display: flex;
+  gap: 0.7rem;
+  align-items: center;
 }
-.usuario-emisor{
-    display: flex;
-    gap: 0.7rem;
-    align-items: center;
+
+.avatar {
+  width: 10.44vw;
+  aspect-ratio: 1/1;
+  background-color: #F3A73C;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
-.avatar{
-    width: 10.44vw;
-    height:4.8vh;
-    background-color: #F3A73C;
-    border-radius: 10rem;
-    flex: 0;
+
+/* Área de mensajes */
+.mensajes {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  padding-top: 12vh; 
+  padding-bottom: 5rem; 
+  overflow-y: auto;
 }
-.mensajes{
-    width: 100%;
-    height: 100%;
-    padding-top:11vh;
-}
+
+/* Estilo base de la burbuja */
 .mensaje {
-    max-width: 70%;
-    margin: 8px;
-    padding: 10px 14px;
-    border-radius: 12px;
+  width: fit-content;        /* Se estira al ancho del texto */
+  max-width: 75%;            /* Hasta el 75% de la pantalla */
+  font-size: 1rem;
+  padding: 0.6rem 0.9rem;
+  word-break: break-word;    /* Quiebra si mandan una palabra kilométrica */
 }
 
+/* Mensajes míos (derecha - naranja) */
 .mimensaje {
-    align-self: flex-end;
-    background-color: #d1e7dd;
-    margin-left: auto;
+  align-self: flex-end;
+  background-color: #F4882E;
+  color: #FFFFFF;
+  border-radius: 0.625rem
 }
 
-
+/* Mensajes del otro (izquierda - gris claro) */
 .otromensaje {
-    align-self: flex-start;
-    background-color: #f8f9fa;
-    margin-right: auto;
+  align-self: flex-start;
+  background-color: #EBEBEB;
+  color: #1A1A1A;
+  border-radius: 0.625rem
+}
+
+.contenido {
+  margin: 0;
+  line-height: 1.35;
+}
+
+.hora {
+  font-size: 0.75rem;
+  text-align: right;
+  margin-top: 4px;
+  opacity: 0.8;
+}
+
+.espacio-mismoemisor{
+margin-top: 0.572vh;
+}
+.espacio-diferenteemisor{
+margin-top:0.716vh;
+}
+
+.mimensaje.ultimo {
+    border-bottom-right-radius: 0; /* Punta abajo a la derecha */
+}
+
+.otromensaje.ultimo {
+    border-bottom-left-radius: 0;  /* Punta abajo a la izquierda */
 }
