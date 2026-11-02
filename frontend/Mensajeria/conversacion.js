@@ -93,8 +93,14 @@ async function enviarMensaje() {
         return;
     }
 
+    if (botonEnviar) {
+        botonEnviar.src = "../Home/enviar3.png";
+        setTimeout(() => {
+            botonEnviar.src = "../Home/enviar2.png";
+        }, 100);
+    }
+
     try {
-        // fetcheeeeooooooo papuuu
         const res = await fetch("http://localhost:3000/mango/mensaje", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -111,19 +117,9 @@ async function enviarMensaje() {
 
         const conversacionActualizada = await res.json();
 
-        // me dicdn q esta mejor asi ñañañañañ
         input.value = "";
         const contenedor = document.getElementById("contenedorMensajes");
         renderizarMensajes(conversacionActualizada.mensajes, idUs, contenedor);
-
-        
-        const enviarBtn = document.getElementById("botonEnviar");
-        if (enviarBtn && enviarBtn.tagName === "IMG") {
-            enviarBtn.src = "enviar3.png";
-            setTimeout(() => {
-                enviarBtn.src = "enviar2.png";
-            }, 100);
-        }
 
     } catch (error) {
         console.error("Error al enviar el mensaje:", error);

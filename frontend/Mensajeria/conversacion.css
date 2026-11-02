@@ -55,12 +55,11 @@ header {
 /* Área de mensajes */
 .mensajes {
   width: 100%;
-  min-height: 100vh;
+ height: 93vh;
   display: flex;
   flex-direction: column;
   padding: 1rem;
   padding-top: 12vh; 
-  padding-bottom: 5rem; 
   overflow-y: auto;
 }
 
@@ -114,4 +113,31 @@ margin-top:0.716vh;
 
 .otromensaje.ultimo {
     border-bottom-left-radius: 0;  /* Punta abajo a la izquierda */
+}
+.escribir{
+    position: fixed;
+    align-self: flex-end;
+    padding: 1.125vh 2.73vw 1.716vh 2.73vw;
+    bottom: 0
+}
+.input-escribir{
+    width: 94.527vw;
+    height: 4.5766vh;
+    background-color: rgb(166, 166, 166, 0.4);
+    padding: 4.4776vw;
+    border: none;
+    text-decoration: none;
+    border-radius: 3.125rem;
+    position:relative
+}
+.boton-enviar{
+    position: absolute;
+    right: 7vw;
+    bottom: 3vh;
+    top: 38%;
+    transform: translateY(-50%);
+}
+.envio{
+    width: 6vw;
+    aspect-ratio: 1/1;
 }
