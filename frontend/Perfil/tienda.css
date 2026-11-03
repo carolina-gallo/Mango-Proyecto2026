@@ -6,10 +6,24 @@
 
 body {
 width: 100%;
+height: auto;
 
 display: flex;
 flex-direction: column;
 align-items: center;
+font-family: 'Nunito';
+margin-bottom: 6.8649vh;
+}
+
+html {
+    scrollbar-width: none;
+}
+
+.app {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 6.8649vh;
 }
 
 .header-editar-perfil{
@@ -37,7 +51,7 @@ align-items: center;
 }
 
 .ftperfil {
-    height: 32.94vh;
+    height: 27.94vh;
     width: 100%;
 
     display: flex;
@@ -61,7 +75,43 @@ align-items: center;
 
 .cambiatexto {
     font-family: 'nunito';
-    font-weight: 500;
+    font-weight: 550;
     color: #6E8039;
     font-size: 0.9375rem;
+}
+
+.otros-avatares {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1vh;
+    gap: 1vh;
+}
+
+.opcionavatar {
+    width: 46.517vw;
+    height: 18.43vh;
+    padding: 0.9vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    border: 0.4vw solid #E0E0E0;
+    border-radius: 1rem;
+}
+
+.ft-avatar {
+    width: 100%;
+}
+
+.nombre-avatar {
+    align-items: center;
+    line-height: 2.173vh;
+    font-family: 'nunito';
+    font-weight: 800;
+    font-size: 0.875rem;
+    margin-top: 0.5vh;
 }

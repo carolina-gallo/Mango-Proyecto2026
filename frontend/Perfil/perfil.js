@@ -212,7 +212,6 @@ containerRecetas.addEventListener('click', (e) => {
     if (clickeable) irARecetaInfo(idReceta);
 });
 
-/* ---------- popup de bandejas ---------- */
 const popupBandejas = document.getElementById('popupBandejas');
 const vistasPopup = popupBandejas.querySelectorAll('.bandejas-vista');
 const grillaBandejas = document.getElementById('grillaBandejas');

@@ -104,11 +104,17 @@ align-items: center;
 .metertexto {
     width: 100%;
     border: none;
-    text-decoration: none;
+    outline: none;
+    background: transparent;
+    color: black;
     font-family: 'nunito';
     font-weight: 650;
-    color: black;
     font-size: 0.94rem;
+}
+
+.metertexto::placeholder {
+    color: #9E9E9E;
+    font-weight: 400;
 }
 
 .guardar {
