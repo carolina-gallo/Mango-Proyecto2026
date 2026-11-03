@@ -98,7 +98,7 @@ async function cargarConversaciones() {
             localStorage.setItem("conversacionLeida", conv.id);
             window.location.href = "conversacion.html";
         });
-
+        activarVerMas();
         contenedor.appendChild(tarjeta);
     }
 }
@@ -117,4 +117,3 @@ function activarVerMas() {
 }
 
 cargarConversaciones();
-activarVerMas();

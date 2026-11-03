@@ -99,46 +99,88 @@ function activarVerMas() {
     });
 }
 
-function resolverFoto(foto) {
-    return `../avatares/${foto || 'avatar1'}.png`;
-}
+const popupEnviar = document.getElementById('popupEnviar');
+const listaChats = document.getElementById('listaChats');
+const idUs = Number(localStorage.getItem('id_usuario') || localStorage.getItem('id'));
 let postAEnviar = null;
-const popupEnviar = document.getElementById("popupEnviar");
-const listaChats = document.getElementById("listaChats");
 
 async function abrirEnviar(idPost) {
     postAEnviar = idPost;
-    listaChats.innerHTML = "";
+    listaChats.innerHTML = '';
     popupEnviar.showModal();
 
     try {
-        const res = await fetch("http://localhost:3000/mango/conversaciones", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ idUs: idUsuario })
+        const resUs = await fetch('http://localhost:3000/listaUsuarios');
+        const usuarios = await resUs.json();
+
+        const res = await fetch('http://localhost:3000/mango/conversaciones', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ idUs })
         });
         const conversaciones = await res.json();
 
         if (!conversaciones || conversaciones.length === 0) {
-            listaChats.innerHTML = '<p class="sin-posts">Todavía no tenés conversaciones.</p>';
+            listaChats.innerHTML = '<p class="sin-posts">Todavía no tenés chats.</p>';
             return;
         }
 
         conversaciones.forEach(conv => {
-            const otroId = conv.participantes.find(id => Number(id) !== idUsuario);
-            const otro = usuarios.find(u => Number(u.id || u.id_usuario) === Number(otroId));
+            const otroId = Number(conv.participantes.find(id => Number(id) !== idUs));
+            const otro = usuarios.find(u => Number(u.id) === otroId);
 
-            const boton = document.createElement("button");
-            boton.className = "enviar-chat";
-            boton.innerHTML = `
-                <img src="../avatares/${otro?.foto_perfil || 'avatar1'}.png" alt="">
-                <span>${otro?.username ?? 'Usuario ' + otroId}</span>
+            const nombreOtro = otro ? (otro.username || otro.nombre_usuario) : `Usuario ${otroId}`;
+            const fotoOtro = otro?.foto_perfil 
+                ? `../avatares/${otro.foto_perfil}.png` 
+                : '../avatares/avatar1.png';
+            const descripcionOtro = otro?.descripcion || '';
+
+            const div = document.createElement('div');
+            div.className = 'enviar-chat';
+            div.innerHTML = `
+                <img src="${fotoOtro}" alt="${nombreOtro}" class="foto-chat">
+                <div class="textos-chat">
+                    <span class="nombre-chat">${nombreOtro}</span>
+                    <span class="descripcion-chat">${descripcionOtro}</span>
+                </div>
             `;
-            boton.addEventListener("click", () => enviarPost(conv.id));
-            listaChats.appendChild(boton);
+
+            div.addEventListener('click', () => enviarPost(conv.id));
+            listaChats.appendChild(div);
         });
+
     } catch (error) {
-        console.error("Error al cargar conversaciones:", error);
+        console.error('Error al cargar conversaciones:', error);
+        listaChats.innerHTML = '<p class="sin-posts">No se pudieron cargar tus conversaciones.</p>';
+    }
+}
+
+async function enviarPost(idConversacion) {
+    const postCompartido = posts.find(p => String(p.id) === String(postAEnviar));
+
+    if (!postCompartido) {
+        console.error("No se encontró el post a compartir:", postAEnviar);
+        return;
+    }
+
+    try {
+        await fetch('http://localhost:3000/mango/compartirPub', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                idUs: idUs,
+                idcon: idConversacion,
+                texto: postCompartido.descripcion,
+                idPost: postCompartido.id,
+                imagenPost: postCompartido.imagen,
+                autorPost: postCompartido.username,
+                fotoAutor: postCompartido.foto_perfil
+            })
+        });
+
+        popupEnviar.close();
+    } catch (error) {
+        console.error('Error al enviar el post:', error);
     }
 }
 
@@ -175,7 +217,7 @@ containerPosts.addEventListener("click", async (e) => {
         console.log("idPost:", idPost, "posts:", posts);
         mostrarComentarios(idPost);
         popup.showModal();
-    } else if (icono.alt === 'enviar') {
+    } else if (icono.alt === "enviar") {
         abrirEnviar(idPost);
     } else if (icono.alt === "like") {
         const yaTieneLike = icono.src.includes(likeLleno);

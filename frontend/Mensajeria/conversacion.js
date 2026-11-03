@@ -37,6 +37,18 @@ async function obtenerDatosUsuario() {
     console.error("Error al obtener usuario:", error);
   }
 }
+// ESTO ES PARA DESPUES CARGAR LOS POSTS Q SE MANDANN
+let listaPosts = [];
+let listaUsuarios = [];
+
+async function cargarPostsHome() {
+    const resPost = await fetch("http://localhost:3000/mango/mostrarPost");
+    listaPosts = await resPost.json();
+
+    const resUs = await fetch("http://localhost:3000/listaUsuarios");
+    listaUsuarios = await resUs.json();
+}
+
 async function cargarConversacion() {
 
     if (!idUs || !idOtroUs) {
@@ -153,16 +165,76 @@ function renderizarMensajes(mensajes, idUs, contenedor) {
         if (!msgSiguiente || idEmisor !== idSiguiente) {
             divMensaje.classList.add("ultimo");
         }
-        // Si el mensaje es una receta o post compartido
-        if (msg.idReceta || msg.idPost || msg.tipo === "receta") {
-            divMensaje.classList.add("mensaje-receta");
-        }
 
-        divMensaje.innerHTML = 
-        `<p class="contenido">${msg.texto}</p>
-        <p class="hora">${formatearHora(msg.fecha)}</p>`;
+        const esPostCompartido = msg.texto && msg.texto.includes("#");
+
+        if (esPostCompartido) {
+            divMensaje.classList.add("mensaje-receta");
+
+            // Sacamos el id que viene después del '#'
+            const idPostExtraido = msg.texto.split("#")[1];
+
+            let postEncontrado;
+
+            for (let i = 0; i < listaPosts.length; i++) {
+                if (String(listaPosts[i].id) === String(idPostExtraido)) {
+                    postEncontrado = listaPosts[i];
+                    break;
+                }
+            }
+
+            let nombreAutor;
+            let fotoPerfil;
+            let fotoPlato;
+            let descripcion;
+            let idReceta;
+
+           if (postEncontrado) {
+                fotoPlato = postEncontrado.imagen_post || "";
+                descripcion = postEncontrado.descripcion || "";
+                idReceta = postEncontrado.id_receta || "";
+
+                let usuarioAutor ;
+                for (let j = 0; j < listaUsuarios.length; j++) {
+                    if (Number(listaUsuarios[j].id) === Number(postEncontrado.id_usuario)) {
+                        usuarioAutor = listaUsuarios[j];
+                        break;
+                    }
+                }
+
+                if (usuarioAutor) {
+                    nombreAutor = usuarioAutor.username;
+                    fotoPerfil = `../avatares/${usuarioAutor.foto_perfil}.png`;
+                }
+            }
+            console.log(idReceta, nombreAutor, fotoPerfil, fotoPlato, descripcion);
+
+            divMensaje.innerHTML = `
+                <div class="tarjeta-post-chat" onclick="localStorage.setItem('idReceta', '${idReceta}'); window.location.href='../Home/recetas-informacion.html#${idReceta}'">
+                    <div class="cabecera-post-chat">
+                        <img class="avatar-post-chat" src="${fotoPerfil}" alt="${nombreAutor}">
+                        <span class="autor-post-chat">${nombreAutor}</span>
+                    </div>
+                    <img class="imagen-post-chat" src="${fotoPlato}" alt="Post">
+                    <div class="pie-post-chat">
+                        <p class="desc-post-chat">${descripcion}</p>
+                    </div>
+                </div>
+                <p class="hora">${formatearHora(msg.fecha)}</p>
+            `;
+        } else {
+            divMensaje.innerHTML = `
+                <p class="contenido">${msg.texto}</p>
+                <p class="hora">${formatearHora(msg.fecha)}</p>
+            `;
+        }
 
         contenedor.appendChild(divMensaje);
     });
 }
-cargarConversacion();
+async function iniciarChat() {
+    await cargarPostsHome();
+    await cargarConversacion();
+}
+
+iniciarChat();
