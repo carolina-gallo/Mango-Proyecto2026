@@ -118,7 +118,7 @@ function mostrarReceta(receta) {
     <span>
         <img class="flechaatras" src="flechaatras.png" alt="volver" id="flechaatras">
     </span>
-    <span><img class="guardado" src="guardado.png" alt="guardar"></span>
+   <span><img class="guardado" src="${estaGuardada(receta.id) ? 'guardado-amarillo.png' : 'guardado.png'}" alt="guardar"></span>
 
     <article class="contenedorInfo">
       <h1>${receta.nombre}</h1>
@@ -496,18 +496,22 @@ async function guardarEnBandeja(idBandeja) {
             return;
         }
 
-        seGuardo = true;
-        if (iconoGuardado) iconoGuardado.src = "guardado-amarillo.png";
-        popupBandejas.close();
+        
+      seGuardo = true;
+      marcarGuardada(recId);
+      if (iconoGuardado) iconoGuardado.src = "guardado-amarillo.png";
+      popupBandejas.close();
+
     } catch (error) {
         console.error("No se pudo guardar la receta:", error);
     }
 }
 
 popupBandejas.addEventListener("close", () => {
-    if (!seGuardo && iconoGuardado) {
-        iconoGuardado.src = "guardado.png";
-    }
+      if (!seGuardo && iconoGuardado) {
+       iconoGuardado.src = estaGuardada(idReceta) ? "guardado-amarillo.png" : "guardado.png";
+   }
+
 });
 
 
