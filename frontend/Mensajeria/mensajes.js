@@ -1,120 +1,109 @@
+const contenedor = document.querySelector(".mensajes");
+const idUsuario = Number(localStorage.getItem("id"));
 async function cargarConversaciones() {
-    const contenedor = document.querySelector(".mensajes");
-    const idUsuario = localStorage.getItem("id");
 
-    if (!idUsuario) {
-        contenedor.innerHTML = `<p class="error">No has iniciado sesión correctamente.</p>`;
+    // 1. Traer los usuarios y las conversaciones del servidor
+    const respuestaUsuarios = await fetch("http://localhost:3000/listaUsuarios");
+    const usuarios = await respuestaUsuarios.json();
+
+    const respuestaConv = await fetch("http://localhost:3000/mango/conversaciones", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+            idUs: idUsuario })
+    });
+    const conversaciones = await respuestaConv.json();
+
+
+    // Si no hay chats todavía
+    if (conversaciones.length === 0) {
+        contenedor.innerHTML = `
+            <div class="texto-no-mensajes">
+                <p class="no-mensajes">No tenés conversaciones aún.</p>
+                <p class="no-mensajes2">¡Seguí a alguien para chatear!</p>
+            </div>
+        `;
         return;
     }
 
-    try {
-        const resUsuarios = await fetch("http://localhost:3000/listaUsuarios");
-        const usuarios = await resUsuarios.json();
+    for (let i = 0; i < conversaciones.length; i++) {
+        const conv = conversaciones[i];
 
-        const res = await fetch("http://localhost:3000/mango/conversaciones", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ idUs: idUsuario })
+
+        let idDelOtro;
+        if (Number(conv.participantes[0]) === idUsuario) {
+            idDelOtro = Number(conv.participantes[1]);
+        } else {
+            idDelOtro = Number(conv.participantes[0]);
+        }
+
+        // ESO ES PARA BUSCAR EL USERNAME Y LA FOTO PQ LA DIVINA DE MARTINA ME PUSO EL ID NOMAS
+        let usuarioDelOtro;
+        for (let j = 0; j < usuarios.length; j++) {
+            if (Number(usuarios[j].id) === idDelOtro) {
+                usuarioDelOtro = usuarios[j];
+                break;
+            }
+        }
+
+        const nombre = usuarioDelOtro.username;
+        const foto = usuarioDelOtro.foto_perfil;
+
+        const mensajes = conv.mensajes || [];
+        let sinLeer = 0;
+
+        for (let m = 0; m < mensajes.length; m++) {
+            const msg = mensajes[m];
+            // Si el mensaje es del otro y no fue leído
+            if (Number(msg.emisorId) !== idUsuario && msg.leido === false) {
+                sinLeer = sinLeer + 1;
+            }
+        }
+
+        const yaFueLeida = localStorage.getItem("leida_" + conv.id) === "true";
+
+    if (yaFueLeida) {
+        sinLeer = 0;
+    }
+
+    let textoAbajo = "Sin mensajes";
+    let puntoNaranja = "";
+
+    if (mensajes.length > 0) {
+        textoAbajo = mensajes[mensajes.length - 1].texto;
+    }
+
+    if (sinLeer > 0) {
+        textoAbajo = sinLeer === 1 ? "1 mensaje nuevo" : `${sinLeer} mensajes nuevos`;
+        puntoNaranja = '<div class="punto"></div>';
+    }
+
+        const tarjeta = document.createElement("article");
+        tarjeta.className = "chats";
+
+        tarjeta.innerHTML = `
+            <figure>
+                <img class="persona" src="../avatares/${foto}.png" alt="${nombre}">
+            </figure>
+            <div class="textos">
+                <p class="nombre">${nombre}</p>
+                <p class="mensajito" style="${sinLeer > 0 ? 'font-weight: 700;' : ''}">${textoAbajo}</p>
+            </div>
+            ${puntoNaranja}
+        `;
+
+        tarjeta.addEventListener("click", () => {
+            localStorage.setItem("idConversacionActiva", conv.id);
+            localStorage.setItem("idChatCon", idDelOtro);
+            localStorage.setItem("conversacionLeida", conv.id);
+            window.location.href = "conversacion.html";
         });
 
-        if (!res.ok) {
-            throw new Error(`Error en la petición: ${res.status}`);
-        }
-
-        const conversaciones = await res.json();
-        contenedor.innerHTML = "";
-
-        if (!conversaciones || conversaciones.length === 0) {
-            contenedor.innerHTML = `
-            <div class="texto-no-mensajes">
-                <p class="no-mensajes">No tienes conversaciones aún.</p>
-                <p class="no-mensajes2">Sigue a alguien para conversar!</p>
-            </div>`;
-            return;
-        }
-
-        for (let i = 0; i < conversaciones.length; i++) {
-            const conv = conversaciones[i];
-
-            // 1. Obtener el ID del otro participante
-            let otroId;
-            for (let j = 0; j < conv.participantes.length; j++) {
-                const id = Number(conv.participantes[j]);
-                if (id !== idUsuario) {
-                    otroId = id;
-                    break;
-                }
-            }
-
-            // 2. Buscar datos del otro usuario
-            let usuarioEncontrado;
-            for (let k = 0; k < usuarios.length; k++) {
-                const u = usuarios[k];
-                const idUsuariouarioActual = Number(u.id || u.id_usuario);
-                if (idUsuariouarioActual === otroId) {
-                    usuarioEncontrado = u;
-                    break;
-                }
-            }
-
-            const nombreUs = usuarioEncontrado.username;
-            const HTMLFoto = `<img class="persona" src="../avatares/${usuarioEncontrado.foto_perfil}.png" alt="${nombreUs}"> data-id-usuario="${otroId}">;`;
-
-            // 3. Contar mensajes sin leer enviados por el otro participante
-            const listaMensajes = conv.mensajes || [];
-            let sinLeer = 0;
-
-            for (let m = 0; m < listaMensajes.length; m++) {
-                const msg = listaMensajes[m];
-                const remitente = Number(msg.emisorId || msg.id_emisor || msg.id_usuario);
-
-                if (remitente !== idUsuario && msg.leido === false) {
-                    sinLeer++;
-                }
-            }
-
-            // 4. Configurar texto y punto naranja según corresponda
-            let textoAbajo = "";
-            let circuloNaranja = "";
-
-            if (sinLeer > 0) {
-                textoAbajo = `${sinLeer} ${sinLeer === 1 ? "mensaje nuevo" : "mensajes nuevos"}`;
-                circuloNaranja = `<div class="punto"></div>`;
-            } else {
-                const ultimo = listaMensajes[listaMensajes.length - 1];
-                textoAbajo = ultimo ? ultimo.texto : "Sin mensajes";
-                circuloNaranja = "";
-            }
-
-            // 5. Crear la tarjeta del chat
-            const article = document.createElement("article");
-            article.classList.add("chats");
-
-            article.innerHTML = `
-                <figure class="persona">${HTMLFoto}</figure>
-                <div class="textos">
-                    <h2 class="nombre" data-id-usuario="${otroId}">${nombreUs}</h2>
-                    <p class="mensajito">${textoAbajo}</p>
-                </div>
-                ${circuloNaranja}
-            `;
-
-            article.addEventListener("click", () => {
-                localStorage.setItem("idConversacionActiva", conv.id);
-                localStorage.setItem("idChatCon", otroId);
-                window.location.href = "conversacion.html";
-            });
-
-            contenedor.appendChild(article);
-        }
-
-        activarVerMas();
-
-    } catch (error) {
-        console.error("Error cargando conversaciones:", error);
-        contenedor.innerHTML = "<p>Error al cargar las conversaciones.</p>";
+        contenedor.appendChild(tarjeta);
     }
 }
+
+
 
 function activarVerMas() {
     const descripciones = document.querySelectorAll(".mensajito");
@@ -128,3 +117,4 @@ function activarVerMas() {
 }
 
 cargarConversaciones();
+activarVerMas();

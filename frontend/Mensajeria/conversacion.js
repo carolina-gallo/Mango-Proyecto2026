@@ -1,8 +1,10 @@
-let idConversacionActual = localStorage.getItem("idConversacionActiva") || "";
+let idConversacionActual = localStorage.getItem("idConversacionActiva") 
 const contenedor = document.getElementById("contenedorMensajes");
 const idUs = Number(localStorage.getItem("id"));
 const idOtroUs = Number(localStorage.getItem("idChatCon"));
-
+if (idConversacionActual) {
+    localStorage.setItem("leida_" + idConversacionActual, "true");
+}
     const botonEnviar = document.getElementById("botonEnviar");
     const inputMensaje = document.getElementById("inputMensaje");
 
@@ -28,7 +30,7 @@ async function obtenerDatosUsuario() {
     localStorage.setItem("foto_perfil", usuario.foto_perfil);
     const infoUsuario = document.getElementById("usuarioEmisor")
     infoUsuario.innerHTML =
-      `<img src="${usuario.foto_perfil}" alt="${usuario.username}" class="avatar">
+      `<img src="../avatares/${usuario.foto_perfil}.png" alt="${usuario.username}" class="avatar">
       <p class="nombredeusuario">${usuario.username}</p>`;
 
   } catch (error) {
@@ -44,14 +46,15 @@ async function cargarConversacion() {
         return;
     }
 
-    try {
         const res = await fetch("http://localhost:3000/mango/conversacion", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ idUs, idOtroUs })
         });
 
-        if (!res.ok) throw new Error("Error obteniendo la conversación");
+        if (!res.ok){
+            console.log("Error obteniendo la conversación")
+        } 
 
         const conversacion = await res.json();
 
@@ -61,22 +64,15 @@ async function cargarConversacion() {
         obtenerDatosUsuario()
         renderizarMensajes(conversacion.mensajes, idUs, contenedor);
 
-    } catch (error) {
-        console.error("Error al cargar la conversación:", error);
-        if (contenedor) {
-            contenedor.innerHTML = "<p>Error al cargar los mensajes.</p>";
-        }
-    }
 }
-function formatearHora(fechaIso) {
-  if (!fechaIso) return "";
+function formatearHora() {
   
-  const fecha = new Date(fechaIso);
+  const fecha = new Date();
   
   return fecha.toLocaleTimeString("es-AR", {
     hour: "2-digit",
     minute: "2-digit",
-    hour12: false // formato 24 hs (ej: 14:30 en vez de 2:30 PM)
+    hour12: false 
   });
 }
 async function enviarMensaje() {
@@ -100,7 +96,6 @@ async function enviarMensaje() {
         }, 100);
     }
 
-    try {
         const res = await fetch("http://localhost:3000/mango/mensaje", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -111,19 +106,12 @@ async function enviarMensaje() {
             })
         });
 
-        if (!res.ok) {
-            throw new Error(`Error en el servidor: ${res.status}`);
-        }
 
         const conversacionActualizada = await res.json();
 
         input.value = "";
         const contenedor = document.getElementById("contenedorMensajes");
         renderizarMensajes(conversacionActualizada.mensajes, idUs, contenedor);
-
-    } catch (error) {
-        console.error("Error al enviar el mensaje:", error);
-    }
 }
 
 function renderizarMensajes(mensajes, idUs, contenedor) {
@@ -162,7 +150,6 @@ function renderizarMensajes(mensajes, idUs, contenedor) {
             ? Number(msgSiguiente.emisorId || msgSiguiente.emisor || msgSiguiente.idEmisor || msgSiguiente.idUs) 
             : null;
 
-        // Si es el último del chat O el siguiente ya es de otra persona
         if (!msgSiguiente || idEmisor !== idSiguiente) {
             divMensaje.classList.add("ultimo");
         }
