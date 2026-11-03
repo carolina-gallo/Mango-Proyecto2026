@@ -13,7 +13,6 @@ async function obtenerprogresomision() {
         const datos = await res.json();
         console.log('respuesta del back:', datos);
 
-        // /listamisiones devuelve el archivo entero, buscamos el registro del usuario
         const u = datos.find(m => Number(m.idUsuario) === idUsuario) ?? {};
 
         const estado = (cumplida) => cumplida ? 'Completada' : 'Pendiente';

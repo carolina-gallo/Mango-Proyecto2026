@@ -13,7 +13,6 @@ async function obtenerprogresometa() {
         const datos = await res.json();
         console.log('respuesta del back:', datos);
  
-        // /listametas devuelve el archivo entero, buscamos el registro del usuario
         const u = datos.find(m => Number(m.idUsuario) === idUsuario) ?? {};
  
         document.getElementById('progreso-grasas').textContent = `${u.bajo_en_colesterol ?? 0} /10`;
