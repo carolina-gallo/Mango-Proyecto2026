@@ -15,7 +15,7 @@ align-items: center;
 .header-editar-perfil{
     height: 6.864vh;
     width: 30vw;
-    margin-right:55vw;
+    margin-right:65vw;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
