@@ -1,4 +1,8 @@
-
+.elegi{
+    background-color: #FFFFFF;
+    border-top: 0.1vh solid #AFACAC;
+    border-bottom: 0.1vh solid #AFACAC;
+}
 
 .scrolleo {
     margin-top: 13vh;
