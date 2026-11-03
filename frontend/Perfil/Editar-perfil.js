@@ -9,12 +9,12 @@ let usuarioEditar = null;
 async function cargarDatosEditar() {
     if (!idUsEditar) return;
     try {
-        const res = await fetch(`http://localhost:3000//mango/modificar`);
+        const res = await fetch(`http://localhost:3000/mango/usuario/${idUsEditar}`);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         usuarioEditar = await res.json();
 
         inputNombre.value = usuarioEditar.nombre ?? '';
-        inputUsername.value = '@' + usuarioEditar.username;
+        inputUsername.value = usuarioEditar.username ?? '';
         inputDescripcion.value = usuarioEditar.descripcion ?? '';
     } catch (error) {
         console.error('Error al cargar los datos del usuario:', error);
@@ -35,7 +35,7 @@ formEditar.addEventListener('submit', async (event) => {
     }
 
     try {
-        const res = await fetch('http://localhost:3000/mango/modificarUsuario', {
+        const res = await fetch('http://localhost:3000/mango/modificar', {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
