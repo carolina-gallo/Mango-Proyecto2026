@@ -19,7 +19,7 @@ async function obtenerprogresometa() {
         document.getElementById('progreso-proteinas').textContent = `${u.alto_en_proteina ?? 0} /10`;
         document.getElementById('progreso-carbohidratos').textContent = `${u.sin_carbohidratos ?? 0} /10`;
         document.getElementById('progreso-keto').textContent = `${u.keto ?? 0} /10`;
-        document.getElementById('progreso-sodio').textContent = `${u.hipertesx ?? 0} /10`;
+        document.getElementById('progreso-sodio').textContent = `${u.hipertensx ?? 0} /10`;
         return u;
     } catch (error) {
         console.error('Error al obtener el progreso:', error);
