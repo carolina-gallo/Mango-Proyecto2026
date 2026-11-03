@@ -143,16 +143,19 @@ align-items: center;
 }
 
 .vinculartexto {
+    width: 80vw;
     font-family: 'nunito';
     color: #616060;
     font-size: 1.25rem;
-    margin-left: 2vw;
+    white-space: nowrap;       
+    overflow: hidden;          
+    text-overflow: ellipsis;
 }
 
 .masdevinculo {
     width: 7.716vw;
     aspect-ratio: 1/1;
-    margin-left: 22vw;
+    margin-right: 0;
 }
 
 .publicar {
