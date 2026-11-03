@@ -1,15 +1,8 @@
-fetch("http://localhost:3000/listaUsuarios")
-    .then(response => response.json())
-    .then(data => {
-        usuarios = data;
-        mostrarPerfiles(usuarios);
-        })
-    .catch(error => {                   
-    console.error('Error al encontrar perfiles:', error);
-  });
-
 let usuarios = [];
 const containerPerfiles = document.getElementById("perfiles");
+const idUsuario = Number(localStorage.getItem("id"));
+
+let timeoutBusqueda;
 
 function mostrarPerfiles(usuarios) {
     containerPerfiles.innerHTML = "";
@@ -17,48 +10,83 @@ function mostrarPerfiles(usuarios) {
         containerPerfiles.innerHTML += `
         <section class="perfil">
         <figure>
-            <img src="../avatares/${usuario.foto_perfil}.png" alt="${usuario.username}" class="foto">
+            <img src="../avatares/${usuario.foto_perfil}.png" alt="${usuario.username}" class="foto" data-id-usuario="${usuario.id_usuario}">
         </figure>
         <div class="columna">
-            <h2 class="nombreusuario">${usuario.username}</h2>
-            <p class="descripcion">${usuario.descripcion}</p>
+            <h2 class="nombreusuario" data-id-usuario="${usuario.id_usuario}">${usuario.username}</h2>
+            <p class="descripcion" data-id-usuario="${usuario.id_usuario}">${usuario.descripcion}</p>
         </div>
-    </section>`
+    </section>`;
     });
 }
 
-const busqueda = document.getElementById("inputBuscar")
-
-function buscar() {
-let perfilesFiltradas = usuarios.filter( usuario=> {
-  return usuario.username.toLowerCase().includes(busqueda.value.toLowerCase())
-      || usuario.descripcion.toLowerCase().includes(busqueda.value.toLowerCase())
-})
-
-mostrarPerfiles(perfilesFiltradas)
-}
-
-busqueda.addEventListener("input", buscar)
-
-/*function actualizarFiltros() {
-  let categorias = []
-  perfiles.forEach(comida => {
-    if( !categorias.includes(comida.categoria)) {
-    categorias.push(comida.categoria)
-    }
-  });
-  let provincias = []
-  perfiles.forEach(comida => {
-    if( !provincias.includes(comida.provincia)) {
-    provincias.push(comida.provincia)
-    }
-  });
-  categorias.forEach(categoria => {
-  filtroCategoria.innerHTML += `<option value="${categoria}">${categoria}</option>`
-  })
-  provincias.forEach(provincia => {
-    filtroProvincia.innerHTML += `<option value="${provincia}">${provincia}</option>`
+fetch("http://localhost:3000/listaUsuarios")
+    .then(response => response.json())
+    .then(data => {
+        usuarios = data;
+        mostrarPerfiles(usuarios);
     })
+    .catch(error => {                   
+        console.error('Error al encontrar perfiles:', error);
+    });
+
+async function buscarPosts(texto) {
+    try {
+        const respuesta = await fetch("http://localhost:3000/mango/busquedaporTexto", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                texto: texto,
+                filtros: {}
+            })
+        });
+
+        if (!respuesta.ok) throw new Error("Error en la respuesta del backend");
+
+        return await respuesta.json();
+    } catch (error) {
+        console.error("Error al buscar posts:", error);
+        return { usuarios: [] };
+    }
 }
 
-*/
+async function ejecutarBusqueda() {
+    const texto = inputBuscar ? inputBuscar.value.trim() : "";
+    if (texto === "") {
+        mostrarPerfiles(usuarios);
+        return;
+    }
+    const datos = await buscarPosts(texto);
+    const usuariosEncontrados = Array.isArray(datos) ? datos : (datos.usuarios || []);
+    mostrarPerfiles(usuariosEncontrados);
+}
+
+if (inputBuscar) {
+    inputBuscar.addEventListener("input", () => {
+        clearTimeout(timeoutBusqueda);
+        timeoutBusqueda = setTimeout(ejecutarBusqueda, 300);
+    });
+
+    inputBuscar.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            clearTimeout(timeoutBusqueda);
+            ejecutarBusqueda();
+        }
+    });
+}
+
+containerPerfiles.addEventListener("click", (e) => {
+    const usuarioAjeno = e.target.closest(".foto, .nombreusuario, .descripcion");
+    
+    if (usuarioAjeno) {
+        const idAjeno = usuarioAjeno.dataset.idAjeno;
+        
+        // Guardamos explícitamente el id de la persona clickeada en el localStorage
+        localStorage.setItem("idPerfilAjeno", idAjeno);
+        
+        // Se lo pasamos a la función general
+        irAPerfil(idAjeno);
+    }
+});

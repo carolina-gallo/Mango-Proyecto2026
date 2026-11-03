@@ -1,52 +1,64 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Nunito';
+}
 .elegi{
     background-color: #FFFFFF;
     border-top: 0.1vh solid #AFACAC;
     border-bottom: 0.1vh solid #AFACAC;
 }
-
+ /*containerPerfiles.innerHTML += `
+        <section class="perfil">
+        <figure>
+            <img src="../avatares/${usuario.foto_perfil}.png" alt="${usuario.username}" class="foto">
+        </figure>
+        <div class="columna">
+            <h2 class="nombreusuario">${usuario.username}</h2>
+            <p class="descripcion">${usuario.descripcion}</p>
+        </div>
+    </section>`; */
 .scrolleo {
-    margin-top: 13vh;
+    padding-top: 17vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     align-items: center;
+    gap: 1.373vh;
     overflow-y: auto;
     padding-bottom: 6.8649vh;
-    gap: 2.860411vh;
 }
 
 .perfil {
-    width: 90.7960vw;
-    height: 13.3867vh;
-    background-color: #f6b14d;
+    width: 100%;
+    height: 11.32723vh;
     display: flex;
     align-items: center;
-    gap: 7.5472vw;
+    gap: 2.487vw;
+    padding-left: 5.22vw;
 }
 .foto {
-    width: 23.5845vw;
-    height: 11.44164vh;
+    width: 19.6517vw;
+    aspect-ratio: 1 / 1;
     background-color: white;
-    border-radius: 4rem;
-    margin-left: 2.1218vw;
+    border-radius: 10rem;
+    object-fit: contain;
 }
 .columna{
-    width: 49.05223vw;
-height: calc(2.402745vh + 4.3478vh + 2.402745vh);
     display: flex;
     flex-direction: column;
     justify-items: center;
-    gap: 2.402745vh;
+    gap: 0.92vh;
 }
 .nombre {
-width: 49.05223vw;
-height: 2.402745vh;
-background-color: #616060;
+font-size: 1.0625rem;
+font-weight: 600;
+color: #000000;
 }
-.cositas {
-    width: 36.8159vw;
-    height: 4.3478vh;
-    background-color: #d9d9d9;
-    border-radius: 0.8rem;
-    margin-left: 3.06467vw;
+.descripcion {
+    font-size: 1.0625rem;
+    font-weight:500;
+    color: #000000;
 }
