@@ -57,13 +57,8 @@ async function cargarConversaciones() {
                 }
             }
 
-            const nombreUs = usuarioEncontrado 
-                ? (usuarioEncontrado.nombre_usuario || usuarioEncontrado.username || usuarioEncontrado.nombre)
-                : `Usuario ${otroId}`;
-
-            const HTMLFoto = usuarioEncontrado && usuarioEncontrado.foto_perfil 
-                ? `<img class="persona" src="${usuarioEncontrado.foto_perfil}" alt="${nombreUs}">`
-                : "";
+            const nombreUs = usuarioEncontrado.username;
+            const HTMLFoto = `<img class="persona" src="../avatares/${usuarioEncontrado.foto_perfil}.png" alt="${nombreUs}"> data-id-usuario="${otroId}">;`;
 
             // 3. Contar mensajes sin leer enviados por el otro participante
             const listaMensajes = conv.mensajes || [];
@@ -98,7 +93,7 @@ async function cargarConversaciones() {
             article.innerHTML = `
                 <figure class="persona">${HTMLFoto}</figure>
                 <div class="textos">
-                    <h2 class="nombre">${nombreUs}</h2>
+                    <h2 class="nombre" data-id-usuario="${otroId}">${nombreUs}</h2>
                     <p class="mensajito">${textoAbajo}</p>
                 </div>
                 ${circuloNaranja}
