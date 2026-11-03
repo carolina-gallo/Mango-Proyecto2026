@@ -28,12 +28,12 @@ html {
 
 .header-editar-perfil{
     height: 6.864vh;
-    width: 30vw;
-    margin-right:65vw;
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
+    padding-left: 5vw;
     gap: 3vw;
 }
 
@@ -48,6 +48,26 @@ html {
     font-size: 1.625rem;
     font-family: 'nunito';
     font-weight: 700;
+}
+
+.mangoymanguitos {
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: auto;
+}
+
+.mango {
+    height: 5.69vh;
+    width: 7.467vw;
+}
+
+.cantmanguitos {
+    font-family: 'Nunito';
+    font-weight: bolder;
+    font-size: 1.6rem;
+    color: #F4882E;
 }
 
 .ftperfil {
@@ -65,7 +85,6 @@ html {
     width: 37.313vw;
     aspect-ratio: 1/1;
     border-radius: 50%;
-    border: 0.5vw solid #E0E0E0;
 
     display: flex;
     flex-direction: column;
