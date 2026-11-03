@@ -99,6 +99,49 @@ function activarVerMas() {
     });
 }
 
+function resolverFoto(foto) {
+    return `../avatares/${foto || 'avatar1'}.png`;
+}
+let postAEnviar = null;
+const popupEnviar = document.getElementById("popupEnviar");
+const listaChats = document.getElementById("listaChats");
+
+async function abrirEnviar(idPost) {
+    postAEnviar = idPost;
+    listaChats.innerHTML = "";
+    popupEnviar.showModal();
+
+    try {
+        const res = await fetch("http://localhost:3000/mango/conversaciones", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ idUs: idUsuario })
+        });
+        const conversaciones = await res.json();
+
+        if (!conversaciones || conversaciones.length === 0) {
+            listaChats.innerHTML = '<p class="sin-posts">Todavía no tenés conversaciones.</p>';
+            return;
+        }
+
+        conversaciones.forEach(conv => {
+            const otroId = conv.participantes.find(id => Number(id) !== idUsuario);
+            const otro = usuarios.find(u => Number(u.id || u.id_usuario) === Number(otroId));
+
+            const boton = document.createElement("button");
+            boton.className = "enviar-chat";
+            boton.innerHTML = `
+                <img src="../avatares/${otro?.foto_perfil || 'avatar1'}.png" alt="">
+                <span>${otro?.username ?? 'Usuario ' + otroId}</span>
+            `;
+            boton.addEventListener("click", () => enviarPost(conv.id));
+            listaChats.appendChild(boton);
+        });
+    } catch (error) {
+        console.error("Error al cargar conversaciones:", error);
+    }
+}
+
 const popup = document.getElementById("comentarios");
 const lista = document.getElementById("lista-comentarios");
 const input = document.getElementById("input-comentario");
@@ -115,7 +158,7 @@ containerPosts.addEventListener("click", async (e) => {
     
     // IR A PERFIL ES LA FUNCION Q DECLARE EN EL GENERAL.JS PARA QUE VAYA DIRECTO A PERFIL AJENO O PROPIO SEGUN EL CASO
     if (usuarioAjeno) {
-        irAPerfil(usuarioAjeno.closest(".post").dataset.idUsuario);
+        irAPerfil(usuarioAjeno.closest(".usuario h2, .fotodeperfil").dataset.idUsuario);
         return;
     }
     if (foto) {
@@ -132,10 +175,9 @@ containerPosts.addEventListener("click", async (e) => {
         console.log("idPost:", idPost, "posts:", posts);
         mostrarComentarios(idPost);
         popup.showModal();
-    }
-
-
-    if (icono.alt === "like") {
+    } else if (icono.alt === 'enviar') {
+        abrirEnviar(idPost);
+    } else if (icono.alt === "like") {
         const yaTieneLike = icono.src.includes(likeLleno);
 
         if (yaTieneLike) {

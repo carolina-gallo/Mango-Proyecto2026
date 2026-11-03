@@ -4,6 +4,7 @@ const fecha = localStorage.getItem("fecha")
 const contenedor = document.getElementById("contenedorReceta");
 const input = document.getElementById("input-comentario");
 const enviar = document.querySelector(".comentarios-enviar");
+const usuarioCreador = document.getElementById("usuariodeReceta");
 
 let listaUsuarios = [];
 let recetaActual;
@@ -156,21 +157,23 @@ function mostrarReceta(receta) {
 }
 
 function mostrarCreador(receta) {
-  const nombreCreador = document.getElementById("usuarioReceta");
-  const fotoCreador = document.getElementById("fotoUsuarioReceta");
-
-  if (!nombreCreador || !fotoCreador) return;
 
   const creador = listaUsuarios.find(usuario => usuario.id == receta.id_usuario);
 
   if (creador) {
-    nombreCreador.textContent = creador.username || creador.nombre || "Usuario desconocido";
-    fotoCreador.innerHTML = `<img src="../avatares/${creador.foto_perfil || '../avatares/avatar1.png'}.png" alt="${creador.username}" class="avatar-usuario">`;
-  } else {
-    nombreCreador.textContent = "Usuario";
-  }
+    usuarioCreador.innerHTML = `
+    <img src="../avatares/${creador.foto_perfil || '../avatares/avatar1.png'}.png" alt="${creador.username}" class="avatar-usuario" data-id-usuario="${creador.id}">
+    <p class="usuarioreceta" data-id-usuario="${creador.id}">${creador.username}</p>`;
+  } return;
 }
-
+usuarioCreador.addEventListener("click", (e) => {
+  const usuarioAjeno = e.target.closest(".usuarioreceta, .avatar-usuario");
+  // IR A PERFIL ES LA FUNCION Q DECLARE EN EL GENERAL.JS PARA QUE VAYA DIRECTO A PERFIL AJENO O PROPIO SEGUN EL CASO
+    if (usuarioAjeno) {
+        irAPerfil(usuarioAjeno.closest(".usuarioreceta, .avatar-usuario").dataset.idUsuario);
+        return;
+    }
+});
 function buscarFoto(username) {
   for (let i = 0; i < listaUsuarios.length; i++) {
     if (listaUsuarios[i].username === username || listaUsuarios[i].nombre === username) {

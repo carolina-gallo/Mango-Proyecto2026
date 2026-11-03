@@ -119,7 +119,7 @@ function mostrarRecetas(recetas, usuarios) {
           <img class="corazon" src="${iconoLike}" alt="like">
         </div>
         <img class="fotoReceta" src="${receta.imagen_receta}" alt="${receta.nombre}">
-        <p class="nombredeusuario">${nombreAMostrar}</p>
+        <p class="nombredeusuario" data-id-usuario="${receta.id_usuario}">${nombreAMostrar}</p>
       </figure>
       <div class="contenido">
         <h2 class="titulo">${receta.nombre}</h2>
@@ -149,6 +149,14 @@ function activarVerMas() {
 
 containerRecetas.addEventListener("click", async (e) => {
   const botonLike = e.target.closest(".like-receta");
+  const usuarioAjeno = e.target.closest(".nombredeusuario");
+ 
+  // IR A PERFIL ES LA FUNCION Q DECLARE EN EL GENERAL.JS PARA QUE VAYA DIRECTO A PERFIL AJENO O PROPIO SEGUN EL CASO
+    if (usuarioAjeno) {
+        irAPerfil(usuarioAjeno.closest(".nombredeusuario").dataset.idUsuario);
+        return;
+    }
+    
   if (botonLike) {
     alternarLike(botonLike);
     return;
@@ -194,6 +202,7 @@ containerRecetas.addEventListener("click", async (e) => {
 
   localStorage.setItem("idReceta", publicacion.dataset.id);
   window.location.href = "recetas-informacion.html";
+
 });
 
 function alternarIcono(img, normal, activo) {
@@ -220,6 +229,7 @@ async function alternarLike(botonLike) {
       body: JSON.stringify({ idUs: idUsuario, idRec: idRec })
     });
   }
+
 }
 
 const popupBandejas = document.getElementById("popupBandejas");
