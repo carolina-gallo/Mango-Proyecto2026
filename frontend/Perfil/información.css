@@ -57,6 +57,7 @@ html {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-weight: 500;
 }
 
 .intro {
@@ -114,6 +115,12 @@ html {
     margin-bottom: 3.5vh;
 }
 
+.palabranaranja {
+    color: #F4882E;
+    font-weight: 1000;
+}
 
-
+.palabranegrita {
+    font-weight: 1000;
+}
 
