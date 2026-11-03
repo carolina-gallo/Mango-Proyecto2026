@@ -1,8 +1,10 @@
-let idConversacionActual = localStorage.getItem("idConversacionActiva") || "";
+let idConversacionActual = localStorage.getItem("idConversacionActiva") 
 const contenedor = document.getElementById("contenedorMensajes");
 const idUs = Number(localStorage.getItem("id"));
 const idOtroUs = Number(localStorage.getItem("idChatCon"));
-
+if (idConversacionActual) {
+    localStorage.setItem("leida_" + idConversacionActual, "true");
+}
     const botonEnviar = document.getElementById("botonEnviar");
     const inputMensaje = document.getElementById("inputMensaje");
 
@@ -28,13 +30,25 @@ async function obtenerDatosUsuario() {
     localStorage.setItem("foto_perfil", usuario.foto_perfil);
     const infoUsuario = document.getElementById("usuarioEmisor")
     infoUsuario.innerHTML =
-      `<img src="${usuario.foto_perfil}" alt="${usuario.username}" class="avatar">
+      `<img src="../avatares/${usuario.foto_perfil}.png" alt="${usuario.username}" class="avatar">
       <p class="nombredeusuario">${usuario.username}</p>`;
 
   } catch (error) {
     console.error("Error al obtener usuario:", error);
   }
 }
+// ESTO ES PARA DESPUES CARGAR LOS POSTS Q SE MANDANN
+let listaPosts = [];
+let listaUsuarios = [];
+
+async function cargarPostsHome() {
+    const resPost = await fetch("http://localhost:3000/mango/mostrarPost");
+    listaPosts = await resPost.json();
+
+    const resUs = await fetch("http://localhost:3000/listaUsuarios");
+    listaUsuarios = await resUs.json();
+}
+
 async function cargarConversacion() {
 
     if (!idUs || !idOtroUs) {
@@ -44,14 +58,15 @@ async function cargarConversacion() {
         return;
     }
 
-    try {
         const res = await fetch("http://localhost:3000/mango/conversacion", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ idUs, idOtroUs })
         });
 
-        if (!res.ok) throw new Error("Error obteniendo la conversación");
+        if (!res.ok){
+            console.log("Error obteniendo la conversación")
+        } 
 
         const conversacion = await res.json();
 
@@ -61,22 +76,15 @@ async function cargarConversacion() {
         obtenerDatosUsuario()
         renderizarMensajes(conversacion.mensajes, idUs, contenedor);
 
-    } catch (error) {
-        console.error("Error al cargar la conversación:", error);
-        if (contenedor) {
-            contenedor.innerHTML = "<p>Error al cargar los mensajes.</p>";
-        }
-    }
 }
-function formatearHora(fechaIso) {
-  if (!fechaIso) return "";
+function formatearHora() {
   
-  const fecha = new Date(fechaIso);
+  const fecha = new Date();
   
   return fecha.toLocaleTimeString("es-AR", {
     hour: "2-digit",
     minute: "2-digit",
-    hour12: false // formato 24 hs (ej: 14:30 en vez de 2:30 PM)
+    hour12: false 
   });
 }
 async function enviarMensaje() {
@@ -100,7 +108,6 @@ async function enviarMensaje() {
         }, 100);
     }
 
-    try {
         const res = await fetch("http://localhost:3000/mango/mensaje", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -111,19 +118,12 @@ async function enviarMensaje() {
             })
         });
 
-        if (!res.ok) {
-            throw new Error(`Error en el servidor: ${res.status}`);
-        }
 
         const conversacionActualizada = await res.json();
 
         input.value = "";
         const contenedor = document.getElementById("contenedorMensajes");
         renderizarMensajes(conversacionActualizada.mensajes, idUs, contenedor);
-
-    } catch (error) {
-        console.error("Error al enviar el mensaje:", error);
-    }
 }
 
 function renderizarMensajes(mensajes, idUs, contenedor) {
@@ -162,20 +162,79 @@ function renderizarMensajes(mensajes, idUs, contenedor) {
             ? Number(msgSiguiente.emisorId || msgSiguiente.emisor || msgSiguiente.idEmisor || msgSiguiente.idUs) 
             : null;
 
-        // Si es el último del chat O el siguiente ya es de otra persona
         if (!msgSiguiente || idEmisor !== idSiguiente) {
             divMensaje.classList.add("ultimo");
         }
-        // Si el mensaje es una receta o post compartido
-        if (msg.idReceta || msg.idPost || msg.tipo === "receta") {
-            divMensaje.classList.add("mensaje-receta");
-        }
 
-        divMensaje.innerHTML = 
-        `<p class="contenido">${msg.texto}</p>
-        <p class="hora">${formatearHora(msg.fecha)}</p>`;
+        const esPostCompartido = msg.texto && msg.texto.includes("#");
+
+        if (esPostCompartido) {
+            divMensaje.classList.add("mensaje-receta");
+
+            // Sacamos el id que viene después del '#'
+            const idPostExtraido = msg.texto.split("#")[1];
+
+            let postEncontrado;
+
+            for (let i = 0; i < listaPosts.length; i++) {
+                if (String(listaPosts[i].id) === String(idPostExtraido)) {
+                    postEncontrado = listaPosts[i];
+                    break;
+                }
+            }
+
+            let nombreAutor;
+            let fotoPerfil;
+            let fotoPlato;
+            let descripcion;
+            let idReceta;
+
+           if (postEncontrado) {
+                fotoPlato = postEncontrado.imagen_post || "";
+                descripcion = postEncontrado.descripcion || "";
+                idReceta = postEncontrado.id_receta || "";
+
+                let usuarioAutor ;
+                for (let j = 0; j < listaUsuarios.length; j++) {
+                    if (Number(listaUsuarios[j].id) === Number(postEncontrado.id_usuario)) {
+                        usuarioAutor = listaUsuarios[j];
+                        break;
+                    }
+                }
+
+                if (usuarioAutor) {
+                    nombreAutor = usuarioAutor.username;
+                    fotoPerfil = `../avatares/${usuarioAutor.foto_perfil}.png`;
+                }
+            }
+            console.log(idReceta, nombreAutor, fotoPerfil, fotoPlato, descripcion);
+
+            divMensaje.innerHTML = `
+                <div class="tarjeta-post-chat" onclick="localStorage.setItem('idReceta', '${idReceta}'); window.location.href='../Home/recetas-informacion.html#${idReceta}'">
+                    <div class="cabecera-post-chat">
+                        <img class="avatar-post-chat" src="${fotoPerfil}" alt="${nombreAutor}">
+                        <span class="autor-post-chat">${nombreAutor}</span>
+                    </div>
+                    <img class="imagen-post-chat" src="${fotoPlato}" alt="Post">
+                    <div class="pie-post-chat">
+                        <p class="desc-post-chat">${descripcion}</p>
+                    </div>
+                </div>
+                <p class="hora">${formatearHora(msg.fecha)}</p>
+            `;
+        } else {
+            divMensaje.innerHTML = `
+                <p class="contenido">${msg.texto}</p>
+                <p class="hora">${formatearHora(msg.fecha)}</p>
+            `;
+        }
 
         contenedor.appendChild(divMensaje);
     });
 }
-cargarConversacion();
+async function iniciarChat() {
+    await cargarPostsHome();
+    await cargarConversacion();
+}
+
+iniciarChat();

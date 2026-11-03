@@ -141,3 +141,37 @@ margin-top:0.716vh;
     width: 6vw;
     aspect-ratio: 1/1;
 }
+.tarjeta-post-chat {
+    width: 100%;
+    border-radius: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding:none;
+    margin:0;
+}
+.cabecera-post-chat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.avatar-post-chat {
+    width: 10.44vw;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.autor-post-chat {
+    font-weight: bold;
+    font-size: 1rem;
+}
+.imagen-post-chat {
+    width: 100%;
+    height: auto;
+    margin:0;
+    object-fit: cover;
+}
+.pie-post-chat {
+    font-size: 0.875rem;
+    color: #1A1A1A;
+}
