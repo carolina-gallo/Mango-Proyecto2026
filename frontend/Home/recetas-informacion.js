@@ -1,5 +1,6 @@
 const idReceta = localStorage.getItem("idReceta");
 const idUsuario = localStorage.getItem("id_usuario") || localStorage.getItem("id");
+const fecha = localStorage.getItem("fecha")
 const contenedor = document.getElementById("contenedorReceta");
 const input = document.getElementById("input-comentario");
 const enviar = document.querySelector(".comentarios-enviar");
@@ -59,9 +60,9 @@ async function obtenerDatosUsuario() {
       localStorage.setItem("foto_perfil", usuario.foto_perfil);
 
       const avatarMio = document.getElementById("avatarmio");
-      if (avatarMio && usuario.foto_perfil) {
-        avatarMio.innerHTML = `<img src="${usuario.foto_perfil}" alt="${usuario.username}" class="comentarios-avatar mio">`;
-      }
+
+        avatarMio.innerHTML = `<img src="../avatares/${usuario.foto_perfil}.png" alt="${usuario.username}" class="comentarios-avatar mio">`;
+      
     }
   } catch (error) {
     console.error("Error al obtener usuario:", error);
@@ -147,6 +148,11 @@ function mostrarReceta(receta) {
         </ul>
       </section>
     </article>`;
+
+    if (!receta.trucos || receta.trucos.length === 0) {
+    let trucos = document.querySelector(".trucos");
+    trucos.innerHTML = ""
+  }
 }
 
 function mostrarCreador(receta) {
@@ -159,19 +165,19 @@ function mostrarCreador(receta) {
 
   if (creador) {
     nombreCreador.textContent = creador.username || creador.nombre || "Usuario desconocido";
-    fotoCreador.innerHTML = `<img src="${creador.foto_perfil || 'ruta/por/defecto/avatar.png'}" alt="${creador.username}" class="avatar-usuario">`;
+    fotoCreador.innerHTML = `<img src="../avatares/${creador.foto_perfil || '../avatares/avatar1.png'}.png" alt="${creador.username}" class="avatar-usuario">`;
   } else {
     nombreCreador.textContent = "Usuario";
   }
 }
 
 function buscarFoto(username) {
-  for (let indice = 0; indice < listaUsuarios.length; indice++) {
-    if (listaUsuarios[indice].username === username || listaUsuarios[indice].nombre === username) {
-      return listaUsuarios[indice].foto_perfil || "default.jpg";
+  for (let i = 0; i < listaUsuarios.length; i++) {
+    if (listaUsuarios[i].username === username || listaUsuarios[i].nombre === username) {
+      return listaUsuarios[i].foto_perfil;
     }
   }
-  return "default.jpg";
+  return;
 }
 
 const contenedorComentarios = document.getElementById("comentariosReceta");
@@ -200,7 +206,7 @@ function mostrarComentarios(comentarios) {
     seccionComentario.innerHTML = `
       <article class="comentario">
         <figure class"comentarios-avatar">
-          <img src="${buscarFoto(comentario.username)}" alt="${comentario.username}" class="comentarios-avatar">
+          <img src="../avatares/${buscarFoto(comentario.username)}.png" alt="${comentario.username}" class="comentarios-avatar">
         </figure>
         <div>
           <p class="comentario-nombre">${comentario.username || "Anónimo"}</p>
@@ -215,8 +221,8 @@ function mostrarComentarios(comentarios) {
   } else {
     function mostrarPrimerosTres() {
       contenedorComentarios.innerHTML = `<h1 class="titulocomentarios">Comentarios</h1>`;
-      for (let indice = 0; indice < 3; indice++) {
-        agregarComentario(comentarios[indice]);
+      for (let i = 0; i < 3; i++) {
+        agregarComentario(comentarios[i]);
       }
 
       const masComentarios = document.createElement("div");
@@ -258,7 +264,7 @@ async function publicarComentario() {
         username: nombre,
         idRec: idReceta,
         texto: textoComentario,
-        fecha: new Date().toISOString()
+        fecha: fecha
       })
     });
 
@@ -266,12 +272,11 @@ async function publicarComentario() {
       recetaActual.comentarios = [];
     }
 
-    // Agregamos el comentario localmente
     recetaActual.comentarios.push({
       username: nombre,
       idRec: idReceta,
       texto: textoComentario,
-      fecha: new Date().toISOString()
+      fecha: fecha
     });
 
     input.value = "";
@@ -300,16 +305,16 @@ if (input) {
   });
 }
 
-// ===== GUARDAR EN BANDEJA =====
-// ===== GUARDAR EN BANDEJA =====
+
+// LAS MOTHERFUCKING BANDEJASS
 const popupBandejas = document.getElementById("popupBandejas");
 const cajaPopupBandejas = document.getElementById("cajaPopupBandejas");
 const vistasPopup = popupBandejas.querySelectorAll(".bandejas-vista");
 const grillaBandejas = document.getElementById("grillaBandejas");
 const inputNombreBandeja = document.getElementById("inputNombreBandeja");
 
-let iconoGuardado = null;    // el icono que se tocó
-let bandejaElegida = null;   // id de la bandeja seleccionada
+let iconoGuardado;
+let bandejaElegida;
 let seGuardo = false;
 
 function alternarIcono(img, normal, activo) {
@@ -501,4 +506,5 @@ popupBandejas.addEventListener("close", () => {
         iconoGuardado.src = "guardado.png";
     }
 });
+
 

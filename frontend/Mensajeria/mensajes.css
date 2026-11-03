@@ -94,3 +94,25 @@ font-weight: 500;
     flex-shrink: 0;
 }
 
+.no-mensajes{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 1.25rem;
+
+}
+.no-mensajes2{
+    color: #6D813A;
+    font-size: 1.34rem;
+    font-weight: 600;
+}
+.texto-no-mensajes{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 1.25rem;
+    gap: 1vh;
+}

@@ -17,7 +17,7 @@ async function obtenerDatosUsuario() {
         localStorage.setItem("foto_perfil", usuario.foto_perfil);
         const fotoUsuario = document.getElementById("fotoUsuario")
         fotoUsuario.innerHTML =
-            `<img src="${usuario.foto_perfil}" alt="${usuario.username}" class="comentarios-avatar">`;
+            `<img src="../avatares/${usuario.foto_perfil}.png" alt="${usuario.username}" class="comentarios-avatar">`;
 
     } catch (error) {
         console.error("Error al obtener usuario:", error);
@@ -68,8 +68,8 @@ function mostrarPosts(posts, usuarios) {
         containerPosts.innerHTML +=
             `<article class="post" data-id="${post.id}">
                 <div class="usuario">
-                    <img src="../avatares/${fotoPerfil}.png" alt="${fotoPerfil}" class="fotodeperfil"></img>
-                    <h2>${nombreAMostrar}</h2>
+                    <img src="../avatares/${fotoPerfil}.png" alt="${fotoPerfil}" class="fotodeperfil" data-id-usuario="${post.id_usuario}"></img>
+                    <h2 data-id-usuario="${post.id_usuario}">${nombreAMostrar}</h2>
                  </div>
                 <img class="foto" src="${post.imagen_post}" alt="foto" data-id-receta="${post.id_receta}">
             <div class="bottom">
@@ -111,7 +111,13 @@ containerPosts.addEventListener("click", async (e) => {
     const idPost = e.target.closest(".post").dataset.id;
     const foto = e.target.closest(".foto");
     const icono = e.target.closest(".icono");
-
+    const usuarioAjeno = e.target.closest(".fotodeperfil, .usuario h2");
+    
+    // IR A PERFIL ES LA FUNCION Q DECLARE EN EL GENERAL.JS PARA QUE VAYA DIRECTO A PERFIL AJENO O PROPIO SEGUN EL CASO
+    if (usuarioAjeno) {
+        irAPerfil(usuarioAjeno.closest(".post").dataset.idUsuario);
+        return;
+    }
     if (foto) {
         const idReceta = foto.dataset.idReceta || foto.closest(".post").dataset.idReceta;
 
@@ -121,32 +127,45 @@ containerPosts.addEventListener("click", async (e) => {
         }
         return;
     }
-    if (!icono) return;
-
-    if (icono.alt === "like") {
-        if (icono.src.includes(likeLleno)) {
-            icono.src = "likenegro.png";
-        } else {
-            icono.src = "likenaranja.png";
-
-            // CHEQUEAR SI ESTO ANDAAA Y LE LLEGA A MARTU
-            await fetch("http://localhost:3000/mango/post/like", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    idUs: Number(localStorage.getItem("id")),
-                    idPost: idPost
-                })
-            });
-        }
-    }
     if (icono.alt === "comentarios") {
         popup.dataset.id = idPost;
         console.log("idPost:", idPost, "posts:", posts);
         mostrarComentarios(idPost);
         popup.showModal();
     }
+
+
+    if (icono.alt === "like") {
+        const yaTieneLike = icono.src.includes(likeLleno);
+
+        if (yaTieneLike) {
+            icono.src = likeVacio;
+
+            await fetch("http://localhost:3000/mango/post/dislike", {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    idUs: idUsuario,
+                    idPost: idPost
+                })
+            });
+        } else {
+            icono.src = likeLleno;
+
+            await fetch("http://localhost:3000/mango/post/like", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    idUs: idUsuario,
+                    idPost: idPost
+                })
+            });
+        }
+        return;
+    
+    }
 });
+
 
 
 function buscarPost(idPost) {
@@ -182,17 +201,17 @@ function mostrarComentarios(idPost) {
         function buscarFoto(username) {
             for (let i = 0; i < usuarios.length; i++) {
                 if (usuarios[i].username === username) {
-                    return usuarios[i].foto_perfil || "default.jpg";
+                    return usuarios[i].foto_perfil || "../avatares/avatar1.png";
                 }
             }
-            return "default.jpg";
+            return "../avatares/avatar1.png";
         }
 
         comentarioPost.comentarios.forEach((c) => {
             lista.innerHTML +=
                 `<section class="comentarios-sección">
             <article class="comentario">
-            <img src="${buscarFoto(c.username)}" alt="${c.username}" class="comentarios-avatar">
+            <img src="../avatares/${buscarFoto(c.username)}.png" alt="${c.username}" class="comentarios-avatar">
             <div>
                 <p class="comentario-nombre">${c.username}</p>
                 <p class="comentario-texto">${c.texto}</p>

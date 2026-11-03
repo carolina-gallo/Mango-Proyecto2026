@@ -1,8 +1,8 @@
 async function cargarConversaciones() {
     const contenedor = document.querySelector(".mensajes");
-    const idUs = localStorage.getItem("id");
+    const idUsuario = localStorage.getItem("id");
 
-    if (!idUs) {
+    if (!idUsuario) {
         contenedor.innerHTML = `<p class="error">No has iniciado sesión correctamente.</p>`;
         return;
     }
@@ -14,7 +14,7 @@ async function cargarConversaciones() {
         const res = await fetch("http://localhost:3000/mango/conversaciones", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ idUs: idUs })
+            body: JSON.stringify({ idUs: idUsuario })
         });
 
         if (!res.ok) {
@@ -25,7 +25,11 @@ async function cargarConversaciones() {
         contenedor.innerHTML = "";
 
         if (!conversaciones || conversaciones.length === 0) {
-            contenedor.innerHTML = `<p class="no-mensajes">No tienes conversaciones aún.</p>`;
+            contenedor.innerHTML = `
+            <div class="texto-no-mensajes">
+                <p class="no-mensajes">No tienes conversaciones aún.</p>
+                <p class="no-mensajes2">Sigue a alguien para conversar!</p>
+            </div>`;
             return;
         }
 
@@ -36,7 +40,7 @@ async function cargarConversaciones() {
             let otroId;
             for (let j = 0; j < conv.participantes.length; j++) {
                 const id = Number(conv.participantes[j]);
-                if (id !== idUs) {
+                if (id !== idUsuario) {
                     otroId = id;
                     break;
                 }
@@ -46,8 +50,8 @@ async function cargarConversaciones() {
             let usuarioEncontrado;
             for (let k = 0; k < usuarios.length; k++) {
                 const u = usuarios[k];
-                const idUsuarioActual = Number(u.id || u.id_usuario);
-                if (idUsuarioActual === otroId) {
+                const idUsuariouarioActual = Number(u.id || u.id_usuario);
+                if (idUsuariouarioActual === otroId) {
                     usuarioEncontrado = u;
                     break;
                 }
@@ -69,7 +73,7 @@ async function cargarConversaciones() {
                 const msg = listaMensajes[m];
                 const remitente = Number(msg.emisorId || msg.id_emisor || msg.id_usuario);
 
-                if (remitente !== idUs && msg.leido === false) {
+                if (remitente !== idUsuario && msg.leido === false) {
                     sinLeer++;
                 }
             }

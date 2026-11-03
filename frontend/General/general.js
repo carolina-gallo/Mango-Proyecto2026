@@ -12,4 +12,11 @@ menuCrear.addEventListener("click", (evento) => {
     }
 });
 
-
+function irAPerfil(idOtroUs) {
+    if (Number(idOtroUs) === Number(localStorage.getItem("id"))) {
+        window.location.href = "../Perfil/perfil.html";
+        return;
+    }
+    localStorage.setItem("idPerfilAjeno", idOtroUs);
+    window.location.href = "../Perfil/perfil-ajeno.html";
+}
