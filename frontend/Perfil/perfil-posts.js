@@ -7,7 +7,6 @@ const botonComentar = document.querySelector('.comentarios-enviar');
 const popupEnviar = document.getElementById('popupEnviar');
 const listaChats = document.getElementById('listaChats');
  
-// NUEVO: mismos iconos de like que home.js
 const likeLleno = '../Home/likenaranja.png';
 const likeVacio = '../Home/likenegro.png';
  
@@ -22,10 +21,8 @@ function resolverFoto(foto) {
     return `../avatares/${foto}.png`;
 }
  
-// NUEVO: mismo formato de fecha que home.js (dd/mm/aaaa)
 function formatearFecha(fecha) {
     if (!fecha) return '';
-    // si ya viene como dd/mm/aaaa (así las guarda home) se deja como está
     if (/^\d{1,2}[\/-]\d{1,2}[\/-]\d{4}$/.test(fecha)) return fecha;
     const d = new Date(fecha);
     return isNaN(d) ? fecha : d.toLocaleDateString('es-AR', {
@@ -68,7 +65,6 @@ async function obtenerDatosUsuario() {
     }
 }
  
- 
 async function cargarPosts() {
     if (!idUs) {
         containerPosts.innerHTML = '<p class="sin-posts">Inicia sesión para ver tus publicaciones.</p>';
@@ -89,13 +85,13 @@ async function cargarPosts() {
         mostrarPosts();
     } catch (error) {
         console.error('Error al obtener publicaciones:', error);
-        containerPosts.innerHTML = '<p class="sin-posts">Ocurrió un error al cargar las publicaciones.</p>';
+        containerPosts.innerHTML = '<p class="sin-posts">Error al cargar las publicaciones.</p>';
     }
 }
  
 function mostrarPosts() {
     if (!Array.isArray(posts) || posts.length === 0) {
-        containerPosts.innerHTML = '<p class="sin-posts">Aún no realizaste ninguna publicación.</p>';
+        containerPosts.innerHTML = '<p class="sin-posts">No hay ninguna publicación.</p>';
         return;
     }
  
@@ -103,7 +99,7 @@ function mostrarPosts() {
     const foto = resolverFoto(usuarioActual?.foto_perfil);
  
     containerPosts.innerHTML = posts.map(post => {
-        // NUEVO: el like arranca naranja si el usuario ya le dio like (igual que home.js)
+
         const iconoLike = (post.likes_usuarios || []).includes(idUs) ? likeLleno : likeVacio;
  
         return `
@@ -151,25 +147,36 @@ containerPosts.addEventListener('click', (e) => {
     else if (icono.alt === 'enviar') abrirEnviar(idPost);
 });
  
-// NUEVO: el icono cambia al instante (como en home.js) y después se avisa al back
+
 async function darLike(icono, idPost) {
-    const yaTeniaLike = icono.src.includes('likenaranja.png');
-    icono.src = yaTeniaLike ? likeVacio : likeLleno;
- 
-    // se avisa al back siempre (al poner y al sacar el like); la ruta alterna el like
+    const yaTieneLike = icono.src.includes('likenaranja.png');
+    const post = buscarPost(idPost);
+
+    icono.src = yaTieneLike ? likeVacio : likeLleno;
+
     try {
-        const res = await fetch('http://localhost:3000/mango/post/like', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ idUs, idPost })
-        });
-        const data = await res.json().catch(() => null);
- 
-        // el icono queda como lo dejó el back
-        if (data?.status === 'liked') icono.src = likeLleno;
-        else if (data?.status === 'unliked') icono.src = likeVacio;
+        if (yaTieneLike) {
+            await fetch('http://localhost:3000/mango/post/dislike', {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ idUs, idPost })
+            });
+
+            if (post) post.likes_usuarios = (post.likes_usuarios || []).filter(id => id !== idUs);
+        } else {
+            await fetch('http://localhost:3000/mango/post/like', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ idUs, idPost })
+            });
+            if (post) {
+                post.likes_usuarios = post.likes_usuarios || [];
+                if (!post.likes_usuarios.includes(idUs)) post.likes_usuarios.push(idUs);
+            }
+        }
     } catch (error) {
         console.error('Error al enviar el like:', error);
+        icono.src = yaTieneLike ? likeLleno : likeVacio;
     }
 }
  
@@ -197,7 +204,7 @@ function mostrarComentarios(idPost) {
     }
  
     input.placeholder = 'Únete a la conversación...';
-    // NUEVO: el avatar es un <img class="comentarios-avatar"> directo, igual que en home.js
+
     lista.innerHTML = comentarios.map(c => `
         <section class="comentarios-seccion">
             <article class="comentario">
@@ -249,7 +256,7 @@ popup.addEventListener('click', (e) => {
     if (e.target === popup || e.target.closest('.comentarios-linea')) popup.close();
 });
  
-/* ----- enviar por mensaje ----- */
+
 async function abrirEnviar(idPost) {
     postAEnviar = idPost;
     listaChats.innerHTML = '';
