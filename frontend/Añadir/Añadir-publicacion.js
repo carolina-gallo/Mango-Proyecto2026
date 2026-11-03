@@ -36,6 +36,23 @@ inputImagen.addEventListener("change", () => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ---------- VINCULAR RECETA (popup buscador) ---------- */
 const dialogRecetas = document.getElementById("buscadorRecetas");
 const inputBuscar = document.getElementById("inputBuscar");
@@ -161,7 +178,28 @@ function mostrarResultados(recetas) {
 
 cerrarBuscador.addEventListener("click", () => dialogRecetas.close());
 
-/* ---------- VALIDACIÓN ---------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function camposvacios() {
     document.querySelectorAll(".error").forEach(e => e.classList.remove("error"));
 }
@@ -186,7 +224,6 @@ function validar() {
     return true;
 }
 
-/* ---------- ENVÍO ---------- */
 async function subirPost() {
     if (!validar()) return;
     const post = {

@@ -7,24 +7,30 @@ body {
 .encabezado-bandeja {
     display: flex;
     align-items: center;
-    padding: 5.721vw;
+    padding-left: 5.721vw;
+    padding-right: 5.721vw;
+    padding-top: 5.721vw;
+    padding-bottom: 1.8vw;
+    height: 3.721vh;
 }
 
 .boton-volver {
     text-decoration: none;
-    color: #333;
-    font-weight: 700;
-    font-size: 1rem;
+    width: 5.47vw;
+    height: 2.17vh;
 }
 
-#titulo-bandeja {
-    font-size: 1.4rem;
-    margin: 0;
-    color: #222;
+.titulo-bandeja {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    padding-left: 5.721vw;
+    padding-right: 5.721vw;
+    padding-bottom: 3vh;
+    color: #6E8039;
+    font-size: 2.1875rem;
 }
-
-
-
 
 .contenedor-recetas {
     display: flex;
@@ -41,8 +47,9 @@ body {
 
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+    gap: 3.5vw;
 }
 
 .foto-receta {
@@ -52,32 +59,25 @@ body {
     object-fit: cover;
 }
 
-
-
-
-
-
-
-
-
-
 .info-receta {
-    padding: 12px;
+    height: 100%;
+    width: auto;
+    display: flex;
+    flex-direction: column;
 }
 
-.info-receta h3 {
-    margin: 0 0 6px 0;
-    font-size: 1.1rem;
-    color: #111;
+.h3 {
+    font-size: 1.25rem;
+    color: black;
+    font-weight: 700;
+    line-height: 2.5vh;
 }
 
-.info-receta p {
-    margin: 0;
-    font-size: 0.85rem;
-    color: #666;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+.desc {
+    font-size: 1rem;
+    color: black;
+    font-weight: 400;
+    line-height: 2.5vh;
 }
 
 .sin-recetas {

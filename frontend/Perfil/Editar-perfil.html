@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edita perfil</title>
+
+    <link rel="stylesheet" href="Editar-perfil.css">
+    <link rel="stylesheet" href="../General/general.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+    </style>
+</head>
+
+<body>
+    <header class="header-editar-perfil">
+        <a href="perfil.html">
+            <img class="boton-volver" src="flechabandeja.png" alt="Volver">
+        </a>
+        <p class="editarperfiltexto">Editar perfil</p>
+    </header>
+    <section class="ftperfil">
+        <a href="tienda.html" class="circulo">
+            <img class="lapizperfil" src="Editar lápiz.png" alt="editar lapiz">
+        </a>
+        <p class="cambiatexto">Cambia tu avatar</p>
+    </section>
+    <form class="">
+        <section class="cajasdetextos">
+            <article class="cajatexto">
+                <p class="textos">Nombre</p>
+                <input type="text" class="metertexto" placeholder="hola">
+            </article>
+            <article class="cajatexto">
+                <p class="textos">Nombre de usuario</p>
+                <input type="text" class="metertexto" placeholder="">
+            </article>
+            <article class="cajatexto">
+                <p class="textos">Descripción</p>
+                <input type="text" class="metertexto" placeholder="">
+            </article>
+        </section>
+        <a href="perfil.html">
+            <button type="submit" class="guardar" id="guardarCambios">Guardar</button>
+        </a>
+    </form>
+
+
+
+    <footer class="footer">
+    <a href="../Home/homeposts.html">
+        <img class="fotoEnElFooter" src="../home negro.png" alt="foto home">
+    </a>
+    <a href="../Mensajeria/mensajes.html">
+        <img class="fotoEnElFooter" src="../mensajeria negro.png" alt="foto mensajeria">
+    </a>
+    <div>
+    <a href="#" class="fcuadraditote" id="botonMas">
+        <img class="fotoEnElFooter" src="../mas negro.png" alt="mas">
+    </a>
+    </div>
+    <a href="../Rachas/rachas.html">
+        <img class="fotoEnElFooter" src="../triple m negro.png" alt="foto rachas">
+    </a>
+    <a href="../Perfil/perfil.html">
+        <img class="fotoEnElFooter" src="../perfil naranja.png" alt="foto perfil naranja">
+    </a>
+    </footer>
+
+    <dialog class="menuCrearpopup" id="menuCrearpopup">
+        <section class="crearpopup" id="crearpopup">
+            <a href="../Añadir/Añadir-publicación.html" class="publicacionorecetapopup">
+                <img class="imagensubirpopup" src="../Group 65.png" alt="imagensubirfoto">
+                <section class="textosdepostorecetapopup">
+                    <div class="titulopopup">Post</div>
+                    <div class="marcaelmomentopopup">Subi un post y marca el momento</div>
+                </section>
+            </a>
+            <a href="../Añadir/Añadir-receta.html" class="publicacionorecetapopup">
+                <img class="imagensubirpopup" src="../Group 65.png" alt="imagensubirfoto">
+                <section class="textosdepostorecetapopup">
+                    <div class="titulopopup">Receta</div>
+                    <div class="marcaelmomentopopup">Compartí tu receta y dejá tu huella.</div>
+                </section>
+            </a>
+        </section>
+    </dialog>
+
+    <script src="Editar-perfil.js"></script>
+    <script src="../General/general.js"></script>
+</body>
+</html>

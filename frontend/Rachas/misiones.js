@@ -1,16 +1,27 @@
 const idUsuario = Number(localStorage.getItem('id'));
 
 async function obtenerprogresomision() {
-    if (!idUsuario) return null;
+    if (!idUsuario) {
+        console.warn('No hay id en localStorage, iniciá sesión');
+        return null;
+    }
     try {
-        const res = await fetch(`http://localhost:3000/mango/usuario/${idUsuario}`);
-        const u = await res.json();
+        const res = await fetch('http://localhost:3000/listamisiones');
+        console.log('status:', res.status);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-        document.getElementById('progreso-seguir').textContent = u.seguir_20_personas ?? 0 + " /20";
-        document.getElementById('progreso-publicar-posts').textContent = u.pub10Post ?? 0 + " /10";
-        document.getElementById('progreso-seguidores').textContent = u.pub10Rec ?? 0 + " /20";
-        document.getElementById('progreso-publicar-recetas').textContent = u.tener20seg ?? 0 + " /10";
+        const datos = await res.json();
+        console.log('respuesta del back:', datos);
 
+        // /listamisiones devuelve el archivo entero, buscamos el registro del usuario
+        const u = datos.find(m => Number(m.idUsuario) === idUsuario) ?? {};
+
+        const estado = (cumplida) => cumplida ? 'Completada' : 'Pendiente';
+
+        document.getElementById('progreso-seguir').textContent = estado(u.seguir_20_personas);
+        document.getElementById('progreso-publicar-posts').textContent = estado(u.pub10Post);
+        document.getElementById('progreso-seguidores').textContent = estado(u.tener20seg);
+        document.getElementById('progreso-publicar-recetas').textContent = estado(u.pub10Rec);
         return u;
     } catch (error) {
         console.error('Error al obtener el progreso:', error);
@@ -18,6 +29,4 @@ async function obtenerprogresomision() {
     }
 }
 
-(async () => {
-    usuarioActual = await obtenerprogresomision();
-})();
+obtenerprogresomision();

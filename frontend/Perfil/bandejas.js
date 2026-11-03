@@ -71,11 +71,13 @@ function generarRecetas(listaRecetas) {
         const descripcion = receta.descripcion || '';
 
         tarjeta.innerHTML = `
+        <section class="recetaenbandeja">
             <img class="foto-receta" src="${imagen}">
             <div class="info-receta">
-                <h3>${nombre}</h3>
-                <p>${descripcion}</p>
+                <h3 class="h3">${nombre}</h3>
+                <p class="desc">${descripcion}</p>
             </div>
+        </section>
         `;
 
         tarjeta.addEventListener('click', () => {
