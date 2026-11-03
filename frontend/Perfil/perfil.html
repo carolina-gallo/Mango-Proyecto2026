@@ -51,12 +51,28 @@
                                     <p class="textoporseccion">Información</p>
                                     <img class="flecha" src="flecha.png" alt="flecha">
                                 </a>
-                                <article class="unadelassecciones">
+                               <button type="button" class="unadelassecciones" id="botonEliminarCuenta">
                                     <img class="imagenseccion" src="basura.png" alt="eliminar cuenta">
                                     <p class="textoeliminarcuenta">Eliminar cuenta</p>
-                                </article>
+                                </button>
                             </section>
                         </dialog>
+
+
+
+                        <dialog class="confirmar-fondo" id="dialogEliminar">
+                        <section class="cajaconfirmar">
+                            <h3 class="confirmar-titulo">¿Deseas eliminar tu cuenta?</h3>
+                            <p class="confirmar-texto">Se van a borrar tu cuenta, tus metas, misiones, maestrías y conversaciones. Esta acción no se puede deshacer.</p>
+                            <input type="password" class="confirmar-input" id="passEliminar" placeholder="Ingresá tu contraseña">
+                            <p class="confirmar-error" id="errorEliminar" hidden></p>
+                            <div class="confirmar-botones">
+                                <button type="button" class="confirmar-cancelar" id="cancelarEliminar">Cancelar</button>
+                                <button type="button" class="confirmar-eliminar" id="confirmarEliminar">Sí, eliminar</button>
+                            </div>
+                        </section>
+                        </dialog>
+
                     </div>
 
                     <div class="estadisticas">
@@ -161,5 +177,6 @@
 
     <script src="perfil.js"></script>
     <script src="../General/general.js"></script>
+    <script src="eliminar-cuenta.js"></script>
 </body>
 </html>
