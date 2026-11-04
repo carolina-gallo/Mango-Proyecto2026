@@ -139,7 +139,7 @@ async function cargarRecetas() {
         const recetas = await res.json();
 
         if (!Array.isArray(recetas) || recetas.length === 0) {
-            containerRecetas.innerHTML = '<p class="mensaje-vacio">Todavía no publicó recetas.</p>';
+            containerRecetas.innerHTML = '<p class="mensaje-vacio">Todavía no hay recetas por acá.</p>';
             return;
         }
         mostrarRecetas(recetas);

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Usuario</title>
+
+    <link rel="stylesheet" href="../General/general.css">
+    <link rel="stylesheet" href="perfil.css">
+    <link rel="stylesheet" href="perfil-ajeno.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+    </style>
+</head>
+
+<body>
+    <header class="encabezadoperfil">
+            <section class="datosperfil">
+                <figure class="fotoperfil">
+                    <img id="fotoPerfil" src="" alt="Foto de perfil">
+                </figure>
+
+                <div class="infoperfil">
+                    <div class="nombreyeditar">
+                        <h1 class="nombreusuario" id="nombreUsuario"></h1>
+                    </div>
+
+                    <div class="estadisticas">
+                        <article class="estadistica">
+                            <p class="cantidad" id="cantPublicaciones"></p>
+                            <p class="etiqueta">Publicaciones</p>
+                        </article>
+                        <article class="estadistica">
+                            <p class="cantidad" id="cantSeguidores"></p>
+                            <p class="etiqueta">Seguidores</p>
+                        </article>
+                        <article class="estadistica">
+                            <p class="cantidad" id="cantSeguidos"></p>
+                            <p class="etiqueta">Seguidos</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <p class="descripcionperfil" id="descripcionPerfil"></p>
+
+            <section class="insignias" id="insignias">
+                <span class="insignia"></span>
+                <span class="insignia"></span>
+                <span class="insignia"></span>
+            </section>
+
+            <section class="botones-perfil">
+                <button type="button" class="seguir" id="btn-seguir">Seguir</button>
+                <button type="button" class="mensaje-boton" id="btn-mensaje">Mensaje</button>
+            </section>
+    </header>
+
+        <nav class="pestañas">
+            <a href="perfil-ajeno.html" class="pestaña">Recetas</a>
+            <button class="pestañaseleccionada" id="btn-recetas">Posts</button>
+        </nav>
+
+<main class="scrolleo" id="container-posts">
+
+    </main>
+    <dialog class="comentarios-fondo" id="comentarios">
+    <section class="comentarios-popup">
+        <div class="comentarios-arriba">
+        <span class="comentarios-linea"></span>
+        <h3 class="comentarios-titulo">Comentarios</h3>
+        </div>
+
+        <article class="comentarios-lista" id="lista-comentarios"></article>
+
+        <article class="comentarios-escribir">
+            <figure id="fotoUsuario"></figure>
+            <div class="enviar-comentario">
+            <input type="text" class="comentarios-input" id="input-comentario" placeholder="Únete a la conversación...">
+            <img class="comentarios-enviar" src="enviar2.png" alt="enviar"></img>
+            </div>
+        </article>
+    </section>
+</dialog>
+
+<dialog id="popupEnviar" class="modal-compartir">
+    <div class="linea-cerrar"></div>
+
+    <div class="buscadorenviar">
+        <img src="icono-buscador.png" alt="icono-buscador" class="vector">
+        <input type="text" id="inputBuscarChat" placeholder="Buscar" class="inputbuscarchat">
+    </div>
+
+    <div id="listaChats" class="lista-contactos">
+    </div>
+
+</dialog>
+
+    <footer class="footer">
+    <a href="../Home/homeposts.html">
+        <img class="fotoEnElFooter" src="../home negro.png" alt="foto home">
+    </a>
+    <a href="../Mensajeria/mensajes.html">
+        <img class="fotoEnElFooter" src="../mensajeria negro.png" alt="foto mensajeria">
+    </a>
+    <div>
+    <a href="#" class="fcuadraditote" id="botonMas">
+        <img class="fotoEnElFooter" src="../mas negro.png" alt="mas">
+    </a>
+    </div>
+    <a href="../Rachas/rachas.html">
+        <img class="fotoEnElFooter" src="../triple m negro.png" alt="foto rachas">
+    </a>
+    <a href="../Perfil/perfil.html">
+        <img class="fotoEnElFooter" src="../perfil negro.png" alt="foto perfil">
+    </a>
+    </footer>
+
+    <dialog class="menuCrearpopup" id="menuCrearpopup">
+        <section class="crearpopup" id="crearpopup">
+            <a href="../Añadir/Añadir-publicación.html" class="publicacionorecetapopup">
+                <img class="imagensubirpopup" src="../Group 65.png" alt="imagensubirfoto">
+                <section class="textosdepostorecetapopup">
+                    <div class="titulopopup">Post</div>
+                    <div class="marcaelmomentopopup">Subi un post y marca el momento</div>
+                </section>
+            </a>
+            <a href="../Añadir/Añadir-receta.html" class="publicacionorecetapopup">
+                <img class="imagensubirpopup" src="../Group 65.png" alt="imagensubirfoto">
+                <section class="textosdepostorecetapopup">
+                    <div class="titulopopup">Receta</div>
+                    <div class="marcaelmomentopopup">Compartí tu receta y dejá tu huella.</div>
+                </section>
+            </a>
+        </section>
+    </dialog>
+
+    <script src="../General/general.js"></script>
+    
+    <script src="perfil-ajeno-posts.js"></script>
+</body>
+</html>

@@ -11,16 +11,18 @@ menuCrear.addEventListener("click", (evento) => {
         menuCrear.close();
     }
 });
-
 function irAPerfil(idOtroUs) {
-    if (Number(idOtroUs) === Number(localStorage.getItem("id"))) {
+    const miId = Number(localStorage.getItem("id"));
+    const idDestino = Number(idOtroUs);
+
+    if (idDestino === miId) {
         window.location.href = "../Perfil/perfil.html";
         return;
     }
-    localStorage.setItem("idPerfilAjeno", idOtroUs);
-    window.location.href = "../Perfil/perfil-ajeno.html";
-}
 
+    localStorage.setItem("idPerfilAjeno", idDestino);
+    window.location.href = "../Perfil/perfil-ajeno.html"; 
+}
 
 function estaGuardada(idReceta) {
     const lista = JSON.parse(localStorage.getItem("guardadas_" + localStorage.getItem("id"))) || [];

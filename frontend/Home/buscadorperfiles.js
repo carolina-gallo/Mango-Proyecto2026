@@ -1,22 +1,22 @@
 let usuarios = [];
 const containerPerfiles = document.getElementById("perfiles");
-const idUsuario = Number(localStorage.getItem("id"));
+const inputBuscar = document.getElementById("inputBuscar");
 
 let timeoutBusqueda;
 
-function mostrarPerfiles(usuarios) {
+function mostrarPerfiles(lista) {
     containerPerfiles.innerHTML = "";
-    usuarios.forEach(usuario => {
+    lista.forEach(usuario => {
         containerPerfiles.innerHTML += `
-        <section class="perfil">
-        <figure>
-            <img src="../avatares/${usuario.foto_perfil}.png" alt="${usuario.username}" class="foto" data-id-usuario="${usuario.id_usuario}">
-        </figure>
-        <div class="columna">
-            <h2 class="nombreusuario" data-id-usuario="${usuario.id_usuario}">${usuario.username}</h2>
-            <p class="descripcion" data-id-usuario="${usuario.id_usuario}">${usuario.descripcion}</p>
-        </div>
-    </section>`;
+        <section class="perfil" data-id="${usuario.id}">
+            <figure>
+                <img src="../avatares/${usuario.foto_perfil}.png" alt="${usuario.username}" class="foto">
+            </figure>
+            <div class="columna">
+                <h2 class="nombreusuario">${usuario.username}</h2>
+                <p class="descripcion">${usuario.descripcion || ""}</p>
+            </div>
+        </section>`;
     });
 }
 
@@ -78,15 +78,16 @@ if (inputBuscar) {
 }
 
 containerPerfiles.addEventListener("click", (e) => {
-    const usuarioAjeno = e.target.closest(".foto, .nombreusuario, .descripcion");
+    // Busca la tarjeta del perfil donde se hizo clic
+    const tarjeta = e.target.closest(".perfil");
     
-    if (usuarioAjeno) {
-        const idAjeno = usuarioAjeno.dataset.idAjeno;
+    if (tarjeta && tarjeta.dataset.id) {
+        const idAjeno = Number(tarjeta.dataset.id);
         
-        // Guardamos explícitamente el id de la persona clickeada en el localStorage
+        // Guardamos explícitamente en el localStorage
         localStorage.setItem("idPerfilAjeno", idAjeno);
         
-        // Se lo pasamos a la función general
+        // Redirigimos
         irAPerfil(idAjeno);
     }
 });
