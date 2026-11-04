@@ -54,7 +54,7 @@ async function obtenerDatosAjeno() {
         if(cantSeguidores) cantSeguidores.textContent = u.seguidores ?? 0;
         const cantSeguidos = document.getElementById('cantSeguidos');
         if(cantSeguidos) cantSeguidos.textContent = u.seguidos ?? 0;
-        
+        cargarInsignias(u);
         return u;
     } catch (error) {
         console.error('Error al obtener usuario ajeno:', error);

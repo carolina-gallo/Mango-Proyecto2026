@@ -83,3 +83,21 @@ function cargarInsignias(usuario) {
         span.innerHTML = `<img src="${src}" alt="${maestria} ${nivel}" title="${maestria} - ${nivel}">`;
     });
 }
+
+function pintarInsignias(nivel) {
+    const insignias = document.querySelectorAll("#insignias .insignia");
+
+    insignias.forEach(insignia => {
+        const maestria = insignia.dataset.maestria;
+        const nivelMaestria = (nivel || {})[maestria];
+
+        if (!nivelMaestria || nivelMaestria === "Tierra") {
+            insignia.style.display = "none";
+            return;
+        }
+
+        insignia.style.display = "";
+        insignia.dataset.nivel = nivelMaestria.toLowerCase();
+        insignia.title = `${maestria}: ${nivelMaestria}`;
+    });
+}

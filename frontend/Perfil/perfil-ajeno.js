@@ -45,6 +45,7 @@ async function obtenerDatosAjeno() {
         document.getElementById('cantPublicaciones').textContent = u.qpub ?? 0;
         cantSeguidores.textContent = u.seguidores ?? 0;
         document.getElementById('cantSeguidos').textContent = u.seguidos ?? 0;
+        cargarInsignias(u);
         return u;
     } catch (error) {
         console.error('Error al obtener usuario:', error);
@@ -113,6 +114,7 @@ btnMensaje.addEventListener('click', async () => {
         console.error('No se pudo abrir la conversación:', error);
     }
 });
+
 
 // RECETAS
 function clavesActivas(filtros) {
