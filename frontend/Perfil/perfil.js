@@ -57,69 +57,6 @@ async function obtenerDatosUsuario() {
 }
 
 
-
-
-
-
-
-
-
-
-// ---------- INSIGNIAS (maestrías) ----------
-const NIVELES_MAESTRIA = ['tierra', 'bronce', 'plata', 'oro', 'prestigio'];
-const CARPETA_FOTOS_MAESTRIAS = '../Z Fotos Maestrias';
-
-const MAESTRIAS = {
-    dulce:     { archivo: 'dulce',     claves: ['dulce'] },
-    saladas:   { archivo: 'saladas',   claves: ['salado'] },
-    proteicas: { archivo: 'proteicas', claves: ['proteico'] },
-    grasas:    { archivo: 'grasas',    claves: ['bajo_en_colesterol', 'bajo en colesterol'] },
-    rapidas:   { archivo: 'rapidas',   claves: ['quince_min', '1- 15 min'] }
-};
-
-function normalizarNivel(nivel) {
-    const n = String(nivel ?? '').trim().toLowerCase();
-    return NIVELES_MAESTRIA.includes(n) ? n : 'tierra';
-}
-
-function nivelDeMaestria(usuario, maestria) {
-    const claves = MAESTRIAS[maestria]?.claves ?? [maestria];
-    const niveles = usuario?.nivel ?? {};
-    for (const clave of claves) {
-        if (niveles[clave] !== undefined) return normalizarNivel(niveles[clave]);
-    }
-    return 'tierra';
-}
-
-function cargarInsignias(usuario) {
-    document.querySelectorAll('#insignias .insignia').forEach(span => {
-        const maestria = span.dataset.maestria;
-        const info = MAESTRIAS[maestria];
-        if (!info) return;
-
-        const nivel = nivelDeMaestria(usuario, maestria);
-
-        // Tierra no se muestra: solo de bronce para arriba
-        if (nivel === 'tierra') {
-            span.remove();
-            return;
-        }
-
-        const src = encodeURI(`${CARPETA_FOTOS_MAESTRIAS}/${info.archivo}_${nivel}.png`);
-        span.innerHTML = `<img src="${src}" alt="${maestria} ${nivel}" title="${maestria} - ${nivel}">`;
-    });
-}
-
-
-
-
-
-
-
-
-
-
-
 function clavesActivas(filtros) {
     if (Array.isArray(filtros)) return filtros;
     return Object.keys(filtros ?? {}).filter(k => filtros[k] === true);
