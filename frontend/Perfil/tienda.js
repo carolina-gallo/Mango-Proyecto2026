@@ -1,5 +1,5 @@
-const idUsuario = Number(localStorage.getItem('id'));
 
+const idUsuario = Number(localStorage.getItem('id'));
 let usuarioActual = null;
 
 function resolverFoto(foto) {
@@ -13,7 +13,6 @@ async function obtenerDatosUsuario() {
     try {
         const res = await fetch(`http://localhost:3000/mango/usuario/${idUsuario}`);
         const u = await res.json();
-
         document.getElementById('ftdeperfil').src = resolverFoto(u.foto_perfil);
         return u;
     } catch (error) {
@@ -22,31 +21,29 @@ async function obtenerDatosUsuario() {
     }
 }
 
- 
 async function cantdemanguitos() {
-    if (!idUsuario) {
-        return null;
-    }
-
+    if (!idUsuario) return null;
     try {
-        const res = await fetch('http://localhost:3000/mango/usuario');
-        console.log('status:', res.status);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
- 
-        const datos = await res.json();
- 
-        const u = datos.find(m => Number(m.idUsuario) === idUsuario) ?? {};
- 
-        document.getElementById('cantManguitos').textContent = `${u.puntos ?? 0};
-        
-        return u;
+        const res = await fetch(
+            `http://localhost:3000/mango/usuario/${idUsuario}`
+        );
+        if (!res.ok) {
+            throw new Error(`HTTP ${res.status}`);
+        }
+        const usuario = await res.json();
+        console.log("Datos del usuario:", usuario);
+        document.getElementById("cantManguitos").textContent =
+            usuario.puntos ?? 0;
+
+        return usuario;
+
     } catch (error) {
-        console.error('Error al obtener el progreso:', error);
+        console.error("Error al obtener los manguitos:", error);
         return null;
     }
 }
- 
-obtenerprogresometa();
+
 (async () => {
     usuarioActual = await obtenerDatosUsuario();
+    await cantdemanguitos();
 })();

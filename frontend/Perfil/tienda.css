@@ -56,6 +56,7 @@ html {
     flex-direction: row;
     align-items: center;
     height: auto;
+    margin-right: 4vw;
 }
 
 .mango {
@@ -71,7 +72,7 @@ html {
 }
 
 .ftperfil {
-    height: 27.94vh;
+    height: 25.94vh;
     width: 100%;
 
     display: flex;
@@ -118,7 +119,7 @@ html {
     flex-direction: column;
     align-items: flex-start;
 
-    border: 0.4vw solid #E0E0E0;
+    border: 0.5vw solid #E0E0E0;
     border-radius: 1rem;
 }
 
