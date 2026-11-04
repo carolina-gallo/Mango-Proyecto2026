@@ -61,6 +61,7 @@ async function obtenerDatosUsuario() {
         localStorage.setItem('nombre_usuario', u.username);
         document.querySelector('.comentarios-avatar.mio').innerHTML =
             `<img src="${resolverFoto(u.foto_perfil)}" alt="${u.username}">`;
+        cargarInsignias(u);
         return u;
     } catch (error) {
         console.error('Error al obtener usuario:', error);

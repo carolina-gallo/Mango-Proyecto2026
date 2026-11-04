@@ -20,6 +20,9 @@ async function obtenerDatosUsuario() {
         document.getElementById("cantPublicaciones").textContent = usuario.qpub ?? 0;
         document.getElementById("cantSeguidores").textContent = usuario.seguidores ?? 0;
         document.getElementById("cantSeguidos").textContent = usuario.seguidos ?? 0;
+
+        document.getElementById("cantSeguidos").textContent = usuario.seguidos ?? 0;
+    cargarInsignias(usuario);
     } catch (error) {
         console.error("Error al obtener usuario:", error);
     }
