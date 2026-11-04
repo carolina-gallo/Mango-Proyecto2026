@@ -39,7 +39,6 @@ function formatearFecha(fecha) {
     return isNaN(d) ? fecha : d.toLocaleDateString('es-AR', { day: '2-digit', month: '2-digit', year: 'numeric' });
 }
 
-/* ---------- 1. OBTENER DATOS DEL USUARIO AJENO ---------- */
 async function obtenerDatosAjeno() {
     try {
         // ACÁ ESTABA EL ERROR: Tiene que buscar idAjeno, no tu idUs
@@ -63,7 +62,6 @@ async function obtenerDatosAjeno() {
     }
 }
 
-/* ---------- 2. CARGAR LOS POSTS DEL USUARIO AJENO ---------- */
 async function cargarPosts() {
     try {
         // ACÁ TAMBIÉN: Tiene que buscar los posts de idAjeno, no de idUs
@@ -89,7 +87,7 @@ function mostrarPosts() {
     if (!containerPosts) return;
     
     if (!Array.isArray(posts) || posts.length === 0) {
-        containerPosts.innerHTML = '<p class="sin-posts">Aún no realizó ninguna publicación.</p>';
+        containerPosts.innerHTML = '<p class="mensaje-vacio">No hay ninguna publicación todavía.</p>';
         return;
     }
 
