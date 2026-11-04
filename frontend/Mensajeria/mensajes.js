@@ -60,12 +60,6 @@ async function cargarConversaciones() {
             }
         }
 
-        const yaFueLeida = localStorage.getItem("leida_" + conv.id) === "true";
-
-    if (yaFueLeida) {
-        sinLeer = 0;
-    }
-
     let textoAbajo = "Sin mensajes";
     let puntoNaranja = "";
 
@@ -95,12 +89,12 @@ async function cargarConversaciones() {
         tarjeta.addEventListener("click", () => {
             localStorage.setItem("idConversacionActiva", conv.id);
             localStorage.setItem("idChatCon", idDelOtro);
-            localStorage.setItem("conversacionLeida", conv.id);
             window.location.href = "conversacion.html";
         });
-        activarVerMas();
         contenedor.appendChild(tarjeta);
     }
+
+    activarVerMas();
 }
 
 

@@ -112,7 +112,7 @@ function mostrarPosts() {
                 <img src="${foto}" alt="${nombre}" class="fotodeperfil">
                 <h2>${nombre}</h2>
             </div>
-            <img class="foto" src="${post.imagen_post}" alt="foto">
+            <img class="foto" src="${post.imagen_post}" alt="foto" data-id-receta="${post.id_receta}">
             <div class="bottom">
                 <div class="interacciones">
                     <span><img class="icono" src="${iconoLike}" alt="like"></span>
@@ -141,17 +141,29 @@ function activarVerMas() {
  
  
 containerPosts.addEventListener('click', (e) => {
+    const post = e.target.closest('.post');
+    if (!post) return;
+
+    const foto = e.target.closest('.foto');
+    if (foto) {
+        const idReceta = foto.dataset.idReceta;
+        if (idReceta) {
+            localStorage.setItem('idReceta', idReceta);
+            window.location.href = '../Home/recetas-informacion.html';
+        }
+        return;
+    }
+
     const icono = e.target.closest('.icono');
     if (!icono) return;
- 
-    const idPost = icono.closest('.post').dataset.id;
- 
+
+    const idPost = post.dataset.id;
     if (icono.alt === 'like') darLike(icono, idPost);
     else if (icono.alt === 'comentarios') abrirComentarios(idPost);
     else if (icono.alt === 'enviar') abrirEnviar(idPost);
 });
  
-// NUEVO: el icono cambia al instante (como en home.js) y después se avisa al back
+
 async function darLike(icono, idPost) {
     const yaTeniaLike = icono.src.includes('likenaranja.png');
     icono.src = yaTeniaLike ? likeVacio : likeLleno;
