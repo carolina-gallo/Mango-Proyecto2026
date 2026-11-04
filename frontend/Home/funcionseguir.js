@@ -13,7 +13,6 @@ function claseBtnCambia(siguiendo) {
   }
 }
 
-// Se llama al cargar la página
 async function configurarBotonSeguir(idAutor) {
   // si es tu propia receta, no mostrar el botón
   if (Number(idAutor) === Number(idUsuario)) {
@@ -23,11 +22,9 @@ async function configurarBotonSeguir(idAutor) {
 
   btnSeguir.dataset.idAutor = idAutor;
 
-  // le pregunto al back a quién sigo
   const res = await fetch(`http://localhost:3000/mango/usuario/${idUsuario}`);
   const usuario = await res.json();
 
-  // ¿está el autor en mi lista de seguidos?
   let yaLoSigue = false;
   for (let i = 0; i < usuario.qseguidos.length; i++) {
     if (usuario.qseguidos[i].id === Number(idAutor)) {
@@ -38,7 +35,6 @@ async function configurarBotonSeguir(idAutor) {
   claseBtnCambia(yaLoSigue);
 }
 
-// Al tocar el botón
 btnSeguir.addEventListener("click", async () => {
   const idAutor = Number(btnSeguir.dataset.idAutor);
   const yaLoSigue = btnSeguir.className === "siguiendo";
