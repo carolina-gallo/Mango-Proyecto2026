@@ -1,88 +1,76 @@
 
 .maestrias {
-    margin-top: 1vh;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2vh;
+  display: flex;
+  flex-direction: column;
+  gap: 4vh;
+  padding: 2vh;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .maestria {
-    width: 92.5vw;
-    height: 10.526vh;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: #F2EEE7;
+  border-radius: 3rem 1rem 1rem 3rem;
+  height: 10vh;
+  box-sizing: border-box;
 }
 
 .circulo-maestria {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 24vw;
-    aspect-ratio: 1 / 1;
-    background-color: white;
-    border: 0.5vw solid #E0E0E0;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
+  position: absolute;
+  z-index: 2;
+  width: 24vw;
+  height: 11.5vh;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: none;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .fotoDeMaestria {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .partemarron {
-    position: absolute;
-    right: 0;
-    width: 82%;
-    height: 75%;
-    background-color: #F2EEE7;
-    border-radius: 0 1.5vh 1.5vh 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 2.5vw 0 5vw;
-    z-index: 1;
+  position: relative;
+  flex: 1;
+  height: 6vh;
+  margin-left: 18vw;
+  margin-right: 4vw;
+  background-color: #5d3815;
+  border-radius: 1rem;
+  overflow: hidden;
 }
 
 .partenaranja {
-    width: 100%;
-    height: 55%;
-    background-color: #633B14;
-    border: 0.1vw solid #3D2818;
-    border-radius: 0 1vh 1vh 0;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 4vw 0 8vw;
-    box-shadow: 0 0.4vh 0.7vh #00000025;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  padding-left: 12vw;
+  gap: 9vw;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .copa {
-    position: absolute;
-    left: 5%;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 7vw;
-    height: 3vh;
-    object-fit: contain;
+  height: 3vh;
+  width: auto;
+  object-fit: contain;
 }
 
 .cuatodecien {
-    position: static;
-    margin: 20vw;
-    color: #F2EEE7;
-    font-family: 'Nunito';
-    font-size: 1.2rem;
-    font-weight: 900;
-    white-space: nowrap;
+  color: #ffffff;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  margin: 0;
 }
