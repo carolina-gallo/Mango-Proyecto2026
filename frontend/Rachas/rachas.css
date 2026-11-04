@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Nunito';
-    background-color: #FFF3DC;
+    background-color: white;
 }
 
 .app {
@@ -63,7 +63,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #FFF3DC;
+    background-color: white;
     font-size: 1.125rem;
     font-weight: 600;
     font-style: italic;
@@ -105,7 +105,7 @@ body {
     margin-top: 1vh;
     width: 89vw;
     height: 16.132vh;
-    background-color: white;
+    background-color: #FFF3DC;
     border: 0.01vh solid #CCB6B6;
     padding: 1.6vh 4vw;
     display: flex;
