@@ -2,23 +2,22 @@ let idConversacionActual = localStorage.getItem("idConversacionActiva")
 const contenedor = document.getElementById("contenedorMensajes");
 const idUs = Number(localStorage.getItem("id"));
 const idOtroUs = Number(localStorage.getItem("idChatCon"));
-if (idConversacionActual) {
-    localStorage.setItem("leida_" + idConversacionActual, "true");
+
+const botonEnviar = document.getElementById("botonEnviar");
+const inputMensaje = document.getElementById("inputMensaje");
+
+if (botonEnviar) {
+    botonEnviar.addEventListener("click", enviarMensaje);
 }
-    const botonEnviar = document.getElementById("botonEnviar");
-    const inputMensaje = document.getElementById("inputMensaje");
 
-    if (botonEnviar) {
-        botonEnviar.addEventListener("click", enviarMensaje);
-    }
+if (inputMensaje) {
+    inputMensaje.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+            enviarMensaje();
+        }
+    });
+}
 
-    if (inputMensaje) {
-        inputMensaje.addEventListener("keypress", (e) => {
-            if (e.key === "Enter") {
-                enviarMensaje();
-            }
-        });
-    }
 async function obtenerDatosUsuario() {
   if (!idOtroUs) return;
   try {
@@ -37,6 +36,7 @@ async function obtenerDatosUsuario() {
     console.error("Error al obtener usuario:", error);
   }
 }
+
 // ESTO ES PARA DESPUES CARGAR LOS POSTS Q SE MANDANN
 let listaPosts = [];
 let listaUsuarios = [];
@@ -47,6 +47,20 @@ async function cargarPostsHome() {
 
     const resUs = await fetch("http://localhost:3000/listaUsuarios");
     listaUsuarios = await resUs.json();
+}
+
+// le avisa al back que entraste a la conversacion, asi marca como leidos los mensajes del otro
+async function marcarConversacionLeida() {
+    if (!idConversacionActual || !idUs) return;
+    try {
+        await fetch("http://localhost:3000/mango/leido", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ idCon: idConversacionActual, idUs: idUs })
+        });
+    } catch (error) {
+        console.error("No se pudo marcar como leída:", error);
+    }
 }
 
 async function cargarConversacion() {
@@ -75,6 +89,7 @@ async function cargarConversacion() {
 
         obtenerDatosUsuario()
         renderizarMensajes(conversacion.mensajes, idUs, contenedor);
+        await marcarConversacionLeida();
 
 }
 function formatearHora() {

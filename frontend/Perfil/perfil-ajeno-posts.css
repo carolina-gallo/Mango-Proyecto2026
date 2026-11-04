@@ -1,16 +1,3 @@
-.encabezadoperfil{
-    position:sticky;
-}
-.scrolleo{
-    padding-top: 13.8649vh;
-    padding-bottom: 6.8649vh;    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    gap: 2vh;
-}
-
 .botones-perfil {
     width: 100%;
     display: flex;
@@ -40,10 +27,11 @@
     font-family: 'Nunito';
     font-weight: 700;
 }
+
 .mensaje-vacio {
-justify-self: center;
-align-self: center;
-padding-top: 25vh;
-font-size: 1.5rem;
-color: #6E8039;
+    justify-self: center;
+    align-self: center;
+    padding-top: 25vh;
+    font-size: 1.5rem;
+    color: #6E8039;
 }

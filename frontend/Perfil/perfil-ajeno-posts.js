@@ -104,7 +104,7 @@ function mostrarPosts() {
                 <img src="${foto}" alt="${nombre}" class="fotodeperfil">
                 <h2>${nombre}</h2>
             </div>
-            <img class="foto" src="${post.imagen_post}" alt="foto">
+            <img class="foto" src="${post.imagen_post}" alt="foto" data-id-receta="${post.id_receta}">
             <div class="bottom">
                 <div class="interacciones">
                     <span><img class="icono" src="${iconoLike}" alt="like"></span>
@@ -131,10 +131,77 @@ function activarVerMas() {
         }
     });
 }
+function pintarBotonSeguir() {
+    btnSeguir.textContent = loSigo ? 'Siguiendo' : 'Seguir';
+    btnSeguir.classList.toggle('siguiendo', loSigo);
+    btnSeguir.classList.toggle('seguir', !loSigo);
+}
+
+// miro en mi propio usuario si ya tengo a esta persona en qseguidos
+async function revisarSiLoSigo() {
+    try {
+        const res = await fetch(`http://localhost:3000/mango/usuario/${idUsuario}`);
+        const yo = await res.json();
+        loSigo = (yo.qseguidos || []).some(u => Number(u.id) === idAjeno);
+    } catch (error) {
+        console.error('Error al revisar si lo seguís:', error);
+    }
+    pintarBotonSeguir();
+}
+
+btnSeguir.addEventListener('click', async () => {
+    const ruta = loSigo ? 'dejardeSeguir' : 'seguir';
+    const metodo = loSigo ? 'DELETE' : 'POST';
+
+    try {
+        const res = await fetch(`http://localhost:3000/mango/${ruta}`, {
+            method: metodo,
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ idUs: idUsuario, idOtroUs: idAjeno })
+        });
+        const seguido = await res.json(); 
+
+        loSigo = !loSigo;
+        cantSeguidores.textContent = seguido.seguidores ?? 0;
+        pintarBotonSeguir();
+    } catch (error) {
+        console.error('No se pudo seguir/dejar de seguir:', error);
+    }
+});
+
+btnMensaje.addEventListener('click', async () => {
+    try {
+        const res = await fetch('http://localhost:3000/mango/iniciarConv', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ idUs: idUsuario, idOtroUs: idAjeno })
+        });
+
+        if (!res.ok) {
+            alert(await res.text());
+            return;
+        }
+
+        const conv = await res.json();
+        localStorage.setItem('idConversacionActiva', conv.id);
+        localStorage.setItem('idChatCon', idAjeno);
+        window.location.href = '../Mensajeria/conversacion.html';
+    } catch (error) {
+        console.error('No se pudo abrir la conversación:', error);
+    }
+});
 
 // INICIALIZACIÓN
 (async () => {
     usuarioAjeno = await obtenerDatosAjeno();
-    // await revisarSiLoSigo(); // Descomentá si tenés las funciones de seguir configuradas en este JS
+    await revisarSiLoSigo(); 
     await cargarPosts();
 })();
+
+containerPosts.addEventListener('click', (e) => {
+    const foto = e.target.closest('.foto');
+    if (foto && foto.dataset.idReceta) {
+        localStorage.setItem('idReceta', foto.dataset.idReceta);
+        window.location.href = '../Home/recetas-informacion.html';
+    }
+});
