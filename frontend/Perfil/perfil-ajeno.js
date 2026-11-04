@@ -32,7 +32,7 @@ function resolverFoto(foto) {
     return `../avatares/${foto}.png`;
 }
 
-/* ---------- header ---------- */
+/*header*/
 async function obtenerDatosAjeno() {
     try {
         const res = await fetch(`http://localhost:3000/mango/usuario/${idAjeno}`);
@@ -52,7 +52,7 @@ async function obtenerDatosAjeno() {
     }
 }
 
-/* ---------- botón seguir / siguiendo ---------- */
+/*botón seguir / siguiendo*/
 function pintarBotonSeguir() {
     btnSeguir.textContent = loSigo ? 'Siguiendo' : 'Seguir';
     btnSeguir.classList.toggle('siguiendo', loSigo);
@@ -91,7 +91,7 @@ btnSeguir.addEventListener('click', async () => {
     }
 });
 
-/* ---------- botón mensaje ---------- */
+/*para mandar el mensaje*/
 btnMensaje.addEventListener('click', async () => {
     try {
         const res = await fetch('http://localhost:3000/mango/iniciarConv', {
@@ -114,7 +114,7 @@ btnMensaje.addEventListener('click', async () => {
     }
 });
 
-/* ---------- recetas ---------- */
+// RECETAS
 function clavesActivas(filtros) {
     if (Array.isArray(filtros)) return filtros;
     return Object.keys(filtros ?? {}).filter(k => filtros[k] === true);
@@ -163,7 +163,7 @@ function mostrarRecetas(recetas) {
                 <p class="descripcion">${receta.descripcion ?? ''}</p>
             </div>
             <div class="interacciones">
-                <span class="icono"><img class="guardado" src="../Home/guardado.png" alt="guardar"></span>
+                <span class="icono"><img class="guardado" src="${estaGuardada(receta.id) ? '../Home/guardado-amarillo.png' : '../Home/guardado.png'}" alt="guardar"></span>
                 <span class="icono"><img class="comentarios" src="../Home/comentariosr.png" alt="comentar"></span>
             </div>
             <div class="filtros">${armarFiltros(receta.filtros)}</div>

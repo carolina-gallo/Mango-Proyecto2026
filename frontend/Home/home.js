@@ -149,6 +149,7 @@ async function abrirEnviar(idPost) {
             listaChats.appendChild(div);
         });
 
+
     } catch (error) {
         console.error('Error al cargar conversaciones:', error);
         listaChats.innerHTML = '<p class="sin-posts">No se pudieron cargar tus conversaciones.</p>';

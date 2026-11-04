@@ -20,3 +20,18 @@ function irAPerfil(idOtroUs) {
     localStorage.setItem("idPerfilAjeno", idOtroUs);
     window.location.href = "../Perfil/perfil-ajeno.html";
 }
+
+
+function estaGuardada(idReceta) {
+    const lista = JSON.parse(localStorage.getItem("guardadas_" + localStorage.getItem("id"))) || [];
+    return lista.includes(String(idReceta));
+}
+
+function marcarGuardada(idReceta) {
+    const clave = "guardadas_" + localStorage.getItem("id");
+    const lista = JSON.parse(localStorage.getItem(clave)) || [];
+    if (!lista.includes(String(idReceta))) {
+        lista.push(String(idReceta));
+        localStorage.setItem(clave, JSON.stringify(lista));
+    }
+}

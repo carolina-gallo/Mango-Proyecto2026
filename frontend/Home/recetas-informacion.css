@@ -124,14 +124,14 @@
     width: 21.8905vw;
     min-width: fit-content;
     height: 4.8vh;
-    border-radius: 1.25rem;
-    background-color: #FFC96C;
+    border-radius: 1rem;
+    border: 0.2rem solid #FFC96C;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     white-space: nowrap;       
     flex-shrink: 0;        
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 600;
     color: #000000;
 }
