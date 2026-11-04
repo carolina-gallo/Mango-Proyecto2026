@@ -22,6 +22,31 @@ async function obtenerDatosUsuario() {
     }
 }
 
+ 
+async function cantdemanguitos() {
+    if (!idUsuario) {
+        return null;
+    }
+
+    try {
+        const res = await fetch('http://localhost:3000/mango/usuario');
+        console.log('status:', res.status);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+ 
+        const datos = await res.json();
+ 
+        const u = datos.find(m => Number(m.idUsuario) === idUsuario) ?? {};
+ 
+        document.getElementById('cantManguitos').textContent = `${u.puntos ?? 0};
+        
+        return u;
+    } catch (error) {
+        console.error('Error al obtener el progreso:', error);
+        return null;
+    }
+}
+ 
+obtenerprogresometa();
 (async () => {
     usuarioActual = await obtenerDatosUsuario();
 })();
