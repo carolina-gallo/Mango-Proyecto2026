@@ -5,6 +5,7 @@ let usuarioActual = null;
 function resolverFoto(foto) {
     if (!foto) return '../avatares/default.png';
     if (foto.startsWith('http') || foto.startsWith('data:')) return foto;
+    
     return `../avatares/${foto}.png`;
 }
 
