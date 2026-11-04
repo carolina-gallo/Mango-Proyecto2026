@@ -157,12 +157,7 @@ async function abrirEnviar(idPost) {
 }
 
 async function enviarPost(idConversacion) {
-    const postCompartido = posts.find(p => String(p.id) === String(postAEnviar));
-
-    if (!postCompartido) {
-        console.error("No se encontró el post a compartir:", postAEnviar);
-        return;
-    }
+    const link = new URL('homeposts.html', window.location.href).href;
 
     try {
         await fetch('http://localhost:3000/mango/compartirPub', {
@@ -171,19 +166,18 @@ async function enviarPost(idConversacion) {
             body: JSON.stringify({
                 idUs: idUs,
                 idcon: idConversacion,
-                texto: postCompartido.descripcion,
-                idPost: postCompartido.id,
-                imagenPost: postCompartido.imagen,
-                autorPost: postCompartido.username,
-                fotoAutor: postCompartido.foto_perfil
+                texto: `${link}#${postAEnviar}`
             })
         });
 
         popupEnviar.close();
     } catch (error) {
-        console.error('Error al enviar el post:', error);
+        console.error('Error al compartir post:', error);
     }
 }
+popupEnviar.addEventListener("click", (e) => {
+    if (e.target === popupEnviar) popupEnviar.close();
+});
 
 const popup = document.getElementById("comentarios");
 const lista = document.getElementById("lista-comentarios");
