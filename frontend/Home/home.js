@@ -11,7 +11,6 @@ async function obtenerDatosUsuario() {
     try {
         const respuesta = await fetch(`http://localhost:3000/mango/usuario/${idUsuario}`);
         const usuario = await respuesta.json();
-        console.log("usuario recibido:", usuario);
 
         localStorage.setItem("nombre_usuario", usuario.username);
         localStorage.setItem("foto_perfil", usuario.foto_perfil);
