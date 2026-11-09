@@ -5,14 +5,13 @@
 }
 
 body {
-width: 100%;
-height: auto;
-
-display: flex;
-flex-direction: column;
-align-items: center;
-font-family: 'Nunito';
-margin-bottom: 6.8649vh;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Nunito';
+    margin-bottom: 6.8649vh;
 }
 
 html {
@@ -26,7 +25,7 @@ html {
     padding-bottom: 6.8649vh;
 }
 
-.header-editar-perfil{
+.header-editar-perfil {
     height: 6.864vh;
     width: 100%;
     display: flex;
@@ -46,17 +45,15 @@ html {
 .editarperfiltexto {
     color: #6E8039;
     font-size: 1.625rem;
-    font-family: 'nunito';
     font-weight: 700;
 }
 
 .mangoymanguitos {
     margin-left: auto;
+    margin-right: 4vw;
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: auto;
-    margin-right: 4vw;
 }
 
 .mango {
@@ -65,8 +62,7 @@ html {
 }
 
 .cantmanguitos {
-    font-family: 'Nunito';
-    font-weight: bolder;
+    font-weight: 800;
     font-size: 1.6rem;
     color: #F4882E;
 }
@@ -74,7 +70,6 @@ html {
 .ftperfil {
     height: 25.94vh;
     width: 100%;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -84,18 +79,13 @@ html {
 
 .circuloperfil {
     width: 37.313vw;
-    aspect-ratio: 1/1;
+    aspect-ratio: 1 / 1;
     border-radius: 50%;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    object-fit: cover;
 }
 
 .cambiatexto {
-    font-family: 'nunito';
-    font-weight: 550;
+    font-weight: 600;
     color: #6E8039;
     font-size: 0.9375rem;
 }
@@ -113,50 +103,133 @@ html {
 
 .opcionavatar {
     width: 46.517vw;
-    height: 18.43vh;
+    height: 20.43vh;
     padding: 0.9vw;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+
+    background: #fff;
+    color: inherit;
+    font: inherit;
+    text-align: left;
 
     border: 0.5vw solid #E0E0E0;
     border-radius: 1rem;
+    cursor: pointer;
+    overflow: hidden;
 }
 
-.opcionavatar1 {
-    width: 46.517vw;
-    height: 18.43vh;
-    padding: 0.9vw;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-
+.opcionavatar.equipado {
     border: 1vw solid #F3A73C;
-    border-radius: 1rem;
 }
 
 .ft-avatar {
     width: 100%;
+    height: 14vh;
+    object-fit: cover;
+    border-radius: 0.8rem;
 }
 
 .nombre-avatar {
-    align-items: center;
     line-height: 2.173vh;
-    font-family: 'nunito';
     font-weight: 800;
     font-size: 0.875rem;
     margin-top: 0.5vh;
 }
 
 .descripcion {
-    align-items: flex-start;
-    justify-content: flex-start;
-    font-family: 'nunito';
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-weight: 400;
     font-size: 0.75rem;
     color: #6E8039;
 }
 
-.candado {
-    margin-left: 15vw;
+.aviso-tienda {
+    width: 100%;
+    text-align: center;
+    color: #6E8039;
+    margin-top: 2vh;
+}
+
+.tienda-popup {
+    margin: auto;
+    width: 80vw;
+    max-width: 22rem;
+    border: none;
+    border-radius: 1.25rem;
+    padding: 1.5rem 1.25rem;
+    font-family: 'Nunito';
+    text-align: center;
+}
+
+.tienda-popup[open] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.tienda-popup::backdrop {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.tienda-popup-foto {
+    width: 30vw;
+    max-width: 8rem;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.tienda-popup-titulo {
+    color: #6E8039;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.tienda-popup-texto {
+    color: #555;
+    font-size: 0.9375rem;
+}
+
+.tienda-popup-error {
+    color: #C0392B;
+    font-size: 0.8125rem;
+}
+
+.tienda-popup-botones {
+    display: flex;
+    gap: 0.75rem;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.tienda-boton-principal,
+.tienda-boton-secundario {
+    flex: 1;
+    padding: 0.7rem;
+    border-radius: 2rem;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.tienda-boton-principal {
+    background: #F3A73C;
+    color: #fff;
+    border: none;
+}
+
+.tienda-boton-principal:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
+.tienda-boton-secundario {
+    background: #fff;
+    color: #6E8039;
+    border: 2px solid #E0E0E0;
 }

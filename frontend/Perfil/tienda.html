@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="tienda.css">
     <link rel="stylesheet" href="../General/general.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
     </style>
 </head>
 
@@ -23,40 +23,55 @@
             <p class="cantmanguitos" id="cantManguitos"></p>
         </article>
     </header>
+
     <section class="ftperfil">
-            <img class="circuloperfil" id="ftdeperfil" src="" alt="foto perfil">
+        <img class="circuloperfil" id="ftdeperfil" src="" alt="foto perfil">
         <p class="cambiatexto">Cambia tu avatar</p>
     </section>
-    
-    <section class="otros-avatares">
-        <button type="button" class="opcionavatar1" id="Magui">
-            <img class="ft-avatar" src="Magui.png" alt="magui">
-            <span class="nombre-avatar1">Magui</span>
-            <p class="descripcion">Todo empieza con un bocado</p>
-        </button>
-        <button type="button" class="opcionavatar" id="Ridett">
-            <img class="ft-avatar" src="ridett.png" alt="ridett">
-            <span class="nombre-avatar">Ridett</span>
-            <p class="descripcion">80 manguitos <img class="candado" src="candado.png" alt="candado"></p>
-        </button>
-        <button type="button" class="opcionavatar" id="Koroko">
-            <img class="ft-avatar" src="koroko.png" alt="koroko">
-            <span class="nombre-avatar">Koroko</span>
-            <p class="descripcion">120 manguitos <img class="candado" src="candado.png" alt="candado"></p>
-        </button>
-        <button type="button" class="opcionavatar" id="Aŭro">
-            <img class="ft-avatar" src="Aŭro.png" alt="auro">
-            <span class="nombre-avatar">Aŭro</span>
-            <p class="descripcion">150 manguitos <img class="candado" src="candado.png" alt="candado"></p>
-        </button>
-        <button type="button" class="opcionavatar" id="Majstra kuiristo">
-            <img class="ft-avatar" src="Majstra kuiristo.png" alt="Majstra kuiristo">
-            <span class="nombre-avatar">Majstra kuiristo</span>
-            <p class="descripcion">200 manguitos <img class="candado" src="candado.png" alt="candado"></p>
-        </button>
+
+    <section class="otros-avatares" id="listaAvatares">
+    <button type="button" class="opcionavatar" data-avatar="./avatar1" data-precio="0"
+            data-descripcion="Todo empieza con un primer bocado.">
+        <img class="ft-avatar" src="Magui.png" alt="Magui">
+        <span class="nombre-avatar">Magui</span>
+        <p class="descripcion"></p>
+    </button>
+    <button type="button" class="opcionavatar" data-avatar="./avatar2" data-precio="80"
+            data-descripcion="Un buen día empieza con algo rico.">
+        <img class="ft-avatar" src="ridett.png" alt="Ridett">
+        <span class="nombre-avatar">Ridett</span>
+        <p class="descripcion"></p>
+    </button>
+    <button type="button" class="opcionavatar" data-avatar="./avatar3" data-precio="120"
+            data-descripcion="Cocinar también es una forma de querer.">
+        <img class="ft-avatar" src="koroko.png" alt="Koroko">
+        <span class="nombre-avatar">Koroko</span>
+        <p class="descripcion"></p>
+    </button>
+    <button type="button" class="opcionavatar" data-avatar="./avatar4" data-precio="150"
+            data-descripcion="El estilo también se sirve en la mesa.">
+        <img class="ft-avatar" src="Aŭro.png" alt="Aŭro">
+        <span class="nombre-avatar">Aŭro</span>
+        <p class="descripcion"></p>
+    </button>
+    <button type="button" class="opcionavatar" data-avatar="./avatar5" data-precio="200"
+            data-descripcion="El sabor tiene sus secretos, y yo los conozco.">
+        <img class="ft-avatar" src="Majstra kuiristo.png" alt="Majstra kuiristo">
+        <span class="nombre-avatar">Majstra kuiristo</span>
+        <p class="descripcion"></p>
+    </button>
     </section>
 
-
+    <dialog class="tienda-popup" id="popupCompra">
+        <img class="tienda-popup-foto" id="compraFoto" src="" alt="">
+        <p class="tienda-popup-titulo" id="compraTitulo"></p>
+        <p class="tienda-popup-texto" id="compraTexto"></p>
+        <p class="tienda-popup-error" id="compraError" hidden></p>
+        <div class="tienda-popup-botones">
+            <button type="button" class="tienda-boton-secundario" id="compraCancelar">Cancelar</button>
+            <button type="button" class="tienda-boton-principal" id="compraConfirmar">Comprar</button>
+        </div>
+    </dialog>
 
     <footer class="footer">
     <a href="../Home/homeposts.html">
