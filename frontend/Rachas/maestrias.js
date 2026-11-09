@@ -13,8 +13,6 @@ const CLAVES_NIVEL = {
     rapidas: ['1-15min', '1-15 min']
 };
 
-// Cada maestría se relaciona con la propiedad
-// que contiene su progreso en maesPorUsuario.json.
 const CLAVES_PROGRESO = {
     dulce: ['dulce'],
     saladas: ['salado'],
@@ -45,7 +43,6 @@ function nivelDeMaestria(usuario, maestria) {
     return 'tierra';
 }
 
-// Busca el progreso, aunque la clave tenga una variante de escritura.
 function progresoDeMaestria(usuario, maestria) {
     const claves = CLAVES_PROGRESO[maestria] ?? [maestria];
 
@@ -68,20 +65,14 @@ async function cargarMaestrias() {
     }
 
     try {
-        // Cargar los datos de las maestrías de todos los usuarios.
         const resMaes = await fetch('http://localhost:3000/listamaes');
-
         console.log('Estado de /listamaes:', resMaes.status);
-
         if (!resMaes.ok) {
             throw new Error(`Error al obtener las maestrías: HTTP ${resMaes.status}`);
         }
-
         const datosMaes = await resMaes.json();
-
         console.log('Datos de maestrías recibidos:', datosMaes);
 
-        // La respuesta debe ser un array con objetos que tengan idUsuario.
         if (!Array.isArray(datosMaes)) {
             throw new Error('La respuesta de /listamaes no es un array.');
         }
@@ -94,8 +85,6 @@ async function cargarMaestrias() {
             console.warn(`No se encontraron maestrías para el usuario ${idUsuario}.`);
         }
 
-        // Obtener también los datos del usuario para conservar
-        // la lógica anterior de las imágenes y los niveles.
         let usuario = {};
 
         try {
@@ -116,8 +105,6 @@ async function cargarMaestrias() {
             const maestria = articulo.dataset.maestria;
 
             if (!maestria) return;
-
-            // Mantener la carga de imágenes y niveles que ya tenías.
             const nivel = nivelDeMaestria(usuario, maestria);
             const foto = articulo.querySelector('.fotoDeMaestria');
 
@@ -126,7 +113,6 @@ async function cargarMaestrias() {
                 foto.alt = `Maestría ${maestria}, nivel ${nivel}`;
             }
 
-            // Mostrar el progreso correspondiente a esta maestría.
             const progreso = usuarioMaes
                 ? progresoDeMaestria(usuarioMaes, maestria)
                 : 0;
@@ -137,12 +123,9 @@ async function cargarMaestrias() {
             if (texto) {
                 texto.textContent = `${progreso}/100`;
             }
-
-            // La barra naranja representa el porcentaje completado.
             if (barra) {
                 barra.style.width = `${progreso}%`;
             }
-
             console.log(`${maestria}: ${progreso}/100`);
         });
 
@@ -150,5 +133,4 @@ async function cargarMaestrias() {
         console.error('Error al cargar las maestrías:', error);
     }
 }
-
 cargarMaestrias();
