@@ -44,7 +44,6 @@ function buscarFoto(username) {
     return resolverFoto(u?.foto_perfil);
 }
  
- 
 async function obtenerDatosUsuario() {
     if (!idUs) return null;
     try {
@@ -62,7 +61,6 @@ async function obtenerDatosUsuario() {
         document.querySelector('.comentarios-avatar.mio').innerHTML =
             `<img src="${resolverFoto(u.foto_perfil)}" alt="${u.username}">`;
         cargarInsignias(u);
-        pintarInsignias(u.nivel);
         return u;
     } catch (error) {
         console.error('Error al obtener usuario:', error);
