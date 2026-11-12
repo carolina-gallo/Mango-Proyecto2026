@@ -108,7 +108,6 @@ async function abrirEnviar(idPost) {
     listaChats.innerHTML = '';
     popupEnviar.showModal();
 
-    try {
         const resUs = await fetch('http://localhost:3000/listaUsuarios');
         const usuarios = await resUs.json();
 
@@ -128,10 +127,8 @@ async function abrirEnviar(idPost) {
             const otroId = Number(conv.participantes.find(id => Number(id) !== idUs));
             const otro = usuarios.find(u => Number(u.id) === otroId);
 
-            const nombreOtro = otro ? (otro.username || otro.nombre_usuario) : `Usuario ${otroId}`;
-            const fotoOtro = otro?.foto_perfil 
-                ? `../avatares/${otro.foto_perfil}.png` 
-                : '../avatares/avatar1.png';
+            const nombreOtro = otro.username || otro.nombre_usuario;
+            const fotoOtro = otro?.foto_perfil || `../avatares/${otro.foto_perfil}.png` 
             const descripcionOtro = otro?.descripcion || '';
 
             const div = document.createElement('div');
@@ -148,11 +145,6 @@ async function abrirEnviar(idPost) {
             listaChats.appendChild(div);
         });
 
-
-    } catch (error) {
-        console.error('Error al cargar conversaciones:', error);
-        listaChats.innerHTML = '<p class="sin-posts">No se pudieron cargar tus conversaciones.</p>';
-    }
 }
 
 async function enviarPost(idConversacion) {
@@ -305,13 +297,12 @@ async function publicarComentario() {
     const fecha = new Date()
 
     const textoComentario = input.value.trim();
-    if (textoComentario === "") return; // Si está vacío, no hace nada
+    if (textoComentario === "") return; 
 
     const idPost = popup.dataset.id;
     const nombre = localStorage.getItem("nombre_usuario") || "Anonimo";
 
     try {
-        // 2. Envías la petición al servidor (con la coma corregida)
         await fetch("http://localhost:3000/mango/post/comentar", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -323,7 +314,6 @@ async function publicarComentario() {
             })
         });
 
-        // 3. Actualizas la interfaz localmente
         const comentarioPost = buscarPost(idPost);
         if (comentarioPost) {
             comentarioPost.comentarios.push({
@@ -335,7 +325,6 @@ async function publicarComentario() {
             comentarioPost.comentarios_post++;
         }
 
-        // 4. Limpias el input y refrescas
         input.value = "";
         mostrarComentarios(idPost);
 
